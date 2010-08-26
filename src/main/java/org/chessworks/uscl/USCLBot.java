@@ -43,9 +43,9 @@ public class USCLBot {
 
 	/**
 	 * The path to the file on disk where the configured bot settings are located. The path defaults to "USCL-Bot.properties", but can be changed by
-	 * setting the "usclBot.settingsFile" system property on the command-line: "-usclBot.settingsFile=myFile.properties".
+	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
 	 */
-	public static final String SETTINGS_FILE = System.getProperty("usclBot.settingsFile", "USCL-Bot.properties");
+	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
 
 	/**
 	 * The bot sends this string to itself to indicate it's done with startup.
