@@ -31,7 +31,7 @@ public class USCLBot {
 	 * The path to the file on disk where the configured bot settings are located. The path defaults to "Reserve-Games.b2s", but can be changed using
 	 * the command-line.
 	 */
-	public static final String BOARDS_FILE = "Reserve-Games.b2s";
+	public static final String BOARDS_FILE = "Games.txt";
 
 	public static final String BOT_RELEASE_DATE = "August 26, 2010";
 

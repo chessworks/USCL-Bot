@@ -1,34 +1,33 @@
-reserve-game DSchneider-MAN 1
-reserve-game Schroer-CAR 1
-reserve-game Simpson-CAR 2
-reserve-game Vovsha-MAN 2
-reserve-game Braylovsky-MAN 3
-reserve-game CraigJones-CAR 3
-reserve-game Bapat-CAR 4
-reserve-game JamesBlack-MAN 4
-reserve-game Hungaski-NE 5
-reserve-game Enkhbat-BAL 5
-reserve-game Foisor-BAL 6
-reserve-game Vigorito-NE 6
-reserve-game Bournival-NE 7
-reserve-game AdithyaB-BAL 7
-reserve-game Schoch-BAL 8
-reserve-game Chase-NE 8
-reserve-game Wolff-SF 9
-reserve-game Wang-DAL 9
-reserve-game Bercys-DAL 10
-reserve-game Naroditsky-SF 10
-reserve-game Zierk-SF 11
-reserve-game Kiewra-DAL 11
-reserve-game NLopez-DAL 12
-reserve-game AndyLee-SF 12
-reserve-game Becerra-MIA 13
-reserve-game Barcenilla-ARZ 13
-reserve-game Aldama-ARZ 14
-reserve-game BlasLugo-MIA 14
-reserve-game ERodriguez-MIA 15
-reserve-game Rensch-ARZ 15
-reserve-game Gurczak-ARZ 16
-reserve-game Galofre-MIA 16
-reserve-game MrBob 17
-reserve-game DuckStorm 25
+tell USCL-Bot clear
+tell USCL-Bot reserve-game DSchneider-MAN 1
+tell USCL-Bot reserve-game Schroer-CAR 1
+tell USCL-Bot reserve-game Simpson-CAR 2
+tell USCL-Bot reserve-game Vovsha-MAN 2
+tell USCL-Bot reserve-game Braylovsky-MAN 3
+tell USCL-Bot reserve-game CraigJones-CAR 3
+tell USCL-Bot reserve-game Bapat-CAR 4
+tell USCL-Bot reserve-game JamesBlack-MAN 4
+tell USCL-Bot reserve-game Hungaski-NE 5
+tell USCL-Bot reserve-game Enkhbat-BAL 5
+tell USCL-Bot reserve-game Foisor-BAL 6
+tell USCL-Bot reserve-game Vigorito-NE 6
+tell USCL-Bot reserve-game Bournival-NE 7
+tell USCL-Bot reserve-game AdithyaB-BAL 7
+tell USCL-Bot reserve-game Schoch-BAL 8
+tell USCL-Bot reserve-game Chase-NE 8
+tell USCL-Bot reserve-game Wolff-SF 9
+tell USCL-Bot reserve-game Wang-DAL 9
+tell USCL-Bot reserve-game Bercys-DAL 10
+tell USCL-Bot reserve-game Naroditsky-SF 10
+tell USCL-Bot reserve-game Zierk-SF 11
+tell USCL-Bot reserve-game Kiewra-DAL 11
+tell USCL-Bot reserve-game NLopez-DAL 12
+tell USCL-Bot reserve-game AndyLee-SF 12
+tell USCL-Bot reserve-game Becerra-MIA 13
+tell USCL-Bot reserve-game Barcenilla-ARZ 13
+tell USCL-Bot reserve-game Aldama-ARZ 14
+tell USCL-Bot reserve-game BlasLugo-MIA 14
+tell USCL-Bot reserve-game ERodriguez-MIA 15
+tell USCL-Bot reserve-game Rensch-ARZ 15
+tell USCL-Bot reserve-game Gurczak-ARZ 16
+tell USCL-Bot reserve-game Galofre-MIA 16
