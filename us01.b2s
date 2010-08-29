@@ -1,0 +1,21 @@
+reserve-game DSchneider-MAN 1
+spoof DSchneider-MAN set open 1
+spoof Schroer-CAR set open 1
+spoof DSchneider-MAN match Schroer-CAR u w0 white 90 30
+spoof Schroer-CAR accept DSchneider-MAN 
+spoof jimmys set DSchneider-MAN isolated 1
+spoof jimmys set Schroer-CAR isolated 1
+spoof DSchneider-MAN set examine 0
+spoof Schroer-CAR set examine 0
+spoof DSchneider-MAN set kib 0
+spoof Schroer-CAR set kib 0
+spoof DSchneider-MAN set allowkib 0
+spoof Schroer-CAR set allowkib 0
+spoof DSchneider-MAN set quietplay 2
+spoof Schroer-CAR set quietplay 2
+observe 1
+spoof roboadmin observe 1
+xtell 129 Manhattan Applesauce vs Carolina Cobras : DSchneider-MAN vs Schroer-CAR "observe 1"
+xtell 165 Manhattan Applesauce vs Carolina Cobras : DSchneider-MAN vs Schroer-CAR "observe 1"
+sshout Manhattan Applesauce vs Carolina Cobras : DSchneider-MAN vs Schroer-CAR "observe 1"
+qadd 361 5 -- LIVE: Manhattan Applesauce vs Carolina Cobras || set unobserve 0 & observe 4 & observe 3 & observe 2 & observe 1
