@@ -34,7 +34,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.jarDirectory>${basedir}/src/main/jars</project.build.jarDirectory>
 	</properties>
 
 	<repositories>
@@ -87,84 +86,72 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.jinchess</groupId>
-			<artifactId>connection-lib</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.build.jarDirectory}/chessclub.jar</systemPath>
+			<artifactId>jin</artifactId>
+			<version>2.14</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
-				<configuration>
-					<compilerVersion>6.0</compilerVersion>
-					<source>6.0</source>
-					<target>6.0</target>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.4</version>
 				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>nl.zoidberg.calculon.fics.FICSInterface</mainClass>
-						</manifest>
-					</archive>
+					<artifactSet>
+						<excludes>
+							<exclude>junit:junit</exclude>
+						</excludes>
+					</artifactSet>
+					<minimizeJar>true</minimizeJar>
+					<transformers>
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<mainClass>org.chessworks.uscl.USCLBot</mainClass>
+						</transformer>
+					</transformers>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>**/package.html</exclude>
+							</excludes>
+						</filter>
+						<filter>
+							<artifact>com.jinchess:*</artifact>
+							<includes>
+								<exclude>**/*.class</exclude>
+							</includes>
+						</filter>
+					</filters>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-shade-plugin</artifactId>-->
-<!--				<version>1.2.2-SNAPSHOT</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<phase>package</phase>-->
-<!--						<goals>-->
-<!--							<goal>shade</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<artifactSet>-->
-<!--								<excludes>-->
-<!--									<exclude>junit:junit</exclude>-->
-<!--								</excludes>-->
-<!--							</artifactSet>-->
-<!--							<transformers>-->
-<!--								<transformer-->
-<!--									implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />-->
-<!--							</transformers>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.1</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
-
 </project>

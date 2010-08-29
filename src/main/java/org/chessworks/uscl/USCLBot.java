@@ -14,13 +14,14 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
-import java.util.concurrent.Semaphore;
 
 import org.chessworks.uscl.converters.ConversionException;
 import org.chessworks.uscl.model.TournamentService;
 
-import free.chessclub.ChessclubConnection;
+import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
+import free.chessclub.level2.DatagramEvent;
+import free.chessclub.level2.DatagramListener;
 
 /**
  * @author Doug Bateman
@@ -135,8 +136,6 @@ public class USCLBot {
 	private List<String> managerList;
 
 	private Set<String> managerSet;
-
-	private Semaphore startupLock = new Semaphore(0);
 
 	private TournamentService tournamentService;
 
@@ -348,7 +347,7 @@ public class USCLBot {
 		if (args.length > 0) {
 			command = MessageFormat.format(command, args);
 		}
-		conn.sendCommand(command);
+		conn.sendCommand(command, true, false, null);
 	}
 
 	/**
@@ -430,20 +429,27 @@ public class USCLBot {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
 		conn = new Connection(hostName, hostPort, loginName, loginPass);
-		conn.connect();
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
+		conn.addDatagramListener(conn, Datagram.DG_PERSONAL_TELL);
+		conn.addDatagramListener(conn, Datagram.DG_MY_NOTIFY_LIST);
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_STATE);
+		conn.addDatagramListener(conn, Datagram.DG_MY_GAME_RESULT);
+		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
+		conn.initiateConnect(hostName, hostPort);
+
+	}
+
+	public void onConnected() {
 		userName = conn.getUsername();
 		tellManagers("I have arrived.");
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
-		conn.setDGState(Datagram.DG_NOTIFY_ARRIVED, true);
-		conn.setDGState(Datagram.DG_NOTIFY_LEFT, true);
-		conn.setDGState(Datagram.DG_PERSONAL_TELL, true);
-		conn.setDGState(Datagram.DG_MY_NOTIFY_LIST, true);
-		conn.setDGState(Datagram.DG_NOTIFY_STATE, true);
-		conn.setDGState(Datagram.DG_MY_GAME_RESULT, true);
-		conn.setDGState(Datagram.DG_STARTED_OBSERVING, true);
 		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
-		startupLock.acquireUninterruptibly();
 		System.out.println();
+	}
+
+	public void onConnectSpamDone() {
+
 	}
 
 	/**
@@ -464,36 +470,97 @@ public class USCLBot {
 	/**
 	 * Sends a personal tell to all managers.
 	 */
+	public void tellEventsChannel(String msg, Object... args) {
+		tell("399", msg, args);
+	}
+
+	/**
+	 * Sends a personal tell to all managers.
+	 */
 	public void tellProgrammers(String msg, Object... args) {
 		broadcast("tell", programmerList, msg, args);
 	}
 
-	private class Connection extends free.chessclub.ChessclubConnection {
+	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
 
 		public Connection(String hostname, int port, String username, String password) {
-			super(hostname, port, username, password, ECHO_STREAM);
+			super(username, password, ECHO_STREAM);
 		}
 
 		@Override
-		protected void processDatagram(Datagram datagram) {
-			int code = datagram.getType();
-			String player = datagram.getString(0);
+		public void datagramReceived(DatagramEvent evt) {
+			Datagram datagram = evt.getDatagram();
+			int code = datagram.getId();
 			switch (code) {
-			case Datagram.DG_NOTIFY_ARRIVED:
-				onPlayerArrived(player);
+			case Datagram.DG_NOTIFY_ARRIVED: {
+				String player = datagram.getString(0);
+				processPlayerArrived(player);
 				break;
-			case Datagram.DG_NOTIFY_LEFT:
-				onPlayerDeparted(player);
+			}
+			case Datagram.DG_NOTIFY_LEFT: {
+				String player = datagram.getString(0);
+				processPlayerDeparted(player);
 				break;
-			case Datagram.DG_NOTIFY_STATE:
+			}
+			case Datagram.DG_NOTIFY_STATE: {
+				String player = datagram.getString(0);
 				String state = datagram.getString(1);
 				int game = datagram.getInteger(2);
 				onPlayerStateChange(player, state, game);
 				break;
-			case Datagram.DG_NOTIFY_OPEN:
+			}
+			case Datagram.DG_PERSONAL_TELL: {
+				String teller = datagram.getString(0);
+				String titles = datagram.getString(1);
+				String message = datagram.getString(2);
+				int tellType = datagram.getInteger(3);
+				if (tellType == ChessclubConstants.REGULAR_TELL) {
+					processPersonalTell(teller, titles, message, tellType);
+				}
 				break;
 			}
-			super.processDatagram(datagram);
+			case Datagram.DG_MY_NOTIFY_LIST: {
+				break;
+			}
+			case Datagram.DG_MY_GAME_RESULT: {
+//				Form: (gamenumber become-examined game_result_code score_string2 description-string ECO)
+				int gameNumber = datagram.getInteger(0);
+				boolean becomesExamined = datagram.getBoolean(1);
+				String gameResultCode = datagram.getString(2);
+				String scoreString = datagram.getString(3);
+				String descriptionString = datagram.getString(4);
+				processMyGameResult(gameNumber, becomesExamined, gameResultCode, scoreString, descriptionString);
+				break;
+			}
+			case Datagram.DG_STARTED_OBSERVING: {
+				int gameNumber = datagram.getInteger(0);
+				String whiteName = datagram.getString(1);
+				String blackName = datagram.getString(2);
+				int wildNumber = datagram.getInteger(3);
+				String ratingCategoryString = datagram.getString(4);
+				boolean isRated = datagram.getBoolean(5);
+				int whiteInitial = datagram.getInteger(6);
+				int whiteIncrement = datagram.getInteger(7);
+				int blackInitial = datagram.getInteger(8);
+				int blackIncrement = datagram.getInteger(9);
+				boolean isPlayedGame = datagram.getBoolean(10);
+				String exString = datagram.getString(11);
+				int whiteRating = datagram.getInteger(12);
+				int blackRating = datagram.getInteger(13);
+				long gameID = datagram.getLong(14);
+				String whiteTitles = datagram.getString(15);
+				String blackTitles = datagram.getString(16);
+				boolean isIrregularLegality = datagram.getBoolean(17);
+				boolean isIrregularSemantics = datagram.getBoolean(18);
+				boolean usesPlunkers = datagram.getBoolean(19);
+				String fancyTimeControls = datagram.getString(20);
+				processStartedObserving(gameNumber, whiteName, blackName, wildNumber, ratingCategoryString, isRated, whiteInitial, whiteIncrement,
+						blackInitial, blackIncrement, isPlayedGame, exString, whiteRating, blackRating, gameID, whiteTitles, blackTitles,
+						isIrregularLegality, isIrregularSemantics, usesPlunkers, fancyTimeControls);
+				break;
+			}
+			}
+
 		}
 
 		public void onPlayerStateChange(String player, String state, int game) {
@@ -504,7 +571,15 @@ public class USCLBot {
 			}
 		}
 
-		@Override
+		protected void processPlayerArrived(String name) {
+			onPlayerArrived(name);
+		}
+
+
+		protected void processPlayerDeparted(String name) {
+			onPlayerDeparted(name);
+		}
+
 		protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
 				boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
 				int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
@@ -512,20 +587,18 @@ public class USCLBot {
 			tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
 		}
 
-		@Override
 		protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
 				String descriptionString) {
 			tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
 		}
 
-		@Override
 		protected void processPersonalTell(String teller, String titles, String message, int tellType) {
-			if (tellType != ChessclubConnection.TELL)
+			if (tellType != ChessclubConstants.REGULAR_TELL)
 				return;
 			String myName = userName;
 			if (myName.equals(teller)) {
 				if (message.equals(STARTUP_COMPLETE_SIGNAL)) {
-					startupLock.release();
+					onConnectSpamDone();
 				}
 				return;
 			}
@@ -538,6 +611,15 @@ public class USCLBot {
 			}
 			onCommand(teller, message);
 		}
+
+		@Override
+		protected void handleLoginSucceeded() {
+			// TODO Auto-generated method stub
+			super.handleLoginSucceeded();
+			onConnected();
+		}
+
+
 
 	}
 
