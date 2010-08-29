@@ -170,12 +170,12 @@ public class USCLBot {
 	}
 
 	public void cmdKill(String teller) {
-		tellManagers("Quitting at the request of {0}.  Bye!");
+		tellManagers("Quitting at the request of {0}.  Bye!", teller);
 		System.exit(3);
 	}
 
 	public void cmdReboot(String teller) {
-		tellManagers("Rebooting at the request of {0}.  I'll be right back!");
+		tellManagers("Rebooting at the request of {0}.  I'll be right back!", teller);
 		System.exit(2);
 	}
 
