@@ -34,11 +34,11 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "August 26, 2010";
+	public static final String BOT_RELEASE_DATE = "August 28, 2010";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
-	public static final String BOT_RELEASE_NUMBER = "1.0 beta 2";
+	public static final String BOT_RELEASE_NUMBER = "1.0 beta 3";
 
 	public static final PrintStream ECHO_STREAM = System.out;
 
