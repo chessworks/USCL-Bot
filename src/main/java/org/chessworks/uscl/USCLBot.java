@@ -131,11 +131,11 @@ public class USCLBot {
 
 	private String loginPass = "*****";
 
-	private List<String> programmerList;
-
 	private List<String> managerList;
 
 	private Set<String> managerSet;
+
+	private List<String> programmerList;
 
 	private TournamentService tournamentService;
 
@@ -169,6 +169,19 @@ public class USCLBot {
 		}
 	}
 
+	public void cmdClear(String teller) {
+		tournamentService.clearSchedule();
+		try {
+			tournamentService.save();
+		} catch (IOException e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+			return;
+		}
+		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
+		sendCommand("-notify *");
+	}
+
 	public void cmdKill(String teller) {
 		tellManagers("Quitting at the request of {0}.  Bye!", teller);
 		System.exit(3);
@@ -177,21 +190,6 @@ public class USCLBot {
 	public void cmdReboot(String teller) {
 		tellManagers("Rebooting at the request of {0}.  I'll be right back!", teller);
 		System.exit(2);
-	}
-
-	public void cmdSchedule(String teller, int board, String white, String black) {
-		tournamentService.schedule(white, black, board);
-		sendCommand("+notify {0}", white);
-		sendCommand("+notify {0}", black);
-		sendAdminCommand("reserve-game {0} {1}", white, board);
-		sendAdminCommand("reserve-game {0} {1}", black, board);
-		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", board, white, black);
-		try {
-			tournamentService.save();
-		} catch (IOException e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-		}
 	}
 
 	public void cmdReserveGame(String teller, String player, int board) {
@@ -208,43 +206,18 @@ public class USCLBot {
 		sendAdminCommand("reserve-game {0} {1}", player, board);
 	}
 
-	public void cmdUnreserveGame(String teller, String player) {
-		int board = tournamentService.unreserveBoard(player);
-		if (board < 0) {
-			tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
-		} else {
-			tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
-			sendCommand("-notify {0}", player);
-		}
-		try {
-			tournamentService.save();
-		} catch (Exception e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-			return;
-		}
-	}
-
-	public void cmdClear(String teller) {
-		tournamentService.clearSchedule();
+	public void cmdSchedule(String teller, int board, String white, String black) {
+		tournamentService.schedule(white, black, board);
+		sendCommand("+notify {0}", white);
+		sendCommand("+notify {0}", black);
+		sendAdminCommand("reserve-game {0} {1}", white, board);
+		sendAdminCommand("reserve-game {0} {1}", black, board);
+		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", board, white, black);
 		try {
 			tournamentService.save();
 		} catch (IOException e) {
 			reportException(e);
 			tell(teller, "Uggg, something went wrong.  Unable to save.");
-			return;
-		}
-		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
-		sendCommand("-notify *");
-	}
-
-	public void cmdTestError(String teller) {
-		try {
-			throw new Exception("This is a test.  Don't worry.");
-		} catch (Exception e) {
-			reportException(e);
-			tell(teller, "Test successful.");
-			return;
 		}
 	}
 
@@ -270,6 +243,33 @@ public class USCLBot {
 		sendQuietly("qtell {0} {1}", teller, msg);
 	}
 
+	public void cmdTestError(String teller) {
+		try {
+			throw new Exception("This is a test.  Don't worry.");
+		} catch (Exception e) {
+			reportException(e);
+			tell(teller, "Test successful.");
+			return;
+		}
+	}
+
+	public void cmdUnreserveGame(String teller, String player) {
+		int board = tournamentService.unreserveBoard(player);
+		if (board < 0) {
+			tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
+		} else {
+			tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
+			sendCommand("-notify {0}", player);
+		}
+		try {
+			tournamentService.save();
+		} catch (Exception e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+			return;
+		}
+	}
+
 	/** Returns true if the user is a bot manager. False otherwise. */
 	public boolean isManager(String handle) {
 		handle = handle.toLowerCase();
@@ -289,6 +289,19 @@ public class USCLBot {
 			reportException(e);
 			tell(teller, "Uggg, something went wrong.  Unable to execute command.");
 		}
+	}
+
+	public void onConnected() {
+		userName = conn.getUsername();
+		tellManagers("I have arrived.");
+		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
+		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
+		sendCommand("set noautologout 1");
+		System.out.println();
+	}
+
+	public void onConnectSpamDone() {
+
 	}
 
 	private void onPlayerArrived(String name) {
@@ -440,19 +453,6 @@ public class USCLBot {
 
 	}
 
-	public void onConnected() {
-		userName = conn.getUsername();
-		tellManagers("I have arrived.");
-		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
-		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
-		sendCommand("set noautologout 1");
-		System.out.println();
-	}
-
-	public void onConnectSpamDone() {
-
-	}
-
 	/**
 	 * Sends a personal tell to the user.
 	 */
@@ -464,15 +464,15 @@ public class USCLBot {
 	/**
 	 * Sends a personal tell to all managers.
 	 */
-	public void tellManagers(String msg, Object... args) {
-		broadcast("tell", managerList, msg, args);
+	public void tellEventsChannel(String msg, Object... args) {
+		tell("399", msg, args);
 	}
 
 	/**
 	 * Sends a personal tell to all managers.
 	 */
-	public void tellEventsChannel(String msg, Object... args) {
-		tell("399", msg, args);
+	public void tellManagers(String msg, Object... args) {
+		broadcast("tell", managerList, msg, args);
 	}
 
 	/**
@@ -564,6 +564,13 @@ public class USCLBot {
 
 		}
 
+		@Override
+		protected void handleLoginSucceeded() {
+			// TODO Auto-generated method stub
+			super.handleLoginSucceeded();
+			onConnected();
+		}
+
 		public void onPlayerStateChange(String player, String state, int game) {
 			if ("P".equals(state)) {
 				USCLBot.this.sendCommand("observe {0}", game);
@@ -572,21 +579,6 @@ public class USCLBot {
 			}
 		}
 
-		protected void processPlayerArrived(String name) {
-			onPlayerArrived(name);
-		}
-
-
-		protected void processPlayerDeparted(String name) {
-			onPlayerDeparted(name);
-		}
-
-		protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
-				boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
-				int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
-				boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
-			tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
-		}
 
 		protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
 				String descriptionString) {
@@ -613,11 +605,19 @@ public class USCLBot {
 			onCommand(teller, message);
 		}
 
-		@Override
-		protected void handleLoginSucceeded() {
-			// TODO Auto-generated method stub
-			super.handleLoginSucceeded();
-			onConnected();
+		protected void processPlayerArrived(String name) {
+			onPlayerArrived(name);
+		}
+
+		protected void processPlayerDeparted(String name) {
+			onPlayerDeparted(name);
+		}
+
+		protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
+				boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
+				int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
+				boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
+			tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
 		}
 
 
