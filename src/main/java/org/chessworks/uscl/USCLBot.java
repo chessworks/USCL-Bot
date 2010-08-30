@@ -318,6 +318,46 @@ public class USCLBot {
 		tellManagers("{0} departed", name);
 	}
 
+	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
+			String descriptionString) {
+		tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
+	}
+
+	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
+		if (tellType != ChessclubConstants.REGULAR_TELL)
+			return;
+		String myName = userName;
+		if (myName.equals(teller)) {
+			if (message.equals(STARTUP_COMPLETE_SIGNAL)) {
+				onConnectSpamDone();
+			}
+			return;
+		}
+		boolean jeeves = "Jeeves".equals(teller);
+		if (jeeves) {
+			alertManagers("{0} just executed command: {1}", teller, message);
+			teller = "MrBob";
+		} else if (!isManager(teller)) {
+			return;
+		}
+		onCommand(teller, message);
+	}
+
+	protected void processPlayerArrived(String name) {
+		onPlayerArrived(name);
+	}
+
+	protected void processPlayerDeparted(String name) {
+		onPlayerDeparted(name);
+	}
+
+	protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
+			boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
+			int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
+			boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
+		tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
+	}
+
 	public void qtellProgrammers(String msg, Object... args) {
 		broadcast("qtell", programmerList, msg, args);
 	}
@@ -453,6 +493,7 @@ public class USCLBot {
 
 	}
 
+
 	/**
 	 * Sends a personal tell to the user.
 	 */
@@ -460,6 +501,7 @@ public class USCLBot {
 		msg = MessageFormat.format(msg, args);
 		sendCommand("tell {0} {1}", handle, msg);
 	}
+
 
 	/**
 	 * Sends a personal tell to all managers.
@@ -507,7 +549,7 @@ public class USCLBot {
 				String player = datagram.getString(0);
 				String state = datagram.getString(1);
 				int game = datagram.getInteger(2);
-				onPlayerStateChange(player, state, game);
+				processPlayerStateChange(player, state, game);
 				break;
 			}
 			case Datagram.DG_PERSONAL_TELL: {
@@ -524,7 +566,6 @@ public class USCLBot {
 				break;
 			}
 			case Datagram.DG_MY_GAME_RESULT: {
-//				Form: (gamenumber become-examined game_result_code score_string2 description-string ECO)
 				int gameNumber = datagram.getInteger(0);
 				boolean becomesExamined = datagram.getBoolean(1);
 				String gameResultCode = datagram.getString(2);
@@ -566,12 +607,11 @@ public class USCLBot {
 
 		@Override
 		protected void handleLoginSucceeded() {
-			// TODO Auto-generated method stub
 			super.handleLoginSucceeded();
 			onConnected();
 		}
 
-		public void onPlayerStateChange(String player, String state, int game) {
+		public void processPlayerStateChange(String player, String state, int game) {
 			if ("P".equals(state)) {
 				USCLBot.this.sendCommand("observe {0}", game);
 			} else {
@@ -580,48 +620,6 @@ public class USCLBot {
 		}
 
 
-		protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
-				String descriptionString) {
-			tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
-		}
-
-		protected void processPersonalTell(String teller, String titles, String message, int tellType) {
-			if (tellType != ChessclubConstants.REGULAR_TELL)
-				return;
-			String myName = userName;
-			if (myName.equals(teller)) {
-				if (message.equals(STARTUP_COMPLETE_SIGNAL)) {
-					onConnectSpamDone();
-				}
-				return;
-			}
-			boolean jeeves = "Jeeves".equals(teller);
-			if (jeeves) {
-				alertManagers("{0} just executed command: {1}", teller, message);
-				teller = "MrBob";
-			} else if (!isManager(teller)) {
-				return;
-			}
-			onCommand(teller, message);
-		}
-
-		protected void processPlayerArrived(String name) {
-			onPlayerArrived(name);
-		}
-
-		protected void processPlayerDeparted(String name) {
-			onPlayerDeparted(name);
-		}
-
-		protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
-				boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
-				int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
-				boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
-			tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
-		}
-
-
 
 	}
-
 }
