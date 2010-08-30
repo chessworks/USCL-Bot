@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="USCL-Bot" default="jar">
+
+	<property name="name" value="${ant.project.name}" />
+
+	<path id="src.java">
+		<pathelement location="src/main/java" />
+		<pathelement location="src/jinchess/java" />
+	</path>
+	<property name="src.manifest" location="src/main/resources/META-INF/MANIFEST.MF" />
+	<property name="build.dir" location="build" />
+	<property name="build.dir.classes" location="${build.dir}/classes" />
+	<property name="build.jarfile" location="${name}.jar" />
+	<property name="run.mainclass" value="org.chessworks.uscl.USCLBot" />
+
+	<target name="build" depends="clean,compile,jar" />
+
+	<target name="clean" description="Remove old generated files.">
+		<delete quiet="true" file="${build.jarfile}" />
+		<delete quiet="true" dir="${build.dir.classes}" />
+		<delete quiet="true" dir="${build.dir}" />
+	</target>
+
+	<target name="compile" description="Compile all classes">
+		<mkdir dir="${build.dir.classes}" />
+		<javac debug="true"
+		       source="1.5"
+		       encoding="utf-8"
+		       destdir="${build.dir.classes}"
+		       includeAntRuntime="false">
+			<src refid="src.java" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Package up jar-file">
+		<jar jarfile="${build.jarfile}" manifest="${src.manifest}">
+			<zipfileset dir="${build.dir.classes}" includes="**" />
+		</jar>
+	</target>
+
+</project>
