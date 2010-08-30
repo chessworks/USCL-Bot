@@ -304,8 +304,7 @@ public class USCLBot {
 
 	}
 
-	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
-			String descriptionString) {
+	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
 	}
 
@@ -341,6 +340,14 @@ public class USCLBot {
 
 	protected void processPlayerDeparted(String name) {
 		tellManagers("{0} departed", name);
+	}
+
+	public void processPlayerStateChange(String player, String state, int game) {
+		if ("P".equals(state)) {
+			USCLBot.this.sendCommand("observe {0}", game);
+		} else {
+			USCLBot.this.sendCommand("unobserve {0}", player);
+		}
 	}
 
 	protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
@@ -485,7 +492,6 @@ public class USCLBot {
 
 	}
 
-
 	/**
 	 * Sends a personal tell to the user.
 	 */
@@ -493,7 +499,6 @@ public class USCLBot {
 		msg = MessageFormat.format(msg, args);
 		sendCommand("tell {0} {1}", handle, msg);
 	}
-
 
 	/**
 	 * Sends a personal tell to all managers.
@@ -602,16 +607,6 @@ public class USCLBot {
 			super.handleLoginSucceeded();
 			onConnected();
 		}
-
-		public void processPlayerStateChange(String player, String state, int game) {
-			if ("P".equals(state)) {
-				USCLBot.this.sendCommand("observe {0}", game);
-			} else {
-				USCLBot.this.sendCommand("unobserve {0}", player);
-			}
-		}
-
-
 
 	}
 }
