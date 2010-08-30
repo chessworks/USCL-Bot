@@ -188,7 +188,9 @@ public abstract class Connection{
    */
 
   protected Socket connectImpl(String hostname, int port) throws IOException{
-	return new Socket(hostname, port);
+	Socket s = new Socket(hostname, port);
+	s.setKeepAlive(true);
+	return s;
   }
 
 
