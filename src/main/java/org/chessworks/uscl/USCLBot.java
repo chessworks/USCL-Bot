@@ -304,20 +304,6 @@ public class USCLBot {
 
 	}
 
-	private void onPlayerArrived(String name) {
-		int board = tournamentService.getPlayerBoard(name);
-		if (board < 0) {
-			alertManagers("{0} is on my notify list, but I don't have a Game ID for him.", name);
-		} else {
-			tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
-			sendAdminCommand("reserve-game {0} {1}", name, board);
-		}
-	}
-
-	private void onPlayerDeparted(String name) {
-		tellManagers("{0} departed", name);
-	}
-
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString,
 			String descriptionString) {
 		tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
@@ -344,11 +330,17 @@ public class USCLBot {
 	}
 
 	protected void processPlayerArrived(String name) {
-		onPlayerArrived(name);
+		int board = tournamentService.getPlayerBoard(name);
+		if (board < 0) {
+			alertManagers("{0} is on my notify list, but I don't have a Game ID for him.", name);
+		} else {
+			tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
+			sendAdminCommand("reserve-game {0} {1}", name, board);
+		}
 	}
 
 	protected void processPlayerDeparted(String name) {
-		onPlayerDeparted(name);
+		tellManagers("{0} departed", name);
 	}
 
 	protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
