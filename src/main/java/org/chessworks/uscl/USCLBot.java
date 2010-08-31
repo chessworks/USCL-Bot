@@ -313,6 +313,7 @@ public class USCLBot {
 		tellManagers("I have arrived.");
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
 		sendCommand("set noautologout 1");
+		sendCommand("set style 13");
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -536,8 +537,8 @@ public class USCLBot {
 		conn.addDatagramListener(conn, Datagram.DG_MY_GAME_RESULT);
 		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
 		conn.addDatagramListener(conn, Datagram.DG_MOVE_LIST);
+		conn.addDatagramListener(conn, Datagram.DG_SEND_MOVES);
 		conn.initiateConnect(hostName, hostPort);
-
 	}
 
 	/**
@@ -651,6 +652,9 @@ public class USCLBot {
 				String initialPosition = datagram.getString(1);
 				int numHalfMoves = datagram.getFieldCount() - 2;
 				processMoveList(gameNumber, initialPosition, numHalfMoves);
+				break;
+			}
+			case Datagram.DG_SEND_MOVES: {
 				break;
 			}
 			}
