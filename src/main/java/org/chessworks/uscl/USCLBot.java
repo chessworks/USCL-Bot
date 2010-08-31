@@ -162,9 +162,9 @@ public class USCLBot {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		sendAdminCommand("sshout {0}", msg);
-		sendAdminCommand("atell 129 {0}", msg);
-		sendAdminCommand("atell 165 {0}", msg);
+		sendCommand("sshout {0}", msg);
+		sendCommand("tell 129 {0}", msg);
+		sendCommand("tell 165 {0}", msg);
 	}
 
 	/**
