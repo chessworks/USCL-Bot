@@ -158,15 +158,6 @@ public class USCLBot {
 		tellManagers(msg, args);
 	}
 
-	private void announce(String msg, Object... args) {
-		if (args.length > 0) {
-			msg = MessageFormat.format(msg, args);
-		}
-		sendCommand("sshout {0}", msg);
-		sendCommand("tell 129 {0}", msg);
-		sendCommand("tell 165 {0}", msg);
-	}
-
 	/**
 	 * Sends a message to all players in the list.
 	 *
@@ -340,13 +331,16 @@ public class USCLBot {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
 		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
-		announce("{0} vs {1}: {2} on board {3}", whiteName, blackName, startOrResume, gameNumber);
+		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".", whiteName, blackName, startOrResume,
+				gameNumber);
+		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".  Results will be announced in channel 129.", whiteName,
+				blackName, startOrResume, gameNumber);
 	}
 
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		announce("{0} vs {1}: {2}", whiteName, blackName, descriptionString);
+		tellEventChannels("{0} vs {1}: {2}", whiteName, blackName, descriptionString);
 	}
 
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
@@ -526,6 +520,13 @@ public class USCLBot {
 		this.tournamentService = service;
 	}
 
+	private void sshout(String msg, Object... args) {
+		if (args.length > 0) {
+			msg = MessageFormat.format(msg, args);
+		}
+		sendCommand("sshout {0}", msg);
+	}
+
 	public void start() throws IOException {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
@@ -551,10 +552,15 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends a personal tell to all managers.
+	 * Sends tells to the event channels (129, 165, and 399).
 	 */
-	public void tellEventsChannel(String msg, Object... args) {
-		tell("399", msg, args);
+	private void tellEventChannels(String msg, Object... args) {
+		if (args.length > 0) {
+			msg = MessageFormat.format(msg, args);
+		}
+		tell("129", msg);
+		tell("165", msg);
+		tell("399", msg);
 	}
 
 	/**
