@@ -312,8 +312,13 @@ public class USCLBot {
 		userName = conn.getUsername();
 		tellManagers("I have arrived.");
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
-		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
 		sendCommand("set noautologout 1");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
 		System.out.println();
 	}
 
