@@ -361,6 +361,7 @@ public class USCLBot {
 		} else {
 			tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
+			sendCommand("observe {0}", name);
 		}
 	}
 
