@@ -154,7 +154,7 @@ public class USCLBot {
 
 	/** Sends an atell followed by tell to all managers. */
 	public void alertManagers(String msg, Object... args) {
-		broadcast("atell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
+		broadcast("tell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
 		tellManagers(msg, args);
 	}
 
@@ -162,7 +162,7 @@ public class USCLBot {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		sendCommand("sshout {0}", msg);
+		sendAdminCommand("sshout {0}", msg);
 		sendAdminCommand("atell 129 {0}", msg);
 		sendAdminCommand("atell 165 {0}", msg);
 	}
@@ -417,7 +417,7 @@ public class USCLBot {
 		t.printStackTrace(p);
 		String msg = w.toString();
 		msg = msg.replaceAll("\n", "\\\\n");
-		tellProgrammers(t.toString());
+		broadcast("tell", programmerList, t.toString());
 		qtellProgrammers(msg);
 	}
 
@@ -561,14 +561,7 @@ public class USCLBot {
 	 * Sends a personal tell to all managers.
 	 */
 	public void tellManagers(String msg, Object... args) {
-		broadcast("tell", managerList, msg, args);
-	}
-
-	/**
-	 * Sends a personal tell to all managers.
-	 */
-	public void tellProgrammers(String msg, Object... args) {
-		broadcast("tell", programmerList, msg, args);
+		broadcast("atell", managerList, msg, args);
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
