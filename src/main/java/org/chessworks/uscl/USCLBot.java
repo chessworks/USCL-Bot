@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.chessworks.uscl.converters.ConversionException;
 import org.chessworks.uscl.model.TournamentService;
@@ -22,6 +25,7 @@ import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
 import free.chessclub.level2.DatagramEvent;
 import free.chessclub.level2.DatagramListener;
+import free.util.SafeRunnable;
 
 /**
  * @author Doug Bateman
@@ -47,11 +51,6 @@ public class USCLBot {
 	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
 	 */
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
-
-	/**
-	 * The bot sends this string to itself to indicate it's done with startup.
-	 */
-	private static final String STARTUP_COMPLETE_SIGNAL = "-- startup complete";
 
 	public static Properties loadSettingsFile(String settingsFile) {
 		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
@@ -146,6 +145,9 @@ public class USCLBot {
 	private Set<String> managerSet;
 
 	private List<String> programmerList;
+
+	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
 	private TournamentService tournamentService;
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
@@ -314,12 +316,14 @@ public class USCLBot {
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
 		sendCommand("set noautologout 1");
 		sendCommand("set style 13");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		sendQuietly("tell {0} {1}", conn.getUsername(), STARTUP_COMPLETE_SIGNAL);
+		Runnable task = new SafeRunnable() {
+			@Override
+			public void safeRun() {
+				onConnectSpamDone();
+			}
+		};
+		//In 2 seconds, call onConnectSpamDone().
+		scheduler.schedule(task, 2, TimeUnit.SECONDS);
 		System.out.println();
 	}
 
@@ -350,9 +354,6 @@ public class USCLBot {
 			return;
 		String myName = userName;
 		if (myName.equals(teller)) {
-			if (message.equals(STARTUP_COMPLETE_SIGNAL)) {
-				onConnectSpamDone();
-			}
 			return;
 		}
 		boolean jeeves = "Jeeves".equals(teller);
