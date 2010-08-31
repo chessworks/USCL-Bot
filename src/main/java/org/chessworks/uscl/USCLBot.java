@@ -117,6 +117,15 @@ public class USCLBot {
 		bot.setManagerList(managers);
 	}
 
+	//TODO: Fix this ugly hack.
+	private String[] _blackNames = new String[5000];
+
+	//TODO: Fix this ugly hack.
+	private boolean[] _needsAnnounce = new boolean[5000];
+
+	//TODO: Fix this ugly hack.
+	private String[] _whiteNames = new String[5000];
+
 	private String adminPass = "*****";
 
 	private CommandDispatcher cmd = new CommandDispatcher(this);
@@ -132,13 +141,10 @@ public class USCLBot {
 	private String loginPass = "*****";
 
 	private List<String> managerList;
-
 	private Set<String> managerSet;
 
 	private List<String> programmerList;
-
 	private TournamentService tournamentService;
-
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
 
@@ -146,6 +152,15 @@ public class USCLBot {
 	public void alertManagers(String msg, Object... args) {
 		broadcast("atell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
 		tellManagers(msg, args);
+	}
+
+	private void announce(String msg, Object... args) {
+		if (args.length > 0) {
+			msg = MessageFormat.format(msg, args);
+		}
+		sendCommand("sshout {0}", msg);
+		sendAdminCommand("atell 129 {0}", msg);
+		sendAdminCommand("atell 165 {0}", msg);
 	}
 
 	/**
@@ -304,8 +319,19 @@ public class USCLBot {
 
 	}
 
+	protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
+		if (!_needsAnnounce[gameNumber])
+			return;
+		String whiteName = _whiteNames[gameNumber];
+		String blackName = _blackNames[gameNumber];
+		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
+		announce("{0} vs {1}: {2} on board {3}", whiteName, blackName, startOrResume, gameNumber);
+	}
+
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
-		tellManagers("Game {0} ended: {1}.", gameNumber, descriptionString);
+		String whiteName = _whiteNames[gameNumber];
+		String blackName = _blackNames[gameNumber];
+		announce("{0} vs {1}: {2}", whiteName, blackName, descriptionString);
 	}
 
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
@@ -354,7 +380,16 @@ public class USCLBot {
 			boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
 			int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
 			boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
-		tellManagers("{0} vs {1} has started on board {2}", whiteName, blackName, gameNumber);
+		if (isPlayedGame) {
+			_needsAnnounce[gameNumber] = true;
+			_whiteNames[gameNumber] = whiteName;
+			_blackNames[gameNumber] = blackName;
+		} else {
+			_needsAnnounce[gameNumber] = false;
+			_whiteNames[gameNumber] = null;
+			_blackNames[gameNumber] = null;
+		}
+		/* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
 	}
 
 	public void qtellProgrammers(String msg, Object... args) {
@@ -488,6 +523,7 @@ public class USCLBot {
 		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_STATE);
 		conn.addDatagramListener(conn, Datagram.DG_MY_GAME_RESULT);
 		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
+		conn.addDatagramListener(conn, Datagram.DG_MOVE_LIST);
 		conn.initiateConnect(hostName, hostPort);
 
 	}
@@ -598,6 +634,13 @@ public class USCLBot {
 						isIrregularLegality, isIrregularSemantics, usesPlunkers, fancyTimeControls);
 				break;
 			}
+			case Datagram.DG_MOVE_LIST: {
+				int gameNumber = datagram.getInteger(0);
+				String initialPosition = datagram.getString(1);
+				int numHalfMoves = datagram.getFieldCount() - 2;
+				processMoveList(gameNumber, initialPosition, numHalfMoves);
+				break;
+			}
 			}
 
 		}
@@ -609,4 +652,5 @@ public class USCLBot {
 		}
 
 	}
+
 }
