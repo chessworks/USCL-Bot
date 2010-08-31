@@ -29,7 +29,7 @@ import free.util.FormatException;
 
 
 /**
- * Represents a datagram sent by the chessclub.com server in the format 
+ * Represents a datagram sent by the chessclub.com server in the format
  * described at
  * <code>ftp://ftp.chessclub.com/pub/icc/formats/formats.txt</code>.
  * This class defines methods useful for parsing a datagram and retrieving
@@ -37,13 +37,13 @@ import free.util.FormatException;
  */
 
 public class Datagram{
-  
-  
-  
+
+
+
   /**
    * The start of a special string delimiter.
    */
-  
+
   private final static char SPECIAL_STRING_DELIM_START = '\u0019';
 
 
@@ -168,56 +168,56 @@ public class Datagram{
   public static final int DG_FIVEMINUTE              = 125;
   public static final int DG_ONEMINUTE               = 126;
   public static final int DG_KNOWS_FISCHER_RANDOM    = 132;
-  
-  
-  
+
+
+
   /**
    * The maximum datagram ID.
    */
-   
-  public static final int MAX_DG_ID = 132;
-                         
 
-  
+  public static final int MAX_DG_ID = 132;
+
+
+
   /**
    * The ID of the datagram.
    */
-   
+
   private final int id;
-  
-  
-  
+
+
+
   /**
    * An array holding the datagram fields.
    */
 
-  private final String [] fields; 
+  private final String [] fields;
 
-  
-  
+
+
   /**
-   * Creates a new <code>Datagram</code> with the specified datagram id and  
+   * Creates a new <code>Datagram</code> with the specified datagram id and
    * fields.
    */
 
   public Datagram(int id, String [] fields){
     if (fields == null)
       throw new IllegalArgumentException("Datagram fields may not be null");
-    
+
     this.id = id;
     this.fields = fields;
   }
 
-  
-  
+
+
   /**
    * Returns the ID of the datagram.
    */
-  
+
   public int getId(){
     return id;
   }
-  
+
 
   /**
    * Returns the number of fields in this Datagram.
@@ -228,10 +228,10 @@ public class Datagram{
   }
 
 
-  
+
   /**
    * Returns the specified field, unparsed.
-   */ 
+   */
 
   public String getField(int fieldIndex){
     return fields[fieldIndex];
@@ -244,7 +244,7 @@ public class Datagram{
    */
 
   public String getString(int fieldIndex){
-    return getField(fieldIndex);    
+    return getField(fieldIndex);
   }
 
 
@@ -278,9 +278,9 @@ public class Datagram{
   public boolean getBoolean(int fieldIndex){
     return getField(fieldIndex).equals("1");
   }
-  
-  
-  
+
+
+
 
   /**
    * Parses the specified string and returns a <code>Datagram</code> object
@@ -297,16 +297,16 @@ public class Datagram{
       if (index == -1) // No arguments in the datagram
         index = dgString.length();
       int id = Integer.parseInt(dgString.substring(0, index));
-      
+
       dgString += " "; // So that each field is suffixed with a space
-      
+
       List fields = new LinkedList();
-      
+
       index++;
       int dgLength = dgString.length();
       while (index < dgLength){
         int startIndex, endIndex;
-        char firstChar = dgString.charAt(index); 
+        char firstChar = dgString.charAt(index);
         if (firstChar == '{'){ // The delimiters are { and }
           startIndex = index + 1;
           endIndex = dgString.indexOf('}', startIndex);
@@ -317,20 +317,20 @@ public class Datagram{
           endIndex = dgString.indexOf(SPECIAL_STRING_DELIM_START, startIndex);
           index = endIndex + 3; // "^Y} "
         }
-        else{ 
-          while (firstChar == ' '){ // Skip any extra spaces just in case
-            index++;
-            firstChar = dgString.charAt(index);
-          }
-          
+        else if (firstChar == ' ') {
+        	// Skip any extra spaces just in case
+        	index++;
+            continue;
+        }
+        else{
           startIndex = index;
           endIndex = dgString.indexOf(' ', startIndex);
           index = endIndex + 1;
         }
-        
+
         fields.add(dgString.substring(startIndex, endIndex));
       }
-  
+
       return new Datagram(id, (String[])fields.toArray(new String[fields.size()]));
     } catch (NumberFormatException e){
         throw new FormatException(e);
@@ -339,9 +339,9 @@ public class Datagram{
         throw new FormatException(e);
       }
   }
-  
-  
-  
+
+
+
   /**
    * Returns a textual representation of this datagram.
    */
@@ -358,10 +358,10 @@ public class Datagram{
       }
     }
     buf.append("]");
-    
+
     return buf.toString();
   }
 
-  
+
 
 }
