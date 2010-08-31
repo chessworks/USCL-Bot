@@ -136,6 +136,8 @@ public class USCLBot {
 
 	private int hostPort = 5001;
 
+	private volatile boolean loggingIn = true;
+
 	private String loginName = "USCL-Bot";
 
 	private String loginPass = "*****";
@@ -316,11 +318,14 @@ public class USCLBot {
 	}
 
 	public void onConnectSpamDone() {
-
+		loggingIn = false;
 	}
 
 	protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
 		if (!_needsAnnounce[gameNumber])
+			return;
+		_needsAnnounce[gameNumber] = false;
+		if (loggingIn)
 			return;
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
@@ -359,7 +364,8 @@ public class USCLBot {
 		if (board < 0) {
 			alertManagers("{0} is on my notify list, but I don't have a Game ID for him.", name);
 		} else {
-			tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
+			if (!loggingIn)
+				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
 			sendCommand("observe {0}", name);
 		}
