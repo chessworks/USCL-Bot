@@ -191,6 +191,27 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Sends a message to all players in the list.
+	 *
+	 * @param tellType
+	 *            The type of tell to use: "tell", "qtell", "message", etc.
+	 * @param users
+	 *            The users to receive the message.
+	 * @param msg
+	 *            The message to send. It may optionally use {@link MessageFormat} style formatting.
+	 * @param args
+	 *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
+	 */
+	public void broadcastAdmin(String tellType, Collection<String> users, String msg, Object... args) {
+		if (args.length > 0) {
+			msg = MessageFormat.format(msg, args);
+		}
+		for (String user : users) {
+			sendQuietly("{0} {1} {2}", tellType, user, msg);
+		}
+	}
+
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
 		try {
@@ -473,6 +494,15 @@ public class USCLBot {
 		sendQuietly("admin");
 	}
 
+	public void sendAdminQuietly(String command, Object... args) {
+		if (args.length > 0) {
+			command = MessageFormat.format(command, args);
+		}
+		sendQuietly("admin {0}", adminPass);
+		sendQuietly(command);
+		sendQuietly("admin");
+	}
+
 	/**
 	 * Sends a command to the server, and echo it as a qtell to all managers.
 	 */
@@ -625,7 +655,7 @@ public class USCLBot {
 	 * Sends a personal tell to all managers.
 	 */
 	public void tellManagers(String msg, Object... args) {
-		broadcast("atell", managerList, msg, args);
+		broadcastAdmin("atell", managerList, msg, args);
 	}
 
 	public void qChanPlus(String player, int channel) {
