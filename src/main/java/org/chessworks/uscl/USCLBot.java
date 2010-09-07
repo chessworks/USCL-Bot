@@ -651,7 +651,7 @@ public class USCLBot {
 	}
 
 	public void qChanPlus(String player, int channel) {
-		sendCommand("qchanplus {0} {1}", player, channel);
+		sendQuietly("qchanplus {0} {1}", player, channel);
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
