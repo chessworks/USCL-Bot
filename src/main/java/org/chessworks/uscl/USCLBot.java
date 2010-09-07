@@ -131,6 +131,12 @@ public class USCLBot {
 	//TODO: Fix this ugly hack.
 	private String[] _whiteNames = new String[5000];
 
+	//TODO: Fix this ugly hack.
+	private int[] _observerCountNow = new int[5000];
+
+	//TODO: Fix this ugly hack.
+	private int[] _observerCountMax = new int[5000];
+
 	private String adminPass = "*****";
 
 	private CommandDispatcher cmd = new CommandDispatcher(this);
@@ -346,7 +352,12 @@ public class USCLBot {
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		tellEventChannels("{0} vs {1}: {2}", whiteName, blackName, descriptionString);
+		int observerCount = _observerCountMax[gameNumber];
+		tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
+		_whiteNames[gameNumber] = null;
+		_blackNames[gameNumber] = null;
+		_observerCountMax[gameNumber] = 0;
+		_observerCountNow[gameNumber] = 0;
 	}
 
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
@@ -393,6 +404,12 @@ public class USCLBot {
 	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
 		if (state == PlayerState.OBSERVING | state == PlayerState.PLAYING) {
 			qChanPlus(playerName, CHANNEL_USCL);
+			_observerCountNow[gameNumber]++;
+			if (_observerCountMax[gameNumber] < _observerCountNow[gameNumber]) {
+				_observerCountMax[gameNumber] = _observerCountNow[gameNumber];
+			}
+		} else if (state == PlayerState.NONE){
+			_observerCountNow[gameNumber]--;
 		}
 	}
 
