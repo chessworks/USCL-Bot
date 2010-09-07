@@ -205,18 +205,15 @@ public class USCLBot {
 	}
 
 	public void cmdKill(String teller) {
-		tellManagers("Quitting at the request of {0}.  Bye!", teller);
-		System.exit(3);
+		exit(3, "Quitting at the request of {0}.  Bye!", teller);
 	}
 
 	public void cmdReboot(String teller) {
-		tellManagers("Rebooting at the request of {0}.  I'll be right back!", teller);
-		System.exit(2);
+		exit(2, "Rebooting at the request of {0}.  I'll be right back!", teller);
 	}
 
 	public void cmdRecompile(String teller) {
-		tellManagers("Deploying version update at the request of {0}.  I'll be right back!", teller);
-		System.exit(5);
+		exit(5, "Deploying version update at the request of {0}.  I'll be right back!", teller);
 	}
 
 	public void cmdReserveGame(String teller, String player, int board) {
@@ -295,6 +292,15 @@ public class USCLBot {
 			tell(teller, "Uggg, something went wrong.  Unable to save.");
 			return;
 		}
+	}
+
+	/** Shuts down the bot with the given exit code, after sending this exit message. */
+	public void exit(int code, String msg, Object... args) {
+		tellManagers(msg, args);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {}
+		System.exit(3);
 	}
 
 	/** Returns true if the user is a bot manager. False otherwise. */
