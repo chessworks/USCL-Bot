@@ -40,6 +40,11 @@ while true; do
 			echo "Exit code 4: Running backups and then restarting."
 			svn commit -m "Player data backup" .
 			;;
+		5)
+			echo "Exit code 5: Recompiling and restarting."
+			svn update .
+			./build.sh
+			;;
 		*)
 			echo "Exit code $?: Sleeping 20 seconds and restarting."
 			sleep 20

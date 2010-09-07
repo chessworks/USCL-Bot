@@ -214,6 +214,11 @@ public class USCLBot {
 		System.exit(2);
 	}
 
+	public void cmdRecompile(String teller) {
+		tellManagers("Deploying version update at the request of {0}.  I'll be right back!", teller);
+		System.exit(5);
+	}
+
 	public void cmdReserveGame(String teller, String player, int board) {
 		tournamentService.reserveBoard(player, board);
 		try {
