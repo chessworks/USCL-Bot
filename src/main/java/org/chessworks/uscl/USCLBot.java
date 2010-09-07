@@ -337,9 +337,9 @@ public class USCLBot {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
 		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
-		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".", whiteName, blackName, startOrResume,
+		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume,
 				gameNumber);
-		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".  Results will be announced in channel 129.", whiteName,
+		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
 				blackName, startOrResume, gameNumber);
 	}
 
@@ -391,7 +391,6 @@ public class USCLBot {
 	}
 
 	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
-		qtellProgrammers("Player in Game: " + playerName + " - " + state + " #" + gameNumber);
 		if (state == PlayerState.OBSERVING | state == PlayerState.PLAYING) {
 			qChanPlus(playerName, CHANNEL_USCL);
 		}
