@@ -46,6 +46,12 @@ public class USCLBot {
 
 	public static final PrintStream ECHO_STREAM = System.out;
 
+	public static final int CHANNEL_USCL = 129;
+
+	public static final int CHANNEL_CHESS_FM = 165;
+
+	public static final int CHANNEL_EVENTS_GROUP = 399;
+
 	/**
 	 * The path to the file on disk where the configured bot settings are located. The path defaults to "USCL-Bot.properties", but can be changed by
 	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
@@ -376,11 +382,17 @@ public class USCLBot {
 		tellManagers("{0} departed", name);
 	}
 
-	public void processPlayerStateChange(String player, String state, int game) {
-		if ("P".equals(state)) {
+	public void processPlayerStateChange(String player, PlayerState state, int game) {
+		if (state.isPlaying()) {
 			USCLBot.this.sendCommand("observe {0}", game);
 		} else {
 			USCLBot.this.sendCommand("unobserve {0}", player);
+		}
+	}
+
+	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState status, boolean seesKibitz) {
+		if (status == PlayerState.OBSERVING | status == PlayerState.OBSERVING) {
+			qChanPlus(playerName, CHANNEL_USCL);
 		}
 	}
 
@@ -540,6 +552,7 @@ public class USCLBot {
 		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
 		conn.addDatagramListener(conn, Datagram.DG_MOVE_LIST);
 		conn.addDatagramListener(conn, Datagram.DG_SEND_MOVES);
+		conn.addDatagramListener(conn, Datagram.DG_PLAYERS_IN_MY_GAME);
 		conn.initiateConnect(hostName, hostPort);
 	}
 
@@ -552,15 +565,23 @@ public class USCLBot {
 	}
 
 	/**
+	 * Sends a tell to the channel.
+	 */
+	public void tell(int channel, String msg, Object... args) {
+		msg = MessageFormat.format(msg, args);
+		sendCommand("tell {0} {1}", channel, msg);
+	}
+
+	/**
 	 * Sends tells to the event channels (129, 165, and 399).
 	 */
 	private void tellEventChannels(String msg, Object... args) {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		tell("129", msg);
-		tell("165", msg);
-		tell("399", msg);
+		tell(CHANNEL_USCL, msg);
+		tell(CHANNEL_CHESS_FM, msg);
+		tell(CHANNEL_EVENTS_GROUP, msg);
 	}
 
 	/**
@@ -568,6 +589,10 @@ public class USCLBot {
 	 */
 	public void tellManagers(String msg, Object... args) {
 		broadcast("atell", managerList, msg, args);
+	}
+
+	public void qChanPlus(String player, int channel) {
+		sendCommand("qchanplus {0} {1}");
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
@@ -593,9 +618,10 @@ public class USCLBot {
 			}
 			case Datagram.DG_NOTIFY_STATE: {
 				String player = datagram.getString(0);
-				String state = datagram.getString(1);
+				String stateCode = datagram.getString(1);
+				PlayerState status = PlayerState.forCode(stateCode);
 				int game = datagram.getInteger(2);
-				processPlayerStateChange(player, state, game);
+				processPlayerStateChange(player, status, game);
 				break;
 			}
 			case Datagram.DG_PERSONAL_TELL: {
@@ -657,8 +683,16 @@ public class USCLBot {
 			case Datagram.DG_SEND_MOVES: {
 				break;
 			}
+			case Datagram.DG_PLAYERS_IN_MY_GAME: {
+				int gameNumber = datagram.getInteger(0);
+				String playerName = datagram.getString(1);
+				String statusSymbol = datagram.getString(2);
+				boolean seesKibitz = datagram.getBoolean(3);
+				PlayerState status = PlayerState.forCode(statusSymbol);
+				processPlayersInMyGame(gameNumber, playerName, status, seesKibitz);
+				break;
 			}
-
+			}
 		}
 
 		@Override
