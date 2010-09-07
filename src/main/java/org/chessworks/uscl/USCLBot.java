@@ -347,7 +347,16 @@ public class USCLBot {
 			return;
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
+		String startOrResume;
+		if (numHalfMoves == 0) {
+			startOrResume = "Started";
+			_observerCountMax[gameNumber] = 0;
+			_observerCountNow[gameNumber] = -2;
+		} else {
+			startOrResume = "Resumed";
+			_observerCountNow[gameNumber] = -2;
+		}
+
 		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume,
 				gameNumber);
 		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
