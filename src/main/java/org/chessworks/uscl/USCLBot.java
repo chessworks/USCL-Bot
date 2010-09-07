@@ -390,8 +390,9 @@ public class USCLBot {
 		}
 	}
 
-	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState status, boolean seesKibitz) {
-		if (status == PlayerState.OBSERVING | status == PlayerState.OBSERVING) {
+	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
+		qtellProgrammers("Player in Game: " + playerName + " - " + state + " #" + gameNumber);
+		if (state == PlayerState.OBSERVING | state == PlayerState.PLAYING) {
 			qChanPlus(playerName, CHANNEL_USCL);
 		}
 	}
@@ -592,7 +593,7 @@ public class USCLBot {
 	}
 
 	public void qChanPlus(String player, int channel) {
-		sendCommand("qchanplus {0} {1}");
+		sendCommand("qchanplus {0} {1}", player, channel);
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
