@@ -38,11 +38,11 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "August 28, 2010";
+	public static final String BOT_RELEASE_DATE = "September 7, 2010";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
-	public static final String BOT_RELEASE_NUMBER = "1.0 beta 3";
+	public static final String BOT_RELEASE_NUMBER = "1.01";
 
 	public static final PrintStream ECHO_STREAM = System.out;
 
@@ -207,9 +207,11 @@ public class USCLBot {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
+		sendQuietly("admin {0}", adminPass);
 		for (String user : users) {
 			sendQuietly("{0} {1} {2}", tellType, user, msg);
 		}
+		sendQuietly("admin");
 	}
 
 	public void cmdClear(String teller) {
@@ -320,7 +322,8 @@ public class USCLBot {
 		tellManagers(msg, args);
 		try {
 			Thread.sleep(1000);
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+		}
 		System.exit(3);
 	}
 
@@ -374,18 +377,8 @@ public class USCLBot {
 			return;
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		String startOrResume;
-		if (numHalfMoves == 0) {
-			startOrResume = "Started";
-			_observerCountMax[gameNumber] = 0;
-			_observerCountNow[gameNumber] = -2;
-		} else {
-			startOrResume = "Resumed";
-			_observerCountNow[gameNumber] = -2;
-		}
-
-		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume,
-				gameNumber);
+		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
+		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
 		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
 				blackName, startOrResume, gameNumber);
 	}
@@ -393,12 +386,15 @@ public class USCLBot {
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		int observerCount = _observerCountMax[gameNumber];
+		/* Subtract USCL-Bot itself */
+		int observerCount = _observerCountMax[gameNumber] - 1;
 		tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
+		boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
 		_whiteNames[gameNumber] = null;
 		_blackNames[gameNumber] = null;
-		_observerCountMax[gameNumber] = 0;
-		_observerCountNow[gameNumber] = 0;
+		if (!adjourned) {
+			_observerCountMax[gameNumber] = 0;
+		}
 	}
 
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
@@ -443,14 +439,18 @@ public class USCLBot {
 	}
 
 	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
-		if (state == PlayerState.OBSERVING | state == PlayerState.PLAYING) {
-			qChanPlus(playerName, CHANNEL_USCL);
+		switch (state) {
+		case NONE:
+			_observerCountNow[gameNumber]--;
+			break;
+		case OBSERVING:
 			_observerCountNow[gameNumber]++;
 			if (_observerCountMax[gameNumber] < _observerCountNow[gameNumber]) {
 				_observerCountMax[gameNumber] = _observerCountNow[gameNumber];
 			}
-		} else if (state == PlayerState.NONE){
-			_observerCountNow[gameNumber]--;
+			//Fall through...
+		case PLAYING:
+			qChanPlus(playerName, CHANNEL_USCL);
 		}
 	}
 
@@ -467,6 +467,7 @@ public class USCLBot {
 			_whiteNames[gameNumber] = null;
 			_blackNames[gameNumber] = null;
 		}
+		_observerCountNow[gameNumber] = 0;
 		/* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
 	}
 
@@ -491,15 +492,6 @@ public class USCLBot {
 		}
 		sendQuietly("admin {0}", adminPass);
 		sendCommand(command);
-		sendQuietly("admin");
-	}
-
-	public void sendAdminQuietly(String command, Object... args) {
-		if (args.length > 0) {
-			command = MessageFormat.format(command, args);
-		}
-		sendQuietly("admin {0}", adminPass);
-		sendQuietly(command);
 		sendQuietly("admin");
 	}
 
