@@ -391,7 +391,9 @@ public class USCLBot {
 		String blackName = _blackNames[gameNumber];
 		/* Subtract USCL-Bot itself */
 		int observerCount = _observerCountMax[gameNumber] - 1;
-		tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
+		if (whiteName != null) {
+			tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
+		}
 		boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
 		_whiteNames[gameNumber] = null;
 		_blackNames[gameNumber] = null;
