@@ -324,7 +324,7 @@ public class USCLBot {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 		}
-		System.exit(3);
+		System.exit(code);
 	}
 
 	/** Returns true if the user is a bot manager. False otherwise. */
