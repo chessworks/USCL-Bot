@@ -377,10 +377,13 @@ public class USCLBot {
 			return;
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
+		boolean resumed = (numHalfMoves != 0);
+		String startOrResume = (!resumed) ? "Started" : "Resumed";
 		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
-		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
-				blackName, startOrResume, gameNumber);
+		if (!resumed) {
+			sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
+					blackName, startOrResume, gameNumber);
+		}
 	}
 
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
@@ -639,7 +642,6 @@ public class USCLBot {
 			msg = MessageFormat.format(msg, args);
 		}
 		tell(CHANNEL_USCL, msg);
-		tell(CHANNEL_CHESS_FM, msg);
 		tell(CHANNEL_EVENTS_GROUP, msg);
 	}
 
