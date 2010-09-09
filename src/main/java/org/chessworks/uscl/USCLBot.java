@@ -399,6 +399,8 @@ public class USCLBot {
 		_blackNames[gameNumber] = null;
 		if (!adjourned) {
 			_observerCountMax[gameNumber] = 0;
+			sendCommand("qset {0} isolated 0", whiteName);
+			sendCommand("qset {0} isolated 0", blackName);
 		}
 	}
 
@@ -428,6 +430,7 @@ public class USCLBot {
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
 			sendCommand("observe {0}", name);
+			sendCommand("qset {0} isolated 1", name);
 		}
 	}
 
