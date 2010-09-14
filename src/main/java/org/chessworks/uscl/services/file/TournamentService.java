@@ -1,4 +1,4 @@
-package org.chessworks.uscl.model;
+package org.chessworks.uscl.services.file;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.chessworks.uscl.FileHelper;
+import org.chessworks.uscl.model.Player;
+import org.chessworks.uscl.util.FileHelper;
 
 public class TournamentService {
 

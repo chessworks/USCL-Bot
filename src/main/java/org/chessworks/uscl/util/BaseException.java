@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.chessworks.uscl;
+package org.chessworks.uscl.util;
 
 import java.text.MessageFormat;
 

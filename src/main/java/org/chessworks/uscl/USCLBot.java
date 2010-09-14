@@ -19,7 +19,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.chessworks.uscl.converters.ConversionException;
-import org.chessworks.uscl.model.TournamentService;
+import org.chessworks.uscl.services.file.TournamentService;
+import org.chessworks.uscl.util.FileHelper;
 
 import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;

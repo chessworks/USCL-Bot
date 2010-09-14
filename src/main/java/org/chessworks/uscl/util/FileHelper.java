@@ -1,4 +1,4 @@
-package org.chessworks.uscl;
+package org.chessworks.uscl.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
