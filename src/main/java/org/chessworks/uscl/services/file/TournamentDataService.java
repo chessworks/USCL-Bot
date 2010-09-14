@@ -17,7 +17,7 @@ import java.util.Map;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.util.FileHelper;
 
-public class TournamentService {
+public class TournamentDataService {
 
 	private String fileName;
 	private Map<String, Player> players = new HashMap<String, Player>();
@@ -26,7 +26,7 @@ public class TournamentService {
 	private boolean needToSave;
 	private static final Charset encoding = Charset.forName("UTF-8");
 
-	public TournamentService(String fileName) {
+	public TournamentDataService(String fileName) {
 		this.fileName = fileName;
 	}
 
@@ -86,23 +86,6 @@ public class TournamentService {
 		needToSave = true;
 		playerBoards.clear();
 		playerCase.clear();
-	}
-
-	public Player findPlayer(String name) {
-		Player p = players.get(name);
-		if (p == null) {
-			p = new Player();
-			p.setUserName(name);
-			addPlayer(p);
-		}
-		return p;
-	}
-
-	public void addPlayer(Player p) {
-		needToSave = true;
-		String handle = p.getHandle();
-		players.put(handle, p);
-
 	}
 
 	public void schedule(String white, String black, int board) {

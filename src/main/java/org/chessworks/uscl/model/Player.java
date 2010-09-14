@@ -1,67 +1,35 @@
-/**
- * 
- */
 package org.chessworks.uscl.model;
 
-import java.util.Set;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+public class Player extends User {
 
+	private final Team team;
+	private URL website;
 
-public class Player {
-	/**
-	 * @return the realName
-	 */
-	public synchronized String getRealName() {
-		return realName;
+	public Player(String handle, Team team) {
+		super(handle);
+		this.team = team;
 	}
 
-	/**
-	 * @param realName
-	 *            the realName to set
-	 */
-	public synchronized void setRealName(String realName) {
-		this.realName = realName;
+	public Team getTeam() {
+		return team;
 	}
 
-	/**
-	 * @return the title
-	 */
-	public synchronized String getTitle() {
-		return title;
+	public URL getWebsite() {
+		return website;
 	}
 
-	/**
-	 * @param title
-	 *            the title to set
-	 */
-	public synchronized void setTitle(String title) {
-		this.title = title;
+	public void setWebsite(URL website) {
+		this.website = website;
 	}
 
-	/**
-	 * @return the userName
-	 */
-	public synchronized String getHandle() {
-		return userName;
+	public void setWebsite(String website) throws MalformedURLException {
+		if (website == null)
+			this.website = null;
+		else
+			this.website = new URL(website);
 	}
 
-	/**
-	 * @param userName
-	 *            the userName to set
-	 */
-	public synchronized void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	/**
-	 * @return the games
-	 */
-	public synchronized Set<ScheduledGame> getGames() {
-		return games;
-	}
-
-	private Set<ScheduledGame> games;
-	private String realName;
-	private String title;
-	private String userName;
 }

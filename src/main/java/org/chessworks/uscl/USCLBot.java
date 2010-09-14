@@ -19,7 +19,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.chessworks.uscl.converters.ConversionException;
-import org.chessworks.uscl.services.file.TournamentService;
+import org.chessworks.uscl.model.RatingCategory;
+import org.chessworks.uscl.services.file.TournamentDataService;
 import org.chessworks.uscl.util.FileHelper;
 
 import free.chessclub.ChessclubConstants;
@@ -59,6 +60,8 @@ public class USCLBot {
 	 */
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
 
+	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
+
 	public static Properties loadSettingsFile(String settingsFile) {
 		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
 		/* System properties will override the settings file. */
@@ -74,7 +77,7 @@ public class USCLBot {
 		setConnectionSettings(settings, bot);
 
 		String boardsFile = (args.length > 0) ? args[0] : BOARDS_FILE;
-		TournamentService tourn = new TournamentService(boardsFile);
+		TournamentDataService tourn = new TournamentDataService(boardsFile);
 		tourn.load();
 		bot.setTournamentService(tourn);
 		bot.start();
@@ -161,7 +164,7 @@ public class USCLBot {
 
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-	private TournamentService tournamentService;
+	private TournamentDataService tournamentService;
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
 
@@ -596,7 +599,7 @@ public class USCLBot {
 	 * @param tournamentService
 	 *            the tournamentService to set
 	 */
-	public void setTournamentService(TournamentService service) {
+	public void setTournamentService(TournamentDataService service) {
 		this.tournamentService = service;
 	}
 

@@ -5,13 +5,13 @@ package org.chessworks.uscl.model;
 
 import java.util.Date;
 
+public class LiveGame {
 
-public class ScheduledGame {
-	public synchronized int getAssignedBoard() {
+	public synchronized int getBoardNumber() {
 		return assignedBoard;
 	}
 
-	public synchronized void setAssignedBoard(int assignedBoard) {
+	public synchronized void setBoardNumber(int assignedBoard) {
 		this.assignedBoard = assignedBoard;
 	}
 
@@ -43,4 +43,5 @@ public class ScheduledGame {
 	private Player blackPlayer;
 	private Date startTime;
 	private Player whitePlayer;
+
 }
