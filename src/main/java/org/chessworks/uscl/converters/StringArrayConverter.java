@@ -6,11 +6,11 @@ package org.chessworks.uscl.converters;
 public class StringArrayConverter extends AbstractConverter<String[]> {
 
 	public StringArrayConverter() {
-		super();
+		super(String[].class);
 	}
 
 	public StringArrayConverter(String[] nullValue) {
-		super(nullValue);
+		super(String[].class, nullValue);
 	}
 
 	@Override

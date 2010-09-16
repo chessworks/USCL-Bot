@@ -8,6 +8,9 @@ import java.util.List;
 public class Team implements Comparable<Team> {
 
 	public Team(String teamCode) {
+		if (teamCode == null) {
+			throw new NullPointerException("Team.code");
+		}
 		this.teamCode = teamCode;
 	}
 

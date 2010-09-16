@@ -6,15 +6,16 @@ package org.chessworks.uscl.converters;
 public class IntegerConverter extends AbstractConverter<Integer> {
 
 	public IntegerConverter() {
-		super();
+		super(Integer.class);
 	}
 
 	public IntegerConverter(Integer nullValue) {
-		super(nullValue);
+		super(Integer.class, nullValue);
 	}
 
 	@Override
 	public Integer convert(String s) throws ConversionException {
+		Class<Integer> cc = Integer.TYPE;
 		if (this.checkNull(s))
 			return nullValue;
 		try {

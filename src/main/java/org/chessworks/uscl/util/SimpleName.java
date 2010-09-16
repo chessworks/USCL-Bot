@@ -23,11 +23,15 @@ public class SimpleName implements Comparable<SimpleName> {
 	private final String name;
 
 	public SimpleName(String name) {
-		if (this.name == null) {
+		if (name == null) {
 			String type = this.getClass().getSimpleName();
-			throw new NullPointerException(type + " may not have a null name.");
+			throw new NullPointerException(type + ".simpleName");
 		}
 		this.name = name;
+	}
+
+	public String getSimpleName() {
+		return name;
 	}
 
 	public int compareTo(String s) {
@@ -79,20 +83,12 @@ public class SimpleName implements Comparable<SimpleName> {
 		return true;
 	}
 
-	public boolean equalsToWithCase(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+	public final boolean equalsWithCase(Object obj) {
+		if (!equals(obj))
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
 		SimpleName other = (SimpleName) obj;
-		if (!this.name.equals(other.name)) {
+		if (!this.name.equals(other.name))
 			return false;
-		}
 		return true;
 	}
 

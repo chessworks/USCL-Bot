@@ -10,6 +10,9 @@ public class Player extends User {
 
 	public Player(String handle, Team team) {
 		super(handle);
+		if (team == null) {
+			throw new NullPointerException("Player.team");
+		}
 		this.team = team;
 	}
 

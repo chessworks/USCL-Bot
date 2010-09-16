@@ -6,7 +6,19 @@ import java.util.TreeSet;
 import org.chessworks.uscl.model.Title;
 import org.chessworks.uscl.util.SimpleNameLookupService;
 
-public class TitleService extends SimpleNameLookupService<Title> {
+public class SimpleTitleService extends SimpleNameLookupService<Title> {
+
+	public static final Title GM = new Title("GM", "Grandmaster");
+	public static final Title IM = new Title("IM", "International Master");
+	public static final Title FM = new Title("FM", "FIDE Master");
+	public static final Title NM = new Title("NM", "National Master");
+
+	public SimpleTitleService() {
+		register(GM);
+		register(IM);
+		register(FM);
+		register(NM);
+	}
 
 	public Title lookupOrRegister(String title) {
 		Title t = lookup(title);
@@ -31,7 +43,7 @@ public class TitleService extends SimpleNameLookupService<Title> {
 			int len = titleList.length();
 			titleList = titleList.substring(1, len - 1);
 		}
-		String[] titles = titleList.split("  *");
+		String[] titles = titleList.split(",?  *");
 		Set<Title> titleSet = lookupAll(titles);
 		return titleSet;
 	}
@@ -48,4 +60,5 @@ public class TitleService extends SimpleNameLookupService<Title> {
 			return true;
 		return false;
 	}
+
 }

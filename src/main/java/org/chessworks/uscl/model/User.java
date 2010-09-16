@@ -1,7 +1,9 @@
 package org.chessworks.uscl.model;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.chessworks.uscl.util.SimpleName;
@@ -9,8 +11,9 @@ import org.chessworks.uscl.util.SimpleName;
 public class User extends SimpleName {
 
 	private final Set<Title> titles = new TitlesSet();
+	private final Set<Role> roles = new HashSet<Role>();
+	private final Map<RatingCategory, Integer> ratings = new TreeMap<RatingCategory, Integer>();
 	private String realName;
-	private Map<RatingCategory, Integer> ratings;
 
 	public User(String handle) {
 		super(handle);
@@ -29,7 +32,7 @@ public class User extends SimpleName {
 	}
 
 	public String getHandle() {
-		return super.toString();
+		return super.getSimpleName();
 	}
 
 	public Set<Title> getTitles() {
@@ -54,6 +57,10 @@ public class User extends SimpleName {
 			buf.setCharAt(lastChar, ')');
 			return buf.toString();
 		}
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 }

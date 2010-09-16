@@ -3,7 +3,7 @@ player.ARamirez.handle=ARamirez-DAL
 player.ARamirez.name=Alejandro Ramirez
 player.ARamirez.rating=2645
 player.ARamirez.team=DAL
-player.ARamirez.title=GM
+player.ARamirez.titles=GM
 
 player.AShen.handle=AShen-NJ
 player.AShen.name=Arthur Shen
@@ -14,13 +14,13 @@ player.Abrahamyan.handle=Abrahamyan-LA
 player.Abrahamyan.name=Tatev Abrahamyan
 player.Abrahamyan.rating=2385
 player.Abrahamyan.team=LA
-player.Abrahamyan.title=WFM
+player.Abrahamyan.titles=WFM
 
 player.Adamson.handle=Adamson-ARZ
 player.Adamson.name=Robby Adamson
 player.Adamson.rating=2363
 player.Adamson.team=ARZ
-player.Adamson.title=FM
+player.Adamson.titles=FM
 
 player.Adelberg.handle=Adelberg-ARZ
 player.Adelberg.name=David Adelberg
@@ -31,7 +31,7 @@ player.AdithyaB.handle=AdithyaB-BAL
 player.AdithyaB.name=Adithya Balasubramanian
 player.AdithyaB.rating=2255
 player.AdithyaB.team=BAL
-player.AdithyaB.title=NM
+player.AdithyaB.titles=NM
 
 player.Agner.handle=Agner-CAR
 player.Agner.name=Carlito Agner
@@ -42,61 +42,61 @@ player.Akobian.handle=Akobian-SEA
 player.Akobian.name=Varuzhan Akobian
 player.Akobian.rating=2698
 player.Akobian.team=SEA
-player.Akobian.title=GM
+player.Akobian.titles=GM
 
 player.Aldama.handle=Aldama-ARZ
 player.Aldama.name=Dionisio Aldama
 player.Aldama.rating=2399
 player.Aldama.team=ARZ
-player.Aldama.title=IM
+player.Aldama.titles=IM
 
 player.Altounian.handle=Altounian-ARZ
 player.Altounian.name=Levon Altounian
 player.Altounian.rating=2496
 player.Altounian.team=ARZ
-player.Altounian.title=IM
+player.Altounian.titles=IM
 
 player.Amanov.handle=Amanov-CHC
 player.Amanov.name=Mesgen Amanov
 player.Amanov.rating=2508
 player.Amanov.team=CHC
-player.Amanov.title=GM
+player.Amanov.titles=GM
 
 player.AndyLee.handle=AndyLee-SF
 player.AndyLee.name=Andy Lee
 player.AndyLee.rating=2347
 player.AndyLee.team=SF
-player.AndyLee.title=FM
+player.AndyLee.titles=FM
 
 player.AngeloYoung.handle=AngeloYoung-CHC
 player.AngeloYoung.name=Angelo Young
 player.AngeloYoung.rating=2415
 player.AngeloYoung.team=CHC
-player.AngeloYoung.title=IM
+player.AngeloYoung.titles=IM
 
 player.Anka.handle=Anka-SEA
 player.Anka.name=Emil Anka
 player.Anka.rating=2497
 player.Anka.team=SEA
-player.Anka.title=GM
+player.Anka.titles=GM
 
 player.ArjunV.handle=ArjunV-CHC
 player.ArjunV.name=Arjun Visnuvardhan
 player.ArjunV.rating=2318
 player.ArjunV.team=CHC
-player.ArjunV.title=IM
+player.ArjunV.titles=IM
 
 player.BFinegold.handle=BFinegold-STL
 player.BFinegold.name=Ben Finegold
 player.BFinegold.rating=2589
 player.BFinegold.team=STL
-player.BFinegold.title=GM
+player.BFinegold.titles=GM
 
 player.Banawa.handle=Banawa-LA
 player.Banawa.name=Joel Banawa
 player.Banawa.rating=2416
 player.Banawa.team=LA
-player.Banawa.title=FM
+player.Banawa.titles=FM
 
 player.Bapat.handle=Bapat-CAR
 player.Bapat.name=Udayan Bapat
@@ -107,55 +107,55 @@ player.Barcenilla.handle=Barcenilla-ARZ
 player.Barcenilla.name=Rogelio Barcenilla
 player.Barcenilla.rating=2583
 player.Barcenilla.team=ARZ
-player.Barcenilla.title=IM
+player.Barcenilla.titles=IM
 
 player.Bartell.handle=Bartell-PHI
 player.Bartell.name=Tom Bartell
 player.Bartell.rating=2429
 player.Bartell.team=PHI
-player.Bartell.title=IM
+player.Bartell.titles=IM
 
 player.Becerra.handle=Becerra-MIA
 player.Becerra.name=Julio Becerra
 player.Becerra.rating=2628
 player.Becerra.team=MIA
-player.Becerra.title=GM
+player.Becerra.titles=GM
 
 player.Bengtson.handle=Bengtson-PHI
 player.Bengtson.name=Matthew Bengtson
 player.Bengtson.rating=2232
 player.Bengtson.team=PHI
-player.Bengtson.title=FM
+player.Bengtson.titles=FM
 
 player.Benjamin.handle=Benjamin-NJ
 player.Benjamin.name=Joel Benjamin
 player.Benjamin.rating=2614
 player.Benjamin.team=NJ
-player.Benjamin.title=GM
+player.Benjamin.titles=GM
 
 player.Bercys.handle=Bercys-DAL
 player.Bercys.name=Salvijus Bercys
 player.Bercys.rating=2467
 player.Bercys.team=DAL
-player.Bercys.title=IM
+player.Bercys.titles=IM
 
 player.BlasLugo.handle=BlasLugo-MIA
 player.BlasLugo.name=Blas Lugo
 player.BlasLugo.rating=2384
 player.BlasLugo.team=MIA
-player.BlasLugo.title=IM
+player.BlasLugo.titles=IM
 
 player.Bonin.handle=Bonin-PHI
 player.Bonin.name=Jay Bonin
 player.Bonin.rating=2424
 player.Bonin.team=PHI
-player.Bonin.title=IM
+player.Bonin.titles=IM
 
 player.Bournival.handle=Bournival-NE
 player.Bournival.name=Braden Bournival
 player.Bournival.rating=2381
 player.Bournival.team=NE
-player.Bournival.title=FM
+player.Bournival.titles=FM
 
 player.Braylovsky.handle=Braylovsky-MAN
 player.Braylovsky.name=Gregory Braylovsky
@@ -166,13 +166,13 @@ player.Brooks.handle=Brooks-STL
 player.Brooks.name=Michael Brooks
 player.Brooks.rating=2411
 player.Brooks.team=STL
-player.Brooks.title=IM
+player.Brooks.titles=IM
 
 player.BryanSmith.handle=BryanSmith-PHI
 player.BryanSmith.name=Bryan Smith
 player.BryanSmith.rating=2572
 player.BryanSmith.team=PHI
-player.BryanSmith.title=IM
+player.BryanSmith.titles=IM
 
 player.Byambaa.handle=Byambaa-SF
 player.Byambaa.name=Uyanga Byambaa
@@ -183,19 +183,19 @@ player.Casella.handle=Casella-LA
 player.Casella.name=Michael Casella
 player.Casella.rating=2329
 player.Casella.team=LA
-player.Casella.title=FM
+player.Casella.titles=FM
 
 player.Charbonneau.handle=Charbonneau-NY
 player.Charbonneau.name=Pascal Charbonneau
 player.Charbonneau.rating=2566
 player.Charbonneau.team=NY
-player.Charbonneau.title=GM
+player.Charbonneau.titles=GM
 
 player.Chase.handle=Chase-NE
 player.Chase.name=Christopher Chase
 player.Chase.rating=2382
 player.Chase.team=NE
-player.Chase.title=FM
+player.Chase.titles=FM
 
 player.Cherniack.handle=Cherniack-NE
 player.Cherniack.name=Alex Cherniack
@@ -206,7 +206,7 @@ player.Corke.handle=Corke-BOS
 player.Corke.name=Anya Corke
 player.Corke.rating=2322
 player.Corke.team=BOS
-player.Corke.title=WGM
+player.Corke.titles=WGM
 
 player.Cozianu.handle=Cozianu-SEA
 player.Cozianu.name=Costin Cozianu
@@ -222,7 +222,7 @@ player.DSchneider.handle=DSchneider-MAN
 player.DSchneider.name=Dmitry Schneider
 player.DSchneider.rating=2520
 player.DSchneider.team=MAN
-player.DSchneider.title=IM
+player.DSchneider.titles=IM
 
 player.Defibaugh.handle=Defibaugh-BAL
 player.Defibaugh.name=Jared Defibaugh
@@ -233,7 +233,7 @@ player.Dehmelt.handle=Dehmelt-PHI
 player.Dehmelt.name=Karl Dehmelt
 player.Dehmelt.rating=2308
 player.Dehmelt.team=PHI
-player.Dehmelt.title=FM
+player.Dehmelt.titles=FM
 
 player.ERodriguez.handle=ERodriguez-MIA
 player.ERodriguez.name=Eric Rodriguez
@@ -254,31 +254,31 @@ player.Enkhbat.handle=Enkhbat-BAL
 player.Enkhbat.name=Tegshsuren Enkhbat
 player.Enkhbat.rating=2425
 player.Enkhbat.team=BAL
-player.Enkhbat.title=IM
+player.Enkhbat.titles=IM
 
 player.Erenburg.handle=Erenburg-BAL
 player.Erenburg.name=Sergey Erenburg
 player.Erenburg.rating=2646
 player.Erenburg.team=BAL
-player.Erenburg.title=GM
+player.Erenburg.titles=GM
 
 player.Esserman.handle=Esserman-BOS
 player.Esserman.name=Marc Esserman
 player.Esserman.rating=2492
 player.Esserman.team=BOS
-player.Esserman.title=IM
+player.Esserman.titles=IM
 
 player.Fedorowicz.handle=Fedorowicz-NY
 player.Fedorowicz.name=John Fedorowicz
 player.Fedorowicz.rating=2508
 player.Fedorowicz.team=NY
-player.Fedorowicz.title=GM
+player.Fedorowicz.titles=GM
 
 player.Felecan.handle=Felecan-CHC
 player.Felecan.name=Florin Felecan
 player.Felecan.rating=2415
 player.Felecan.team=CHC
-player.Felecan.title=IM
+player.Felecan.titles=IM
 
 player.Finn.handle=Finn-NJ
 player.Finn.name=Sean Finn
@@ -289,37 +289,37 @@ player.Foisor.handle=Foisor-BAL
 player.Foisor.name=Sabina Foisor
 player.Foisor.rating=2367
 player.Foisor.team=BAL
-player.Foisor.title=WGM
+player.Foisor.titles=WGM
 
 player.Friedel.handle=Friedel-SF
 player.Friedel.name=Josh Friedel
 player.Friedel.rating=2575
 player.Friedel.team=SF
-player.Friedel.title=GM
+player.Friedel.titles=GM
 
 player.Galofre.handle=Galofre-MIA
 player.Galofre.name=Charles Galofre
 player.Galofre.rating=2316
 player.Galofre.team=MIA
-player.Galofre.title=FM
+player.Galofre.titles=FM
 
 player.Getz.handle=Getz-NY
 player.Getz.name=Alec Getz
 player.Getz.rating=2377
 player.Getz.team=NY
-player.Getz.title=FM
+player.Getz.titles=FM
 
 player.Gonzalez.handle=Gonzalez-MIA
 player.Gonzalez.name=Renier Gonzalez
 player.Gonzalez.rating=2540
 player.Gonzalez.team=MIA
-player.Gonzalez.title=GM
+player.Gonzalez.titles=GM
 
 player.Gulko.handle=Gulko-NJ
 player.Gulko.name=Boris Gulko
 player.Gulko.rating=2587
 player.Gulko.team=NJ
-player.Gulko.title=GM
+player.Gulko.titles=GM
 
 player.Guo.handle=Guo-SEA
 player.Guo.name=Alex Guo
@@ -340,13 +340,13 @@ player.Gurevich.handle=Gurevich-CHC
 player.Gurevich.name=Dmitry Gurevich
 player.Gurevich.rating=2481
 player.Gurevich.team=CHC
-player.Gurevich.title=GM
+player.Gurevich.titles=GM
 
 player.Harper.handle=Harper-ARZ
 player.Harper.name=Warren Harper
 player.Harper.rating=2408
 player.Harper.team=ARZ
-player.Harper.title=FM
+player.Harper.titles=FM
 
 player.Herbst.handle=Herbst-CAR
 player.Herbst.name=Richard Herbst
@@ -357,7 +357,7 @@ player.Herman.handle=Herman-NY
 player.Herman.name=Matt Herman
 player.Herman.rating=2313
 player.Herman.team=NY
-player.Herman.title=
+player.Herman.titles=
 
 player.Hua.handle=Hua-STL
 player.Hua.name=Margaret Hua
@@ -373,25 +373,25 @@ player.Hungaski.handle=Hungaski-NE
 player.Hungaski.name=Robert Hungaski
 player.Hungaski.rating=2520
 player.Hungaski.team=NE
-player.Hungaski.title=IM
+player.Hungaski.titles=IM
 
 player.Ippolito.handle=Ippolito-NJ
 player.Ippolito.name=Dean Ippolito
 player.Ippolito.rating=2526
 player.Ippolito.team=NJ
-player.Ippolito.title=IM
+player.Ippolito.titles=IM
 
 player.IrinaKrush.handle=IrinaKrush-NY
 player.IrinaKrush.name=Irina Krush
 player.IrinaKrush.rating=2528
 player.IrinaKrush.team=NY
-player.IrinaKrush.title=IM
+player.IrinaKrush.titles=IM
 
 player.JShahade.handle=JShahade-PHI
 player.JShahade.name=Jennifer Shahade
 player.JShahade.rating=2301
 player.JShahade.team=PHI
-player.JShahade.title=WGM
+player.JShahade.titles=WGM
 
 player.JamesBlack.handle=JamesBlack-MAN
 player.JamesBlack.name=James Black
@@ -402,19 +402,19 @@ player.Kacheishvili.handle=Kacheishvili-NY
 player.Kacheishvili.name=Giorgi Kacheishvili
 player.Kacheishvili.rating=2619
 player.Kacheishvili.team=NY
-player.Kacheishvili.title=GM
+player.Kacheishvili.titles=GM
 
 player.Kapengut.handle=Kapengut-NJ
 player.Kapengut.name=Albert Kapengut
 player.Kapengut.rating=2372
 player.Kapengut.team=NJ
-player.Kapengut.title=IM
+player.Kapengut.titles=IM
 
 player.Kaplan.handle=Kaplan-BAL
 player.Kaplan.name=Sasha Kaplan
 player.Kaplan.rating=2482
 player.Kaplan.team=BAL
-player.Kaplan.title=IM
+player.Kaplan.titles=IM
 
 player.Katz.handle=Katz-MAN
 
@@ -435,25 +435,25 @@ player.Khachiyan.handle=Khachiyan-LA
 player.Khachiyan.name=Melikset Khachiyan
 player.Khachiyan.rating=2590
 player.Khachiyan.team=LA
-player.Khachiyan.title=GM
+player.Khachiyan.titles=GM
 
 player.Kiewra.handle=Kiewra-DAL
 player.Kiewra.name=Keaton Kiewra
 player.Kiewra.rating=2361
 player.Kiewra.team=DAL
-player.Kiewra.title=FM
+player.Kiewra.titles=FM
 
 player.Klein.handle=Klein-CAR
 player.Klein.name=Mike Klein
 player.Klein.rating=2304
 player.Klein.team=CAR
-player.Klein.title=FM
+player.Klein.titles=FM
 
 player.Kraai.handle=Kraai-SF
 player.Kraai.name=Jesse Kraai
 player.Kraai.rating=2551
 player.Kraai.team=SF
-player.Kraai.title=GM
+player.Kraai.titles=GM
 
 player.Krasik.handle=Krasik-BOS
 player.Krasik.name=Ilya Krasik
@@ -464,19 +464,19 @@ player.Kretchetov.handle=Kretchetov-LA
 player.Kretchetov.name=Alexandre Kretchetov
 player.Kretchetov.rating=2376
 player.Kretchetov.team=LA
-player.Kretchetov.title=FM
+player.Kretchetov.titles=FM
 
 player.LKaufman.handle=LKaufman-BAL
 player.LKaufman.name=Larry Kaufman
 player.LKaufman.rating=2452
 player.LKaufman.team=BAL
-player.LKaufman.title=GM
+player.LKaufman.titles=GM
 
 player.LarryC.handle=LarryC-BOS
 player.LarryC.name=Larry Christiansen
 player.LarryC.rating=2665
 player.LarryC.team=BOS
-player.LarryC.title=GM
+player.LarryC.titles=GM
 
 player.Lawton.handle=Lawton-STL
 player.Lawton.name=Charles Lawton
@@ -487,7 +487,7 @@ player.Lenderman.handle=Lenderman-NY
 player.Lenderman.name=Alex Lenderman
 player.Lenderman.rating=2608
 player.Lenderman.team=NY
-player.Lenderman.title=GM
+player.Lenderman.titles=GM
 
 player.Liou.handle=Liou-SF
 player.Liou.name=Yian Liou
@@ -498,13 +498,13 @@ player.Ludwig.handle=Ludwig-DAL
 player.Ludwig.name=Daniel Ludwig
 player.Ludwig.rating=2521
 player.Ludwig.team=DAL
-player.Ludwig.title=IM
+player.Ludwig.titles=IM
 
 player.MMartinez.handle=MMartinez-MIA
 player.MMartinez.name=Marcel Martinez
 player.MMartinez.rating=2475
 player.MMartinez.team=MIA
-player.MMartinez.title=FM
+player.MMartinez.titles=FM
 
 player.Mabe.handle=Mabe-CAR
 player.Mabe.name=Chris Mabe
@@ -515,7 +515,7 @@ player.MageshP.handle=MageshP-PHI
 player.MageshP.name=Magesh Panchanathan
 player.MageshP.rating=2535
 player.MageshP.team=PHI
-player.MageshP.title=GM
+player.MageshP.titles=GM
 
 player.Magness.handle=Magness-CHC
 player.Magness.name=Trevor Magness
@@ -526,7 +526,7 @@ player.Markzon.handle=Markzon-NJ
 player.Markzon.name=Gregory Markzon
 player.Markzon.rating=2289
 player.Markzon.team=NJ
-player.Markzon.title=FM
+player.Markzon.titles=FM
 
 player.Martirosov.handle=Martirosov-BOS
 player.Martirosov.name=Vadim Martirosov
@@ -542,7 +542,7 @@ player.Matikozyan.handle=Matikozyan-LA
 player.Matikozyan.name=Andranik Matikozyan
 player.Matikozyan.rating=2545
 player.Matikozyan.team=LA
-player.Matikozyan.title=IM
+player.Matikozyan.titles=IM
 
 player.Matlin.handle=Matlin-NJ
 player.Matlin.name=Anna Matlin
@@ -553,61 +553,61 @@ player.MichaelLee.handle=MichaelLee-SEA
 player.MichaelLee.name=Michael Lee
 player.MichaelLee.rating=2440
 player.MichaelLee.team=SEA
-player.MichaelLee.title=FM
+player.MichaelLee.titles=FM
 
 player.Mikhailuk.handle=Mikhailuk-SEA
 player.Mikhailuk.name=Slava Mikhailuk
 player.Mikhailuk.rating=2431
 player.Mikhailuk.team=SEA
-player.Mikhailuk.title=FM
+player.Mikhailuk.titles=FM
 
 player.Milat.handle=Milat-SEA
 player.Milat.name=Marcel Milat
 player.Milat.rating=2353
 player.Milat.team=SEA
-player.Milat.title=FM
+player.Milat.titles=FM
 
 player.Milman.handle=Milman-MAN
 player.Milman.name=Lev Milman
 player.Milman.rating=2501
 player.Milman.team=MAN
-player.Milman.title=IM
+player.Milman.titles=IM
 
 player.Milovanovic.handle=Milovanovic-DAL
 player.Milovanovic.name=Rade Milovanovic
 player.Milovanovic.rating=2444
 player.Milovanovic.team=DAL
-player.Milovanovic.title=IM
+player.Milovanovic.titles=IM
 
 player.Molner.handle=Molner-NJ
 player.Molner.name=Mackenzie Molner
 player.Molner.rating=2548
 player.Molner.team=NJ
-player.Molner.title=IM
+player.Molner.titles=IM
 
 player.Mshahade.handle=Mshahade-PHI
 player.Mshahade.name=Michael Shahade
 player.Mshahade.rating=2231
 player.Mshahade.team=PHI
-player.Mshahade.title=FM
+player.Mshahade.titles=FM
 
 player.NLopez.handle=NLopez-DAL
 player.NLopez.name=Nelson Lopez
 player.NLopez.rating=2229
 player.NLopez.team=DAL
-player.NLopez.title=
+player.NLopez.titles=
 
 player.Nakamura.handle=Nakamura-STL
 player.Nakamura.name=Hikaru Nakamura
 player.Nakamura.rating=2806
 player.Nakamura.team=STL
-player.Nakamura.title=GM
+player.Nakamura.titles=GM
 
 player.Naroditsky.handle=Naroditsky-SF
 player.Naroditsky.name=Daniel Naroditsky
 player.Naroditsky.rating=2453
 player.Naroditsky.team=SF
-player.Naroditsky.title=FM
+player.Naroditsky.titles=FM
 
 player.Ostrovskiy.handle=Ostrovskiy-NY
 player.Ostrovskiy.name=Aleksandr Ostrovskiy
@@ -618,7 +618,7 @@ player.Perelshteyn.handle=Perelshteyn-BOS
 player.Perelshteyn.name=Eugene Perelshteyn
 player.Perelshteyn.rating=2568
 player.Perelshteyn.team=BOS
-player.Perelshteyn.title=GM
+player.Perelshteyn.titles=GM
 
 player.Perez.handle=Perez-MIA
 player.Perez.name=Robert Perez
@@ -629,19 +629,19 @@ player.Pruess.handle=Pruess-SF
 player.Pruess.name=David Pruess
 player.Pruess.rating=2411
 player.Pruess.team=SF
-player.Pruess.title=IM
+player.Pruess.titles=IM
 
 player.RCostigan.handle=RCostigan-PHI
 player.RCostigan.name=Richard Costigan
 player.RCostigan.rating=2288
 player.RCostigan.team=PHI
-player.RCostigan.title=IM
+player.RCostigan.titles=IM
 
 player.RKaufman.handle=RKaufman-BAL
 player.RKaufman.name=Ray Kaufman
 player.RKaufman.rating=2433
 player.RKaufman.team=BAL
-player.RKaufman.title=IM
+player.RKaufman.titles=IM
 
 player.Rabin.handle=Rabin-BOS
 player.Rabin.name=Evan Rabin
@@ -652,7 +652,7 @@ player.Rensch.handle=Rensch-ARZ
 player.Rensch.name=Daniel Rensch
 player.Rensch.rating=2471
 player.Rensch.team=ARZ
-player.Rensch.title=IM
+player.Rensch.titles=IM
 
 player.Rich.handle=Rich-STL
 player.Rich.name=Tony Rich
@@ -663,7 +663,7 @@ player.Riordan.handle=Riordan-NE
 player.Riordan.name=Charles Riordan
 player.Riordan.rating=2397
 player.Riordan.team=NE
-player.Riordan.title=FM
+player.Riordan.titles=FM
 
 player.Roberts.handle=Roberts-DAL
 player.Roberts.name=Gerald Roberts
@@ -674,7 +674,7 @@ player.Rohonyan.handle=Rohonyan-SEA
 player.Rohonyan.name=Katerina Rohonyan
 player.Rohonyan.rating=2327
 player.Rohonyan.team=SEA
-player.Rohonyan.title=WGM
+player.Rohonyan.titles=WGM
 
 player.Rosen.handle=Rosen-CHC
 player.Rosen.name=Eric Rosen
@@ -695,19 +695,19 @@ player.Sadorra.handle=Sadorra-DAL
 player.Sadorra.name=Julio Sadorra
 player.Sadorra.rating=2471
 player.Sadorra.team=DAL
-player.Sadorra.title=IM
+player.Sadorra.titles=IM
 
 player.Sammour.handle=Sammour-BOS
 player.Sammour.name=Jorge Sammour-Hasbun
 player.Sammour.rating=2603
 player.Sammour.team=BOS
-player.Sammour.title=GM
+player.Sammour.titles=GM
 
 player.Santalla.handle=Santalla-MIA
 player.Santalla.name=Andres Santalla
 player.Santalla.rating=2163
 player.Santalla.team=MIA
-player.Santalla.title=NM
+player.Santalla.titles=NM
 
 player.Schoch.handle=Schoch-BAL
 player.Schoch.name=Ian Schoch
@@ -718,7 +718,7 @@ player.Schroer.handle=Schroer-CAR
 player.Schroer.name=Jonathan Schroer
 player.Schroer.rating=2437
 player.Schroer.team=CAR
-player.Schroer.title=IM
+player.Schroer.titles=IM
 
 player.Selzler.handle=Selzler-BAL
 player.Selzler.name=Ricky Selzler
@@ -729,37 +729,37 @@ player.Serper.handle=Serper-SEA
 player.Serper.name=Gregory Serper
 player.Serper.rating=2592
 player.Serper.team=SEA
-player.Serper.title=GM
+player.Serper.titles=GM
 
 player.Shankar.handle=Shankar-CHC
 player.Shankar.name=Gauri Shankar
 player.Shankar.rating=2304
 player.Shankar.team=CHC
-player.Shankar.title=FM
+player.Shankar.titles=FM
 
 player.Shankland.handle=Shankland-NE
 player.Shankland.name=Sam Shankland
 player.Shankland.rating=2567
 player.Shankland.team=NE
-player.Shankland.title=IM
+player.Shankland.titles=IM
 
 player.Shmelov.handle=Shmelov-BOS
 player.Shmelov.name=Denys Shmelov
 player.Shmelov.rating=2471
 player.Shmelov.team=BOS
-player.Shmelov.title=
+player.Shmelov.titles=
 
 player.Shulman.handle=Shulman-STL
 player.Shulman.name=Yury Shulman
 player.Shulman.rating=2715
 player.Shulman.team=STL
-player.Shulman.title=GM
+player.Shulman.titles=GM
 
 player.Simpson.handle=Simpson-CAR
 player.Simpson.name=Ron Simpson
 player.Simpson.rating=2330
 player.Simpson.team=CAR
-player.Simpson.title=FM
+player.Simpson.titles=FM
 
 player.Sinanan.handle=Sinanan-SEA
 player.Sinanan.name=Joshua Sinanan
@@ -780,7 +780,7 @@ player.Stripunsky.handle=Stripunsky-MAN
 player.Stripunsky.name=Alex Stripunsky
 player.Stripunsky.rating=2659
 player.Stripunsky.team=MAN
-player.Stripunsky.title=GM
+player.Stripunsky.titles=GM
 
 player.Tanaka.handle=Tanaka-LA
 player.Tanaka.name=Christian Tanaka
@@ -806,43 +806,43 @@ player.Tsai.handle=Tsai-CHC
 player.Tsai.name=Cindy Tsai
 player.Tsai.rating=2171
 player.Tsai.team=CHC
-player.Tsai.title=WIM
+player.Tsai.titles=WIM
 
 player.VShen.handle=VShen-NJ
 player.VShen.name=Victor Shen
 player.VShen.rating=2339
 player.VShen.team=NJ
-player.VShen.title=FM
+player.VShen.titles=FM
 
 player.Vicary.handle=Vicary-MAN
 player.Vicary.name=Elizabeth Vicary
 player.Vicary.rating=2081
 player.Vicary.team=MAN
-player.Vicary.title=WFM
+player.Vicary.titles=WFM
 
 player.Vigorito.handle=Vigorito-NE
 player.Vigorito.name=David Vigorito
 player.Vigorito.rating=2524
 player.Vigorito.team=NE
-player.Vigorito.title=IM
+player.Vigorito.titles=IM
 
 player.Vinuthna.handle=Vinuthna-CHC
 player.Vinuthna.name=Nalluri Vinuthna
 player.Vinuthna.rating=2293
 player.Vinuthna.team=CHC
-player.Vinuthna.title=WIM
+player.Vinuthna.titles=WIM
 
 player.Voelker.handle=Voelker-STL
 player.Voelker.name=Jim Voelker
 player.Voelker.rating=2141
 player.Voelker.team=STL
-player.Voelker.title=NM
+player.Voelker.titles=NM
 
 player.Vovsha.handle=Vovsha-MAN
 player.Vovsha.name=Eli Vovsha
 player.Vovsha.rating=2539
 player.Vovsha.team=MAN
-player.Vovsha.title=IM
+player.Vovsha.titles=IM
 
 player.Wang.handle=Wang-DAL
 
@@ -853,7 +853,7 @@ player.Wang.rating=2103
 player.Wang.rating=2533
 player.Wang.team=DAL
 player.Wang.team=SEA
-player.Wang.title=IM
+player.Wang.titles=IM
 
 player.Williams.handle=Williams-NY
 player.Williams.name=Justus Williams
@@ -864,7 +864,7 @@ player.Wolff.handle=Wolff-SF
 player.Wolff.name=Patrick Wolff
 player.Wolff.rating=2623
 player.Wolff.team=SF
-player.Wolff.title=GM
+player.Wolff.titles=GM
 
 player.Xu.handle=Xu-BOS
 player.Xu.name=Grant Xu
@@ -880,34 +880,34 @@ player.Zaremba.handle=Zaremba-MAN
 player.Zaremba.name=Andrei Zaremba
 player.Zaremba.rating=2361
 player.Zaremba.team=MAN
-player.Zaremba.title=FM
+player.Zaremba.titles=FM
 
 player.Zierk.handle=Zierk-SF
 player.Zierk.name=Steven Zierk
 player.Zierk.rating=2426
 player.Zierk.team=SF
-player.Zierk.title=FM
+player.Zierk.titles=FM
 
 player.Zilberstein.handle=Zilberstein-SF
 player.Zilberstein.name=Dmitry Zilberstein
 player.Zilberstein.rating=2429
 player.Zilberstein.team=SF
-player.Zilberstein.title=IM
+player.Zilberstein.titles=IM
 
 player.Zimmer.handle=Zimmer-BAL
 player.Zimmer.name=Ralph Zimmer
 player.Zimmer.rating=2279
 player.Zimmer.team=BAL
-player.Zimmer.title=FM
+player.Zimmer.titles=FM
 
 player.Zorigt.handle=Zorigt-DAL
 player.Zorigt.name=Bayaraa Zorigt
 player.Zorigt.rating=2240
 player.Zorigt.team=DAL
-player.Zorigt.title=WFM
+player.Zorigt.titles=WFM
 
 player.vandeMortel.handle=vandeMortel-NE
 player.vandeMortel.name=Jan van de Mortel
 player.vandeMortel.rating=2462
 player.vandeMortel.team=NE
-player.vandeMortel.title=IM
+player.vandeMortel.titles=IM
