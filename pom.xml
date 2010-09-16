@@ -1,166 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
- * USCL-Bot - A Java chess-engine.
- *
- * Copyright (C) 2010 Doug Bateman
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
- * implied. See the License for the specific language governing
- * permissions and limitations under the License.
--->
+	<!--
+		* Chessworks - Fostering innovation in online chess. * * Copyright (C)
+		2010 The Chessworks Project * * Licensed under the Apache License,
+		Version 2.0 (the "License"); * you may not use this file except in
+		compliance with the License. * You may obtain a copy of the License at
+		* * http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, software * distributed under
+		the License is distributed on an "AS IS" BASIS, * WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY KIND, either express or * implied. See the
+		License for the specific language governing * permissions and
+		limitations under the License. * * $Date$ $Rev$
+	-->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<!-- Run "mvn assembly:assembly" to build a standalone JAR -->
-
-	<modelVersion>4.0.0</modelVersion>
+	<name>USCL-Bot</name>
 	<groupId>org.chessworks.uscl</groupId>
 	<artifactId>USCL-Bot</artifactId>
-	<packaging>jar</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>USCL-Bot</name>
-	<description>The bot used by ICC to manage pairings in the USCL games.</description>
-	<url>http://www.chessworks.org/</url>
+	<packaging>jar</packaging>
+	<modelVersion>4.0.0</modelVersion>
+
+	<inceptionYear>2010</inceptionYear>
+	<description>A bot for managing USCL online tournaments</description>
+	<url>http://www.chessworks.org/projects/USCL-Bot</url>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.java.mainClass>org.chessworks.uscl.USCLBot</project.java.mainClass>
 	</properties>
 
-	<repositories>
-		<repository>
-			<releases>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>java.net</id>
-			<name>java.net</name>
-			<url>https://maven-repository.dev.java.net/nonav/repository</url>
-		</repository>
-		<repository>
-			<releases>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</snapshots>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Maven Repository Group</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<releases>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</snapshots>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Maven Repository Group</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</pluginRepository>
-	</pluginRepositories>
+	<parent>
+		<groupId>org.chessworks.bots</groupId>
+		<artifactId>BotPOM</artifactId>
+		<version>1-SNAPSHOT</version>
+	</parent>
+
+	<scm>
+		<connection>${xxx.scm.connection}</connection>
+		<developerConnection>${xxx.scm.developerConnection}</developerConnection>
+		<url>${xxx.scm.url}</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.chessworks</groupId>
+			<artifactId>javatools</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 		<!--dependency>
-			<groupId>com.jinchess</groupId>
-			<artifactId>jin</artifactId>
-			<version>2.14</version>
+			<groupId>org.chessworks.jin</groupId>
+			<artifactId>connection-lib</artifactId>
+			<version>2.14.1-SNAPSHOT</version>
 		</dependency-->
 	</dependencies>
 
 	<build>
 		<plugins>
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>build-helper-maven-plugin</artifactId>
-			<executions>
-				<execution>
-					<phase>generate-sources</phase>
-					<goals><goal>add-source</goal></goals>
-					<configuration>
-						<sources><source>src/jinchess/java</source></sources>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<compileSourceRoots>
+						<compileSourceRoot>src/main/java</compileSourceRoot>
+						<compileSourceRoot>src/main/jin</compileSourceRoot>
+					</compileSourceRoots>
 				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.4</version>
-				<configuration>
-					<artifactSet>
-						<excludes>
-							<exclude>junit:junit</exclude>
-						</excludes>
-					</artifactSet>
-					<minimizeJar>true</minimizeJar>
-					<transformers>
-						<transformer
-							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-							<mainClass>org.chessworks.uscl.USCLBot</mainClass>
-						</transformer>
-					</transformers>
-					<filters>
-						<filter>
-							<artifact>*:*</artifact>
-							<excludes>
-								<exclude>**/package.html</exclude>
-							</excludes>
-						</filter>
-						<filter>
-							<artifact>com.jinchess:*</artifact>
-							<includes>
-								<exclude>**/*.class</exclude>
-							</includes>
-						</filter>
-					</filters>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
