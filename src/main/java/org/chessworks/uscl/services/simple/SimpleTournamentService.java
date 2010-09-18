@@ -103,11 +103,37 @@ public class SimpleTournamentService implements TournamentService {
 	/**
 	 * {@inheritDoc}
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
+	 */
+	public Player findOrCreatePlayer(String handle) throws InvalidNameException {
+		Player p = players.get(handle);
+		if (p == null) {
+			p = createPlayer(handle);
+		}
+		return p;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findPlayer(java.lang.String)
 	 */
 	public Player findPlayer(String handle) {
 		Player p = players.get(handle);
 		return p;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
+	 */
+	public Team findOrCreateTeam(String handle) throws InvalidNameException {
+		Team t = teams.get(handle);
+		if (t == null) {
+			t = createTeam(handle);
+		}
+		return t;
 	}
 
 	/**
