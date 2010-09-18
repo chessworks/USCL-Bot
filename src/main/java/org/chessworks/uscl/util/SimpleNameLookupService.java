@@ -1,5 +1,6 @@
 package org.chessworks.uscl.util;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -10,7 +11,7 @@ public class SimpleNameLookupService<T extends SimpleName> {
 
 	private final Map<String, T> map;
 	private final Map<String, T> readOnly;
-	private final Set<T> values;
+	private final Collection<T> values;
 
 	public SimpleNameLookupService() {
 		this(true);
@@ -23,7 +24,7 @@ public class SimpleNameLookupService<T extends SimpleName> {
 			this.map = new TreeMap<String, T>();
 		}
 		this.readOnly = Collections.unmodifiableMap(map);
-		this.values = (Set<T>) readOnly.values();
+		this.values = readOnly.values();
 	}
 
 	public SimpleNameLookupService(Map<String, T> storageMap) {
@@ -37,7 +38,7 @@ public class SimpleNameLookupService<T extends SimpleName> {
 		return result;
 	}
 
-	public Set<T> all() {
+	public Collection<T> all() {
 		return values;
 	}
 

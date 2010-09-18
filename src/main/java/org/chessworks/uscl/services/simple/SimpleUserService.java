@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -29,11 +30,11 @@ public class SimpleUserService {
 		return u;
 	}
 
-	public Set<User> findAllKnownUsers() {
+	public Collection<User> findAllKnownUsers() {
 		return users.all();
 	}
 
-	public Set<User> findRegisteredUsers() {
+	public Collection<User> findRegisteredUsers() {
 		return registeredUsers.all();
 	}
 

@@ -1,9 +1,9 @@
 package org.chessworks.uscl.services.simple;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.chessworks.uscl.model.Player;
@@ -13,41 +13,61 @@ import org.chessworks.uscl.services.TournamentService;
 
 public class SimpleTournamentService implements TournamentService {
 
-	private Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
+	public Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
 
 	/** Map codes to teams */
 	private final Map<String, Team> teams;
 
 	/** A read-only wrapper for returning all teams. */
-	private final Set<Team> allTeams;
+	private final Collection<Team> allTeams;
 
 	/** Map handles to players */
 	private final Map<String, Player> players;
 
 	/** A read-only wrapper for returning all players. */
-	private final Set<Player> allPlayers;
+	private final Collection<Player> allPlayers;
 
 	public SimpleTournamentService() {
 		teams = new TreeMap<String, Team>();
-		allTeams = Collections.unmodifiableSet((Set<Team>) teams.values());
+		allTeams = Collections.unmodifiableCollection(teams.values());
 		players = new TreeMap<String, Player>();
-		allPlayers = Collections.unmodifiableSet((Set<Player>) players.values());
+		allPlayers = Collections.unmodifiableCollection(players.values());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#clearSchedule()
+	 */
 	public void clearSchedule() {
 		playerBoards.clear();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#schedule(Player, Player, int)
+	 */
 	public void schedule(Player white, Player black, int board) {
 		reserveBoard(white, board);
 		reserveBoard(black, board);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(Player, int)
+	 */
 	public void reserveBoard(Player player, int board) {
 		unreserveBoard(player);
 		playerBoards.put(player, board);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#unreserveBoard(Player)
+	 */
 	public int unreserveBoard(Player player) {
 		if (player == null)
 			return -1;
@@ -57,6 +77,11 @@ public class SimpleTournamentService implements TournamentService {
 		return board;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoard(Player)
+	 */
 	public int getPlayerBoard(Player player) {
 		if (player == null)
 			return -1;
@@ -66,6 +91,11 @@ public class SimpleTournamentService implements TournamentService {
 		return board;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoardMap()
+	 */
 	public Map<Player, Integer> getPlayerBoardMap() {
 		return Collections.unmodifiableMap(playerBoards);
 	}
@@ -95,7 +125,7 @@ public class SimpleTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllPlayers()
 	 */
-	public Set<Player> findAllPlayers() {
+	public Collection<Player> findAllPlayers() {
 		return allPlayers;
 	}
 
@@ -104,7 +134,7 @@ public class SimpleTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllTeams()
 	 */
-	public Set<Team> findAllTeams() {
+	public Collection<Team> findAllTeams() {
 		return allTeams;
 	}
 
