@@ -63,3 +63,7 @@ team.SF_.name=San Francisco Mechanics
 team.STL.code=STL
 team.STL.location=St. Louis
 team.STL.name=St. Louis Arch Bishops
+
+team.ICC.code=ICC
+team.ICC.location=Internet Chess Club
+team.ICC.name=USCL-Bot Testers

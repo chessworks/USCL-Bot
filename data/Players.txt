@@ -911,3 +911,15 @@ player.vandeMortel.name=Jan van de Mortel
 player.vandeMortel.rating=2462
 player.vandeMortel.team=NE
 player.vandeMortel.titles=IM
+
+player.DuckStorm.handle=DuckStorm
+player.DuckStorm.name=Doug Bateman
+player.DuckStorm.rating=12
+player.DuckStorm.team=ICC
+player.DuckStorm.titles=*
+
+player.MrBob.handle=MrBob
+player.MrBob.name=Bob X
+player.MrBob.rating=3500
+player.MrBob.team=ICC
+player.MrBob.titles=*
