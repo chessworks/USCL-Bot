@@ -50,6 +50,7 @@ public class SimpleTitleService extends SimpleNameLookupService<Title> {
 
 	private static final boolean includesBrackets(String titleString) {
 		int len = titleString.length();
+		if (len == 0) return false;
 		int first = titleString.charAt(0);
 		int last = titleString.charAt(len - 1);
 		if (first == '(' && last == ')')
