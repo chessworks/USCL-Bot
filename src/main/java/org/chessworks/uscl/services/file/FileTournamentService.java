@@ -106,14 +106,14 @@ public class FileTournamentService extends SimpleTournamentService {
 				String propValue = (String) entry.getValue();
 				if (!propName.endsWith(".handle"))
 					continue;
-				String prefix = propName.substring(propName.length() - ".handle".length());
+				String prefix = propName.substring(0,propName.length() - ".handle".length());
 				String handle = propValue;
 				String realName = data.getProperty(prefix + ".name");
 				String ratingStr = data.getProperty(prefix + ".rating");
 				String teamCode = data.getProperty(prefix + ".team");
 				String title = data.getProperty(prefix + ".titles");
 				String website = data.getProperty(prefix + ".website");
-				int rating = Integer.parseInt(ratingStr);
+				int rating = (ratingStr==null) ? -1 : Integer.parseInt(ratingStr);
 				Team team = findTeam(teamCode);
 				if (team == null)
 					throw new InvalidNameException("Team \"{0}\" does not exist.");

@@ -47,6 +47,7 @@ public class CommandDispatcher {
 	}
 
 	public CommandDispatcher(Object target) {
+		this.target = target;
 		Class<?> c = target.getClass();
 		Method[] methods = c.getMethods();
 		int len = prefix.length();
@@ -155,7 +156,7 @@ public class CommandDispatcher {
 				for (; i < params.length; i++) {
 					params[paramIndex] = argConverter[i].convert(null);
 				}
-			} else if (userArgs[last].indexOf(' ') >= 0) {
+			} else if (userArgs.length > 0 && userArgs[last].indexOf(' ') >= 0) {
 				// Case 2: Too many user args
 				int i = 0;
 				for (; i < userArgs.length - 1; i++) {
