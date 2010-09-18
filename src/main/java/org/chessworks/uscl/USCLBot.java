@@ -111,6 +111,8 @@ public class USCLBot {
 		SimpleUserService service = new SimpleUserService();
 		System.out.println("Managers:");
 		String userPrefix = "user.";
+		Role programmer = service.findOrCreateRole("programmer");
+		Role manager = service.findOrCreateRole("manager");
 		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
 			String key = (String) entry.getKey();
 			String value = (String) entry.getValue();
@@ -119,7 +121,12 @@ public class USCLBot {
 			String handle = key.substring(userPrefix.length());
 			User user = service.findUser(handle);
 			Role role = service.findOrCreateRole(value);
-			user.getRoles().add(role);
+			if (role == programmer) {
+				user.getRoles().add(manager);
+				user.getRoles().add(programmer);
+			} else {
+				user.getRoles().add(role);
+			}
 			System.out.println(role + "\t\t" + user);
 		}
 		return service;
