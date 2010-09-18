@@ -64,14 +64,6 @@ public class USCLBot {
 
 	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
 
-	public static Properties loadSettingsFile(String settingsFile) {
-		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
-		/* System properties will override the settings file. */
-		Properties systemProperties = System.getProperties();
-		configuredSettings.putAll(systemProperties);
-		return configuredSettings;
-	}
-
 	public static void main(String[] args) throws IOException, InvalidNameException {
 		Properties settings = loadSettingsFile(SETTINGS_FILE);
 
@@ -86,6 +78,14 @@ public class USCLBot {
 		bot.setUserService(userService);
 		bot.setTournamentService(tournamentService);
 		bot.start();
+	}
+
+	public static Properties loadSettingsFile(String settingsFile) {
+		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
+		/* System properties will override the settings file. */
+		Properties systemProperties = System.getProperties();
+		configuredSettings.putAll(systemProperties);
+		return configuredSettings;
 	}
 
 	private static void loadConnectionSettings(Properties settings, USCLBot bot) {
@@ -111,23 +111,20 @@ public class USCLBot {
 		SimpleUserService service = new SimpleUserService();
 		System.out.println("Managers:");
 		String userPrefix = "user.";
-		Role programmer = service.findOrCreateRole("programmer");
-		Role manager = service.findOrCreateRole("manager");
 		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
 			String key = (String) entry.getKey();
 			String value = (String) entry.getValue();
+			String[] roleNames = value.split("[, ]+");
 			if (!key.startsWith(userPrefix))
 				continue;
 			String handle = key.substring(userPrefix.length());
 			User user = service.findUser(handle);
-			Role role = service.findOrCreateRole(value);
-			if (role == programmer) {
-				user.getRoles().add(manager);
-				user.getRoles().add(programmer);
-			} else {
-				user.getRoles().add(role);
+			Set<Role> roles = user.getRoles();
+			for (String s : roleNames) {
+				Role r = service.findOrCreateRole(s);
+				roles.add(r);
+				System.out.println(user + "\t\t" + r);
 			}
-			System.out.println(role + "\t\t" + user);
 		}
 		return service;
 	}
