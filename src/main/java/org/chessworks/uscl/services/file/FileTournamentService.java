@@ -1,7 +1,5 @@
 package org.chessworks.uscl.services.file;
 
-import static org.chessworks.common.javatools.io.IOHelper.UTF8;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +11,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.chessworks.common.javatools.io.DirtyFileHelper;
+import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
@@ -28,44 +26,41 @@ public class FileTournamentService extends SimpleTournamentService {
 	private static final File DEFAULT_PLAYERS_FILE = new File("data/Players.txt");
 	private static final File DEFAULT_SCHEDULE_FILE = new File("data/Games.txt");
 	private static final File DEFAULT_TEAMS_FILE = new File("data/Teams.txt");
+	private final TeamsIO teamsIO = new TeamsIO();
+	private final ScheduleIO scheduleIO = new ScheduleIO();
+	private final PlayersIO playersIO = new PlayersIO();
 	private SimpleTitleService titleService = new SimpleTitleService();
 
 	public Player createPlayer(String handle) throws InvalidNameException {
-		playersIO.setDirty();
 		Player p = super.createPlayer(handle);
-		save();
+		playersIO.save();
 		return p;
 	}
 
 	public Team createTeam(String teamCode) throws InvalidNameException {
-		teamsIO.setDirty();
 		Team t = super.createTeam(teamCode);
-		save();
+		teamsIO.save();
 		return t;
 	}
 
 	public void clearSchedule() {
-		scheduleIO.setDirty();
 		super.clearSchedule();
-		save();
+		scheduleIO.save();
 	}
 
 	public void schedule(Player white, Player black, int board) {
-		scheduleIO.setDirty();
 		super.schedule(white, black, board);
-		save();
+		scheduleIO.save();
 	}
 
 	public void reserveBoard(Player player, int board) {
-		scheduleIO.setDirty();
 		super.reserveBoard(player, board);
-		save();
+		scheduleIO.save();
 	}
 
 	public int unreserveBoard(Player player) {
-		scheduleIO.setDirty();
 		int board = super.unreserveBoard(player);
-		save();
+		scheduleIO.save();
 		return board;
 	}
 
@@ -95,11 +90,12 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	public void load() {
 		try {
+			super.clear();
 			teamsIO.readText();
 			playersIO.readText();
 			scheduleIO.readText();
 		} catch (IOException e) {
-			throw new DataStoreException("Error saving changes to disk.", e);
+			throw new DataStoreException("Error reading data from disk.", e);
 		}
 	}
 
@@ -113,7 +109,11 @@ public class FileTournamentService extends SimpleTournamentService {
 		}
 	}
 
-	private final DirtyFileHelper playersIO = new DirtyFileHelper(DEFAULT_PLAYERS_FILE, UTF8) {
+	private class PlayersIO extends FileHelper {
+
+		public PlayersIO() {
+			super(DEFAULT_PLAYERS_FILE, UTF8);
+		}
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -124,19 +124,19 @@ public class FileTournamentService extends SimpleTournamentService {
 				String propValue = (String) entry.getValue();
 				if (!propName.endsWith(".handle"))
 					continue;
-				String prefix = propName.substring(0,propName.length() - ".handle".length());
+				String prefix = propName.substring(0, propName.length() - ".handle".length());
 				String handle = propValue;
 				String realName = data.getProperty(prefix + ".name");
 				String ratingStr = data.getProperty(prefix + ".rating");
 				String teamCode = data.getProperty(prefix + ".team");
 				String title = data.getProperty(prefix + ".titles");
 				String website = data.getProperty(prefix + ".website");
-				int rating = (ratingStr==null) ? -1 : Integer.parseInt(ratingStr);
-				Team team = findTeam(teamCode);
+				int rating = (ratingStr == null) ? -1 : Integer.parseInt(ratingStr);
+				Team team = FileTournamentService.super.findTeam(teamCode);
 				if (team == null)
 					throw new InvalidNameException("Team \"{0}\" does not exist.");
 				assert team != null;
-				Player p = createPlayer(handle, team);
+				Player p = FileTournamentService.super.createPlayer(handle, team);
 				p.setRealName(realName);
 				p.ratings().put(USCLBot.USCL_RATING, rating);
 				if (title != null) {
@@ -173,9 +173,21 @@ public class FileTournamentService extends SimpleTournamentService {
 			}
 		}
 
+		public void save() {
+			try {
+				writeText();
+			} catch (IOException e) {
+				throw new DataStoreException("Error saving changes to disk.", e);
+			}
+		}
+
 	};
 
-	private final DirtyFileHelper teamsIO = new DirtyFileHelper(DEFAULT_TEAMS_FILE, UTF8) {
+	private final class TeamsIO extends FileHelper {
+
+		public TeamsIO() {
+			super(DEFAULT_TEAMS_FILE, UTF8);
+		}
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -191,7 +203,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				String location = data.getProperty(prefix + ".location");
 				String name = data.getProperty(prefix + ".name");
 				String url = data.getProperty(prefix + ".website");
-				Team t = createTeam(teamCode);
+				Team t = FileTournamentService.super.createTeam(teamCode);
 				t.setName(name);
 				t.setLocation(location);
 				t.setWebsite(url);
@@ -217,9 +229,21 @@ public class FileTournamentService extends SimpleTournamentService {
 			}
 		}
 
+		public void save() {
+			try {
+				writeText();
+			} catch (IOException e) {
+				throw new DataStoreException("Error saving changes to disk.", e);
+			}
+		}
+
 	};
 
-	private final DirtyFileHelper scheduleIO = new DirtyFileHelper(DEFAULT_SCHEDULE_FILE, UTF8) {
+	private final class ScheduleIO extends FileHelper {
+
+		public ScheduleIO() {
+			super(DEFAULT_SCHEDULE_FILE, UTF8);
+		}
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException {
@@ -230,23 +254,36 @@ public class FileTournamentService extends SimpleTournamentService {
 				line = line.trim();
 				if (line.length() == 0)
 					continue;
+				if (line.startsWith("#"))
+					continue;
 				String[] args = line.split("[ \t]+");
 				String handle = args[1];
 				String game = args[2];
 				int gameNum = Integer.parseInt(game);
-				Player player = findPlayer(handle);
+				Player player = FileTournamentService.super.findPlayer(handle);
 				FileTournamentService.super.reserveBoard(player, gameNum);
 			}
 		}
 
 		@Override
 		public void doWrite(PrintWriter out) throws IOException {
+			out.println("#USCL Reserved Boards");
+			out.println();
 			Map<Player, Integer> playerBoards = FileTournamentService.super.getPlayerBoardMap();
 			for (Map.Entry<Player, Integer> entry : playerBoards.entrySet()) {
 				Player player = entry.getKey();
 				int board = entry.getValue();
 				String line = MessageFormat.format("reserve-game {0} {1}", player, board);
 				out.println(line);
+			}
+			out.println();
+		}
+
+		public void save() {
+			try {
+				writeText();
+			} catch (IOException e) {
+				throw new DataStoreException("Error saving changes to disk.", e);
 			}
 		}
 

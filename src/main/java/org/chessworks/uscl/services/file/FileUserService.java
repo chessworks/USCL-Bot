@@ -1,7 +1,5 @@
 package org.chessworks.uscl.services.file;
 
-import static org.chessworks.common.javatools.io.IOHelper.UTF8;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.chessworks.common.javatools.io.DirtyFileHelper;
+import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.Title;
@@ -23,6 +21,7 @@ import org.chessworks.uscl.services.simple.SimpleUserService;
 public class FileUserService extends SimpleUserService {
 
 	private static final File DEFAULT_USERS_FILE = new File("data/Users.txt");
+	private final FileHelper usersIO = new UsersIO();
 	private SimpleTitleService titleService = new SimpleTitleService();
 
 	public void setDataFile(File file) {
@@ -35,6 +34,7 @@ public class FileUserService extends SimpleUserService {
 
 	public void load() {
 		try {
+			FileUserService.super.reset();
 			usersIO.readText();
 		} catch (IOException e) {
 			throw new DataStoreException("Error saving changes to disk.", e);
@@ -49,7 +49,11 @@ public class FileUserService extends SimpleUserService {
 		}
 	}
 
-	private DirtyFileHelper usersIO = new DirtyFileHelper(DEFAULT_USERS_FILE, UTF8) {
+	private final class UsersIO extends FileHelper {
+
+		public UsersIO() {
+			super(DEFAULT_USERS_FILE, UTF8);
+		}
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -64,8 +68,8 @@ public class FileUserService extends SimpleUserService {
 				String handle = propValue;
 				String realName = data.getProperty(prefix + ".name");
 				String title = data.getProperty(prefix + ".titles");
-				String roleList = data.getProperty(prefix + ".roles");
-				User u = findUser(handle);
+				String roleList = data.getProperty(prefix + ".roles", "");
+				User u = FileUserService.super.findUser(handle);
 				u.setRealName(realName);
 				if (title != null) {
 					Set<Title> titles = titleService.lookupAll(title);
@@ -73,9 +77,10 @@ public class FileUserService extends SimpleUserService {
 				}
 				String[] roleNames = roleList.split("[, ]+");
 				for (String s : roleNames) {
-					Role r = FileUserService.this.findOrCreateRole(s);
-					FileUserService.this.addUserToRole(u, r);
+					Role r = FileUserService.super.findOrCreateRole(s);
+					FileUserService.super.addUserToRole(u, r);
 				}
+				FileUserService.super.register(u);
 			}
 		}
 
@@ -83,9 +88,10 @@ public class FileUserService extends SimpleUserService {
 		public void doWrite(PrintWriter out) throws IOException {
 			out.println("#USCL Players");
 			out.println();
-			for (User player : findAllKnownUsers()) {
+			for (User player : FileUserService.super.findAllKnownUsers()) {
 				String handle = player.getHandle();
 				String name = player.getRealName();
+				//TODO: Fix saving roles, need a way to query for roles
 				Integer rating = player.ratings().get(USCLBot.USCL_RATING);
 				String title = player.getTitles().toString();
 				out.format("player.%s.handle=%s%n", handle, handle);

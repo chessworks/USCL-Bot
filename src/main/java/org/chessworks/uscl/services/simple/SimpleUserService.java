@@ -131,4 +131,11 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 		Set<User> set = roleCache.get(role);
 		set.add(user);
 	}
+
+	protected void reset() {
+		this.users.clear();
+		this.roles.clear();
+		this.registeredUsers.clear();
+		this.roleCache.clear();
+	}
 }

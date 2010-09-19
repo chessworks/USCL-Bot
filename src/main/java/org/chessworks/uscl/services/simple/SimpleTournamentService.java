@@ -14,7 +14,8 @@ import org.chessworks.uscl.services.TournamentService;
 
 public class SimpleTournamentService extends BasicLifecycle implements TournamentService {
 
-	public Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
+	/** Map players to board numbers */
+	private final Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
 
 	/** Map codes to teams */
 	private final Map<String, Team> teams;
@@ -216,6 +217,12 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		t = new Team(teamCode);
 		teams.put(teamCode.toUpperCase(), t);
 		return t;
+	}
+
+	protected void clear() {
+		this.playerBoards.clear();
+		this.players.clear();
+		this.teams.clear();
 	}
 
 }
