@@ -115,17 +115,16 @@ public class USCLBot {
 		String userPrefix = "user.";
 		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
 			String key = (String) entry.getKey();
-			String value = (String) entry.getValue();
-			String[] roleNames = value.split("[, ]+");
 			if (!key.startsWith(userPrefix))
 				continue;
+			String value = (String) entry.getValue();
+			String[] roleNames = value.split("[, ]+");
 			String handle = key.substring(userPrefix.length());
 			User user = service.findUser(handle);
-			Set<Role> roles = user.getRoles();
 			for (String s : roleNames) {
-				Role r = service.findOrCreateRole(s);
-				roles.add(r);
-				System.out.println(user + "\t\t" + r);
+				Role role = service.findOrCreateRole(s);
+				service.addUserToRole(user, role);
+				System.out.println(user + "\t\t" + role);
 			}
 		}
 		return service;
@@ -316,7 +315,7 @@ public class USCLBot {
 	/** Returns true if the user is a bot manager. False otherwise. */
 	public boolean isManager(String handle) {
 		User user = userService.findUser(handle);
-		boolean result = user.getRoles().contains(managerRole);
+		boolean result = userService.isUserInRole(user, managerRole);
 		return result;
 	}
 

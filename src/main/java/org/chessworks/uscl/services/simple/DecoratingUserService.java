@@ -26,6 +26,15 @@ public class DecoratingUserService implements UserService {
 	/**
 	 * Delegates all calls to the underlying {@link UserService}.
 	 *
+	 * @see org.chessworks.uscl.services.UserService#addUserToRole(org.chessworks.uscl.model.User, org.chessworks.uscl.model.Role)
+	 */
+	public void addUserToRole(User user, Role role) {
+		service.addUserToRole(user, role);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link UserService}.
+	 *
 	 * @see org.chessworks.uscl.services.UserService#findAllKnownUsers()
 	 */
 	public Collection<User> findAllKnownUsers() {
@@ -75,6 +84,15 @@ public class DecoratingUserService implements UserService {
 	 */
 	public Set<User> findUsersInRole(Role role) {
 		return service.findUsersInRole(role);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link UserService}.
+	 *
+	 * @see org.chessworks.uscl.services.UserService#isUserInRole(org.chessworks.uscl.model.User, org.chessworks.uscl.model.Role)
+	 */
+	public boolean isUserInRole(User user, Role role) {
+		return service.isUserInRole(user, role);
 	}
 
 	/**

@@ -68,10 +68,6 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 		}
 		users.register(user);
 		registeredUsers.register(user);
-		for (Role r : user.getRoles()) {
-			Set<User> usersInRole = roleCache.get(r);
-			usersInRole.add(user);
-		}
 	}
 
 	/**
@@ -111,4 +107,28 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 		return roleCacheReadOnly.get(role);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.UserService#isUserInRole(org.chessworks.uscl.model.User, org.chessworks.uscl.model.Role)
+	 */
+	@Override
+	public boolean isUserInRole(User user, Role role) {
+		Set<User> set = roleCache.get(role);
+		if (set == null)
+			return false;
+		boolean result = set.contains(user);
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.UserService#addUserToRole(User, Role)
+	 */
+	@Override
+	public void addUserToRole(User user, Role role) {
+		Set<User> set = roleCache.get(role);
+		set.add(user);
+	}
 }

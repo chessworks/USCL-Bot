@@ -9,18 +9,22 @@ import org.chessworks.uscl.services.InvalidNameException;
 
 public interface UserService {
 
-	User findUser(String handle);
+	void addUserToRole(User user, Role role);
 
 	Collection<User> findAllKnownUsers();
 
-	Collection<User> findRegisteredUsers();
-
-	void register(User user) throws InvalidNameException;
-
 	Role findOrCreateRole(String role);
+
+	Collection<User> findRegisteredUsers();
 
 	Role findRole(String role);
 
+	User findUser(String handle);
+
 	Set<User> findUsersInRole(Role role);
+
+	boolean isUserInRole(User user, Role role);
+
+	void register(User user) throws InvalidNameException;
 
 }
