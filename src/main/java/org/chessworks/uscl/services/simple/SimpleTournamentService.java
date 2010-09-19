@@ -106,7 +106,7 @@ public class SimpleTournamentService implements TournamentService {
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
 	 */
 	public Player findOrCreatePlayer(String handle) throws InvalidNameException {
-		Player p = players.get(handle);
+		Player p = players.get(handle.toLowerCase());
 		if (p == null) {
 			p = createPlayer(handle);
 		}
@@ -119,7 +119,7 @@ public class SimpleTournamentService implements TournamentService {
 	 * @see org.chessworks.uscl.services.TournamentService#findPlayer(java.lang.String)
 	 */
 	public Player findPlayer(String handle) {
-		Player p = players.get(handle);
+		Player p = players.get(handle.toLowerCase());
 		return p;
 	}
 
@@ -129,7 +129,7 @@ public class SimpleTournamentService implements TournamentService {
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
 	 */
 	public Team findOrCreateTeam(String handle) throws InvalidNameException {
-		Team t = teams.get(handle);
+		Team t = teams.get(handle.toUpperCase());
 		if (t == null) {
 			t = createTeam(handle);
 		}
@@ -142,7 +142,7 @@ public class SimpleTournamentService implements TournamentService {
 	 * @see org.chessworks.uscl.services.TournamentService#findTeam(java.lang.String)
 	 */
 	public Team findTeam(String teamCode) {
-		Team t = teams.get(teamCode);
+		Team t = teams.get(teamCode.toUpperCase());
 		return t;
 	}
 
@@ -195,7 +195,7 @@ public class SimpleTournamentService implements TournamentService {
 		}
 		p = new Player(handle, team);
 		team.getPlayers().add(p);
-		players.put(handle, p);
+		players.put(handle.toLowerCase(), p);
 		return p;
 	}
 
@@ -213,7 +213,7 @@ public class SimpleTournamentService implements TournamentService {
 			throw new InvalidNameException("Teams must have a 2 or 3-letter team code.");
 		}
 		t = new Team(teamCode);
-		teams.put(teamCode, t);
+		teams.put(teamCode.toUpperCase(), t);
 		return t;
 	}
 

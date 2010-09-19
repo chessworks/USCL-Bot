@@ -17,7 +17,7 @@ import org.chessworks.uscl.converters.UserConverter;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.TournamentService;
-import org.chessworks.uscl.services.simple.SimpleUserService;
+import org.chessworks.uscl.services.UserService;
 
 public class CommandDispatcher {
 
@@ -81,7 +81,7 @@ public class CommandDispatcher {
 		h.onCommand(teller, args);
 	}
 
-	public void setUserService(SimpleUserService service) {
+	public void setUserService(UserService service) {
 		if (service != null) {
 			UserConverter teller = new UserConverter();
 			UserConverter param = new UserConverter(null);

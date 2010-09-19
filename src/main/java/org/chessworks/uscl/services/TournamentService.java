@@ -8,34 +8,34 @@ import org.chessworks.uscl.model.Team;
 
 public interface TournamentService {
 
-	public void clearSchedule();
+	void clearSchedule();
 
-	public Player createPlayer(String handle) throws InvalidNameException;
+	Player createPlayer(String handle) throws InvalidNameException;
 
-	public Player createPlayer(String handle, Team team) throws InvalidNameException;
+	Player createPlayer(String handle, Team team) throws InvalidNameException;
 
-	public Team createTeam(String teamCode) throws InvalidNameException;
+	Team createTeam(String teamCode) throws InvalidNameException;
 
-	public Collection<Player> findAllPlayers();
+	Collection<Player> findAllPlayers();
 
-	public Collection<Team> findAllTeams();
+	Collection<Team> findAllTeams();
 
-	public Player findOrCreatePlayer(String handle) throws InvalidNameException;
+	Player findOrCreatePlayer(String handle) throws InvalidNameException;
 
-	public Team findOrCreateTeam(String handle) throws InvalidNameException;
+	Team findOrCreateTeam(String handle) throws InvalidNameException;
 
-	public Player findPlayer(String handle);
+	Player findPlayer(String handle);
 
-	public Team findTeam(String teamCode);
+	Team findTeam(String teamCode);
 
-	public int getPlayerBoard(Player player);
+	int getPlayerBoard(Player player);
 
-	public Map<Player, Integer> getPlayerBoardMap();
+	Map<Player, Integer> getPlayerBoardMap();
 
-	public void reserveBoard(Player player, int board);
+	void reserveBoard(Player player, int board);
 
-	public void schedule(Player white, Player black, int board);
+	void schedule(Player white, Player black, int board);
 
-	public int unreserveBoard(Player player);
+	int unreserveBoard(Player player);
 
 }

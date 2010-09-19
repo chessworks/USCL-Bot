@@ -10,9 +10,10 @@ import java.util.Set;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.util.SimpleNameLookupService;
 
-public class SimpleUserService {
+public class SimpleUserService implements UserService {
 
 	private final SimpleNameLookupService<Role> roles = new SimpleNameLookupService<Role>();
 	private final SimpleNameLookupService<User> users = new SimpleNameLookupService<User>();
@@ -21,6 +22,11 @@ public class SimpleUserService {
 	private final Map<Role, Set<User>> roleCache = new HashMap<Role, Set<User>>();
 	private final Map<Role, Set<User>> roleCacheReadOnly = new HashMap<Role, Set<User>>();
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findUser(java.lang.String)
+	 */
 	public User findUser(String handle) {
 		User u = users.lookup(handle);
 		if (u == null) {
@@ -30,14 +36,29 @@ public class SimpleUserService {
 		return u;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findAllKnownUsers()
+	 */
 	public Collection<User> findAllKnownUsers() {
 		return users.all();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findRegisteredUsers()
+	 */
 	public Collection<User> findRegisteredUsers() {
 		return registeredUsers.all();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#register(org.chessworks.uscl.model.User)
+	 */
 	public void register(User user) throws InvalidNameException {
 		String handle = user.getHandle();
 		User existing = findUser(handle);
@@ -52,6 +73,11 @@ public class SimpleUserService {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findOrCreateRole(java.lang.String)
+	 */
 	public Role findOrCreateRole(String role) {
 		Role r = findRole(role);
 		if (r == null) {
@@ -65,11 +91,21 @@ public class SimpleUserService {
 		return r;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findRole(java.lang.String)
+	 */
 	public Role findRole(String role) {
 		Role r = roles.lookup(role);
 		return r;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.UserService#findUsersInRole(org.chessworks.uscl.model.Role)
+	 */
 	public Set<User> findUsersInRole(Role role) {
 		return roleCacheReadOnly.get(role);
 	}

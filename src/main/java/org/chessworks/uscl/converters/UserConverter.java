@@ -4,11 +4,11 @@
 package org.chessworks.uscl.converters;
 
 import org.chessworks.uscl.model.User;
-import org.chessworks.uscl.services.simple.SimpleUserService;
+import org.chessworks.uscl.services.UserService;
 
 public class UserConverter extends AbstractConverter<User> {
 
-	private SimpleUserService userService;
+	private UserService userService;
 
 	public UserConverter() {
 		super(User.class);
@@ -26,7 +26,7 @@ public class UserConverter extends AbstractConverter<User> {
 		return u;
 	}
 
-	public void setUserService(SimpleUserService userService) {
+	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 

@@ -22,6 +22,7 @@ import org.chessworks.uscl.model.RatingCategory;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.services.file.FileTournamentService;
 import org.chessworks.uscl.services.simple.SimpleUserService;
 
@@ -70,7 +71,7 @@ public class USCLBot {
 		USCLBot bot = new USCLBot();
 		loadConnectionSettings(settings, bot);
 
-		SimpleUserService userService = loadUserSettings(settings);
+		UserService userService = loadUserSettings(settings);
 
 		FileTournamentService tournamentService = new FileTournamentService();
 		tournamentService.load();
@@ -107,8 +108,8 @@ public class USCLBot {
 		bot.setAdminPass(adminPass);
 	}
 
-	private static SimpleUserService loadUserSettings(Properties settings) {
-		SimpleUserService service = new SimpleUserService();
+	private static UserService loadUserSettings(Properties settings) {
+		UserService service = new SimpleUserService();
 		System.out.println("Managers:");
 		String userPrefix = "user.";
 		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
@@ -162,7 +163,7 @@ public class USCLBot {
 
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-	private SimpleUserService userService;
+	private UserService userService;
 
 	private FileTournamentService tournamentService;
 
@@ -365,6 +366,13 @@ public class USCLBot {
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
 		sendCommand("set noautologout 1");
 		sendCommand("set style 13");
+		sendCommand("-notify *");
+		Collection<Player> players = tournamentService.findAllPlayers();
+		sendCommand("tell duckstorm PlayerCount={0}", players.size());
+		for (Player p : players) {
+			sendCommand("+notify {0}", p);
+		}
+
 		Runnable task = new SafeRunnable() {
 			@Override
 			public void safeRun() {
@@ -440,9 +448,8 @@ public class USCLBot {
 			alertManagers("{0} is on my notify list, but I don't have him in the tournament roster.", name);
 		}
 		int board = tournamentService.getPlayerBoard(player);
-		if (board < 0) {
-			alertManagers("{0} is on my notify list, but I don't have a Game ID for him.", name);
-		} else {
+		sendAdminCommand("spoof set noautologout true");
+		if (board >= 0) {
 			if (!loggingIn)
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
@@ -597,7 +604,7 @@ public class USCLBot {
 		this.tournamentService = service;
 	}
 
-	public void setUserService(SimpleUserService service) {
+	public void setUserService(UserService service) {
 		this.userService = service;
 		this.managerRole = service.findOrCreateRole("manager");
 		this.programmerRole = service.findOrCreateRole("programmer");
