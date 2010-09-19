@@ -34,19 +34,9 @@ public class SimpleName implements Comparable<SimpleName> {
 		return name;
 	}
 
-	public int compareTo(String s) {
-		int result = name.compareTo(s);
-		return result;
-	}
-
 	@Override
 	public int compareTo(SimpleName o) {
-		int result = name.compareTo(o.name);
-		return result;
-	}
-
-	public int compareToWithCase(String s) {
-		int result = name.compareToIgnoreCase(s);
+		int result = name.compareToIgnoreCase(o.name);
 		return result;
 	}
 
