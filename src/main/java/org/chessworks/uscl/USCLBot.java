@@ -329,7 +329,7 @@ public class USCLBot {
 		sendCommand("set noautologout 1");
 		sendCommand("set style 13");
 		sendCommand("-notify *");
-		Collection<Player> players = tournamentService.findAllPlayers();
+		Set<Player> players = tournamentService.getPlayerBoardMap().keySet();
 		for (Player p : players) {
 			sendCommand("+notify {0}", p);
 		}
