@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.chessworks.common.service.BasicLifecycle;
 
-public class SimpleNameLookupService<T extends SimpleName> {
+
+public class SimpleNameLookupService<T extends SimpleName> extends BasicLifecycle {
 
 	private final Map<String, T> map;
 	private final Map<String, T> readOnly;

@@ -6,12 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.chessworks.common.service.BasicLifecycle;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.TournamentService;
 
-public class SimpleTournamentService implements TournamentService {
+public class SimpleTournamentService extends BasicLifecycle implements TournamentService {
 
 	public Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
 

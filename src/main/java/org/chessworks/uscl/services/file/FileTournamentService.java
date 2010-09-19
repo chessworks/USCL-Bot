@@ -113,7 +113,7 @@ public class FileTournamentService extends SimpleTournamentService {
 		}
 	}
 
-	private DirtyFileHelper playersIO = new DirtyFileHelper(DEFAULT_PLAYERS_FILE, UTF8) {
+	private final DirtyFileHelper playersIO = new DirtyFileHelper(DEFAULT_PLAYERS_FILE, UTF8) {
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -175,7 +175,7 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	};
 
-	private DirtyFileHelper teamsIO = new DirtyFileHelper(DEFAULT_TEAMS_FILE, UTF8) {
+	private final DirtyFileHelper teamsIO = new DirtyFileHelper(DEFAULT_TEAMS_FILE, UTF8) {
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {

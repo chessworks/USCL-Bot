@@ -7,13 +7,14 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.chessworks.common.service.BasicLifecycle;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.util.SimpleNameLookupService;
 
-public class SimpleUserService implements UserService {
+public class SimpleUserService extends BasicLifecycle implements UserService {
 
 	private final SimpleNameLookupService<Role> roles = new SimpleNameLookupService<Role>();
 	private final SimpleNameLookupService<User> users = new SimpleNameLookupService<User>();
