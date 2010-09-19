@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 
 import org.chessworks.common.javatools.io.DirtyFileHelper;
 import org.chessworks.uscl.USCLBot;
+import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.Title;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.DataStoreException;
@@ -62,15 +63,18 @@ public class FileUserService extends SimpleUserService {
 				String prefix = propName.substring(0,propName.length() - ".handle".length());
 				String handle = propValue;
 				String realName = data.getProperty(prefix + ".name");
-				String ratingStr = data.getProperty(prefix + ".rating");
 				String title = data.getProperty(prefix + ".titles");
-				int rating = (ratingStr==null) ? -1 : Integer.parseInt(ratingStr);
+				String roleList = data.getProperty(prefix + ".roles");
 				User u = findUser(handle);
 				u.setRealName(realName);
-				u.ratings().put(USCLBot.USCL_RATING, rating);
 				if (title != null) {
 					Set<Title> titles = titleService.lookupAll(title);
 					u.getTitles().addAll(titles);
+				}
+				String[] roleNames = roleList.split("[, ]+");
+				for (String s : roleNames) {
+					Role r = FileUserService.this.findOrCreateRole(s);
+					FileUserService.this.addUserToRole(u, r);
 				}
 			}
 		}

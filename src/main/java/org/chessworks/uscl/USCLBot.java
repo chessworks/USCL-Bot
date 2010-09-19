@@ -25,7 +25,7 @@ import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.services.file.FileTournamentService;
-import org.chessworks.uscl.services.simple.SimpleUserService;
+import org.chessworks.uscl.services.file.FileUserService;
 
 import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
@@ -72,9 +72,18 @@ public class USCLBot {
 		USCLBot bot = new USCLBot();
 		loadConnectionSettings(settings, bot);
 
-		UserService userService = loadUserSettings(settings);
+		String managersFile = settings.getProperty("file.managers", "data/Managers.txt");
+		String playersFile = settings.getProperty("file.players", "data/Players.txt");
+		String scheduleFile = settings.getProperty("file.schedule", "data/Schedule.txt");
+		String teamsFile = settings.getProperty("file.teams", "data/Teams.txt");
+
+		FileUserService userService = new FileUserService();
+		userService.setDataFile(managersFile);
 
 		FileTournamentService tournamentService = new FileTournamentService();
+		tournamentService.setPlayersFile(playersFile);
+		tournamentService.setScheduleFile(scheduleFile);
+		tournamentService.setTeamsFile(teamsFile);
 		tournamentService.load();
 
 		bot.setUserService(userService);
@@ -107,27 +116,6 @@ public class USCLBot {
 		bot.setLoginName(loginName);
 		bot.setLoginPass(loginPass);
 		bot.setAdminPass(adminPass);
-	}
-
-	private static UserService loadUserSettings(Properties settings) {
-		UserService service = new SimpleUserService();
-		System.out.println("Managers:");
-		String userPrefix = "user.";
-		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
-			String key = (String) entry.getKey();
-			if (!key.startsWith(userPrefix))
-				continue;
-			String value = (String) entry.getValue();
-			String[] roleNames = value.split("[, ]+");
-			String handle = key.substring(userPrefix.length());
-			User user = service.findUser(handle);
-			for (String s : roleNames) {
-				Role role = service.findOrCreateRole(s);
-				service.addUserToRole(user, role);
-				System.out.println(user + "\t\t" + role);
-			}
-		}
-		return service;
 	}
 
 	//TODO: Fix this ugly hack.
@@ -581,11 +569,7 @@ public class USCLBot {
 	public void setUserService(UserService service) {
 		this.userService = service;
 		this.managerRole = service.findOrCreateRole("manager");
-		this.programmerRole = service.findOrCreateRole("programmer");
-		if (this.managerRole == null)
-			throw new NullPointerException("managerRole");
-		if (this.programmerRole == null)
-			throw new NullPointerException("programmerRole");
+		this.programmerRole = service.findOrCreateRole("debugger");
 		this.cmd.setUserService(service);
 	}
 
