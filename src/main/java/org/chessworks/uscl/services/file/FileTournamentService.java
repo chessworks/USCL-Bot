@@ -11,15 +11,14 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.model.Title;
-import org.chessworks.uscl.services.DataStoreException;
 import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.simple.SimpleTitleService;
 import org.chessworks.uscl.services.simple.SimpleTournamentService;
+import org.chessworks.uscl.util.IO;
 
 public class FileTournamentService extends SimpleTournamentService {
 
@@ -33,34 +32,34 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	public Player createPlayer(String handle) throws InvalidNameException {
 		Player p = super.createPlayer(handle);
-		playersIO.save();
+		playersIO.setDirty();
 		return p;
 	}
 
 	public Team createTeam(String teamCode) throws InvalidNameException {
 		Team t = super.createTeam(teamCode);
-		teamsIO.save();
+		teamsIO.setDirty();
 		return t;
 	}
 
 	public void clearSchedule() {
 		super.clearSchedule();
-		scheduleIO.save();
+		scheduleIO.setDirty();
 	}
 
 	public void schedule(Player white, Player black, int board) {
 		super.schedule(white, black, board);
-		scheduleIO.save();
+		scheduleIO.setDirty();
 	}
 
 	public void reserveBoard(Player player, int board) {
 		super.reserveBoard(player, board);
-		scheduleIO.save();
+		scheduleIO.setDirty();
 	}
 
 	public int unreserveBoard(Player player) {
 		int board = super.unreserveBoard(player);
-		scheduleIO.save();
+		scheduleIO.setDirty();
 		return board;
 	}
 
@@ -89,31 +88,23 @@ public class FileTournamentService extends SimpleTournamentService {
 	}
 
 	public void load() {
-		try {
-			super.clear();
-			teamsIO.readText();
-			playersIO.readText();
-			scheduleIO.readText();
-		} catch (IOException e) {
-			throw new DataStoreException("Error reading data from disk.", e);
-		}
+		super.reset();
+		teamsIO.load();
+		playersIO.load();
+		scheduleIO.load();
 	}
 
 	public void save() {
-		try {
-			teamsIO.writeText();
-			playersIO.writeText();
-			scheduleIO.writeText();
-		} catch (IOException e) {
-			throw new DataStoreException("Error saving changes to disk.", e);
-		}
+		teamsIO.save();
+		playersIO.save();
+		scheduleIO.save();
 	}
 
 	public void flush() {
 		save();
 	}
 
-	private class PlayersIO extends FileHelper {
+	private class PlayersIO extends IO {
 
 		public PlayersIO() {
 			super(DEFAULT_PLAYERS_FILE, UTF8);
@@ -177,17 +168,9 @@ public class FileTournamentService extends SimpleTournamentService {
 			}
 		}
 
-		public void save() {
-			try {
-				writeText();
-			} catch (IOException e) {
-				throw new DataStoreException("Error saving changes to disk.", e);
-			}
-		}
-
 	};
 
-	private final class TeamsIO extends FileHelper {
+	private final class TeamsIO extends IO {
 
 		public TeamsIO() {
 			super(DEFAULT_TEAMS_FILE, UTF8);
@@ -233,17 +216,9 @@ public class FileTournamentService extends SimpleTournamentService {
 			}
 		}
 
-		public void save() {
-			try {
-				writeText();
-			} catch (IOException e) {
-				throw new DataStoreException("Error saving changes to disk.", e);
-			}
-		}
-
 	};
 
-	private final class ScheduleIO extends FileHelper {
+	private final class ScheduleIO extends IO {
 
 		public ScheduleIO() {
 			super(DEFAULT_SCHEDULE_FILE, UTF8);
@@ -281,14 +256,6 @@ public class FileTournamentService extends SimpleTournamentService {
 				out.println(line);
 			}
 			out.println();
-		}
-
-		public void save() {
-			try {
-				writeText();
-			} catch (IOException e) {
-				throw new DataStoreException("Error saving changes to disk.", e);
-			}
 		}
 
 	};

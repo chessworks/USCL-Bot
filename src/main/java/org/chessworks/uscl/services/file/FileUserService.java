@@ -8,20 +8,19 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.Title;
 import org.chessworks.uscl.model.User;
-import org.chessworks.uscl.services.DataStoreException;
 import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.simple.SimpleTitleService;
 import org.chessworks.uscl.services.simple.SimpleUserService;
+import org.chessworks.uscl.util.IO;
 
 public class FileUserService extends SimpleUserService {
 
 	private static final File DEFAULT_USERS_FILE = new File("data/Users.txt");
-	private final FileHelper usersIO = new UsersIO();
+	private final IO usersIO = new UsersIO();
 	private SimpleTitleService titleService = new SimpleTitleService();
 
 	public void setDataFile(File file) {
@@ -33,27 +32,19 @@ public class FileUserService extends SimpleUserService {
 	}
 
 	public void load() {
-		try {
-			FileUserService.super.reset();
-			usersIO.readText();
-		} catch (IOException e) {
-			throw new DataStoreException("Error saving changes to disk.", e);
-		}
+		super.reset();
+		usersIO.load();
 	}
 
 	public void save() {
-		try {
-			usersIO.writeText();
-		} catch (IOException e) {
-			throw new DataStoreException("Error saving changes to disk.", e);
-		}
+		usersIO.save();
 	}
 
 	public void flush() {
 		save();
 	}
 
-	private final class UsersIO extends FileHelper {
+	private final class UsersIO extends IO {
 
 		public UsersIO() {
 			super(DEFAULT_USERS_FILE, UTF8);

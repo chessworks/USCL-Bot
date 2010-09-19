@@ -1,6 +1,5 @@
 package org.chessworks.uscl.services.simple;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -243,7 +242,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	public void flush() {
 	}
 
-	protected void clear() {
+	protected void reset() {
 		this.playerBoards.clear();
 		this.players.clear();
 		this.teams.clear();
