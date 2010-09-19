@@ -14,8 +14,6 @@ import org.chessworks.uscl.converters.StringArrayConverter;
 import org.chessworks.uscl.converters.StringBufferConverter;
 import org.chessworks.uscl.converters.StringConverter;
 import org.chessworks.uscl.converters.UserConverter;
-import org.chessworks.uscl.model.Player;
-import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.UserService;
 
@@ -26,6 +24,10 @@ public class CommandDispatcher {
 	private Object target;
 	private Map<String, CallHandler> handlerMap = new HashMap<String, CallHandler>();
 
+	/* The fields must be listed prior to the argConverter fields. This ensures these values have been set in time. */
+	UserConverter userConverter = new UserConverter();
+	PlayerConverter playerConverter = new PlayerConverter();
+
 	ConverterFactory argConverters = new ConverterFactory();
 	{
 		argConverters.register(new StringConverter());
@@ -33,11 +35,15 @@ public class CommandDispatcher {
 		argConverters.register(new StringBufferConverter());
 		argConverters.register(new IntegerConverter(), Integer.class);
 		argConverters.register(new IntegerConverter(), Integer.TYPE);
+		argConverters.register(userConverter);
+		argConverters.register(playerConverter);
 	}
 
 	ConverterFactory tellerConverters = new ConverterFactory();
 	{
 		tellerConverters.register(new StringConverter());
+		tellerConverters.register(userConverter);
+		tellerConverters.register(playerConverter);
 	}
 
 	ConverterFactory tailConverters = new ConverterFactory();
@@ -78,35 +84,15 @@ public class CommandDispatcher {
 		CallHandler h = handlerMap.get(cmd);
 		if (h == null)
 			throw new NoSuchCommandException(cmd);
-		h.onCommand(teller, args);
+		h.onCommand(teller, cmd, args);
 	}
 
 	public void setUserService(UserService service) {
-		if (service != null) {
-			UserConverter teller = new UserConverter();
-			UserConverter param = new UserConverter(null);
-			teller.setUserService(service);
-			param.setUserService(service);
-			tellerConverters.register(teller, User.class);
-			argConverters.register(param, User.class);
-		} else {
-			tellerConverters.unregister(User.class);
-			argConverters.unregister(User.class);
-		}
+		userConverter.setUserService(service);
 	}
 
-	public void setPlayerService(TournamentService service) {
-		if (service != null) {
-			PlayerConverter teller = new PlayerConverter();
-			PlayerConverter param = new PlayerConverter(null);
-			teller.setPlayerService(service);
-			param.setPlayerService(service);
-			tellerConverters.register(teller, Player.class);
-			argConverters.register(param, Player.class);
-		} else {
-			tellerConverters.unregister(Player.class);
-			argConverters.unregister(Player.class);
-		}
+	public void setTournamentService(TournamentService service) {
+		playerConverter.setTournamentService(service);
 	}
 
 	private class CallHandler {
@@ -125,54 +111,60 @@ public class CommandDispatcher {
 				return;
 			}
 			this.tellerConverter = tellerConverters.forType(paramTypes[0]);
-			int i = (tellerConverter == null) ? 0 : 1;
-			for (; i < paramTypes.length; i++) {
-				Class<?> type = paramTypes[i];
-				argConverter[i] = argConverters.forType(type);
+			int pos = (tellerConverter == null) ? 0 : 1;
+			int end = paramTypes.length - 1;
+			if (pos > end) {
+				tailConverter = null;
+				return;
 			}
-			Class<?> tailType = paramTypes[paramTypes.length - 1];
-			tailConverter = tailConverters.forType(tailType);
+			this.tailConverter = tailConverters.forType(paramTypes[end]);
+			if (tailConverter != null)
+				end--;
+			for (; pos <= end; pos++) {
+				Class<?> type = paramTypes[pos];
+				argConverter[pos] = argConverters.forType(type);
+			}
 		}
 
-		public void onCommand(String teller, String msg) throws ConversionException, InvocationTargetException {
+		public void onCommand(String teller, String cmd, String msg) throws ConversionException, InvocationTargetException {
 			int numParams = argConverter.length;
 			Object[] params = new Object[numParams];
 
-			int paramIndex = 0;
+			int paramPos = 0;
+			int paramEnd = numParams - 1;
 			if (tellerConverter != null) {
 				params[0] = tellerConverter.convert(teller);
-				paramIndex++;
+				paramPos++;
 			}
 
-			String[] userArgs = msg.split(" +", numParams - paramIndex);
-			int last = userArgs.length - 1;
-			if (userArgs.length < numParams - paramIndex) {
-				// Case 1: Too few user args
-				int i = 0;
-				for (; i < userArgs.length; i++) {
-					params[paramIndex] = argConverter[i].convert(userArgs[i]);
-					paramIndex++;
-				}
-				for (; i < params.length; i++) {
-					params[paramIndex] = argConverter[i].convert(null);
-				}
-			} else if (userArgs.length > 0 && userArgs[last].indexOf(' ') >= 0) {
-				// Case 2: Too many user args
-				int i = 0;
-				for (; i < userArgs.length - 1; i++) {
-					params[paramIndex] = argConverter[i].convert(userArgs[i]);
-					paramIndex++;
-				}
-				params[paramIndex] = tailConverter.convert(userArgs[i]);
-			} else {
-				// Case 3: Exactly the right number
-				int i = 0;
-				for (; i < userArgs.length; i++) {
-					params[paramIndex] = argConverter[i].convert(userArgs[i]);
-					paramIndex++;
-				}
+			String[] userArgs = msg.split(" +", numParams - paramPos);
+			int argPos = 0;
+			int argEnd = userArgs.length - 1;
+			if (argEnd >= 0 && userArgs[argEnd].trim().isEmpty()) {
+				argEnd--;
 			}
-
+			if ((argEnd - argPos) < (paramEnd - paramPos)) {
+				// Too few user args, try using null values.
+				for (; argPos <= argEnd; argPos++, paramPos++) {
+					String arg = userArgs[argPos];
+					params[paramPos] = argConverter[paramPos].convert(arg);
+				}
+				for (; paramPos <= paramEnd; argPos++, paramPos++) {
+					params[paramPos] = argConverter[paramPos].convert(null);
+				}
+			} else if (tailConverter != null) {
+				// We can handle an arbitrary number of args.
+				params[paramEnd] = tailConverter.convert(userArgs[argEnd]);
+				paramEnd--;
+				argEnd--;
+			} else if (argEnd >= 0 && userArgs[argEnd].indexOf(' ') >= 0) {
+				// Too many args.
+				throw new ConversionException("Cmd has too many inputs.");
+			}
+			for (; argPos <= argEnd; argPos++, paramPos++) {
+				String arg = userArgs[argPos];
+				params[paramPos] = argConverter[paramPos].convert(arg);
+			}
 			try {
 				method.invoke(target, params);
 			} catch (IllegalArgumentException e) {

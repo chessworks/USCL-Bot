@@ -15,7 +15,6 @@ public class IntegerConverter extends AbstractConverter<Integer> {
 
 	@Override
 	public Integer convert(String s) throws ConversionException {
-		Class<Integer> cc = Integer.TYPE;
 		if (this.checkNull(s))
 			return nullValue;
 		try {

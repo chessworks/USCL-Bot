@@ -576,6 +576,7 @@ public class USCLBot {
 
 	public void setTournamentService(TournamentService service) {
 		this.tournamentService = service;
+		this.cmd.setTournamentService(tournamentService);
 	}
 
 	public void setUserService(UserService service) {
@@ -586,6 +587,7 @@ public class USCLBot {
 			throw new NullPointerException("managerRole");
 		if (this.programmerRole == null)
 			throw new NullPointerException("programmerRole");
+		this.cmd.setUserService(service);
 	}
 
 	private void sshout(String msg, Object... args) {

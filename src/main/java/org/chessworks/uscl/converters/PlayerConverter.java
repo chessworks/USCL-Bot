@@ -26,7 +26,7 @@ public class PlayerConverter extends AbstractConverter<Player> {
 		return u;
 	}
 
-	public void setPlayerService(TournamentService playerService) {
+	public void setTournamentService(TournamentService playerService) {
 		this.playerService = playerService;
 	}
 
