@@ -1,7 +1,6 @@
 package org.chessworks.uscl.services;
 
 import java.io.Flushable;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 

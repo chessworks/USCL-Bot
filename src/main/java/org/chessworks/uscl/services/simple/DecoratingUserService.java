@@ -1,6 +1,5 @@
 package org.chessworks.uscl.services.simple;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
