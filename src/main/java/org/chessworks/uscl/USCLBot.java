@@ -74,7 +74,7 @@ public class USCLBot {
 
 		String managersFile = settings.getProperty("file.managers", "data/Managers.txt");
 		String playersFile = settings.getProperty("file.players", "data/Players.txt");
-		String scheduleFile = settings.getProperty("file.schedule", "data/Schedule.txt");
+		String scheduleFile = settings.getProperty("file.schedule", "data/Games.txt");
 		String teamsFile = settings.getProperty("file.teams", "data/Teams.txt");
 
 		FileUserService userService = new FileUserService();
