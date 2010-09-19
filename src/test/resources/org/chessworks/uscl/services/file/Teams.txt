@@ -1,0 +1,69 @@
+#USCL Teams
+
+team.ARZ.code=ARZ
+team.ARZ.location=Arizona
+team.ARZ.name=Arizona Scorpions
+
+team.BAL.code=BAL
+team.BAL.location=Baltimore
+team.BAL.name=Baltimore Kingfishers
+
+team.BOS.code=BOS
+team.BOS.location=Boston
+team.BOS.name=Boston Blitz
+
+team.CAR.code=CAR
+team.CAR.location=Carolina
+team.CAR.name=Carolina Cobras
+
+team.CHC.code=CHC
+team.CHC.location=Chicago
+team.CHC.name=Chicago Blaze
+
+team.DAL.code=DAL
+team.DAL.location=Dallas
+team.DAL.name=Dallas Destiny
+
+team.LA_.code=LA
+team.LA_.location=Los Angeles
+team.LA_.name=Los Angeles Vibe
+
+team.MAN.code=MAN
+team.MAN.location=Manhattan
+team.MAN.name=Manhattan Applesauce
+
+team.MIA.code=MIA
+team.MIA.location=Miami
+team.MIA.name=Miami Sharks
+
+team.NE_.code=NE
+team.NE_.location=New England
+team.NE_.name=New England Nor'easters
+
+team.NJ_.code=NJ
+team.NJ_.location=New Jersey
+team.NJ_.name=New Jersey Knockouts
+
+team.NY_.code=NY
+team.NY_.location=New York
+team.NY_.name=New York Knights
+
+team.PHI.code=PHI
+team.PHI.location=Philadelphia
+team.PHI.name=Philadelphia Inventors
+
+team.SEA.code=SEA
+team.SEA.location=Seattle
+team.SEA.name=Seattle Sluggers
+
+team.SF_.code=SF
+team.SF_.location=San Francisco
+team.SF_.name=San Francisco Mechanics
+
+team.STL.code=STL
+team.STL.location=St. Louis
+team.STL.name=St. Louis Arch Bishops
+
+team.ICC.code=ICC
+team.ICC.location=Internet Chess Club
+team.ICC.name=USCL-Bot Testers

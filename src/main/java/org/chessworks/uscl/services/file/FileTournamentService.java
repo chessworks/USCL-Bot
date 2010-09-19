@@ -24,9 +24,9 @@ import org.chessworks.uscl.services.simple.SimpleTournamentService;
 
 public class FileTournamentService extends SimpleTournamentService {
 
-	private File playersFile = new File("data/Players.txt");
-	private File scheduleFile = new File("data/Games.txt");
-	private File teamsFile = new File("data/Teams.txt");
+	private static final File DEFAULT_PLAYERS_FILE = new File("data/Players.txt");
+	private static final File DEFAULT_SCHEDULE_FILE = new File("data/Games.txt");
+	private static final File DEFAULT_TEAMS_FILE = new File("data/Teams.txt");
 	private SimpleTitleService titleService = new SimpleTitleService();
 
 	public void load() throws IOException {
@@ -72,30 +72,30 @@ public class FileTournamentService extends SimpleTournamentService {
 	}
 
 	public void setPlayersFile(File file) {
-		this.teamsFile = file;
+		this.playersIO.setFile(file);
 	}
 
 	public void setPlayersFile(String fileName) {
-		this.teamsFile = new File(fileName);
+		this.playersIO.setFile(fileName);
 	}
 
 	public void setScheduleFile(File file) {
-		this.scheduleFile = file;
+		this.scheduleIO.setFile(file);
 	}
 
 	public void setScheduleFile(String fileName) {
-		this.scheduleFile = new File(fileName);
+		this.scheduleIO.setFile(fileName);
 	}
 
 	public void setTeamsFile(File file) {
-		this.teamsFile = file;
+		this.teamsIO.setFile(file);
 	}
 
 	public void setTeamsFile(String fileName) {
-		this.teamsFile = new File(fileName);
+		this.teamsIO.setFile(fileName);
 	}
 
-	private DirtyFileHelper playersIO = new DirtyFileHelper(playersFile, UTF8) {
+	private DirtyFileHelper playersIO = new DirtyFileHelper(DEFAULT_PLAYERS_FILE, UTF8) {
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -136,16 +136,18 @@ public class FileTournamentService extends SimpleTournamentService {
 			for (Player player : findAllPlayers()) {
 				String handle = player.getHandle();
 				String name = player.getRealName();
-				int rating = player.ratings().get(USCLBot.USCL_RATING);
+				Integer rating = player.ratings().get(USCLBot.USCL_RATING);
 				String teamCode = player.getTeam().getTeamCode();
 				String title = player.getTitles().toString();
 				String id = handle.substring(handle.length() - teamCode.length() - 1);
 				URL website = player.getWebsite();
 				out.format("player.%s.handle=%s%n", id, handle);
 				out.format("player.%s.name=%s%n", id, name);
-				out.format("player.%s.rating=%d%n", id, rating);
-				out.format("player.%s.team=%d%n", id, teamCode);
-				out.format("player.%s.title=%d%n", id, title);
+				if (rating != null) {
+					out.format("player.%s.rating=%d%n", id, rating);
+				}
+				out.format("player.%s.team=%s%n", id, teamCode);
+				out.format("player.%s.title=%s%n", id, title);
 				if (website != null) {
 					out.format("team.%s.website=%s%n", id, website);
 				}
@@ -155,7 +157,7 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	};
 
-	private DirtyFileHelper teamsIO = new DirtyFileHelper(teamsFile, UTF8) {
+	private DirtyFileHelper teamsIO = new DirtyFileHelper(DEFAULT_TEAMS_FILE, UTF8) {
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException, InvalidNameException {
@@ -166,7 +168,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				String propValue = (String) entry.getValue();
 				if (!propName.endsWith(".code"))
 					continue;
-				String prefix = propName.substring(propName.length() - ".code".length());
+				String prefix = propName.substring(0, propName.length() - ".code".length());
 				String teamCode = propValue;
 				String location = data.getProperty(prefix + ".location");
 				String name = data.getProperty(prefix + ".name");
@@ -199,7 +201,7 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	};
 
-	private final DirtyFileHelper scheduleIO = new DirtyFileHelper(scheduleFile, UTF8) {
+	private final DirtyFileHelper scheduleIO = new DirtyFileHelper(DEFAULT_SCHEDULE_FILE, UTF8) {
 
 		@Override
 		public void doRead(BufferedReader in) throws IOException {
