@@ -79,6 +79,7 @@ public class USCLBot {
 
 		FileUserService userService = new FileUserService();
 		userService.setDataFile(managersFile);
+		userService.load();
 
 		FileTournamentService tournamentService = new FileTournamentService();
 		tournamentService.setPlayersFile(playersFile);
@@ -329,7 +330,6 @@ public class USCLBot {
 		sendCommand("set style 13");
 		sendCommand("-notify *");
 		Collection<Player> players = tournamentService.findAllPlayers();
-		sendCommand("tell duckstorm PlayerCount={0}", players.size());
 		for (Player p : players) {
 			sendCommand("+notify {0}", p);
 		}

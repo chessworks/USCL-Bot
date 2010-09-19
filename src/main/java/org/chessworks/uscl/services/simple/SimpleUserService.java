@@ -104,7 +104,8 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 * @see org.chessworks.uscl.services.simple.UserService#findUsersInRole(org.chessworks.uscl.model.Role)
 	 */
 	public Set<User> findUsersInRole(Role role) {
-		return roleCacheReadOnly.get(role);
+		Set<User> users = roleCacheReadOnly.get(role);
+		return users;
 	}
 
 	/**
