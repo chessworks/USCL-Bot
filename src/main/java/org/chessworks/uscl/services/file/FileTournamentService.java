@@ -18,6 +18,7 @@ import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.model.Title;
+import org.chessworks.uscl.services.DataStoreException;
 import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.simple.SimpleTitleService;
 import org.chessworks.uscl.services.simple.SimpleTournamentService;
@@ -29,46 +30,43 @@ public class FileTournamentService extends SimpleTournamentService {
 	private static final File DEFAULT_TEAMS_FILE = new File("data/Teams.txt");
 	private SimpleTitleService titleService = new SimpleTitleService();
 
-	public void load() throws IOException {
-		teamsIO.readText();
-		playersIO.readText();
-		scheduleIO.readText();
-	}
-
-	public void save() throws IOException {
-		teamsIO.writeText();
-		playersIO.writeText();
-		scheduleIO.writeText();
-	}
-
 	public Player createPlayer(String handle) throws InvalidNameException {
 		playersIO.setDirty();
-		return super.createPlayer(handle);
+		Player p = super.createPlayer(handle);
+		save();
+		return p;
 	}
 
 	public Team createTeam(String teamCode) throws InvalidNameException {
 		teamsIO.setDirty();
-		return super.createTeam(teamCode);
+		Team t = super.createTeam(teamCode);
+		save();
+		return t;
 	}
 
 	public void clearSchedule() {
 		scheduleIO.setDirty();
 		super.clearSchedule();
+		save();
 	}
 
 	public void schedule(Player white, Player black, int board) {
 		scheduleIO.setDirty();
 		super.schedule(white, black, board);
+		save();
 	}
 
 	public void reserveBoard(Player player, int board) {
 		scheduleIO.setDirty();
 		super.reserveBoard(player, board);
+		save();
 	}
 
 	public int unreserveBoard(Player player) {
 		scheduleIO.setDirty();
-		return super.unreserveBoard(player);
+		int board = super.unreserveBoard(player);
+		save();
+		return board;
 	}
 
 	public void setPlayersFile(File file) {
@@ -93,6 +91,26 @@ public class FileTournamentService extends SimpleTournamentService {
 
 	public void setTeamsFile(String fileName) {
 		this.teamsIO.setFile(fileName);
+	}
+
+	public void load() {
+		try {
+			teamsIO.readText();
+			playersIO.readText();
+			scheduleIO.readText();
+		} catch (IOException e) {
+			throw new DataStoreException("Error saving changes to disk.", e);
+		}
+	}
+
+	public void save() {
+		try {
+			teamsIO.writeText();
+			playersIO.writeText();
+			scheduleIO.writeText();
+		} catch (IOException e) {
+			throw new DataStoreException("Error saving changes to disk.", e);
+		}
 	}
 
 	private DirtyFileHelper playersIO = new DirtyFileHelper(DEFAULT_PLAYERS_FILE, UTF8) {

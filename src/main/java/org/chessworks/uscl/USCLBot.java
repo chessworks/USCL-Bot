@@ -22,6 +22,7 @@ import org.chessworks.uscl.model.RatingCategory;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.services.file.FileTournamentService;
 import org.chessworks.uscl.services.simple.SimpleUserService;
@@ -165,7 +166,7 @@ public class USCLBot {
 
 	private UserService userService;
 
-	private FileTournamentService tournamentService;
+	private TournamentService tournamentService;
 
 	private Role managerRole;
 
@@ -227,13 +228,6 @@ public class USCLBot {
 
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
-		try {
-			tournamentService.save();
-		} catch (IOException e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-			return;
-		}
 		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
 		sendCommand("-notify *");
 	}
@@ -252,13 +246,6 @@ public class USCLBot {
 
 	public void cmdReserveGame(String teller, Player player, int board) {
 		tournamentService.reserveBoard(player, board);
-		try {
-			tournamentService.save();
-		} catch (Exception e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-			return;
-		}
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
 		sendCommand("+notify {0}", player);
 		sendAdminCommand("reserve-game {0} {1}", player, board);
@@ -271,12 +258,6 @@ public class USCLBot {
 		sendAdminCommand("reserve-game {0} {1}", white, boardNum);
 		sendAdminCommand("reserve-game {0} {1}", black, boardNum);
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
-		try {
-			tournamentService.save();
-		} catch (IOException e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-		}
 	}
 
 	public void cmdShow(String teller) {
@@ -319,13 +300,6 @@ public class USCLBot {
 		} else {
 			tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
 			sendCommand("-notify {0}", player);
-		}
-		try {
-			tournamentService.save();
-		} catch (Exception e) {
-			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to save.");
-			return;
 		}
 	}
 
@@ -600,7 +574,7 @@ public class USCLBot {
 		this.loginPass = loginPass;
 	}
 
-	public void setTournamentService(FileTournamentService service) {
+	public void setTournamentService(TournamentService service) {
 		this.tournamentService = service;
 	}
 
