@@ -31,6 +31,28 @@ public class FileUserService extends SimpleUserService {
 		this.usersIO.setFile(fileName);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.SimpleUserService#addUserToRole(org.chessworks.uscl.model.User, org.chessworks.uscl.model.Role)
+	 */
+	@Override
+	public void addUserToRole(User user, Role role) {
+		super.addUserToRole(user, role);
+		usersIO.setDirty();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.simple.SimpleUserService#register(org.chessworks.uscl.model.User)
+	 */
+	@Override
+	public void register(User user) throws InvalidNameException {
+		super.register(user);
+		usersIO.setDirty();
+	}
+
 	public void load() {
 		super.reset();
 		usersIO.load();

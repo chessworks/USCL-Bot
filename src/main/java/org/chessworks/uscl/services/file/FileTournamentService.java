@@ -31,15 +31,15 @@ public class FileTournamentService extends SimpleTournamentService {
 	private SimpleTitleService titleService = new SimpleTitleService();
 
 	public Player createPlayer(String handle) throws InvalidNameException {
-		Player p = super.createPlayer(handle);
+		Player players = super.createPlayer(handle);
 		playersIO.setDirty();
-		return p;
+		return players;
 	}
 
 	public Team createTeam(String teamCode) throws InvalidNameException {
-		Team t = super.createTeam(teamCode);
+		Team team = super.createTeam(teamCode);
 		teamsIO.setDirty();
-		return t;
+		return team;
 	}
 
 	public void clearSchedule() {
