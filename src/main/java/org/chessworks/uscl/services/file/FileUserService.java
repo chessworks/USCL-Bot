@@ -49,6 +49,10 @@ public class FileUserService extends SimpleUserService {
 		}
 	}
 
+	public void flush() {
+		save();
+	}
+
 	private final class UsersIO extends FileHelper {
 
 		public UsersIO() {

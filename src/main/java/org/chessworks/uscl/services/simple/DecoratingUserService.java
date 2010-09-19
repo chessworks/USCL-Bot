@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
@@ -102,6 +103,15 @@ public class DecoratingUserService implements UserService {
 	 */
 	public void register(User user) throws InvalidNameException {
 		service.register(user);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link UserService}.
+	 *
+	 * @see org.chessworks.uscl.services.UserService#flush()
+	 */
+	public void flush() {
+		service.flush();
 	}
 
 }

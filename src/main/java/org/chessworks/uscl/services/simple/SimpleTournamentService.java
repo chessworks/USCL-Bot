@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -41,6 +42,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#clearSchedule()
 	 */
+	@Override
 	public void clearSchedule() {
 		playerBoards.clear();
 	}
@@ -50,6 +52,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#schedule(Player, Player, int)
 	 */
+	@Override
 	public void schedule(Player white, Player black, int board) {
 		reserveBoard(white, board);
 		reserveBoard(black, board);
@@ -60,6 +63,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(Player, int)
 	 */
+	@Override
 	public void reserveBoard(Player player, int board) {
 		playerBoards.put(player, board);
 	}
@@ -69,6 +73,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#unreserveBoard(Player)
 	 */
+	@Override
 	public int unreserveBoard(Player player) {
 		if (player == null)
 			return -1;
@@ -83,6 +88,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoard(Player)
 	 */
+	@Override
 	public int getPlayerBoard(Player player) {
 		if (player == null)
 			return -1;
@@ -97,6 +103,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoardMap()
 	 */
+	@Override
 	public Map<Player, Integer> getPlayerBoardMap() {
 		return Collections.unmodifiableMap(playerBoards);
 	}
@@ -106,6 +113,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
 	 */
+	@Override
 	public Player findOrCreatePlayer(String handle) throws InvalidNameException {
 		Player p = players.get(handle.toLowerCase());
 		if (p == null) {
@@ -119,6 +127,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findPlayer(java.lang.String)
 	 */
+	@Override
 	public Player findPlayer(String handle) {
 		Player p = players.get(handle.toLowerCase());
 		return p;
@@ -129,6 +138,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
 	 */
+	@Override
 	public Team findOrCreateTeam(String handle) throws InvalidNameException {
 		Team t = teams.get(handle.toUpperCase());
 		if (t == null) {
@@ -142,6 +152,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findTeam(java.lang.String)
 	 */
+	@Override
 	public Team findTeam(String teamCode) {
 		Team t = teams.get(teamCode.toUpperCase());
 		return t;
@@ -152,6 +163,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllPlayers()
 	 */
+	@Override
 	public Collection<Player> findAllPlayers() {
 		return allPlayers;
 	}
@@ -161,6 +173,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllTeams()
 	 */
+	@Override
 	public Collection<Team> findAllTeams() {
 		return allTeams;
 	}
@@ -170,6 +183,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String)
 	 */
+	@Override
 	public Player createPlayer(String handle) throws InvalidNameException {
 		int i = handle.lastIndexOf('-');
 		if (i < 0) {
@@ -189,6 +203,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String, org.chessworks.uscl.model.Team)
 	 */
+	@Override
 	public Player createPlayer(String handle, Team team) throws InvalidNameException {
 		Player p = players.get(handle);
 		if (p != null) {
@@ -205,6 +220,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createTeam(java.lang.String)
 	 */
+	@Override
 	public Team createTeam(String teamCode) throws InvalidNameException {
 		Team t = teams.get(teamCode);
 		if (t != null) {
@@ -216,6 +232,15 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		t = new Team(teamCode);
 		teams.put(teamCode.toUpperCase(), t);
 		return t;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#flush()
+	 */
+	@Override
+	public void flush() {
 	}
 
 	protected void clear() {

@@ -216,6 +216,7 @@ public class USCLBot {
 
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
+		tournamentService.flush();
 		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
 		sendCommand("-notify *");
 	}
@@ -234,6 +235,7 @@ public class USCLBot {
 
 	public void cmdReserveGame(String teller, Player player, int board) {
 		tournamentService.reserveBoard(player, board);
+		tournamentService.flush();
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
 		sendCommand("+notify {0}", player);
 		sendAdminCommand("reserve-game {0} {1}", player, board);
@@ -241,6 +243,7 @@ public class USCLBot {
 
 	public void cmdSchedule(String teller, int boardNum, Player white, Player black) {
 		tournamentService.schedule(white, black, boardNum);
+		tournamentService.flush();
 		sendCommand("+notify {0}", white);
 		sendCommand("+notify {0}", black);
 		sendAdminCommand("reserve-game {0} {1}", white, boardNum);
@@ -251,6 +254,7 @@ public class USCLBot {
 	public void cmdShow(String teller) {
 		int indent = 0;
 		Map<Player, Integer> playerBoards = tournamentService.getPlayerBoardMap();
+		tournamentService.flush();
 		for (Player player : playerBoards.keySet()) {
 			String handle = player.getHandle();
 			int len = handle.length();
@@ -283,6 +287,7 @@ public class USCLBot {
 
 	public void cmdUnreserveGame(String teller, Player player) {
 		int board = tournamentService.unreserveBoard(player);
+		tournamentService.flush();
 		if (board < 0) {
 			tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
 		} else {

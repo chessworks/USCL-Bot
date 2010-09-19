@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
@@ -152,6 +153,15 @@ public class DecoratingTournamentService implements TournamentService {
 	 */
 	public int unreserveBoard(Player player) {
 		return service.unreserveBoard(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#flush()
+	 */
+	public void flush() {
+		service.flush();
 	}
 
 }

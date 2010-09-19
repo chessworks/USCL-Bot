@@ -1,12 +1,14 @@
 package org.chessworks.uscl.services;
 
+import java.io.Flushable;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 
-public interface TournamentService {
+public interface TournamentService extends Flushable {
 
 	void clearSchedule();
 
@@ -37,5 +39,8 @@ public interface TournamentService {
 	void schedule(Player white, Player black, int board);
 
 	int unreserveBoard(Player player);
+
+	/** Saves any unwritten data. */
+	void flush();
 
 }

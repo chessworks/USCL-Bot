@@ -109,6 +109,10 @@ public class FileTournamentService extends SimpleTournamentService {
 		}
 	}
 
+	public void flush() {
+		save();
+	}
+
 	private class PlayersIO extends FileHelper {
 
 		public PlayersIO() {

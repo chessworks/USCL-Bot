@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findUser(java.lang.String)
 	 */
+	@Override
 	public User findUser(String handle) {
 		User u = users.lookup(handle);
 		if (u == null) {
@@ -42,6 +44,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findAllKnownUsers()
 	 */
+	@Override
 	public Collection<User> findAllKnownUsers() {
 		return users.all();
 	}
@@ -51,6 +54,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findRegisteredUsers()
 	 */
+	@Override
 	public Collection<User> findRegisteredUsers() {
 		return registeredUsers.all();
 	}
@@ -60,6 +64,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#register(org.chessworks.uscl.model.User)
 	 */
+	@Override
 	public void register(User user) throws InvalidNameException {
 		String handle = user.getHandle();
 		User existing = findUser(handle);
@@ -75,6 +80,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findOrCreateRole(java.lang.String)
 	 */
+	@Override
 	public Role findOrCreateRole(String role) {
 		Role r = findRole(role);
 		if (r == null) {
@@ -93,6 +99,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findRole(java.lang.String)
 	 */
+	@Override
 	public Role findRole(String role) {
 		Role r = roles.lookup(role);
 		return r;
@@ -103,6 +110,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	 *
 	 * @see org.chessworks.uscl.services.simple.UserService#findUsersInRole(org.chessworks.uscl.model.Role)
 	 */
+	@Override
 	public Set<User> findUsersInRole(Role role) {
 		Set<User> users = roleCacheReadOnly.get(role);
 		return users;
@@ -131,6 +139,15 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 	public void addUserToRole(User user, Role role) {
 		Set<User> set = roleCache.get(role);
 		set.add(user);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.UserService#flush()
+	 */
+	@Override
+	public void flush() {
 	}
 
 	protected void reset() {

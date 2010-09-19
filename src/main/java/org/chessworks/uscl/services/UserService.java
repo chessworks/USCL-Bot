@@ -1,13 +1,14 @@
 package org.chessworks.uscl.services;
 
+import java.io.Flushable;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
-import org.chessworks.uscl.services.InvalidNameException;
 
-public interface UserService {
+public interface UserService extends Flushable {
 
 	User findUser(String handle);
 
@@ -26,5 +27,8 @@ public interface UserService {
 	boolean isUserInRole(User user, Role role);
 
 	void addUserToRole(User user, Role role);
+
+	/** Saves any unwritten data. */
+	void flush();
 
 }
