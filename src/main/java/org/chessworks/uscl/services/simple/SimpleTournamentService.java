@@ -61,7 +61,6 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(Player, int)
 	 */
 	public void reserveBoard(Player player, int board) {
-		unreserveBoard(player);
 		playerBoards.put(player, board);
 	}
 
