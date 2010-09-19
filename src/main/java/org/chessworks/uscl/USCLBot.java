@@ -172,7 +172,7 @@ public class USCLBot {
 
 	/**
 	 * Sends a message to all players in the list.
-	 *
+	 * 
 	 * @param tellType
 	 *            The type of tell to use: "tell", "qtell", "message", etc.
 	 * @param users
@@ -193,7 +193,7 @@ public class USCLBot {
 
 	/**
 	 * Sends a message to all players in the list.
-	 *
+	 * 
 	 * @param tellType
 	 *            The type of tell to use: "tell", "qtell", "message", etc.
 	 * @param users
@@ -231,6 +231,10 @@ public class USCLBot {
 
 	public void cmdRecompile(String teller) {
 		exit(5, "Deploying version update at the request of {0}.  I'll be right back!", teller);
+	}
+
+	public void cmdRevert(String teller) {
+		exit(6, "Reverting to prior release at the request of {0}.  I'll be right back!", teller);
 	}
 
 	public void cmdReserveGame(String teller, Player player, int board) {
@@ -298,11 +302,15 @@ public class USCLBot {
 
 	/** Shuts down the bot with the given exit code, after sending this exit message. */
 	public void exit(int code, String msg, Object... args) {
-		tellManagers(msg, args);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
+		if (conn.isConnected()) {
+			tellManagers(msg, args);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+			}
 		}
+		tournamentService.flush();
+		userService.flush();
 		System.exit(code);
 	}
 
@@ -352,6 +360,11 @@ public class USCLBot {
 
 	public void onConnectSpamDone() {
 		loggingIn = false;
+	}
+
+	public void onDisconnected() {
+		scheduler.shutdown();
+		exit(1, "Disconnected.");
 	}
 
 	protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
@@ -525,7 +538,7 @@ public class USCLBot {
 
 	/**
 	 * The host name or ip address of the chess server. This defaults to "chessclub.com".
-	 *
+	 * 
 	 * @param hostName
 	 *            the hostName to set
 	 */
@@ -745,6 +758,11 @@ public class USCLBot {
 		protected void handleLoginSucceeded() {
 			super.handleLoginSucceeded();
 			onConnected();
+		}
+
+		@Override
+		protected void handleDisconnection(IOException e) {
+			onDisconnected();
 		}
 
 	}
