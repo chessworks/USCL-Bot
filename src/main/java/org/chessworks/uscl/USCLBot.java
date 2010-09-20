@@ -435,7 +435,6 @@ public class USCLBot {
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
 			sendCommand("observe {0}", name);
-			sendCommand("qset {0} isolated 1", name);
 		}
 	}
 
@@ -475,6 +474,8 @@ public class USCLBot {
 			_needsAnnounce[gameNumber] = true;
 			_whiteNames[gameNumber] = whiteName;
 			_blackNames[gameNumber] = blackName;
+			sendCommand("qset {0} isolated 1", whiteName);
+			sendCommand("qset {0} isolated 1", blackName);
 		} else {
 			_needsAnnounce[gameNumber] = false;
 			_whiteNames[gameNumber] = null;
