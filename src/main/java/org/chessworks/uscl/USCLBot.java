@@ -384,6 +384,8 @@ public class USCLBot {
 			sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
 					blackName, startOrResume, gameNumber);
 		}
+		sendCommand("qset {0} isolated 1", whiteName);
+		sendCommand("qset {0} isolated 1", blackName);
 	}
 
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
@@ -474,8 +476,6 @@ public class USCLBot {
 			_needsAnnounce[gameNumber] = true;
 			_whiteNames[gameNumber] = whiteName;
 			_blackNames[gameNumber] = blackName;
-			sendCommand("qset {0} isolated 1", whiteName);
-			sendCommand("qset {0} isolated 1", blackName);
 		} else {
 			_needsAnnounce[gameNumber] = false;
 			_whiteNames[gameNumber] = null;
