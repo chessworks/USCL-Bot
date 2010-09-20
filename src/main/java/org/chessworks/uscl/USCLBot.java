@@ -217,7 +217,7 @@ public class USCLBot {
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
 		tournamentService.flush();
-		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
+		tell(teller, "Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
 		sendCommand("-notify *");
 	}
 
@@ -226,15 +226,15 @@ public class USCLBot {
 	}
 
 	public void cmdReboot(String teller) {
-		exit(2, "Rebooting at the request of {0}.  I'll be right back!", teller);
+		exit(2, "Rebooting at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	public void cmdRecompile(String teller) {
-		exit(5, "Deploying version update at the request of {0}.  I'll be right back!", teller);
+		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	public void cmdRevert(String teller) {
-		exit(6, "Reverting to prior release at the request of {0}.  I'll be right back!", teller);
+		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	public void cmdReserveGame(String teller, Player player, int board) {
@@ -328,7 +328,7 @@ public class USCLBot {
 			String err = e.getMessage();
 			tell(teller, err);
 		} catch (NoSuchCommandException e) {
-			tell(teller, "I don't understand.  Are you sure you spelled the command correctly?");
+			tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
 		} catch (Exception e) {
 			reportException(e);
 			tell(teller, "Uggg, something went wrong.  Unable to execute command.");
@@ -426,7 +426,7 @@ public class USCLBot {
 	protected void processPlayerArrived(String name) {
 		Player player = tournamentService.findPlayer(name);
 		if (player == null) {
-			alertManagers("{0} is on my notify list, but I don't have him in the tournament roster.", name);
+			alertManagers("{0} is on my notify list, but I don''t have him in the tournament roster.", name);
 		}
 		int board = tournamentService.getPlayerBoard(player);
 		sendAdminCommand("spoof set noautologout true");
