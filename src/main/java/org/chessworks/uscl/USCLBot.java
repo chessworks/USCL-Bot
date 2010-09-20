@@ -172,7 +172,7 @@ public class USCLBot {
 
 	/**
 	 * Sends a message to all players in the list.
-	 * 
+	 *
 	 * @param tellType
 	 *            The type of tell to use: "tell", "qtell", "message", etc.
 	 * @param users
@@ -193,7 +193,7 @@ public class USCLBot {
 
 	/**
 	 * Sends a message to all players in the list.
-	 * 
+	 *
 	 * @param tellType
 	 *            The type of tell to use: "tell", "qtell", "message", etc.
 	 * @param users
@@ -346,6 +346,8 @@ public class USCLBot {
 		for (Player p : players) {
 			sendCommand("+notify {0}", p);
 		}
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
 
 		Runnable task = new SafeRunnable() {
 			@Override
@@ -538,7 +540,7 @@ public class USCLBot {
 
 	/**
 	 * The host name or ip address of the chess server. This defaults to "chessclub.com".
-	 * 
+	 *
 	 * @param hostName
 	 *            the hostName to set
 	 */
@@ -602,10 +604,7 @@ public class USCLBot {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
 		conn = new Connection(hostName, hostPort, loginName, loginPass);
-		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
-		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
 		conn.addDatagramListener(conn, Datagram.DG_PERSONAL_TELL);
-		conn.addDatagramListener(conn, Datagram.DG_MY_NOTIFY_LIST);
 		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_STATE);
 		conn.addDatagramListener(conn, Datagram.DG_MY_GAME_RESULT);
 		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
