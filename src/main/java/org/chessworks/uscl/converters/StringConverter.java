@@ -6,11 +6,11 @@ package org.chessworks.uscl.converters;
 public class StringConverter extends AbstractConverter<String> {
 
 	public StringConverter() {
-		super(String.class);
+		super();
 	}
 
 	public StringConverter(String nullValue) {
-		super(String.class, nullValue);
+		super(nullValue);
 	}
 
 	@Override
