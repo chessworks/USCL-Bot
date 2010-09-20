@@ -48,7 +48,7 @@ while true; do
 			;;
 		6)
 			echo "Exit code 6: Reverting to prior stable release."
-			/bin/cp $backupJarFile $buildJarFile
+			/bin/cp $backupJarFile $runJarFile
 			;;
 		*)
 			echo "Exit code $?: Sleeping 20 seconds and restarting."
