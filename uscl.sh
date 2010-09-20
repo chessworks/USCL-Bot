@@ -3,7 +3,7 @@
 basedir=$HOME/bots/USCL-Bot
 
 botname=USCL-Bot
-buildJarFile=$basedir/target/USCL-Bot.jar
+buildJarFile=$basedir/USCL-Bot.jar
 backupJarFile=$basedir/USCL-Bot-previous.jar
 runJarFile=$basedir/USCL-Bot-run.jar
 
