@@ -517,8 +517,8 @@ public class USCLBot {
 		if (args.length > 0) {
 			command = MessageFormat.format(command, args);
 		}
-		sendQuietly(command);
 		qtellProgrammers(" -  {0}", command);
+		sendQuietly(command);
 	}
 
 	/**
