@@ -246,8 +246,8 @@ public class FileTournamentService extends SimpleTournamentService {
 
 		@Override
 		public void doWrite(PrintWriter out) throws IOException {
-			out.println("#USCL Reserved Boards");
-			out.println();
+//			out.println("#USCL Reserved Boards");
+//			out.println();
 			Map<Player, Integer> playerBoards = FileTournamentService.super.getPlayerBoardMap();
 			for (Map.Entry<Player, Integer> entry : playerBoards.entrySet()) {
 				Player player = entry.getKey();
