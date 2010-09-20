@@ -3,7 +3,7 @@
  */
 package org.chessworks.uscl.converters;
 
-import org.chessworks.uscl.util.BaseException;
+import org.chessworks.uscl.BaseException;
 
 public class ConversionException extends BaseException {
 

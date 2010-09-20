@@ -4,7 +4,6 @@ basedir=$HOME/bots/USCL-Bot
 
 botname=USCL-Bot
 buildJarFile=$basedir/USCL-Bot.jar
-backupJarFile=$basedir/USCL-Bot-previous.jar
 runJarFile=$basedir/USCL-Bot-run.jar
 
 logfile=$basedir/logs/$botname.log
@@ -40,15 +39,6 @@ while true; do
 		4)
 			echo "Exit code 4: Running backups and then restarting."
 			svn commit -m "Player data backup" .
-			;;
-		5)
-			echo "Exit code 5: Recompiling and restarting."
-			svn update .
-			./build.sh
-			;;
-		6)
-			echo "Exit code 6: Reverting to prior stable release."
-			/bin/cp $backupJarFile $runJarFile
 			;;
 		*)
 			echo "Exit code $?: Sleeping 20 seconds and restarting."

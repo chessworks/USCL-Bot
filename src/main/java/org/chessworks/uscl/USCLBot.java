@@ -7,6 +7,9 @@ import java.io.StringWriter;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Formatter;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -15,17 +18,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.converters.ConversionException;
-import org.chessworks.uscl.model.Player;
-import org.chessworks.uscl.model.RatingCategory;
-import org.chessworks.uscl.model.Role;
-import org.chessworks.uscl.model.User;
-import org.chessworks.uscl.services.InvalidNameException;
-import org.chessworks.uscl.services.TournamentService;
-import org.chessworks.uscl.services.UserService;
-import org.chessworks.uscl.services.file.FileTournamentService;
-import org.chessworks.uscl.services.file.FileUserService;
+import org.chessworks.uscl.model.TournamentService;
 
 import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
@@ -44,53 +38,19 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "September 19, 2010";
+	public static final String BOT_RELEASE_DATE = "August 28, 2010";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
-	public static final String BOT_RELEASE_NUMBER = "1.02";
+	public static final String BOT_RELEASE_NUMBER = "1.0 beta 3";
 
 	public static final PrintStream ECHO_STREAM = System.out;
-
-	public static final int CHANNEL_USCL = 129;
-
-	public static final int CHANNEL_CHESS_FM = 165;
-
-	public static final int CHANNEL_EVENTS_GROUP = 399;
 
 	/**
 	 * The path to the file on disk where the configured bot settings are located. The path defaults to "USCL-Bot.properties", but can be changed by
 	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
 	 */
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
-
-	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
-
-	public static void main(String[] args) throws IOException, InvalidNameException {
-		Properties settings = loadSettingsFile(SETTINGS_FILE);
-
-		USCLBot bot = new USCLBot();
-		loadConnectionSettings(settings, bot);
-
-		String managersFile = settings.getProperty("file.managers", "data/Managers.txt");
-		String playersFile = settings.getProperty("file.players", "data/Players.txt");
-		String scheduleFile = settings.getProperty("file.schedule", "data/Games.txt");
-		String teamsFile = settings.getProperty("file.teams", "data/Teams.txt");
-
-		FileUserService userService = new FileUserService();
-		userService.setDataFile(managersFile);
-		userService.load();
-
-		FileTournamentService tournamentService = new FileTournamentService();
-		tournamentService.setPlayersFile(playersFile);
-		tournamentService.setScheduleFile(scheduleFile);
-		tournamentService.setTeamsFile(teamsFile);
-		tournamentService.load();
-
-		bot.setUserService(userService);
-		bot.setTournamentService(tournamentService);
-		bot.start();
-	}
 
 	public static Properties loadSettingsFile(String settingsFile) {
 		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
@@ -100,7 +60,20 @@ public class USCLBot {
 		return configuredSettings;
 	}
 
-	private static void loadConnectionSettings(Properties settings, USCLBot bot) {
+	public static void main(String[] args) throws IOException {
+		Properties settings = loadSettingsFile(SETTINGS_FILE);
+
+		USCLBot bot = new USCLBot();
+		setConnectionSettings(settings, bot);
+
+		String boardsFile = (args.length > 0) ? args[0] : BOARDS_FILE;
+		TournamentService tourn = new TournamentService(boardsFile);
+		tourn.load();
+		bot.setTournamentService(tourn);
+		bot.start();
+	}
+
+	private static void setConnectionSettings(Properties settings, USCLBot bot) {
 		String loginName = settings.getProperty("chessclub.loginName", "USCL-Bot");
 		String loginPass = settings.getProperty("chessclub.loginPass", "unknown");
 		String adminPass = settings.getProperty("chessclub.adminPass", "unkonwn");
@@ -117,6 +90,30 @@ public class USCLBot {
 		bot.setLoginName(loginName);
 		bot.setLoginPass(loginPass);
 		bot.setAdminPass(adminPass);
+
+		System.out.println("Managers:");
+		String userPrefix = "user.";
+		String programmerRole = "programmer";
+		String managerRole = "manager";
+		List<String> programmers = new LinkedList<String>();
+		List<String> managers = new LinkedList<String>();
+		for (Map.Entry<Object, Object> entry : settings.entrySet()) {
+			String key = (String) entry.getKey();
+			String role = (String) entry.getValue();
+			if (!key.startsWith(userPrefix))
+				continue;
+			String user = key.substring(userPrefix.length());
+			user = user.toLowerCase();
+			if (managerRole.equals(role)) {
+				managers.add(user);
+			} else if (programmerRole.equals(role)) {
+				managers.add(user);
+				programmers.add(user);
+			}
+			System.out.println(role + "\t\t" + user);
+		}
+		bot.setProgrammerList(programmers);
+		bot.setManagerList(managers);
 	}
 
 	//TODO: Fix this ugly hack.
@@ -127,12 +124,6 @@ public class USCLBot {
 
 	//TODO: Fix this ugly hack.
 	private String[] _whiteNames = new String[5000];
-
-	//TODO: Fix this ugly hack.
-	private int[] _observerCountNow = new int[5000];
-
-	//TODO: Fix this ugly hack.
-	private int[] _observerCountMax = new int[5000];
 
 	private String adminPass = "*****";
 
@@ -150,22 +141,19 @@ public class USCLBot {
 
 	private String loginPass = "*****";
 
+	private List<String> managerList;
+	private Set<String> managerSet;
+
+	private List<String> programmerList;
+
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-	private UserService userService;
-
 	private TournamentService tournamentService;
-
-	private Role managerRole;
-
-	private Role programmerRole;
-
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
 
 	/** Sends an atell followed by tell to all managers. */
 	public void alertManagers(String msg, Object... args) {
-		Set<User> managerList = userService.findUsersInRole(managerRole);
 		broadcast("tell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
 		tellManagers(msg, args);
 	}
@@ -182,94 +170,80 @@ public class USCLBot {
 	 * @param args
 	 *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
 	 */
-	public void broadcast(String tellType, Collection<User> users, String msg, Object... args) {
+	public void broadcast(String tellType, Collection<String> users, String msg, Object... args) {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		for (User user : users) {
+		for (String user : users) {
 			sendQuietly("{0} {1} {2}", tellType, user, msg);
 		}
-	}
-
-	/**
-	 * Sends a message to all players in the list.
-	 *
-	 * @param tellType
-	 *            The type of tell to use: "tell", "qtell", "message", etc.
-	 * @param users
-	 *            The users to receive the message.
-	 * @param msg
-	 *            The message to send. It may optionally use {@link MessageFormat} style formatting.
-	 * @param args
-	 *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
-	 */
-	public void broadcastAdmin(String tellType, Collection<User> users, String msg, Object... args) {
-		if (args.length > 0) {
-			msg = MessageFormat.format(msg, args);
-		}
-		sendQuietly("admin {0}", adminPass);
-		for (User user : users) {
-			sendQuietly("{0} {1} {2}", tellType, user, msg);
-		}
-		sendQuietly("admin");
 	}
 
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
-		tournamentService.flush();
-		tell(teller, "Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
+		try {
+			tournamentService.save();
+		} catch (IOException e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+			return;
+		}
+		tell(teller, "Okay, I've cleared the schedule.  Tell me \"show\" to see.");
 		sendCommand("-notify *");
 	}
 
 	public void cmdKill(String teller) {
-		exit(3, "Quitting at the request of {0}.  Bye!", teller);
+		tellManagers("Quitting at the request of {0}.  Bye!", teller);
+		System.exit(3);
 	}
 
 	public void cmdReboot(String teller) {
-		exit(2, "Rebooting at the request of {0}.  I''ll be right back!", teller);
+		tellManagers("Rebooting at the request of {0}.  I'll be right back!", teller);
+		System.exit(2);
 	}
 
-	public void cmdRecompile(String teller) {
-		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
-	}
-
-	public void cmdRevert(String teller) {
-		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
-	}
-
-	public void cmdReserveGame(String teller, Player player, int board) {
+	public void cmdReserveGame(String teller, String player, int board) {
 		tournamentService.reserveBoard(player, board);
-		tournamentService.flush();
+		try {
+			tournamentService.save();
+		} catch (Exception e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+			return;
+		}
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
 		sendCommand("+notify {0}", player);
 		sendAdminCommand("reserve-game {0} {1}", player, board);
 	}
 
-	public void cmdSchedule(String teller, int boardNum, Player white, Player black) {
-		tournamentService.schedule(white, black, boardNum);
-		tournamentService.flush();
+	public void cmdSchedule(String teller, int board, String white, String black) {
+		tournamentService.schedule(white, black, board);
 		sendCommand("+notify {0}", white);
 		sendCommand("+notify {0}", black);
-		sendAdminCommand("reserve-game {0} {1}", white, boardNum);
-		sendAdminCommand("reserve-game {0} {1}", black, boardNum);
-		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
+		sendAdminCommand("reserve-game {0} {1}", white, board);
+		sendAdminCommand("reserve-game {0} {1}", black, board);
+		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", board, white, black);
+		try {
+			tournamentService.save();
+		} catch (IOException e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+		}
 	}
 
 	public void cmdShow(String teller) {
 		int indent = 0;
-		Map<Player, Integer> playerBoards = tournamentService.getPlayerBoardMap();
-		tournamentService.flush();
-		for (Player player : playerBoards.keySet()) {
-			String handle = player.getHandle();
-			int len = handle.length();
+		Map<String, Integer> playerBoards = tournamentService.getPlayerBoardMap();
+		for (String player : playerBoards.keySet()) {
+			int len = player.length();
 			if (len > indent)
 				indent = len;
 		}
 		String qtellPattern = MessageFormat.format("%1${0}s - %2$d\\n", indent);
 		String consolePattern = MessageFormat.format("%1${0}s - %2$d%n", indent);
 		Formatter qtell = new Formatter();
-		for (Entry<Player, Integer> entry : playerBoards.entrySet()) {
-			Player player = entry.getKey();
+		for (Entry<String, Integer> entry : playerBoards.entrySet()) {
+			String player = entry.getKey();
 			int board = entry.getValue();
 			qtell.format(qtellPattern, player, board);
 			System.out.format(consolePattern, player, board);
@@ -289,35 +263,27 @@ public class USCLBot {
 		}
 	}
 
-	public void cmdUnreserveGame(String teller, Player player) {
+	public void cmdUnreserveGame(String teller, String player) {
 		int board = tournamentService.unreserveBoard(player);
-		tournamentService.flush();
 		if (board < 0) {
 			tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
 		} else {
 			tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
 			sendCommand("-notify {0}", player);
 		}
-	}
-
-	/** Shuts down the bot with the given exit code, after sending this exit message. */
-	public void exit(int code, String msg, Object... args) {
-		if (conn.isConnected()) {
-			tellManagers(msg, args);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-			}
+		try {
+			tournamentService.save();
+		} catch (Exception e) {
+			reportException(e);
+			tell(teller, "Uggg, something went wrong.  Unable to save.");
+			return;
 		}
-		tournamentService.flush();
-		userService.flush();
-		System.exit(code);
 	}
 
 	/** Returns true if the user is a bot manager. False otherwise. */
 	public boolean isManager(String handle) {
-		User user = userService.findUser(handle);
-		boolean result = userService.isUserInRole(user, managerRole);
+		handle = handle.toLowerCase();
+		boolean result = managerSet.contains(handle);
 		return result;
 	}
 
@@ -328,7 +294,7 @@ public class USCLBot {
 			String err = e.getMessage();
 			tell(teller, err);
 		} catch (NoSuchCommandException e) {
-			tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
+			tell(teller, "I don't understand.  Are you sure you spelled the command correctly?");
 		} catch (Exception e) {
 			reportException(e);
 			tell(teller, "Uggg, something went wrong.  Unable to execute command.");
@@ -341,14 +307,6 @@ public class USCLBot {
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
 		sendCommand("set noautologout 1");
 		sendCommand("set style 13");
-		sendCommand("-notify *");
-		Set<Player> players = tournamentService.getPlayerBoardMap().keySet();
-		for (Player p : players) {
-			sendCommand("+notify {0}", p);
-		}
-		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
-		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
-
 		Runnable task = new SafeRunnable() {
 			@Override
 			public void safeRun() {
@@ -364,11 +322,6 @@ public class USCLBot {
 		loggingIn = false;
 	}
 
-	public void onDisconnected() {
-		scheduler.shutdown();
-		exit(1, "Disconnected.");
-	}
-
 	protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
 		if (!_needsAnnounce[gameNumber])
 			return;
@@ -377,33 +330,17 @@ public class USCLBot {
 			return;
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		boolean resumed = (numHalfMoves != 0);
-		String startOrResume = (!resumed) ? "Started" : "Resumed";
-		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
-		if (!resumed) {
-			sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
-					blackName, startOrResume, gameNumber);
-		}
-		sendCommand("qset {0} isolated 1", whiteName);
-		sendCommand("qset {0} isolated 1", blackName);
+		String startOrResume = (numHalfMoves == 0) ? "Started" : "Resumed";
+		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".", whiteName, blackName, startOrResume,
+				gameNumber);
+		sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"/observe {3}\".  Results will be announced in channel 129.", whiteName,
+				blackName, startOrResume, gameNumber);
 	}
 
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
-		/* Subtract USCL-Bot itself */
-		int observerCount = _observerCountMax[gameNumber] - 1;
-		if (whiteName == null)
-			return;
-		tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
-		boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
-		_whiteNames[gameNumber] = null;
-		_blackNames[gameNumber] = null;
-		if (!adjourned) {
-			_observerCountMax[gameNumber] = 0;
-			sendCommand("qset {0} isolated 0", whiteName);
-			sendCommand("qset {0} isolated 0", blackName);
-		}
+		tellEventChannels("{0} vs {1}: {2}", whiteName, blackName, descriptionString);
 	}
 
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
@@ -417,22 +354,17 @@ public class USCLBot {
 		if (jeeves) {
 			alertManagers("{0} just executed command: {1}", teller, message);
 			teller = "MrBob";
-		} else {
-			if (!isManager(teller)) {
-				return;
-			}
+		} else if (!isManager(teller)) {
+			return;
 		}
 		onCommand(teller, message);
 	}
 
 	protected void processPlayerArrived(String name) {
-		Player player = tournamentService.findPlayer(name);
-		if (player == null) {
-			alertManagers("{0} is on my notify list, but I don''t have him in the tournament roster.", name);
-		}
-		int board = tournamentService.getPlayerBoard(player);
-		sendAdminCommand("spoof set noautologout true");
-		if (board >= 0) {
+		int board = tournamentService.getPlayerBoard(name);
+		if (board < 0) {
+			alertManagers("{0} is on my notify list, but I don't have a Game ID for him.", name);
+		} else {
 			if (!loggingIn)
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
 			sendAdminCommand("reserve-game {0} {1}", name, board);
@@ -444,27 +376,11 @@ public class USCLBot {
 		tellManagers("{0} departed", name);
 	}
 
-	public void processPlayerStateChange(String player, PlayerState state, int game) {
-		if (state.isPlaying()) {
+	public void processPlayerStateChange(String player, String state, int game) {
+		if ("P".equals(state)) {
 			USCLBot.this.sendCommand("observe {0}", game);
 		} else {
 			USCLBot.this.sendCommand("unobserve {0}", player);
-		}
-	}
-
-	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
-		switch (state) {
-		case NONE:
-			_observerCountNow[gameNumber]--;
-			break;
-		case OBSERVING:
-			_observerCountNow[gameNumber]++;
-			if (_observerCountMax[gameNumber] < _observerCountNow[gameNumber]) {
-				_observerCountMax[gameNumber] = _observerCountNow[gameNumber];
-			}
-			//Fall through...
-		case PLAYING:
-			qChanPlus(playerName, CHANNEL_USCL);
 		}
 	}
 
@@ -481,12 +397,10 @@ public class USCLBot {
 			_whiteNames[gameNumber] = null;
 			_blackNames[gameNumber] = null;
 		}
-		_observerCountNow[gameNumber] = 0;
 		/* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
 	}
 
 	public void qtellProgrammers(String msg, Object... args) {
-		Collection<User> programmerList = userService.findUsersInRole(programmerRole);
 		broadcast("qtell", programmerList, msg, args);
 	}
 
@@ -497,7 +411,6 @@ public class USCLBot {
 		t.printStackTrace(p);
 		String msg = w.toString();
 		msg = msg.replaceAll("\n", "\\\\n");
-		Collection<User> programmerList = userService.findUsersInRole(programmerRole);
 		broadcast("tell", programmerList, t.toString());
 		qtellProgrammers(msg);
 	}
@@ -518,8 +431,8 @@ public class USCLBot {
 		if (args.length > 0) {
 			command = MessageFormat.format(command, args);
 		}
-		qtellProgrammers(" -  {0}", command);
 		sendQuietly(command);
+		qtellProgrammers(" -  {0}", command);
 	}
 
 	/**
@@ -582,16 +495,29 @@ public class USCLBot {
 		this.loginPass = loginPass;
 	}
 
-	public void setTournamentService(TournamentService service) {
-		this.tournamentService = service;
-		this.cmd.setTournamentService(tournamentService);
+	/**
+	 * @param managers
+	 *            the managers to set
+	 */
+	public void setManagerList(List<String> managers) {
+		this.managerList = managers;
+		this.managerSet = new HashSet<String>();
+		for (String m : managerList) {
+			m = m.toLowerCase();
+			managerSet.add(m);
+		}
 	}
 
-	public void setUserService(UserService service) {
-		this.userService = service;
-		this.managerRole = service.findOrCreateRole("manager");
-		this.programmerRole = service.findOrCreateRole("debugger");
-		this.cmd.setUserService(service);
+	public void setProgrammerList(List<String> programmers) {
+		this.programmerList = programmers;
+	}
+
+	/**
+	 * @param tournamentService
+	 *            the tournamentService to set
+	 */
+	public void setTournamentService(TournamentService service) {
+		this.tournamentService = service;
 	}
 
 	private void sshout(String msg, Object... args) {
@@ -605,13 +531,15 @@ public class USCLBot {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
 		conn = new Connection(hostName, hostPort, loginName, loginPass);
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
+		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
 		conn.addDatagramListener(conn, Datagram.DG_PERSONAL_TELL);
+		conn.addDatagramListener(conn, Datagram.DG_MY_NOTIFY_LIST);
 		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_STATE);
 		conn.addDatagramListener(conn, Datagram.DG_MY_GAME_RESULT);
 		conn.addDatagramListener(conn, Datagram.DG_STARTED_OBSERVING);
 		conn.addDatagramListener(conn, Datagram.DG_MOVE_LIST);
 		conn.addDatagramListener(conn, Datagram.DG_SEND_MOVES);
-		conn.addDatagramListener(conn, Datagram.DG_PLAYERS_IN_MY_GAME);
 		conn.initiateConnect(hostName, hostPort);
 	}
 
@@ -624,34 +552,22 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends a tell to the channel.
-	 */
-	public void tell(int channel, String msg, Object... args) {
-		msg = MessageFormat.format(msg, args);
-		sendCommand("tell {0} {1}", channel, msg);
-	}
-
-	/**
 	 * Sends tells to the event channels (129, 165, and 399).
 	 */
 	private void tellEventChannels(String msg, Object... args) {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		tell(CHANNEL_USCL, msg);
-		tell(CHANNEL_EVENTS_GROUP, msg);
+		tell("129", msg);
+		tell("165", msg);
+		tell("399", msg);
 	}
 
 	/**
 	 * Sends a personal tell to all managers.
 	 */
 	public void tellManagers(String msg, Object... args) {
-		Collection<User> managerList = userService.findUsersInRole(managerRole);
-		broadcastAdmin("atell", managerList, msg, args);
-	}
-
-	public void qChanPlus(String player, int channel) {
-		sendQuietly("qchanplus {0} {1}", player, channel);
+		broadcast("atell", managerList, msg, args);
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
@@ -677,10 +593,9 @@ public class USCLBot {
 			}
 			case Datagram.DG_NOTIFY_STATE: {
 				String player = datagram.getString(0);
-				String stateCode = datagram.getString(1);
-				PlayerState status = PlayerState.forCode(stateCode);
+				String state = datagram.getString(1);
 				int game = datagram.getInteger(2);
-				processPlayerStateChange(player, status, game);
+				processPlayerStateChange(player, state, game);
 				break;
 			}
 			case Datagram.DG_PERSONAL_TELL: {
@@ -742,27 +657,14 @@ public class USCLBot {
 			case Datagram.DG_SEND_MOVES: {
 				break;
 			}
-			case Datagram.DG_PLAYERS_IN_MY_GAME: {
-				int gameNumber = datagram.getInteger(0);
-				String playerName = datagram.getString(1);
-				String statusSymbol = datagram.getString(2);
-				boolean seesKibitz = datagram.getBoolean(3);
-				PlayerState status = PlayerState.forCode(statusSymbol);
-				processPlayersInMyGame(gameNumber, playerName, status, seesKibitz);
-				break;
 			}
-			}
+
 		}
 
 		@Override
 		protected void handleLoginSucceeded() {
 			super.handleLoginSucceeded();
 			onConnected();
-		}
-
-		@Override
-		protected void handleDisconnection(IOException e) {
-			onDisconnected();
 		}
 
 	}

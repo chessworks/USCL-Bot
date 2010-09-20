@@ -6,11 +6,11 @@ package org.chessworks.uscl.converters;
 public class IntegerConverter extends AbstractConverter<Integer> {
 
 	public IntegerConverter() {
-		super(Integer.class);
+		super();
 	}
 
 	public IntegerConverter(Integer nullValue) {
-		super(Integer.class, nullValue);
+		super(nullValue);
 	}
 
 	@Override
