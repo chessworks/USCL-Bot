@@ -12,9 +12,9 @@ user.Thor.handle=Thor
 user.Thor.name=Thor
 user.Thor.roles=manager
 
-user.LateKnight.handle=LateKnight
-user.LateKnight.name=Marty
-user.LateKnight.roles=manager
+user.OrionsKnight.handle=OrionsKnight
+user.OrionsKnight.name=Ryan
+user.OrionsKnight.roles=manager
 
 user.Freebird.handle=FREEBIRD
 user.Freebird.name=Freebird
