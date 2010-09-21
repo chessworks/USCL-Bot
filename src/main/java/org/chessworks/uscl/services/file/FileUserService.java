@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.Title;
@@ -66,6 +67,10 @@ public class FileUserService extends SimpleUserService {
 		save();
 	}
 
+	public void setTitleService(SimpleTitleService titleService) {
+		this.titleService = titleService;
+	}
+
 	private final class UsersIO extends IO {
 
 		public UsersIO() {
@@ -84,15 +89,14 @@ public class FileUserService extends SimpleUserService {
 				String prefix = propName.substring(0,propName.length() - ".handle".length());
 				String handle = propValue;
 				String realName = data.getProperty(prefix + ".name");
-				String title = data.getProperty(prefix + ".titles");
+				String titleStr = data.getProperty(prefix + ".titles");
 				String roleList = data.getProperty(prefix + ".roles", "");
 				User u = FileUserService.super.findUser(handle);
 				u.setRealName(realName);
-				if (title != null) {
-					Set<Title> titles = titleService.lookupAll(title);
-					u.getTitles().addAll(titles);
-				}
-				String[] roleNames = roleList.split("[, ]+");
+				String[] titleNames = CollectionHelper.split(titleStr);
+				Set<Title> titleSet = u.getTitles();
+				titleService.lookupAll(titleSet, titleNames);
+				String[] roleNames = CollectionHelper.split(roleList);
 				for (String s : roleNames) {
 					Role r = FileUserService.super.findOrCreateRole(s);
 					FileUserService.super.addUserToRole(u, r);

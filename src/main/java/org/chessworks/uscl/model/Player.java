@@ -1,12 +1,11 @@
 package org.chessworks.uscl.model;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class Player extends User {
 
+	public static final String UNAVAILABLE = "Unavailable";
+
 	private final Team team;
-	private URL website;
+	private String website = UNAVAILABLE;
 
 	public Player(String handle, Team team) {
 		super(handle);
@@ -20,19 +19,18 @@ public class Player extends User {
 		return team;
 	}
 
-	public URL getWebsite() {
+	public String getWebsite() {
 		return website;
 	}
 
-	public void setWebsite(URL website) {
-		this.website = website;
-	}
-
-	public void setWebsite(String website) throws MalformedURLException {
-		if (website == null)
-			this.website = null;
-		else
-			this.website = new URL(website);
+	public void setWebsite(String website) {
+		if (website == null) {
+			this.website = UNAVAILABLE;
+		} else if (website.isEmpty()) {
+			this.website = UNAVAILABLE;
+		} else {
+			this.website = website;
+		}
 	}
 
 }

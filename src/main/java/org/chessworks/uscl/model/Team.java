@@ -1,17 +1,24 @@
 package org.chessworks.uscl.model;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Team implements Comparable<Team> {
+
+	public static final String UNAVAILABLE = "Unavailable";
+
+	private String teamCode;
+	private String realName;
+	private String location = UNAVAILABLE;
+	private String website = UNAVAILABLE;
+	private List<Player> players = new LinkedList<Player>();
 
 	public Team(String teamCode) {
 		if (teamCode == null) {
 			throw new NullPointerException("Team.code");
 		}
 		this.teamCode = teamCode;
+		this.realName = teamCode;
 	}
 
 	@Override
@@ -32,40 +39,51 @@ public class Team implements Comparable<Team> {
 	}
 
 	public void setLocation(String location) {
-		this.location = location;
+		if (location == null) {
+			this.location = UNAVAILABLE;
+		} else if (location.isEmpty()) {
+			this.location = UNAVAILABLE;
+		} else {
+			this.location = location;
+		}
 	}
 
-	public String getName() {
-		return name;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRealName(String realName) {
+		if (realName == null) {
+			this.realName = getTeamCode();
+		} else if (realName.isEmpty()) {
+			this.realName = getTeamCode();
+		} else {
+			this.realName = realName;
+		}
 	}
 
-	public URL getWebsite() {
+	public String getWebsite() {
 		return website;
 	}
 
-	public void setWebsite(URL url) {
-		this.website = url;
-	}
-
-	public void setWebsite(String url) throws MalformedURLException {
-		if (url == null)
-			this.website = null;
-		else
-			this.website = new URL(url);
+	public void setWebsite(String website) {
+		if (website == null) {
+			this.website = UNAVAILABLE;
+		} else if (website.isEmpty()) {
+			this.website = UNAVAILABLE;
+		} else {
+			this.website = website;
+		}
 	}
 
 	public String toString() {
-		return name;
+		String teamCode = this.getTeamCode();
+		String teamName = this.getRealName();
+		if (teamCode.equals(teamName)) {
+			return teamCode;
+		} else {
+			return teamName + " (" + teamCode + ")";
+		}
 	}
-
-	private List<Player> players = new LinkedList<Player>();
-	private String teamCode;
-	private String name;
-	private String location;
-	private URL website;
 
 }

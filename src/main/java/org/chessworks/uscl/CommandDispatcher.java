@@ -13,9 +13,12 @@ import org.chessworks.uscl.converters.PlayerConverter;
 import org.chessworks.uscl.converters.StringArrayConverter;
 import org.chessworks.uscl.converters.StringBufferConverter;
 import org.chessworks.uscl.converters.StringConverter;
+import org.chessworks.uscl.converters.TeamConverter;
+import org.chessworks.uscl.converters.TitleConverter;
 import org.chessworks.uscl.converters.UserConverter;
 import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.UserService;
+import org.chessworks.uscl.services.simple.SimpleTitleService;
 
 public class CommandDispatcher {
 
@@ -25,8 +28,10 @@ public class CommandDispatcher {
 	private Map<String, CallHandler> handlerMap = new HashMap<String, CallHandler>();
 
 	/* The fields must be listed prior to the argConverter fields. This ensures these values have been set in time. */
+	TitleConverter titleConverter = new TitleConverter();
 	UserConverter userConverter = new UserConverter();
 	PlayerConverter playerConverter = new PlayerConverter();
+	TeamConverter teamConverter = new TeamConverter();
 
 	ConverterFactory argConverters = new ConverterFactory();
 	{
@@ -37,6 +42,7 @@ public class CommandDispatcher {
 		argConverters.register(new IntegerConverter(), Integer.TYPE);
 		argConverters.register(userConverter);
 		argConverters.register(playerConverter);
+		argConverters.register(teamConverter);
 	}
 
 	ConverterFactory tellerConverters = new ConverterFactory();
@@ -48,8 +54,9 @@ public class CommandDispatcher {
 
 	ConverterFactory tailConverters = new ConverterFactory();
 	{
-		argConverters.register(new StringArrayConverter());
-		argConverters.register(new StringBufferConverter());
+		tailConverters.register(new StringArrayConverter());
+		tailConverters.register(new StringBufferConverter());
+		tailConverters.register(titleConverter);
 	}
 
 	public CommandDispatcher(Object target) {
@@ -93,6 +100,11 @@ public class CommandDispatcher {
 
 	public void setTournamentService(TournamentService service) {
 		playerConverter.setTournamentService(service);
+		teamConverter.setTournamentService(service);
+	}
+
+	public void setTitleService(SimpleTitleService service) {
+		titleConverter.setNamingService(service);
 	}
 
 	private class CallHandler {
@@ -122,7 +134,9 @@ public class CommandDispatcher {
 				end--;
 			for (; pos <= end; pos++) {
 				Class<?> type = paramTypes[pos];
-				argConverter[pos] = argConverters.forType(type);
+				Converter<?> c = argConverters.forType(type);
+				if (c == null) throw new IllegalArgumentException("No converter for type: " + type);
+				argConverter[pos] = c;
 			}
 		}
 
@@ -144,13 +158,15 @@ public class CommandDispatcher {
 				argEnd--;
 			}
 			if ((argEnd - argPos) < (paramEnd - paramPos)) {
-				// Too few user args, try using null values.
-				for (; argPos <= argEnd; argPos++, paramPos++) {
-					String arg = userArgs[argPos];
-					params[paramPos] = argConverter[paramPos].convert(arg);
+				// Too few user args, use null for tail values.
+				if (tailConverter != null) {
+					params[paramEnd] = tailConverter.convert(null);
+					paramEnd--;
 				}
-				for (; paramPos <= paramEnd; argPos++, paramPos++) {
-					params[paramPos] = argConverter[paramPos].convert(null);
+				int lastParam = (argEnd-argPos) + paramPos;
+				while (paramEnd > lastParam) {
+					params[paramEnd] = argConverter[paramEnd].convert(null);
+					paramEnd--;
 				}
 			} else if (tailConverter != null) {
 				// We can handle an arbitrary number of args.
@@ -159,7 +175,7 @@ public class CommandDispatcher {
 				argEnd--;
 			} else if (argEnd >= 0 && userArgs[argEnd].indexOf(' ') >= 0) {
 				// Too many args.
-				throw new ConversionException("Cmd has too many inputs.");
+				throw new ConversionException("Command has too many inputs.");
 			}
 			for (; argPos <= argEnd; argPos++, paramPos++) {
 				String arg = userArgs[argPos];
@@ -174,5 +190,6 @@ public class CommandDispatcher {
 			}
 		}
 	}
+
 
 }

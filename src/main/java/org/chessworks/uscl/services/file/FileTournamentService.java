@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
@@ -89,6 +89,10 @@ public class FileTournamentService extends SimpleTournamentService {
 		this.teamsIO.setFile(fileName);
 	}
 
+	public void setTitleService(SimpleTitleService titleService) {
+		this.titleService = titleService;
+	}
+
 	public void load() {
 		super.reset();
 		teamsIO.load();
@@ -126,8 +130,9 @@ public class FileTournamentService extends SimpleTournamentService {
 				String realName = data.getProperty(prefix + ".name");
 				String ratingStr = data.getProperty(prefix + ".rating");
 				String teamCode = data.getProperty(prefix + ".team");
-				String title = data.getProperty(prefix + ".titles");
+				String titleStr = data.getProperty(prefix + ".titles");
 				String website = data.getProperty(prefix + ".website");
+				if (website == null) website = "Unavailable";
 				int rating = (ratingStr == null) ? -1 : Integer.parseInt(ratingStr);
 				Team team = FileTournamentService.super.findTeam(teamCode);
 				if (team == null)
@@ -136,9 +141,10 @@ public class FileTournamentService extends SimpleTournamentService {
 				Player p = FileTournamentService.super.createPlayer(handle, team);
 				p.setRealName(realName);
 				p.ratings().put(USCLBot.USCL_RATING, rating);
-				if (title != null) {
-					Set<Title> titles = titleService.lookupAll(title);
-					p.getTitles().addAll(titles);
+				if (titleStr != null) {
+					Set<Title> titles = p.getTitles();
+					String[] titleNames = CollectionHelper.split(titleStr);
+					titleService.lookupAll(titles, titleNames);
 				}
 				p.setWebsite(website);
 			}
@@ -155,7 +161,8 @@ public class FileTournamentService extends SimpleTournamentService {
 				String teamCode = player.getTeam().getTeamCode();
 				String title = player.getTitles().toString();
 				String id = handle.substring(handle.length() - teamCode.length() - 1);
-				URL website = player.getWebsite();
+				String website = player.getWebsite();
+				if (website == null) website = "Unavailable";
 				out.format("player.%s.handle=%s%n", id, handle);
 				out.format("player.%s.name=%s%n", id, name);
 				if (rating != null) {
@@ -163,9 +170,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				}
 				out.format("player.%s.team=%s%n", id, teamCode);
 				out.format("player.%s.title=%s%n", id, title);
-				if (website != null) {
-					out.format("team.%s.website=%s%n", id, website);
-				}
+				out.format("team.%s.website=%s%n", id, website);
 				out.println();
 			}
 		}
@@ -193,7 +198,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				String name = data.getProperty(prefix + ".name");
 				String url = data.getProperty(prefix + ".website");
 				Team t = FileTournamentService.super.createTeam(teamCode);
-				t.setName(name);
+				t.setRealName(name);
 				t.setLocation(location);
 				t.setWebsite(url);
 			}
@@ -206,8 +211,8 @@ public class FileTournamentService extends SimpleTournamentService {
 			for (Team team : findAllTeams()) {
 				String code = team.getTeamCode();
 				String location = team.getLocation();
-				String name = team.getName();
-				URL website = team.getWebsite();
+				String name = team.getRealName();
+				String website = team.getWebsite();
 				out.format("team.%s.code=%s%n", code, code);
 				out.format("team.%s.location=%s%n", code, location);
 				out.format("team.%s.name=%s%n", code, name);

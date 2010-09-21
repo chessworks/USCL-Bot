@@ -157,7 +157,7 @@ public class TestFileTournamentService extends TestCase {
 		Team team = service.findTeam("ArZ");
 		assertEquals("ARZ", team.getTeamCode());
 		assertEquals("Arizona", team.getLocation());
-		assertEquals("Arizona Scorpions", team.getName());
+		assertEquals("Arizona Scorpions", team.getRealName());
 	}
 
 	public void testUnreserveBoard() throws Exception {

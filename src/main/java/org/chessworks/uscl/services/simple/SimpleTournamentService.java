@@ -81,6 +81,9 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 			} else {
 				String teamCode = teamCode(playerName);
 				Team team = findTeam(teamCode);
+				if (team == null) {
+					throw new InvalidTeamException("Unknown team: {0}", teamCode);
+				}
 				player = new Player(playerName, team);
 				playerBoards.put(player, board);
 			}
@@ -209,10 +212,9 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	@Override
 	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		String teamCode = teamCode(handle);
-		Team team = teams.get(teamCode);
+		Team team = teams.get(teamCode.toUpperCase());
 		if (team == null) {
-			throw new InvalidTeamException("Unknown team \"{0}\" for player handle \"{1}\".  Either correct the name or first add the team.", team,
-					handle);
+			throw new InvalidTeamException("Unknown team: {0}", team);
 		}
 		return createPlayer(handle, team);
 	}
@@ -224,9 +226,9 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 */
 	@Override
 	public Player createPlayer(String handle, Team team) throws InvalidPlayerException {
-		Player p = players.get(handle);
+		Player p = players.get(handle.toLowerCase());
 		if (p != null) {
-			throw new InvalidPlayerException("Player with the handle \"{0}\" already exists.", handle);
+			throw new InvalidPlayerException("Player with the handle \"{0}\" already exists", handle);
 		}
 		p = new Player(handle, team);
 		team.getPlayers().add(p);
@@ -241,12 +243,12 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 */
 	@Override
 	public Team createTeam(String teamCode) throws InvalidTeamException {
-		Team t = teams.get(teamCode);
+		Team t = teams.get(teamCode.toUpperCase());
 		if (t != null) {
-			throw new InvalidTeamException("Team with the handle \"{0}\" is already in the tournament.", teamCode);
+			throw new InvalidTeamException("Team with the handle \"{0}\" already exists", teamCode);
 		}
 		if (teamCode == null || teamCode.length() < 2 || teamCode.length() > 3) {
-			throw new InvalidTeamException("Teams must have a 2 or 3-letter team code.");
+			throw new InvalidTeamException("Teams must have a 2 or 3-letter team code");
 		}
 		t = new Team(teamCode);
 		teams.put(teamCode.toUpperCase(), t);
@@ -271,7 +273,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	public static String teamCode(String handle) throws InvalidPlayerException {
 		int i = handle.lastIndexOf('-');
 		if (i < 0) {
-			throw new InvalidPlayerException("Player handle \"{0}\" must end with a valid team code.", handle);
+			throw new InvalidPlayerException("Player handle \"{0}\" must end with a valid team code", handle);
 		}
 		String teamCode = handle.substring(i + 1);
 		return teamCode;

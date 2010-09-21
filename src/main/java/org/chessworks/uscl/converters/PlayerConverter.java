@@ -8,26 +8,25 @@ import org.chessworks.uscl.services.TournamentService;
 
 public class PlayerConverter extends AbstractConverter<Player> {
 
-	private TournamentService playerService;
+	private TournamentService service;
 
 	public PlayerConverter() {
 		super(Player.class);
 	}
 
-	public PlayerConverter(Player nullValue) {
-		super(Player.class, nullValue);
-	}
-
 	@Override
 	public Player convert(String s) throws ConversionException {
-		if (checkNull(s))
-			return nullValue;
-		Player u = playerService.findPlayer(s);
-		return u;
+		if (s == null)
+			throw new ConversionException("Missing required input: <player>");
+		Player p = service.findPlayer(s);
+		if (p == null) {
+			throw new ConversionException("Unknown player: {0}", s);
+		}
+		return p;
 	}
 
 	public void setTournamentService(TournamentService playerService) {
-		this.playerService = playerService;
+		this.service = playerService;
 	}
 
 }

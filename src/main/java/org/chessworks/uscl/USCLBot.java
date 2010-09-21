@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.MalformedURLException;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -15,17 +17,24 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.chessworks.common.javatools.ComparisionHelper;
+import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.converters.ConversionException;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.RatingCategory;
 import org.chessworks.uscl.model.Role;
+import org.chessworks.uscl.model.Team;
+import org.chessworks.uscl.model.Title;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.InvalidPlayerException;
+import org.chessworks.uscl.services.InvalidTeamException;
 import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.services.file.FileTournamentService;
 import org.chessworks.uscl.services.file.FileUserService;
+import org.chessworks.uscl.services.simple.SimpleTitleService;
 
 import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
@@ -44,7 +53,7 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "September 19, 2010";
+	public static final String BOT_RELEASE_DATE = "September 21, 2010";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
@@ -77,16 +86,21 @@ public class USCLBot {
 		String scheduleFile = settings.getProperty("file.schedule", "data/Games.txt");
 		String teamsFile = settings.getProperty("file.teams", "data/Teams.txt");
 
+		SimpleTitleService titleService = new SimpleTitleService();
+
 		FileUserService userService = new FileUserService();
 		userService.setDataFile(managersFile);
+		userService.setTitleService(titleService);
 		userService.load();
 
 		FileTournamentService tournamentService = new FileTournamentService();
 		tournamentService.setPlayersFile(playersFile);
 		tournamentService.setScheduleFile(scheduleFile);
 		tournamentService.setTeamsFile(teamsFile);
+		tournamentService.setTitleService(titleService);
 		tournamentService.load();
 
+		bot.setTitleService(titleService);
 		bot.setUserService(userService);
 		bot.setTournamentService(tournamentService);
 		bot.start();
@@ -152,6 +166,8 @@ public class USCLBot {
 
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+	private SimpleTitleService titleService;
+
 	private UserService userService;
 
 	private TournamentService tournamentService;
@@ -214,61 +230,85 @@ public class USCLBot {
 		sendQuietly("admin");
 	}
 
-	public void cmdAddPlayer(String teller, String playerName) {
-		Player player = tournamentService.findPlayer(playerName);
-		if (player != null) {
-			sendQuietly("tell {0} A player with name {1} already exists.  I assume you'd like to keep using him.", teller, playerName);
+	public void cmdAddPlayer(User teller, String playerHandle) {
+		Player player = tournamentService.findPlayer(playerHandle);
+		try {
+			player = tournamentService.createPlayer(playerHandle);
+		} catch (InvalidPlayerException e) {
+			replyError(teller, e);
+			return;
+		} catch (InvalidTeamException e) {
+			replyError(teller, e);
+			tell(teller, "To create a new team, use the \"add-team\" command.  Usage: add-team XXX");
+			return;
+		}
+		tournamentService.flush();
+		tell(teller, "Done.  Player {0} has joined the \"{1}\".", player, player.getTeam());
+		tell(teller, "To set the player's real name, use: \"set-player {0} rating 2200\"", player);
+		cmdShowPlayer(teller, player);
+	}
+
+	public void cmdAddTeam(User teller, String teamCode) {
+		Team team = tournamentService.findTeam(teamCode);
+		if (team != null) {
+			tell(teller, "A team with name {0} already exists.", teamCode);
 			return;
 		}
 		try {
-			player = tournamentService.createPlayer(playerName);
+			team = tournamentService.createTeam(teamCode);
 		} catch (InvalidNameException e) {
-			String msg = e.getMessage();
-			sendQuietly("tell {0} {1}", teller, msg);
-			e.printStackTrace();
+			replyError(teller, e);
 			return;
 		}
 		tournamentService.flush();
-		tell(teller, "Done.  Player {0} has been added to the team roster for the \"{2\"}.", player, player.getTeam());
-		tell(teller, "You may now wish to do one of these: \"reserve-game {0} board\", \"set-player {0} rating 2222\", \"set-player {0} Paul Morphy\", etc.", player);
+		tell(teller, "Done.  Team {0} has now been created.", team.getTeamCode());
+		tell(teller, "To set the team name, use: \"set-team {0} name New York Giants\"", team.getTeamCode());
+		cmdShowTeam(teller, team);
 	}
 
-	public void cmdClear(String teller) {
+	public void cmdClear(User teller) {
+		Formatter msg = new Formatter();
+		msg.format("%s\\n", " ** The new preferred name for this command is: clear-games.");
+		msg.format("%s\\n", " ** The old name (\"clear\") will continue to work.");
+		qtell(teller, msg);
+		cmdClearGames(teller);
+	}
+
+	public void cmdClearGames(User teller) {
 		tournamentService.clearSchedule();
 		tournamentService.flush();
-		tell(teller, "Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
+		qtell(teller, " Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
 		sendCommand("-notify *");
 	}
 
-	public void cmdKill(String teller) {
+	public void cmdKill(User teller) {
 		exit(3, "Quitting at the request of {0}.  Bye!", teller);
 	}
 
-	public void cmdReboot(String teller) {
+	public void cmdReboot(User teller) {
 		exit(2, "Rebooting at the request of {0}.  I''ll be right back!", teller);
 	}
 
-	public void cmdRecompile(String teller) {
+	public void cmdRecompile(User teller) {
 		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
-	public void cmdRevert(String teller) {
+	public void cmdRevert(User teller) {
 		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
-	public void cmdReserveGame(String teller, String playerName, int board) {
-		Player player = tournamentService.findPlayer(playerName);
+	public void cmdReserveGame(User teller, String playerHandle, int board) {
+		Player player = tournamentService.findPlayer(playerHandle);
 		if (player != null) {
-			playerName = player.getHandle();
+			playerHandle = player.getHandle();
 			tournamentService.reserveBoard(player, board);
 		} else {
-			tell(teller, "Warning: {0} is not a recognized player name.  To avoid this message in the future, tell me \"addPlayer {0}\" so I can add him to the roster.", playerName);
+			tell(teller, "Warning: {0} is not a recognized player name.", playerHandle);
+			tell(teller, "    ...  Please tell me \"addPlayer {0}\".", playerHandle);
 			try {
-				player = tournamentService.reserveBoard(playerName, board, true);
+				player = tournamentService.reserveBoard(playerHandle, board, true);
 			} catch (InvalidNameException e) {
-				String msg = e.getMessage();
-				tell(teller, msg);
-				e.printStackTrace();
+				replyError(teller, e);
 				return;
 			}
 		}
@@ -278,7 +318,7 @@ public class USCLBot {
 		sendAdminCommand("reserve-game {0} {1}", player, board);
 	}
 
-	public void cmdSchedule(String teller, int boardNum, Player white, Player black) {
+	public void cmdSchedule(User teller, int boardNum, Player white, Player black) {
 		tournamentService.schedule(white, black, boardNum);
 		tournamentService.flush();
 		sendCommand("+notify {0}", white);
@@ -288,31 +328,136 @@ public class USCLBot {
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
 	}
 
-	public void cmdShow(String teller) {
+	public void cmdSetPlayer(User teller, Player player, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
+		String value = setting.toString();
+		var = var.toLowerCase();
+		if ("name".equals(var)) {
+			player.setRealName(value);
+		} else if ("handle".equals(var)) {
+			player.setHandle(var);
+		} else if ("title".equals(var)) {
+			Set<Title> titles = player.getTitles();
+			titles.clear();
+			String[] titleNames = CollectionHelper.split(value);
+			List<Title> newTitles = titleService.lookupAll(titleNames);
+			titles.addAll(newTitles);
+		} else if ("rating".equals(var)) {
+			Map<RatingCategory, Integer> ratings = player.ratings();
+			if (value.isEmpty()) {
+				ratings.remove(USCL_RATING);
+			} else {
+				int r = Integer.parseInt(value);
+				ratings.put(USCL_RATING, r);
+			}
+		} else if ("website".equals(var)) {
+			player.setWebsite(value);
+		} else {
+			tell(teller, "Unknown variable: " + var);
+			return;
+		}
+		cmdShowPlayer(teller, player);
+		cmdRefreshProfile(teller, player);
+	}
+
+	public void cmdSetTeam(User teller, Team team, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
+		String value = setting.toString();
+		var = var.toLowerCase();
+		if ("name".equals(var)) {
+			team.setRealName(value);
+		} else if (ComparisionHelper.anyEquals(var, "loc", "loc.", "location")) {
+			team.setLocation(value);
+		} else if (ComparisionHelper.anyEquals(var, "web", "webpage", "website")) {
+			team.setWebsite(value);
+		} else {
+			tell(teller, "Unknown variable: " + var);
+			return;
+		}
+		cmdShowTeam(teller, team);
+	}
+
+	private void cmdRefreshProfile(User teller, Player player) {
+		Team team = player.getTeam();
+		Integer r = player.ratings().get(USCL_RATING);
+
+		String playerName = player.getTitledRealName();
+		String rating = (r == null || r < 0) ? "Unavailable" : r.toString();
+		String playerPage = player.getWebsite();
+		String teamName = team.toString();
+		String teamPage = player.getTeam().getWebsite();
+
+		sendAdminCommand("set-other {0} 1 Name: {1}", player, playerName);
+		sendAdminCommand("set-other {0} 2 USCL rating: {1}", player, rating);
+		sendAdminCommand("set-other {0} 3 Profile page: {1}", player, playerPage);
+		sendAdminCommand("set-other {0} 4 ", player);
+		sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
+		sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
+		sendAdminCommand("set-other {0} 7 ", player);
+	}
+
+	public void cmdShow(User teller) {
+		Formatter msg = new Formatter();
+		msg.format("%s\\n", " ** The new preferred name for this command is: show-games.");
+		msg.format("%s\\n", " ** The old name (\"show\") will continue to work.");
+		qtell(teller, msg);
+		cmdShowGames(teller);
+	}
+
+	public void cmdShowGames(User teller) {
 		int indent = 0;
 		Map<Player, Integer> playerBoards = tournamentService.getPlayerBoardMap();
-		tournamentService.flush();
 		for (Player player : playerBoards.keySet()) {
 			String handle = player.getHandle();
 			int len = handle.length();
 			if (len > indent)
 				indent = len;
 		}
-		String qtellPattern = MessageFormat.format("%1${0}s - %2$d\\n", indent);
-		String consolePattern = MessageFormat.format("%1${0}s - %2$d%n", indent);
-		Formatter qtell = new Formatter();
+		String qtellPattern = MessageFormat.format("  %1${0}s - %2$d\\n", indent);
+		String consolePattern = MessageFormat.format("  %1${0}s - %2$d%n", indent);
+		Formatter msg = new Formatter();
+		msg.format(" Active Boards:\\n");
 		for (Entry<Player, Integer> entry : playerBoards.entrySet()) {
 			Player player = entry.getKey();
 			int board = entry.getValue();
-			qtell.format(qtellPattern, player, board);
+			msg.format(qtellPattern, player, board);
 			System.out.format(consolePattern, player, board);
 		}
-		String msg = qtell.toString();
-		sendQuietly("tell {0} Player Boards:", teller);
-		sendQuietly("qtell {0} {1}", teller, msg);
+		qtell(teller, msg);
 	}
 
-	public void cmdTestError(String teller) {
+	public void cmdShowPlayer(User teller, Player player) {
+		Formatter msg = new Formatter();
+		Integer rating = player.ratings().get(USCL_RATING);
+		String ratingStr = (rating == null || rating < 0) ? "Unavailable" : rating.toString();
+		msg.format(" Player %s:\\n", player);
+		msg.format("   %6s: %s\\n", "Name", player.getRealName());
+		msg.format("   %6s: %s\\n", "Title", player.getTitles());
+		msg.format("   %6s: %s\\n", "Rating", ratingStr);
+		msg.format("   %6s: %s\\n", "Team", player.getTeam());
+		msg.format("   %6s: %s\\n", "Web", player.getWebsite());
+		qtell(teller, msg);
+	}
+
+	public void cmdShowTeam(User teller, Team team) {
+		Formatter msg = new Formatter();
+		msg.format(" Team %s:\\n", team.getTeamCode());
+		msg.format("   %4s: %s\\n", "Name", team.getRealName());
+		msg.format("   %4s: %s\\n", "Loc.", team.getLocation());
+		msg.format("   %4s: %s\\n", "Web ", team.getWebsite());
+		msg.format(" Team Members:\\n");
+		int indent = 0;
+		for (Player player : team.getPlayers()) {
+			int len = player.getHandle().length();
+			if (len > indent)
+				indent = len;
+		}
+		String fmt = "   %s\\n";
+		for (Player player : team.getPlayers()) {
+			msg.format(fmt, player);
+		}
+		qtell(teller, msg);
+	}
+
+	public void cmdTestError(User teller) {
 		try {
 			throw new Exception("This is a test.  Don't worry.");
 		} catch (Exception e) {
@@ -322,7 +467,7 @@ public class USCLBot {
 		}
 	}
 
-	public void cmdUnreserveGame(String teller, Player player) {
+	public void cmdUnreserveGame(User teller, Player player) {
 		int board = tournamentService.unreserveBoard(player);
 		tournamentService.flush();
 		if (board < 0) {
@@ -358,8 +503,7 @@ public class USCLBot {
 		try {
 			cmd.dispatch(teller, message);
 		} catch (ConversionException e) {
-			String err = e.getMessage();
-			tell(teller, err);
+			replyError(teller, e);
 		} catch (NoSuchCommandException e) {
 			tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
 		} catch (Exception e) {
@@ -464,7 +608,6 @@ public class USCLBot {
 			alertManagers("{0} is on my notify list, but I don''t have him in the tournament roster.", name);
 		}
 		int board = tournamentService.getPlayerBoard(player);
-		sendAdminCommand("spoof set noautologout true");
 		if (board >= 0) {
 			if (!loggingIn)
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
@@ -485,7 +628,7 @@ public class USCLBot {
 		}
 	}
 
-	private void processPlayersInMyGame(int gameNumber, String playerName, PlayerState state, boolean seesKibitz) {
+	private void processPlayersInMyGame(int gameNumber, String playerHandle, PlayerState state, boolean seesKibitz) {
 		switch (state) {
 		case NONE:
 			_observerCountNow[gameNumber]--;
@@ -497,7 +640,7 @@ public class USCLBot {
 			}
 			//Fall through...
 		case PLAYING:
-			qChanPlus(playerName, CHANNEL_USCL);
+			qChanPlus(playerHandle, CHANNEL_USCL);
 		}
 	}
 
@@ -521,6 +664,16 @@ public class USCLBot {
 	public void qtellProgrammers(String msg, Object... args) {
 		Collection<User> programmerList = userService.findUsersInRole(programmerRole);
 		broadcast("qtell", programmerList, msg, args);
+	}
+
+	private void replyError(String teller, Throwable t) {
+		t.printStackTrace(System.err);
+		tell(teller, t.getMessage());
+	}
+
+	private void replyError(User user, Throwable t) {
+		t.printStackTrace(System.err);
+		tell(user, "Error - " + t.getMessage());
 	}
 
 	private void reportException(Throwable t) {
@@ -615,6 +768,11 @@ public class USCLBot {
 		this.loginPass = loginPass;
 	}
 
+	public void setTitleService(SimpleTitleService service) {
+		this.titleService = service;
+		this.cmd.setTitleService(titleService);
+	}
+
 	public void setTournamentService(TournamentService service) {
 		this.tournamentService = service;
 		this.cmd.setTournamentService(tournamentService);
@@ -651,15 +809,39 @@ public class USCLBot {
 	/**
 	 * Sends a personal tell to the user.
 	 */
+	public void tell(User user, String msg, Object... args) {
+		msg = MessageFormat.format(msg, args);
+		sendQuietly("tell {0} {1}", user, msg);
+	}
+
+	/**
+	 * Sends a personal tell to the user.
+	 */
 	public void tell(String handle, String msg, Object... args) {
 		msg = MessageFormat.format(msg, args);
-		sendCommand("tell {0} {1}", handle, msg);
+		sendQuietly("tell {0} {1}", handle, msg);
+	}
+
+	public void qtell(String handle, String qtell) {
+		sendQuietly("qtell {0} {1}\\n", handle, qtell);
+	}
+
+	public void qtell(User user, String qtell) {
+		sendQuietly("qtell {0} {1}\\n", user, qtell);
+	}
+
+	public void qtell(String handle, Formatter qtell) {
+		sendQuietly("qtell {0} {1}", handle, qtell);
+	}
+
+	public void qtell(User user, Formatter qtell) {
+		sendQuietly("qtell {0} {1}", user, qtell);
 	}
 
 	/**
 	 * Sends a tell to the channel.
 	 */
-	public void tell(int channel, String msg, Object... args) {
+	public void tellAndEcho(int channel, String msg, Object... args) {
 		msg = MessageFormat.format(msg, args);
 		sendCommand("tell {0} {1}", channel, msg);
 	}
@@ -671,8 +853,8 @@ public class USCLBot {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		tell(CHANNEL_USCL, msg);
-		tell(CHANNEL_EVENTS_GROUP, msg);
+		tellAndEcho(CHANNEL_USCL, msg);
+		tellAndEcho(CHANNEL_EVENTS_GROUP, msg);
 	}
 
 	/**
@@ -777,11 +959,11 @@ public class USCLBot {
 			}
 			case Datagram.DG_PLAYERS_IN_MY_GAME: {
 				int gameNumber = datagram.getInteger(0);
-				String playerName = datagram.getString(1);
+				String playerHandle = datagram.getString(1);
 				String statusSymbol = datagram.getString(2);
 				boolean seesKibitz = datagram.getBoolean(3);
 				PlayerState status = PlayerState.forCode(statusSymbol);
-				processPlayersInMyGame(gameNumber, playerName, status, seesKibitz);
+				processPlayersInMyGame(gameNumber, playerHandle, status, seesKibitz);
 				break;
 			}
 			}

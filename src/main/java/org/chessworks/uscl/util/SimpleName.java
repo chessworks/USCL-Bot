@@ -2,6 +2,8 @@ package org.chessworks.uscl.util;
 
 import java.util.Comparator;
 
+import org.chessworks.uscl.services.InvalidNameException;
+
 public class SimpleName implements Comparable<SimpleName> {
 
 	public static final Comparator<SimpleName> CASE_INSENSITIVE_ORDER = new Comparator<SimpleName>() {
@@ -20,7 +22,7 @@ public class SimpleName implements Comparable<SimpleName> {
 		}
 	};
 
-	private final String name;
+	private String name;
 
 	public SimpleName(String name) {
 		if (name == null) {
@@ -32,6 +34,14 @@ public class SimpleName implements Comparable<SimpleName> {
 
 	public String getSimpleName() {
 		return name;
+	}
+
+	public void setSimpleName(String name) throws InvalidNameException {
+		if (this.name.equalsIgnoreCase(name)) {
+			this.name = name;
+		} else {
+			throw new InvalidNameException("Name changes are restricted to capitalization changes only.");
+		}
 	}
 
 	@Override

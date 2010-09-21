@@ -34,7 +34,7 @@ public class TestFileUserService extends TestCase {
 		User duckstorm = service.findUser("DuckStorm");
 		User testUser = service.findUser("TestUser1");
 		assertEquals("Doug Bateman", duckstorm.getRealName());
-		assertNull(testUser.getRealName());
+		assertEquals("TestUser1", testUser.getRealName());
 	}
 
 	public void testFindAllKnownUsers() throws Exception {
