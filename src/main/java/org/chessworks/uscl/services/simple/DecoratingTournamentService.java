@@ -5,7 +5,8 @@ import java.util.Map;
 
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
-import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.InvalidPlayerException;
+import org.chessworks.uscl.services.InvalidTeamException;
 import org.chessworks.uscl.services.TournamentService;
 
 /**
@@ -30,28 +31,32 @@ public class DecoratingTournamentService implements TournamentService {
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
+	 * @throws InvalidPlayerException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String, org.chessworks.uscl.model.Team)
 	 */
-	public Player createPlayer(String handle, Team team) throws InvalidNameException {
+	public Player createPlayer(String handle, Team team) throws InvalidPlayerException {
 		return service.createPlayer(handle, team);
 	}
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
+	 * @throws InvalidTeamException
+	 * @throws InvalidPlayerException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String)
 	 */
-	public Player createPlayer(String handle) throws InvalidNameException {
+	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		return service.createPlayer(handle);
 	}
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
+	 * @throws InvalidTeamException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createTeam(java.lang.String)
 	 */
-	public Team createTeam(String teamCode) throws InvalidNameException {
+	public Team createTeam(String teamCode) throws InvalidTeamException {
 		return service.createTeam(teamCode);
 	}
 
@@ -75,19 +80,22 @@ public class DecoratingTournamentService implements TournamentService {
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
+	 * @throws InvalidTeamException
+	 * @throws InvalidPlayerException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
 	 */
-	public Player findOrCreatePlayer(String handle) throws InvalidNameException {
+	public Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		return service.findOrCreatePlayer(handle);
 	}
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
+	 * @throws InvalidTeamException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
 	 */
-	public Team findOrCreateTeam(String handle) throws InvalidNameException {
+	public Team findOrCreateTeam(String handle) throws InvalidTeamException {
 		return service.findOrCreateTeam(handle);
 	}
 
@@ -135,6 +143,16 @@ public class DecoratingTournamentService implements TournamentService {
 	public void reserveBoard(Player player, int board) {
 		service.reserveBoard(player, board);
 	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(java.lang.String, int, boolean)
+	 */
+	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
+		return service.reserveBoard(playerName, board, allowNewPlayer);
+	}
+
 
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.

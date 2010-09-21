@@ -16,6 +16,8 @@ import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.model.Title;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.InvalidPlayerException;
+import org.chessworks.uscl.services.InvalidTeamException;
 import org.chessworks.uscl.services.simple.SimpleTitleService;
 import org.chessworks.uscl.services.simple.SimpleTournamentService;
 import org.chessworks.uscl.util.IO;
@@ -30,13 +32,13 @@ public class FileTournamentService extends SimpleTournamentService {
 	private final PlayersIO playersIO = new PlayersIO();
 	private SimpleTitleService titleService = new SimpleTitleService();
 
-	public Player createPlayer(String handle) throws InvalidNameException {
+	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		Player players = super.createPlayer(handle);
 		playersIO.setDirty();
 		return players;
 	}
 
-	public Team createTeam(String teamCode) throws InvalidNameException {
+	public Team createTeam(String teamCode) throws InvalidTeamException {
 		Team team = super.createTeam(teamCode);
 		teamsIO.setDirty();
 		return team;
@@ -129,7 +131,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				int rating = (ratingStr == null) ? -1 : Integer.parseInt(ratingStr);
 				Team team = FileTournamentService.super.findTeam(teamCode);
 				if (team == null)
-					throw new InvalidNameException("Team \"{0}\" does not exist.");
+					throw new InvalidTeamException("Team \"{0}\" does not exist.");
 				assert team != null;
 				Player p = FileTournamentService.super.createPlayer(handle, team);
 				p.setRealName(realName);

@@ -11,19 +11,19 @@ public interface TournamentService extends Flushable {
 
 	void clearSchedule();
 
-	Player createPlayer(String handle) throws InvalidNameException;
+	Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
 
-	Player createPlayer(String handle, Team team) throws InvalidNameException;
+	Player createPlayer(String handle, Team team) throws InvalidPlayerException;
 
-	Team createTeam(String teamCode) throws InvalidNameException;
+	Team createTeam(String teamCode) throws InvalidTeamException;
 
 	Collection<Player> findAllPlayers();
 
 	Collection<Team> findAllTeams();
 
-	Player findOrCreatePlayer(String handle) throws InvalidNameException;
+	Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
 
-	Team findOrCreateTeam(String handle) throws InvalidNameException;
+	Team findOrCreateTeam(String handle) throws InvalidTeamException;
 
 	Player findPlayer(String handle);
 
@@ -34,6 +34,8 @@ public interface TournamentService extends Flushable {
 	Map<Player, Integer> getPlayerBoardMap();
 
 	void reserveBoard(Player player, int board);
+
+	Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException;
 
 	void schedule(Player white, Player black, int board);
 

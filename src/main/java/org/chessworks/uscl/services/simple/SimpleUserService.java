@@ -11,6 +11,7 @@ import org.chessworks.common.service.BasicLifecycle;
 import org.chessworks.uscl.model.Role;
 import org.chessworks.uscl.model.User;
 import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.InvalidPlayerException;
 import org.chessworks.uscl.services.UserService;
 import org.chessworks.uscl.util.SimpleNameLookupService;
 
@@ -68,7 +69,7 @@ public class SimpleUserService extends BasicLifecycle implements UserService {
 		String handle = user.getHandle();
 		User existing = findUser(handle);
 		if (existing != null && !existing.equalsWithCase(user)) {
-			throw new InvalidNameException("Another user with handle \"{1}\" is already registered.", handle);
+			throw new InvalidPlayerException("Another user with handle \"{1}\" is already registered.", handle);
 		}
 		users.register(user);
 		registeredUsers.register(user);

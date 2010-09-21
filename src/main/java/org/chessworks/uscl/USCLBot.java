@@ -214,6 +214,25 @@ public class USCLBot {
 		sendQuietly("admin");
 	}
 
+	public void cmdAddPlayer(String teller, String playerName) {
+		Player player = tournamentService.findPlayer(playerName);
+		if (player != null) {
+			sendQuietly("tell {0} A player with name {1} already exists.  I assume you'd like to keep using him.", teller, playerName);
+			return;
+		}
+		try {
+			player = tournamentService.createPlayer(playerName);
+		} catch (InvalidNameException e) {
+			String msg = e.getMessage();
+			sendQuietly("tell {0} {1}", teller, msg);
+			e.printStackTrace();
+			return;
+		}
+		tournamentService.flush();
+		tell(teller, "Done.  Player {0} has been added to the team roster for the \"{2\"}.", player, player.getTeam());
+		tell(teller, "You may now wish to do one of these: \"reserve-game {0} board\", \"set-player {0} rating 2222\", \"set-player {0} Paul Morphy\", etc.", player);
+	}
+
 	public void cmdClear(String teller) {
 		tournamentService.clearSchedule();
 		tournamentService.flush();
@@ -237,8 +256,22 @@ public class USCLBot {
 		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
-	public void cmdReserveGame(String teller, Player player, int board) {
-		tournamentService.reserveBoard(player, board);
+	public void cmdReserveGame(String teller, String playerName, int board) {
+		Player player = tournamentService.findPlayer(playerName);
+		if (player != null) {
+			playerName = player.getHandle();
+			tournamentService.reserveBoard(player, board);
+		} else {
+			tell(teller, "Warning: {0} is not a recognized player name.  To avoid this message in the future, tell me \"addPlayer {0}\" so I can add him to the roster.", playerName);
+			try {
+				player = tournamentService.reserveBoard(playerName, board, true);
+			} catch (InvalidNameException e) {
+				String msg = e.getMessage();
+				tell(teller, msg);
+				e.printStackTrace();
+				return;
+			}
+		}
 		tournamentService.flush();
 		tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
 		sendCommand("+notify {0}", player);

@@ -9,7 +9,8 @@ import java.util.TreeMap;
 import org.chessworks.common.service.BasicLifecycle;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
-import org.chessworks.uscl.services.InvalidNameException;
+import org.chessworks.uscl.services.InvalidPlayerException;
+import org.chessworks.uscl.services.InvalidTeamException;
 import org.chessworks.uscl.services.TournamentService;
 
 public class SimpleTournamentService extends BasicLifecycle implements TournamentService {
@@ -69,6 +70,26 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 
 	/**
 	 * {@inheritDoc}
+	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(String, int, boolean)
+	 */
+	@Override
+	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
+		Player player = findPlayer(playerName);
+		if (player == null) {
+			if (!allowNewPlayer) {
+				throw new InvalidPlayerException("\"{0} is not a recognized player name. Tell me \\\"addPlayer {0}\\\" to register the player.\"", playerName);
+			} else {
+				String teamCode = teamCode(playerName);
+				Team team = findTeam(teamCode);
+				player = new Player(playerName, team);
+				playerBoards.put(player, board);
+			}
+		}
+		return player;
+	}
+
+	/**
+	 * {@inheritDoc}
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#unreserveBoard(Player)
 	 */
@@ -109,11 +130,13 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 
 	/**
 	 * {@inheritDoc}
+	 * @throws InvalidTeamException
+	 * @throws InvalidPlayerException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
 	 */
 	@Override
-	public Player findOrCreatePlayer(String handle) throws InvalidNameException {
+	public Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		Player p = players.get(handle.toLowerCase());
 		if (p == null) {
 			p = createPlayer(handle);
@@ -134,11 +157,12 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 
 	/**
 	 * {@inheritDoc}
+	 * @throws InvalidTeamException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
 	 */
 	@Override
-	public Team findOrCreateTeam(String handle) throws InvalidNameException {
+	public Team findOrCreateTeam(String handle) throws InvalidTeamException {
 		Team t = teams.get(handle.toUpperCase());
 		if (t == null) {
 			t = createTeam(handle);
@@ -183,15 +207,11 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String)
 	 */
 	@Override
-	public Player createPlayer(String handle) throws InvalidNameException {
-		int i = handle.lastIndexOf('-');
-		if (i < 0) {
-			throw new InvalidNameException("Player handle \"{0}\" must end with a valid team code.", handle);
-		}
-		String teamCode = handle.substring(i + 1);
+	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
+		String teamCode = teamCode(handle);
 		Team team = teams.get(teamCode);
 		if (team == null) {
-			throw new InvalidNameException("Unknown team \"{0}\" for player handle \"{1}\".  Either correct the name or first add the team.", team,
+			throw new InvalidTeamException("Unknown team \"{0}\" for player handle \"{1}\".  Either correct the name or first add the team.", team,
 					handle);
 		}
 		return createPlayer(handle, team);
@@ -203,10 +223,10 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String, org.chessworks.uscl.model.Team)
 	 */
 	@Override
-	public Player createPlayer(String handle, Team team) throws InvalidNameException {
+	public Player createPlayer(String handle, Team team) throws InvalidPlayerException {
 		Player p = players.get(handle);
 		if (p != null) {
-			throw new InvalidNameException("Player with the handle \"{0}\" already exists.", handle);
+			throw new InvalidPlayerException("Player with the handle \"{0}\" already exists.", handle);
 		}
 		p = new Player(handle, team);
 		team.getPlayers().add(p);
@@ -220,13 +240,13 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	 * @see org.chessworks.uscl.services.TournamentService#createTeam(java.lang.String)
 	 */
 	@Override
-	public Team createTeam(String teamCode) throws InvalidNameException {
+	public Team createTeam(String teamCode) throws InvalidTeamException {
 		Team t = teams.get(teamCode);
 		if (t != null) {
-			throw new InvalidNameException("Team with the handle \"{0}\" is already in the tournament.", teamCode);
+			throw new InvalidTeamException("Team with the handle \"{0}\" is already in the tournament.", teamCode);
 		}
 		if (teamCode == null || teamCode.length() < 2 || teamCode.length() > 3) {
-			throw new InvalidNameException("Teams must have a 2 or 3-letter team code.");
+			throw new InvalidTeamException("Teams must have a 2 or 3-letter team code.");
 		}
 		t = new Team(teamCode);
 		teams.put(teamCode.toUpperCase(), t);
@@ -246,6 +266,15 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		this.playerBoards.clear();
 		this.players.clear();
 		this.teams.clear();
+	}
+
+	public static String teamCode(String handle) throws InvalidPlayerException {
+		int i = handle.lastIndexOf('-');
+		if (i < 0) {
+			throw new InvalidPlayerException("Player handle \"{0}\" must end with a valid team code.", handle);
+		}
+		String teamCode = handle.substring(i + 1);
+		return teamCode;
 	}
 
 }
