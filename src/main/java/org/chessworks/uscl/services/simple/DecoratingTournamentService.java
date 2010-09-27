@@ -138,6 +138,24 @@ public class DecoratingTournamentService implements TournamentService {
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removePlayer(org.chessworks.uscl.model.Player)
+	 */
+	public boolean removePlayer(Player player) {
+		return service.removePlayer(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removeTeam(org.chessworks.uscl.model.Team)
+	 */
+	public int removeTeam(Team team) {
+		return service.removeTeam(team);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(org.chessworks.uscl.model.Player, int)
 	 */
 	public void reserveBoard(Player player, int board) {

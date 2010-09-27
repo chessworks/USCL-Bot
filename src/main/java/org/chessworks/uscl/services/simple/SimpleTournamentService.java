@@ -1,5 +1,6 @@
 package org.chessworks.uscl.services.simple;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -85,9 +86,9 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 					throw new InvalidTeamException("Unknown team: {0}", teamCode);
 				}
 				player = new Player(playerName, team);
-				playerBoards.put(player, board);
 			}
 		}
+		playerBoards.put(player, board);
 		return player;
 	}
 
@@ -253,6 +254,43 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		t = new Team(teamCode);
 		teams.put(teamCode.toUpperCase(), t);
 		return t;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removePlayer(Player)
+	 */
+	@Override
+	public boolean removePlayer(Player player) {
+		playerBoards.remove(player);
+		String key = player.getHandle().toLowerCase();
+		player = players.remove(key);
+		if (player == null)
+			return false;
+		Team team = player.getTeam();
+		team.getPlayers().remove(player);
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removeTeam(Team)
+	 */
+	@Override
+	public int removeTeam(Team team) {
+		String key = team.getTeamCode().toUpperCase();
+		team = teams.remove(key);
+		if (team == null)
+			return -1;
+		int count = 0;
+		ArrayList<Player> list = new ArrayList<Player>(team.getPlayers());
+		for (Player p : list) {
+			boolean done = removePlayer(p);
+			if (done) count++;
+		}
+		return count;
 	}
 
 	/**

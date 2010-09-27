@@ -32,33 +32,63 @@ public class FileTournamentService extends SimpleTournamentService {
 	private final PlayersIO playersIO = new PlayersIO();
 	private SimpleTitleService titleService = new SimpleTitleService();
 
+	@Override
 	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		Player players = super.createPlayer(handle);
 		playersIO.setDirty();
 		return players;
 	}
 
+	@Override
 	public Team createTeam(String teamCode) throws InvalidTeamException {
 		Team team = super.createTeam(teamCode);
 		teamsIO.setDirty();
 		return team;
 	}
 
+	@Override
 	public void clearSchedule() {
 		super.clearSchedule();
 		scheduleIO.setDirty();
 	}
 
+	@Override
 	public void schedule(Player white, Player black, int board) {
 		super.schedule(white, black, board);
 		scheduleIO.setDirty();
 	}
 
+	@Override
+	public boolean removePlayer(Player player) {
+		boolean removed = super.removePlayer(player);
+		playersIO.setDirty();
+		scheduleIO.setDirty();
+		return removed;
+	}
+
+	@Override
+	public int removeTeam(Team team) {
+		int playerCount = super.removeTeam(team);
+		playersIO.setDirty();
+		scheduleIO.setDirty();
+		teamsIO.setDirty();
+		return playerCount;
+	}
+
+	@Override
 	public void reserveBoard(Player player, int board) {
 		super.reserveBoard(player, board);
 		scheduleIO.setDirty();
 	}
 
+	@Override
+	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
+		Player player = super.reserveBoard(playerName, board, allowNewPlayer);
+		scheduleIO.setDirty();
+		return player;
+	}
+
+	@Override
 	public int unreserveBoard(Player player) {
 		int board = super.unreserveBoard(player);
 		scheduleIO.setDirty();

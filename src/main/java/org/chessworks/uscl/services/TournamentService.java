@@ -17,6 +17,10 @@ public interface TournamentService extends Flushable {
 
 	Team createTeam(String teamCode) throws InvalidTeamException;
 
+	boolean removePlayer(Player player);
+
+	int removeTeam(Team team);
+
 	Collection<Player> findAllPlayers();
 
 	Collection<Team> findAllTeams();

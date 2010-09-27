@@ -297,6 +297,27 @@ public class USCLBot {
 		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
+	public void cmdRemovePlayer(User teller, Player player) {
+		boolean removed = tournamentService.removePlayer(player);
+		tournamentService.flush();
+		if (!removed) {
+			tell(teller, "I'm not able to find {0} in the tournament.", player);
+		} else {
+			tell(teller, "Done.  Player {0} is no longer in the tournament.", player);
+		}
+	}
+
+	public void cmdRemoveTeam(User teller, Team team) {
+		int playerCount = tournamentService.removeTeam(team);
+		tournamentService.flush();
+		if (playerCount < 0) {
+			tell(teller, "I'm not able to find {0} in the tournament.", team);
+		} else {
+			tell(teller, "Done.  Team {0} is no longer in the tournament.", team.getTeamCode());
+			tell(teller, "{0} players were also removed.", playerCount);
+		}
+	}
+
 	public void cmdReserveGame(User teller, String playerHandle, int board) {
 		Player player = tournamentService.findPlayer(playerHandle);
 		if (player != null) {
