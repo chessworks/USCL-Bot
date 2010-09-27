@@ -244,7 +244,7 @@ public class USCLBot {
 		}
 		tournamentService.flush();
 		tell(teller, "Done.  Player {0} has joined the \"{1}\".", player, player.getTeam());
-		tell(teller, "To set the player's real name, use: \"set-player {0} rating 2200\"", player);
+		tell(teller, "To set the player''s real name, use: \"set-player {0} name 2200\"", player);
 		cmdShowPlayer(teller, player);
 	}
 
@@ -301,7 +301,7 @@ public class USCLBot {
 		boolean removed = tournamentService.removePlayer(player);
 		tournamentService.flush();
 		if (!removed) {
-			tell(teller, "I'm not able to find {0} in the tournament.", player);
+			tell(teller, "I''m not able to find {0} in the tournament.", player);
 		} else {
 			tell(teller, "Done.  Player {0} is no longer in the tournament.", player);
 		}
@@ -311,7 +311,7 @@ public class USCLBot {
 		int playerCount = tournamentService.removeTeam(team);
 		tournamentService.flush();
 		if (playerCount < 0) {
-			tell(teller, "I'm not able to find {0} in the tournament.", team);
+			tell(teller, "I''m not able to find {0} in the tournament.", team);
 		} else {
 			tell(teller, "Done.  Team {0} is no longer in the tournament.", team.getTeamCode());
 			tell(teller, "{0} players were also removed.", playerCount);
@@ -480,7 +480,7 @@ public class USCLBot {
 
 	public void cmdTestError(User teller) {
 		try {
-			throw new Exception("This is a test.  Don't worry.");
+			throw new Exception("This is a test.  Don''t worry.");
 		} catch (Exception e) {
 			reportException(e);
 			tell(teller, "Test successful.");

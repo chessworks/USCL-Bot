@@ -215,7 +215,7 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		String teamCode = teamCode(handle);
 		Team team = teams.get(teamCode.toUpperCase());
 		if (team == null) {
-			throw new InvalidTeamException("Unknown team: {0}", team);
+			throw new InvalidTeamException("Unknown team: {0}", teamCode);
 		}
 		return createPlayer(handle, team);
 	}
