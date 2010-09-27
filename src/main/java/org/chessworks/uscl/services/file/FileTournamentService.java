@@ -40,6 +40,13 @@ public class FileTournamentService extends SimpleTournamentService {
 	}
 
 	@Override
+	public Player createPlayer(String handle, Team team) throws InvalidPlayerException {
+		Player players = super.createPlayer(handle, team);
+		playersIO.setDirty();
+		return players;
+	}
+
+	@Override
 	public Team createTeam(String teamCode) throws InvalidTeamException {
 		Team team = super.createTeam(teamCode);
 		teamsIO.setDirty();
@@ -190,7 +197,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				Integer rating = player.ratings().get(USCLBot.USCL_RATING);
 				String teamCode = player.getTeam().getTeamCode();
 				String title = player.getTitles().toString();
-				String id = handle.substring(handle.length() - teamCode.length() - 1);
+				String id = handle;
 				String website = player.getWebsite();
 				if (website == null) website = "Unavailable";
 				out.format("player.%s.handle=%s%n", id, handle);
@@ -199,8 +206,8 @@ public class FileTournamentService extends SimpleTournamentService {
 					out.format("player.%s.rating=%d%n", id, rating);
 				}
 				out.format("player.%s.team=%s%n", id, teamCode);
-				out.format("player.%s.title=%s%n", id, title);
-				out.format("team.%s.website=%s%n", id, website);
+				out.format("player.%s.titles=%s%n", id, title);
+				out.format("player.%s.website=%s%n", id, website);
 				out.println();
 			}
 		}
@@ -262,7 +269,7 @@ public class FileTournamentService extends SimpleTournamentService {
 		}
 
 		@Override
-		public void doRead(BufferedReader in) throws IOException {
+		public void doRead(BufferedReader in) throws IOException, InvalidPlayerException, InvalidTeamException {
 			while (true) {
 				String line = in.readLine();
 				if (line == null)
@@ -276,8 +283,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				String handle = args[1];
 				String game = args[2];
 				int gameNum = Integer.parseInt(game);
-				Player player = FileTournamentService.super.findPlayer(handle);
-				FileTournamentService.super.reserveBoard(player, gameNum);
+				FileTournamentService.super.reserveBoard(handle, gameNum, true);
 			}
 		}
 

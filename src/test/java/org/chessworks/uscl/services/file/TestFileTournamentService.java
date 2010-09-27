@@ -18,6 +18,8 @@ public class TestFileTournamentService extends TestCase {
 
 	private FileTournamentService service;
 	private FileTournamentService service2;
+	private FileTournamentService service3;
+	private FileTournamentService service4;
 	private File playersFile;
 	private File scheduleFile;
 	private File teamsFile;
@@ -43,6 +45,14 @@ public class TestFileTournamentService extends TestCase {
 		service2.setPlayersFile(playersFile);
 		service2.setScheduleFile(scheduleFile);
 		service2.setTeamsFile(teamsFile);
+		service3 = new FileTournamentService();
+		service3.setPlayersFile(playersFile);
+		service3.setScheduleFile(scheduleFile);
+		service3.setTeamsFile(teamsFile);
+		service4 = new FileTournamentService();
+		service4.setPlayersFile(playersFile);
+		service4.setScheduleFile(scheduleFile);
+		service4.setTeamsFile(teamsFile);
 	}
 
 	public void testClearSchedule() throws Exception {
@@ -121,6 +131,43 @@ public class TestFileTournamentService extends TestCase {
 	}
 
 	public void testCreateTeam() throws Exception {
+	}
+
+	public void testRemovePlayer() throws Exception {
+	}
+
+	public void testRemoveTeam() throws Exception {
+		service.load();
+		Team icc1 = service.findTeam("ICC");
+		assertNotNull(icc1);
+		Player player1a = service.findPlayer("DuckStorm");
+		Player player1b = service.findPlayer("MrBob");
+		assertNotNull(player1a);
+		assertNotNull(player1b);
+		service.removeTeam(icc1);
+		service.save();
+		service2.load();
+		Team icc2 = service2.findTeam("ICC");
+		assertNull(icc2);
+		Player player2a = service2.findPlayer("DuckStorm");
+		Player player2b = service2.findPlayer("MrBob");
+		assertNull(player2a);
+		assertNull(player2b);
+		icc2 = service2.createTeam("ICC");
+		assertNotNull(icc2);
+		player2a = service2.createPlayer("DuckStorm", icc2);
+		player2b = service2.createPlayer("MrBob", icc2);
+		assertNotNull(player2a);
+		assertNotNull(player2b);
+		service2.save();
+		service3.load();
+		Team icc3 = service3.findTeam("ICC");
+		assertNotNull(icc1);
+		Player player3a = service3.findPlayer("DuckStorm");
+		Player player3b = service3.findPlayer("MrBob");
+		assertNotNull(player3a);
+		assertNotNull(player3b);
+		service.save();
 	}
 
 	public void testFindAllPlayers() throws Exception {
