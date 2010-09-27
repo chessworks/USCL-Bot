@@ -53,7 +53,7 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "September 21, 2010";
+	public static final String BOT_RELEASE_DATE = "September 27, 2010";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
