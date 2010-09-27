@@ -1,4 +1,1 @@
-#USCL Reserved Boards
 
-reserve-game DuckStorm 90
-reserve-game MrBob 90
