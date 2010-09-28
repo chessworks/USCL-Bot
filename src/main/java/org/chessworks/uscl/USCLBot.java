@@ -436,7 +436,7 @@ public class USCLBot {
 		sendAdminCommand("set-other {0} 4 ", player);
 		sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
 		sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
-		sendAdminCommand("set-other {0} 7 ", player);
+		sendAdminCommand("set-other {0} 7", player);
 	}
 
 	public void cmdRefreshAllProfiles(User teller) {
