@@ -352,11 +352,11 @@ public class USCLBot {
 	public void cmdSetPlayer(User teller, Player player, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
 		String value = setting.toString();
 		var = var.toLowerCase();
-		if ("name".equals(var)) {
+		if (ComparisionHelper.anyEquals(var, "name", "fullname")) {
 			player.setRealName(value);
-		} else if ("handle".equals(var)) {
+		} else if (ComparisionHelper.anyEquals(var, "handle", "username")) {
 			player.setHandle(var);
-		} else if ("title".equals(var)) {
+		} else if (ComparisionHelper.anyEquals(var, "title", "titles")) {
 			Set<Title> titles = player.getTitles();
 			titles.clear();
 			String[] titleNames = CollectionHelper.split(value);
@@ -370,7 +370,7 @@ public class USCLBot {
 				int r = Integer.parseInt(value);
 				ratings.put(USCL_RATING, r);
 			}
-		} else if ("website".equals(var)) {
+		} else if (ComparisionHelper.anyEquals(var, "web", "webpage", "website")) {
 			player.setWebsite(value);
 		} else {
 			tell(teller, "Unknown variable: " + var);
