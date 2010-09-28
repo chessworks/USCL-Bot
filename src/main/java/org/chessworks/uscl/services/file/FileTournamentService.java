@@ -102,6 +102,18 @@ public class FileTournamentService extends SimpleTournamentService {
 		return board;
 	}
 
+	@Override
+	public void updatePlayer(Player player) {
+		super.updatePlayer(player);
+		playersIO.setDirty();
+	}
+
+	@Override
+	public void updateTeam(Team team) {
+		super.updateTeam(team);
+		teamsIO.setDirty();
+	}
+
 	public void setPlayersFile(File file) {
 		this.playersIO.setFile(file);
 	}

@@ -296,6 +296,24 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	/**
 	 * {@inheritDoc}
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#updatePlayer(Player)
+	 */
+	@Override
+	public void updatePlayer(Player player) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#updateTeam(Team)
+	 */
+	@Override
+	public void updateTeam(Team team) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#flush()
 	 */
 	@Override

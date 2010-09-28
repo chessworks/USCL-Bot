@@ -378,6 +378,8 @@ public class USCLBot {
 		}
 		cmdShowPlayer(teller, player);
 		cmdRefreshProfile(teller, player);
+		tournamentService.updatePlayer(player);
+		tournamentService.flush();
 	}
 
 	public void cmdSetTeam(User teller, Team team, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
@@ -394,6 +396,8 @@ public class USCLBot {
 			return;
 		}
 		cmdShowTeam(teller, team);
+		tournamentService.updateTeam(team);
+		tournamentService.flush();
 	}
 
 	private void cmdRefreshProfile(User teller, Player player) {

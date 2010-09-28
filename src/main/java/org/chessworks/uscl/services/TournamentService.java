@@ -17,10 +17,6 @@ public interface TournamentService extends Flushable {
 
 	Team createTeam(String teamCode) throws InvalidTeamException;
 
-	boolean removePlayer(Player player);
-
-	int removeTeam(Team team);
-
 	Collection<Player> findAllPlayers();
 
 	Collection<Team> findAllTeams();
@@ -37,6 +33,10 @@ public interface TournamentService extends Flushable {
 
 	Map<Player, Integer> getPlayerBoardMap();
 
+	boolean removePlayer(Player player);
+
+	int removeTeam(Team team);
+
 	void reserveBoard(Player player, int board);
 
 	Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException;
@@ -44,6 +44,10 @@ public interface TournamentService extends Flushable {
 	void schedule(Player white, Player black, int board);
 
 	int unreserveBoard(Player player);
+
+	void updatePlayer(Player player);
+
+	void updateTeam(Team team);
 
 	/** Saves any unwritten data. */
 	void flush();
