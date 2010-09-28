@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +76,19 @@ public class USCLBot {
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
 
 	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
+
+	public static final List<Title> ICC_TITLES;
+	static {
+		ArrayList<Title> list = new ArrayList<Title>(3);
+		list.add(SimpleTitleService.FM);
+		list.add(SimpleTitleService.IM);
+		list.add(SimpleTitleService.GM);
+		list.add(SimpleTitleService.WFM);
+		list.add(SimpleTitleService.WIM);
+		list.add(SimpleTitleService.WGM);
+		list.trimToSize();
+		ICC_TITLES = Collections.unmodifiableList(list);
+	}
 
 	public static void main(String[] args) throws IOException, InvalidNameException {
 		Properties settings = loadSettingsFile(SETTINGS_FILE);
@@ -409,6 +424,11 @@ public class USCLBot {
 		String playerPage = player.getWebsite();
 		String teamName = team.toString();
 		String teamPage = player.getTeam().getWebsite();
+		for (Title title : player.getTitles()) {
+			if (ICC_TITLES.contains(title)) {
+				sendAdminCommand("+{0} {1}", title, player);
+			}
+		}
 
 		sendAdminCommand("set-other {0} 1 Name: {1}", player, playerName);
 		sendAdminCommand("set-other {0} 2 USCL rating: {1}", player, rating);
@@ -417,6 +437,13 @@ public class USCLBot {
 		sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
 		sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
 		sendAdminCommand("set-other {0} 7 ", player);
+	}
+
+	public void cmdRefreshAllProfiles(User teller) {
+		Collection<Player> players = tournamentService.findAllPlayers();
+		for (Player p : players) {
+			cmdRefreshProfile(teller, p);
+		}
 	}
 
 	public void cmdShow(User teller) {
