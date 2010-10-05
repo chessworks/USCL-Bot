@@ -712,6 +712,7 @@ public class USCLBot {
 			_blackNames[gameNumber] = null;
 		}
 		_observerCountNow[gameNumber] = 0;
+		command.spoof("ROBOadmin", "observe {0}", gameNumber);
 		/* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
 	}
 
@@ -901,11 +902,20 @@ public class USCLBot {
 			sendCommand("sshout {0}", msg);
 		}
 
+		public void spoof(String handle, String command, Object... args) {
+			if (args.length > 0) {
+				command = MessageFormat.format(command, args);
+			}
+			sendCommand("spoof {0} {1}", handle, command);
+		}
+
 		/**
 		 * Sends a personal tell to the user.
 		 */
 		public void tell(String handle, String msg, Object... args) {
-			msg = MessageFormat.format(msg, args);
+			if (args.length > 0) {
+				msg = MessageFormat.format(msg, args);
+			}
 			sendQuietly("tell {0} {1}", handle, msg);
 		}
 
@@ -913,7 +923,9 @@ public class USCLBot {
 		 * Sends a personal tell to the user.
 		 */
 		public void tell(User user, String msg, Object... args) {
-			msg = MessageFormat.format(msg, args);
+			if (args.length > 0) {
+				msg = MessageFormat.format(msg, args);
+			}
 			sendQuietly("tell {0} {1}", user, msg);
 		}
 
@@ -921,7 +933,9 @@ public class USCLBot {
 		 * Sends a tell to the channel.
 		 */
 		public void tellAndEcho(int channel, String msg, Object... args) {
-			msg = MessageFormat.format(msg, args);
+			if (args.length > 0) {
+				msg = MessageFormat.format(msg, args);
+			}
 			sendCommand("tell {0} {1}", channel, msg);
 		}
 	}
