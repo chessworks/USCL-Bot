@@ -74,10 +74,10 @@ public class USCLBot {
 	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
 	 */
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
-
 	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
 
 	public static final List<Title> ICC_TITLES;
+
 	static {
 		ArrayList<Title> list = new ArrayList<Title>(3);
 		list.add(SimpleTitleService.FM);
@@ -88,6 +88,33 @@ public class USCLBot {
 		list.add(SimpleTitleService.WGM);
 		list.trimToSize();
 		ICC_TITLES = Collections.unmodifiableList(list);
+	}
+
+	private static void loadConnectionSettings(Properties settings, USCLBot bot) {
+		String loginName = settings.getProperty("chessclub.loginName", "USCL-Bot");
+		String loginPass = settings.getProperty("chessclub.loginPass", "unknown");
+		String adminPass = settings.getProperty("chessclub.adminPass", "unkonwn");
+		String hostName = settings.getProperty("chessclub.hostName", "chessclub.com");
+		String hostPort = settings.getProperty("chessclub.hostPort", "5001");
+
+		System.out.println("Connection Settings:");
+		System.out.println("chessclub.loginName  = " + loginName);
+		System.out.println("chessclub.hostName   = " + hostName);
+		System.out.println("chessclub.hostPort   = " + hostPort);
+		System.out.println();
+		bot.setHostName(hostName);
+		bot.setHostPort(hostPort);
+		bot.setLoginName(loginName);
+		bot.setLoginPass(loginPass);
+		bot.setAdminPass(adminPass);
+	}
+
+	public static Properties loadSettingsFile(String settingsFile) {
+		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
+		/* System properties will override the settings file. */
+		Properties systemProperties = System.getProperties();
+		configuredSettings.putAll(systemProperties);
+		return configuredSettings;
 	}
 
 	public static void main(String[] args) throws IOException, InvalidNameException {
@@ -119,33 +146,6 @@ public class USCLBot {
 		bot.setUserService(userService);
 		bot.setTournamentService(tournamentService);
 		bot.start();
-	}
-
-	public static Properties loadSettingsFile(String settingsFile) {
-		Properties configuredSettings = FileHelper.loadExternalPropertiesFile(settingsFile, null);
-		/* System properties will override the settings file. */
-		Properties systemProperties = System.getProperties();
-		configuredSettings.putAll(systemProperties);
-		return configuredSettings;
-	}
-
-	private static void loadConnectionSettings(Properties settings, USCLBot bot) {
-		String loginName = settings.getProperty("chessclub.loginName", "USCL-Bot");
-		String loginPass = settings.getProperty("chessclub.loginPass", "unknown");
-		String adminPass = settings.getProperty("chessclub.adminPass", "unkonwn");
-		String hostName = settings.getProperty("chessclub.hostName", "chessclub.com");
-		String hostPort = settings.getProperty("chessclub.hostPort", "5001");
-
-		System.out.println("Connection Settings:");
-		System.out.println("chessclub.loginName  = " + loginName);
-		System.out.println("chessclub.hostName   = " + hostName);
-		System.out.println("chessclub.hostPort   = " + hostPort);
-		System.out.println();
-		bot.setHostName(hostName);
-		bot.setHostPort(hostPort);
-		bot.setLoginName(loginName);
-		bot.setLoginPass(loginPass);
-		bot.setAdminPass(adminPass);
 	}
 
 	//TODO: Fix this ugly hack.
@@ -194,6 +194,8 @@ public class USCLBot {
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
 
+	private Commands command = new Commands();
+
 	/** Sends an atell followed by tell to all managers. */
 	public void alertManagers(String msg, Object... args) {
 		Set<User> managerList = userService.findUsersInRole(managerRole);
@@ -218,7 +220,7 @@ public class USCLBot {
 			msg = MessageFormat.format(msg, args);
 		}
 		for (User user : users) {
-			sendQuietly("{0} {1} {2}", tellType, user, msg);
+			command.sendQuietly("{0} {1} {2}", tellType, user, msg);
 		}
 	}
 
@@ -238,11 +240,11 @@ public class USCLBot {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		sendQuietly("admin {0}", adminPass);
+		command.sendQuietly("admin {0}", adminPass);
 		for (User user : users) {
-			sendQuietly("{0} {1} {2}", tellType, user, msg);
+			command.sendQuietly("{0} {1} {2}", tellType, user, msg);
 		}
-		sendQuietly("admin");
+		command.sendQuietly("admin");
 	}
 
 	public void cmdAddPlayer(User teller, String playerHandle) {
@@ -254,19 +256,19 @@ public class USCLBot {
 			return;
 		} catch (InvalidTeamException e) {
 			replyError(teller, e);
-			tell(teller, "To create a new team, use the \"add-team\" command.  Usage: add-team XXX");
+			command.tell(teller, "To create a new team, use the \"add-team\" command.  Usage: add-team XXX");
 			return;
 		}
 		tournamentService.flush();
-		tell(teller, "Done.  Player {0} has joined the \"{1}\".", player, player.getTeam());
-		tell(teller, "To set the player''s real name, use: \"set-player {0} name 2200\"", player);
+		command.tell(teller, "Done.  Player {0} has joined the \"{1}\".", player, player.getTeam());
+		command.tell(teller, "To set the player''s real name, use: \"set-player {0} name 2200\"", player);
 		cmdShowPlayer(teller, player);
 	}
 
 	public void cmdAddTeam(User teller, String teamCode) {
 		Team team = tournamentService.findTeam(teamCode);
 		if (team != null) {
-			tell(teller, "A team with name {0} already exists.", teamCode);
+			command.tell(teller, "A team with name {0} already exists.", teamCode);
 			return;
 		}
 		try {
@@ -276,8 +278,8 @@ public class USCLBot {
 			return;
 		}
 		tournamentService.flush();
-		tell(teller, "Done.  Team {0} has now been created.", team.getTeamCode());
-		tell(teller, "To set the team name, use: \"set-team {0} name New York Giants\"", team.getTeamCode());
+		command.tell(teller, "Done.  Team {0} has now been created.", team.getTeamCode());
+		command.tell(teller, "To set the team name, use: \"set-team {0} name New York Giants\"", team.getTeamCode());
 		cmdShowTeam(teller, team);
 	}
 
@@ -285,15 +287,15 @@ public class USCLBot {
 		Formatter msg = new Formatter();
 		msg.format("%s\\n", " ** The new preferred name for this command is: clear-games.");
 		msg.format("%s\\n", " ** The old name (\"clear\") will continue to work.");
-		qtell(teller, msg);
+		command.qtell(teller, msg);
 		cmdClearGames(teller);
 	}
 
 	public void cmdClearGames(User teller) {
 		tournamentService.clearSchedule();
 		tournamentService.flush();
-		qtell(teller, " Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
-		sendCommand("-notify *");
+		command.qtell(teller, " Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
+		command.sendCommand("-notify *");
 	}
 
 	public void cmdKill(User teller) {
@@ -308,17 +310,44 @@ public class USCLBot {
 		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
-	public void cmdRevert(User teller) {
-		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
+	public void cmdRefreshAllProfiles(User teller) {
+		Collection<Player> players = tournamentService.findAllPlayers();
+		for (Player p : players) {
+			cmdRefreshProfile(teller, p);
+		}
+	}
+
+	private void cmdRefreshProfile(User teller, Player player) {
+		Team team = player.getTeam();
+		Integer r = player.ratings().get(USCL_RATING);
+
+		String playerName = player.getTitledRealName();
+		String rating = (r == null || r < 0) ? "Unavailable" : r.toString();
+		String playerPage = player.getWebsite();
+		String teamName = team.toString();
+		String teamPage = player.getTeam().getWebsite();
+		for (Title title : player.getTitles()) {
+			if (ICC_TITLES.contains(title)) {
+				command.sendAdminCommand("+{0} {1}", title, player);
+			}
+		}
+
+		command.sendAdminCommand("set-other {0} 1 Name: {1}", player, playerName);
+		command.sendAdminCommand("set-other {0} 2 USCL rating: {1}", player, rating);
+		command.sendAdminCommand("set-other {0} 3 Profile page: {1}", player, playerPage);
+		command.sendAdminCommand("set-other {0} 4 ", player);
+		command.sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
+		command.sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
+		command.sendAdminCommand("set-other {0} 7", player);
 	}
 
 	public void cmdRemovePlayer(User teller, Player player) {
 		boolean removed = tournamentService.removePlayer(player);
 		tournamentService.flush();
 		if (!removed) {
-			tell(teller, "I''m not able to find {0} in the tournament.", player);
+			command.tell(teller, "I''m not able to find {0} in the tournament.", player);
 		} else {
-			tell(teller, "Done.  Player {0} is no longer in the tournament.", player);
+			command.tell(teller, "Done.  Player {0} is no longer in the tournament.", player);
 		}
 	}
 
@@ -326,10 +355,10 @@ public class USCLBot {
 		int playerCount = tournamentService.removeTeam(team);
 		tournamentService.flush();
 		if (playerCount < 0) {
-			tell(teller, "I''m not able to find {0} in the tournament.", team);
+			command.tell(teller, "I''m not able to find {0} in the tournament.", team);
 		} else {
-			tell(teller, "Done.  Team {0} is no longer in the tournament.", team.getTeamCode());
-			tell(teller, "{0} players were also removed.", playerCount);
+			command.tell(teller, "Done.  Team {0} is no longer in the tournament.", team.getTeamCode());
+			command.tell(teller, "{0} players were also removed.", playerCount);
 		}
 	}
 
@@ -339,8 +368,8 @@ public class USCLBot {
 			playerHandle = player.getHandle();
 			tournamentService.reserveBoard(player, board);
 		} else {
-			tell(teller, "Warning: {0} is not a recognized player name.", playerHandle);
-			tell(teller, "    ...  Please tell me \"addPlayer {0}\".", playerHandle);
+			command.tell(teller, "Warning: {0} is not a recognized player name.", playerHandle);
+			command.tell(teller, "    ...  Please tell me \"addPlayer {0}\".", playerHandle);
 			try {
 				player = tournamentService.reserveBoard(playerHandle, board, true);
 			} catch (InvalidNameException e) {
@@ -349,19 +378,23 @@ public class USCLBot {
 			}
 		}
 		tournamentService.flush();
-		tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
-		sendCommand("+notify {0}", player);
-		sendAdminCommand("reserve-game {0} {1}", player, board);
+		command.tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
+		command.sendCommand("+notify {0}", player);
+		command.sendAdminCommand("reserve-game {0} {1}", player, board);
+	}
+
+	public void cmdRevert(User teller) {
+		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	public void cmdSchedule(User teller, int boardNum, Player white, Player black) {
 		tournamentService.schedule(white, black, boardNum);
 		tournamentService.flush();
-		sendCommand("+notify {0}", white);
-		sendCommand("+notify {0}", black);
-		sendAdminCommand("reserve-game {0} {1}", white, boardNum);
-		sendAdminCommand("reserve-game {0} {1}", black, boardNum);
-		tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
+		command.sendCommand("+notify {0}", white);
+		command.sendCommand("+notify {0}", black);
+		command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
+		command.sendAdminCommand("reserve-game {0} {1}", black, boardNum);
+		command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
 	}
 
 	public void cmdSetPlayer(User teller, Player player, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
@@ -388,7 +421,7 @@ public class USCLBot {
 		} else if (ComparisionHelper.anyEquals(var, "web", "webpage", "website")) {
 			player.setWebsite(value);
 		} else {
-			tell(teller, "Unknown variable: " + var);
+			command.tell(teller, "Unknown variable: " + var);
 			return;
 		}
 		cmdShowPlayer(teller, player);
@@ -407,7 +440,7 @@ public class USCLBot {
 		} else if (ComparisionHelper.anyEquals(var, "web", "webpage", "website")) {
 			team.setWebsite(value);
 		} else {
-			tell(teller, "Unknown variable: " + var);
+			command.tell(teller, "Unknown variable: " + var);
 			return;
 		}
 		cmdShowTeam(teller, team);
@@ -415,42 +448,11 @@ public class USCLBot {
 		tournamentService.flush();
 	}
 
-	private void cmdRefreshProfile(User teller, Player player) {
-		Team team = player.getTeam();
-		Integer r = player.ratings().get(USCL_RATING);
-
-		String playerName = player.getTitledRealName();
-		String rating = (r == null || r < 0) ? "Unavailable" : r.toString();
-		String playerPage = player.getWebsite();
-		String teamName = team.toString();
-		String teamPage = player.getTeam().getWebsite();
-		for (Title title : player.getTitles()) {
-			if (ICC_TITLES.contains(title)) {
-				sendAdminCommand("+{0} {1}", title, player);
-			}
-		}
-
-		sendAdminCommand("set-other {0} 1 Name: {1}", player, playerName);
-		sendAdminCommand("set-other {0} 2 USCL rating: {1}", player, rating);
-		sendAdminCommand("set-other {0} 3 Profile page: {1}", player, playerPage);
-		sendAdminCommand("set-other {0} 4 ", player);
-		sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
-		sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
-		sendAdminCommand("set-other {0} 7", player);
-	}
-
-	public void cmdRefreshAllProfiles(User teller) {
-		Collection<Player> players = tournamentService.findAllPlayers();
-		for (Player p : players) {
-			cmdRefreshProfile(teller, p);
-		}
-	}
-
 	public void cmdShow(User teller) {
 		Formatter msg = new Formatter();
 		msg.format("%s\\n", " ** The new preferred name for this command is: show-games.");
 		msg.format("%s\\n", " ** The old name (\"show\") will continue to work.");
-		qtell(teller, msg);
+		command.qtell(teller, msg);
 		cmdShowGames(teller);
 	}
 
@@ -473,7 +475,7 @@ public class USCLBot {
 			msg.format(qtellPattern, player, board);
 			System.out.format(consolePattern, player, board);
 		}
-		qtell(teller, msg);
+		command.qtell(teller, msg);
 	}
 
 	public void cmdShowPlayer(User teller, Player player) {
@@ -486,7 +488,7 @@ public class USCLBot {
 		msg.format("   %6s: %s\\n", "Rating", ratingStr);
 		msg.format("   %6s: %s\\n", "Team", player.getTeam());
 		msg.format("   %6s: %s\\n", "Web", player.getWebsite());
-		qtell(teller, msg);
+		command.qtell(teller, msg);
 	}
 
 	public void cmdShowTeam(User teller, Team team) {
@@ -506,7 +508,7 @@ public class USCLBot {
 		for (Player player : team.getPlayers()) {
 			msg.format(fmt, player);
 		}
-		qtell(teller, msg);
+		command.qtell(teller, msg);
 	}
 
 	public void cmdTestError(User teller) {
@@ -514,7 +516,7 @@ public class USCLBot {
 			throw new Exception("This is a test.  Don''t worry.");
 		} catch (Exception e) {
 			reportException(e);
-			tell(teller, "Test successful.");
+			command.tell(teller, "Test successful.");
 			return;
 		}
 	}
@@ -523,10 +525,10 @@ public class USCLBot {
 		int board = tournamentService.unreserveBoard(player);
 		tournamentService.flush();
 		if (board < 0) {
-			tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
+			command.tell(teller, "Sorry, player \"{0}\" was not associated wtih any boards.", player);
 		} else {
-			tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
-			sendCommand("-notify {0}", player);
+			command.tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
+			command.sendCommand("-notify {0}", player);
 		}
 	}
 
@@ -557,10 +559,10 @@ public class USCLBot {
 		} catch (ConversionException e) {
 			replyError(teller, e);
 		} catch (NoSuchCommandException e) {
-			tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
+			command.tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
 		} catch (Exception e) {
 			reportException(e);
-			tell(teller, "Uggg, something went wrong.  Unable to execute command.");
+			command.tell(teller, "Uggg, something went wrong.  Unable to execute command.");
 		}
 	}
 
@@ -568,12 +570,12 @@ public class USCLBot {
 		userName = conn.getUsername();
 		tellManagers("I have arrived.");
 		tellManagers("Running {0} version {1} built on {2}", BOT_RELEASE_NAME, BOT_RELEASE_NUMBER, BOT_RELEASE_DATE);
-		sendCommand("set noautologout 1");
-		sendCommand("set style 13");
-		sendCommand("-notify *");
+		command.sendCommand("set noautologout 1");
+		command.sendCommand("set style 13");
+		command.sendCommand("-notify *");
 		Set<Player> players = tournamentService.getPlayerBoardMap().keySet();
 		for (Player p : players) {
-			sendCommand("+notify {0}", p);
+			command.sendCommand("+notify {0}", p);
 		}
 		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_ARRIVED);
 		conn.addDatagramListener(conn, Datagram.DG_NOTIFY_LEFT);
@@ -610,11 +612,11 @@ public class USCLBot {
 		String startOrResume = (!resumed) ? "Started" : "Resumed";
 		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
 		if (!resumed) {
-			sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
+			command.sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
 					blackName, startOrResume, gameNumber);
 		}
-		sendCommand("qset {0} isolated 1", whiteName);
-		sendCommand("qset {0} isolated 1", blackName);
+		command.sendCommand("qset {0} isolated 1", whiteName);
+		command.sendCommand("qset {0} isolated 1", blackName);
 	}
 
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
@@ -630,8 +632,8 @@ public class USCLBot {
 		_blackNames[gameNumber] = null;
 		if (!adjourned) {
 			_observerCountMax[gameNumber] = 0;
-			sendCommand("qset {0} isolated 0", whiteName);
-			sendCommand("qset {0} isolated 0", blackName);
+			command.sendCommand("qset {0} isolated 0", whiteName);
+			command.sendCommand("qset {0} isolated 0", blackName);
 		}
 	}
 
@@ -663,21 +665,13 @@ public class USCLBot {
 		if (board >= 0) {
 			if (!loggingIn)
 				tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
-			sendAdminCommand("reserve-game {0} {1}", name, board);
-			sendCommand("observe {0}", name);
+			command.sendAdminCommand("reserve-game {0} {1}", name, board);
+			command.sendCommand("observe {0}", name);
 		}
 	}
 
 	protected void processPlayerDeparted(String name) {
 		tellManagers("{0} departed", name);
-	}
-
-	public void processPlayerStateChange(String player, PlayerState state, int game) {
-		if (state.isPlaying()) {
-			USCLBot.this.sendCommand("observe {0}", game);
-		} else {
-			USCLBot.this.sendCommand("unobserve {0}", player);
-		}
 	}
 
 	private void processPlayersInMyGame(int gameNumber, String playerHandle, PlayerState state, boolean seesKibitz) {
@@ -692,7 +686,15 @@ public class USCLBot {
 			}
 			//Fall through...
 		case PLAYING:
-			qChanPlus(playerHandle, CHANNEL_USCL);
+			command.qChanPlus(playerHandle, CHANNEL_USCL);
+		}
+	}
+
+	public void processPlayerStateChange(String player, PlayerState state, int game) {
+		if (state.isPlaying()) {
+			command.sendCommand("observe {0}", game);
+		} else {
+			command.sendCommand("unobserve {0}", player);
 		}
 	}
 
@@ -720,12 +722,12 @@ public class USCLBot {
 
 	private void replyError(String teller, Throwable t) {
 		t.printStackTrace(System.err);
-		tell(teller, t.getMessage());
+		command.tell(teller, t.getMessage());
 	}
 
 	private void replyError(User user, Throwable t) {
 		t.printStackTrace(System.err);
-		tell(user, "Error - " + t.getMessage());
+		command.tell(user, "Error - " + t.getMessage());
 	}
 
 	private void reportException(Throwable t) {
@@ -738,36 +740,6 @@ public class USCLBot {
 		Collection<User> programmerList = userService.findUsersInRole(programmerRole);
 		broadcast("tell", programmerList, t.toString());
 		qtellProgrammers(msg);
-	}
-
-	public void sendAdminCommand(String command, Object... args) {
-		if (args.length > 0) {
-			command = MessageFormat.format(command, args);
-		}
-		sendQuietly("admin {0}", adminPass);
-		sendCommand(command);
-		sendQuietly("admin");
-	}
-
-	/**
-	 * Sends a command to the server, and echo it as a qtell to all managers.
-	 */
-	public void sendCommand(String command, Object... args) {
-		if (args.length > 0) {
-			command = MessageFormat.format(command, args);
-		}
-		qtellProgrammers(" -  {0}", command);
-		sendQuietly(command);
-	}
-
-	/**
-	 * Sends a command to the server. The command is not echoed as a qtell to managers.
-	 */
-	public void sendQuietly(String command, Object... args) {
-		if (args.length > 0) {
-			command = MessageFormat.format(command, args);
-		}
-		conn.sendCommand(command, true, false, null);
 	}
 
 	/**
@@ -837,13 +809,6 @@ public class USCLBot {
 		this.cmd.setUserService(service);
 	}
 
-	private void sshout(String msg, Object... args) {
-		if (args.length > 0) {
-			msg = MessageFormat.format(msg, args);
-		}
-		sendCommand("sshout {0}", msg);
-	}
-
 	public void start() throws IOException {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
@@ -859,54 +824,14 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends a personal tell to the user.
-	 */
-	public void tell(User user, String msg, Object... args) {
-		msg = MessageFormat.format(msg, args);
-		sendQuietly("tell {0} {1}", user, msg);
-	}
-
-	/**
-	 * Sends a personal tell to the user.
-	 */
-	public void tell(String handle, String msg, Object... args) {
-		msg = MessageFormat.format(msg, args);
-		sendQuietly("tell {0} {1}", handle, msg);
-	}
-
-	public void qtell(String handle, String qtell) {
-		sendQuietly("qtell {0} {1}\\n", handle, qtell);
-	}
-
-	public void qtell(User user, String qtell) {
-		sendQuietly("qtell {0} {1}\\n", user, qtell);
-	}
-
-	public void qtell(String handle, Formatter qtell) {
-		sendQuietly("qtell {0} {1}", handle, qtell);
-	}
-
-	public void qtell(User user, Formatter qtell) {
-		sendQuietly("qtell {0} {1}", user, qtell);
-	}
-
-	/**
-	 * Sends a tell to the channel.
-	 */
-	public void tellAndEcho(int channel, String msg, Object... args) {
-		msg = MessageFormat.format(msg, args);
-		sendCommand("tell {0} {1}", channel, msg);
-	}
-
-	/**
 	 * Sends tells to the event channels (129, 165, and 399).
 	 */
-	private void tellEventChannels(String msg, Object... args) {
+	public void tellEventChannels(String msg, Object... args) {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
-		tellAndEcho(CHANNEL_USCL, msg);
-		tellAndEcho(CHANNEL_EVENTS_GROUP, msg);
+		command.tellAndEcho(CHANNEL_USCL, msg);
+		command.tellAndEcho(CHANNEL_EVENTS_GROUP, msg);
 	}
 
 	/**
@@ -917,8 +842,88 @@ public class USCLBot {
 		broadcastAdmin("atell", managerList, msg, args);
 	}
 
-	public void qChanPlus(String player, int channel) {
-		sendQuietly("qchanplus {0} {1}", player, channel);
+	public class Commands {
+
+		public void qChanPlus(String player, int channel) {
+			sendQuietly("qchanplus {0} {1}", player, channel);
+		}
+
+		public void qtell(String handle, Formatter qtell) {
+			sendQuietly("qtell {0} {1}", handle, qtell);
+		}
+
+		public void qtell(String handle, String qtell) {
+			sendQuietly("qtell {0} {1}\\n", handle, qtell);
+		}
+
+		public void qtell(User user, Formatter qtell) {
+			sendQuietly("qtell {0} {1}", user, qtell);
+		}
+
+		public void qtell(User user, String qtell) {
+			sendQuietly("qtell {0} {1}\\n", user, qtell);
+		}
+
+		public void sendAdminCommand(String command, Object... args) {
+			if (args.length > 0) {
+				command = MessageFormat.format(command, args);
+			}
+			sendQuietly("admin {0}", adminPass);
+			sendCommand(command);
+			sendQuietly("admin");
+		}
+
+		/**
+		 * Sends a command to the server, and echo it as a qtell to all managers.
+		 */
+		public void sendCommand(String command, Object... args) {
+			if (args.length > 0) {
+				command = MessageFormat.format(command, args);
+			}
+			qtellProgrammers(" -  {0}", command);
+			sendQuietly(command);
+		}
+
+		/**
+		 * Sends a command to the server. The command is not echoed as a qtell to managers.
+		 */
+		public void sendQuietly(String command, Object... args) {
+			if (args.length > 0) {
+				command = MessageFormat.format(command, args);
+			}
+			conn.sendCommand(command, true, false, null);
+		}
+
+		public void sshout(String msg, Object... args) {
+			if (args.length > 0) {
+				msg = MessageFormat.format(msg, args);
+			}
+			sendCommand("sshout {0}", msg);
+		}
+
+		/**
+		 * Sends a personal tell to the user.
+		 */
+		public void tell(String handle, String msg, Object... args) {
+			msg = MessageFormat.format(msg, args);
+			sendQuietly("tell {0} {1}", handle, msg);
+		}
+
+		/**
+		 * Sends a personal tell to the user.
+		 */
+		public void tell(User user, String msg, Object... args) {
+			msg = MessageFormat.format(msg, args);
+			sendQuietly("tell {0} {1}", user, msg);
+		}
+
+		/**
+		 * Sends a tell to the channel.
+		 */
+		public void tellAndEcho(int channel, String msg, Object... args) {
+			msg = MessageFormat.format(msg, args);
+			sendCommand("tell {0} {1}", channel, msg);
+		}
 	}
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
@@ -1022,14 +1027,14 @@ public class USCLBot {
 		}
 
 		@Override
-		protected void handleLoginSucceeded() {
-			super.handleLoginSucceeded();
-			onConnected();
+		protected void handleDisconnection(IOException e) {
+			onDisconnected();
 		}
 
 		@Override
-		protected void handleDisconnection(IOException e) {
-			onDisconnected();
+		protected void handleLoginSucceeded() {
+			super.handleLoginSucceeded();
+			onConnected();
 		}
 
 	}
