@@ -13,7 +13,7 @@ public class NameListConverter<T extends SimpleName> extends AbstractConverter<L
 
 	private NamingService<T> service;
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public NameListConverter(Class<T> type) {
 		super((Class) Collection.class, Collections.<T> emptyList());
 	}

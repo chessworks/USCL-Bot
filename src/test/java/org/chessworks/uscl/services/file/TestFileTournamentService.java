@@ -161,7 +161,7 @@ public class TestFileTournamentService extends TestCase {
 		assertNotNull(player2b);
 		service2.save();
 		service3.load();
-		Team icc3 = service3.findTeam("ICC");
+		// Team icc3 = service3.findTeam("ICC");
 		assertNotNull(icc1);
 		Player player3a = service3.findPlayer("DuckStorm");
 		Player player3b = service3.findPlayer("MrBob");
