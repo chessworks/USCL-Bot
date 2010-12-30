@@ -189,7 +189,7 @@ public class USCLBot {
 	/** Utility to convert incoming tells into calls to cmdXXX(). */
 	private CommandDispatcher cmd = new CommandDispatcher(this);
 
-	/** Used to send commands to the chess server.  Such as qtell, tell, reserve-game, etc. */
+	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
 	private Commands command = new Commands();
 
 	/** The underlying connection to the server. Uses Jin's connection library. */
@@ -289,7 +289,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends a message to all players in the list.
+	 * Sends a message to all players in the list, with the admin (*) enabled.
 	 *
 	 * @param tellType
 	 *            The type of tell to use: "tell", "qtell", "message", etc.
@@ -300,7 +300,7 @@ public class USCLBot {
 	 * @param args
 	 *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
 	 */
-	public void broadcastAdmin(String tellType, Collection<User> users, String msg, Object... args) {
+	public void broadcastAsAdmin(String tellType, Collection<User> users, String msg, Object... args) {
 		if (args.length > 0) {
 			msg = MessageFormat.format(msg, args);
 		}
@@ -1079,24 +1079,24 @@ public class USCLBot {
 	 * If the user sends an invalid command, this sends the user an appropriate error message. For example if the user tries to schedule user for a
 	 * game, and the user doesn't exist, you'd want to say "Invalid Player Name".
 	 */
-	private void replyError(String teller, Throwable t) {
+	public void replyError(String teller, Throwable t) {
 		t.printStackTrace(System.err);
-		command.tell(teller, t.getMessage());
+		command.tell(teller, "Error - " + t.getMessage());
 	}
 
 	/**
 	 * If the user sends an invalid command, this sends the user an appropriate error message. For example if the user tries to schedule user for a
 	 * game, and the user doesn't exist, you'd want to say "Invalid Player Name".
 	 */
-	private void replyError(User user, Throwable t) {
+	public void replyError(User teller, Throwable t) {
 		t.printStackTrace(System.err);
-		command.tell(user, "Error - " + t.getMessage());
+		command.tell(teller, "Error - " + t.getMessage());
 	}
 
 	/**
 	 * If something goes unexpectedly wrong in the bot, this will send a series of qtells to all programmers with useful debugging information.
 	 */
-	private void reportException(Throwable t) {
+	public void reportException(Throwable t) {
 		t.printStackTrace(System.err);
 		StringWriter w = new StringWriter();
 		PrintWriter p = new PrintWriter(w);
@@ -1223,12 +1223,11 @@ public class USCLBot {
 	 */
 	public void tellManagers(String msg, Object... args) {
 		Collection<User> managerList = userService.findUsersInRole(managerRole);
-		broadcastAdmin("atell", managerList, msg, args);
+		broadcastAsAdmin("atell", managerList, msg, args);
 	}
 
-
 	/** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
-	/** Used to send commands to the chess server.  Such as qtell, tell, reserve-game, etc. */
+	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
 	public class Commands {
 
 		public void qChanPlus(String player, int channel) {
