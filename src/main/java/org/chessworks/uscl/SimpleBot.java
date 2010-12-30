@@ -152,84 +152,6 @@ import free.chessclub.level2.DatagramListener;
 public class SimpleBot {
 
 	/**
-	 * The path to the file on disk where the configured bot settings are located. The path defaults to "Reserve-Games.b2s", but can be changed using
-	 * the command-line.
-	 */
-	public static final String BOARDS_FILE = "Games.txt";
-
-	public static final String BOT_RELEASE_DATE = "December 30, 2010";
-
-	public static final String BOT_RELEASE_NAME = "SimpleBot";
-
-	public static final String BOT_RELEASE_NUMBER = "1.0.0";
-
-	public static final PrintStream ECHO_STREAM = System.out;
-
-	/**
-	 * The path to the file on disk where the configured bot settings are located. The path defaults to "SimpleBot.properties", but can be changed by
-	 * setting the "SimpleBot.settingsFile" system property on the command-line: "-SimpleBot.settingsFile=myFile.properties".
-	 */
-	public static final String SETTINGS_FILE = System.getProperty("SimpleBot.settingsFile", "SimpleBot.properties");
-
-	/** Utility to convert incoming tells into calls to cmdXXX(). */
-	private CommandDispatcher cmd = new CommandDispatcher(this);
-
-	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-	private Commands command = new Commands();
-
-	/** The underlying connection to the server. Uses Jin's connection library. */
-	private Connection conn;
-
-	/**
-	 * The host name or I.P. address of the chess server.
-	 *
-	 * @see #setHostName(String)
-	 */
-	private String hostName = "chessclub.com";
-
-	/**
-	 * The TCP port number used when connecting to the chess server.
-	 *
-	 * @see #setHostPort(int)
-	 */
-	private int hostPort = 5001;
-
-	/**
-	 * The user name used during login, such as guest.
-	 *
-	 * @see #setLoginName(String)
-	 */
-	private String loginName = "SimpleBot";
-
-	/** The user name assigned by the chess server upon login. e.g. guest233. */
-	private String userName;
-
-	/**
-	 * The password used during login.
-	 *
-	 * @see #setLoginPass(String)
-	 */
-	private String loginPass = "*****";
-
-	/**
-	 * The password used when executing admin commands on the server.
-	 *
-	 * @see #setAdminPass(String)
-	 */
-	private String adminPass = "*****";
-
-	/**
-	 * UserService stores the list of managers & programmers authorized to use this bot.
-	 */
-	private UserService userService;
-
-	/** Users with the manager role can talk to the bot. */
-	private Role managerRole;
-
-	/** Users with the programmer role receive extra debugging information from the bot. */
-	private Role programmerRole;
-
-	/**
 	 * Commands the bot to reply with the result of adding two numbers together.
 	 *
 	 * Syntax: <tt>add 10 5</tt>
@@ -719,6 +641,64 @@ public class SimpleBot {
 
 	}
 
+	/** Utility to convert incoming tells into calls to cmdXXX(). */
+	private CommandDispatcher cmd = new CommandDispatcher(this);
+
+	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
+	private Commands command = new Commands();
+
+	/** The underlying connection to the server. Uses Jin's connection library. */
+	private Connection conn;
+
+	/**
+	 * The host name or I.P. address of the chess server.
+	 *
+	 * @see #setHostName(String)
+	 */
+	private String hostName = "chessclub.com";
+
+	/**
+	 * The TCP port number used when connecting to the chess server.
+	 *
+	 * @see #setHostPort(int)
+	 */
+	private int hostPort = 5001;
+
+	/**
+	 * The user name used during login, such as guest.
+	 *
+	 * @see #setLoginName(String)
+	 */
+	private String loginName = "SimpleBot";
+
+	/** The user name assigned by the chess server upon login. e.g. guest233. */
+	private String userName;
+
+	/**
+	 * The password used during login.
+	 *
+	 * @see #setLoginPass(String)
+	 */
+	private String loginPass = "*****";
+
+	/**
+	 * The password used when executing admin commands on the server.
+	 *
+	 * @see #setAdminPass(String)
+	 */
+	private String adminPass = "*****";
+
+	/**
+	 * UserService stores the list of managers & programmers authorized to use this bot.
+	 */
+	private UserService userService;
+
+	/** Users with the manager role can talk to the bot. */
+	private Role managerRole;
+
+	/** Users with the programmer role receive extra debugging information from the bot. */
+	private Role programmerRole;
+
 	private static void loadConnectionSettings(Properties settings, SimpleBot bot) {
 		String loginName = settings.getProperty("chessclub.loginName", "SimpleBot");
 		String loginPass = settings.getProperty("chessclub.loginPass", "unknown");
@@ -759,5 +739,25 @@ public class SimpleBot {
 
 		bot.start();
 	}
+
+	/**
+	 * The path to the file on disk where the configured bot settings are located. The path defaults to "Reserve-Games.b2s", but can be changed using
+	 * the command-line.
+	 */
+	public static final String BOARDS_FILE = "Games.txt";
+
+	public static final String BOT_RELEASE_DATE = "December 30, 2010";
+
+	public static final String BOT_RELEASE_NAME = "SimpleBot";
+
+	public static final String BOT_RELEASE_NUMBER = "1.0.0";
+
+	public static final PrintStream ECHO_STREAM = System.out;
+
+	/**
+	 * The path to the file on disk where the configured bot settings are located. The path defaults to "SimpleBot.properties", but can be changed by
+	 * setting the "SimpleBot.settingsFile" system property on the command-line: "-SimpleBot.settingsFile=myFile.properties".
+	 */
+	public static final String SETTINGS_FILE = System.getProperty("SimpleBot.settingsFile", "SimpleBot.properties");
 
 }
