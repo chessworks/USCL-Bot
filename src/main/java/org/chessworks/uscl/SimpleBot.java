@@ -24,7 +24,63 @@ import free.chessclub.level2.Datagram;
 import free.chessclub.level2.DatagramEvent;
 import free.chessclub.level2.DatagramListener;
 
-// Welcome to SimpleBot, an example program to illustrate writing bots for ICC.
+/**
+ * Welcome to SimpleBot, an example program to illustrate writing bots for ICC.
+ *
+ * This example supports 4 commands: echo, greet, add, and spoof. For example:
+ * <ul>
+ * <li> <tt>tell simplebot echo Hello there!</tt><br/>
+ * This echo's the command back to the sender.</li>
+ * <li> <tt>tell simplebot greet DuckStorm</tt><br/>
+ * This tells the bot to send "Hello, DuckStorm" to user DuckStorm.</li>
+ * <li> <tt>tell simplebot add 2 10</tt><br/>
+ * This tells the bot to reply with the sum of 2 and 10.
+ * <li> <tt>tell simplebot spoof shout Testing!</tt><br/>
+ * This tells the bot to execute an arbitrary command, in this case a shout.</li>
+ * </ul>
+ *
+ * Commands sent to the bot will result in calling a cmdXXX() method. For example, sending the echo command results in a call to the
+ * {@link #cmdEcho(User, StringBuffer) cmdEcho()} method. The other command handlers are similarly {@link #cmdGreet(User, User) cmdGreet()},
+ * {@link #cmdAdd(User, int, int) cmdAdd()}, and {@link #cmdSpoof(User, StringBuffer) cmdSpoof()}.
+ *
+ * When writing your own bot, this is the first place you'll start... creating your own commands. Every command sent to the bot will result in calling
+ * a cmdXXX() method. You can extend the behavior of the bot simply by adding your own cmdXXX() methods.
+ *
+ * Try looking at the source code for cmdAdd() now. It's only 2 lines. Use this as an example to create a cmdMultiply() method. Then test out the new
+ * multiply command by running the bot.it out. Adding new commands is really just that easy.
+ *
+ * Later, you'll probably get curious how those cmdXXX methods actually get called. Most of the hard work is hidden by the framework. However here is
+ * a quick glimps at the process:
+ * <ol>
+ * <li>A user on the server sends <tt>tell SimpleBot echo This is a test.</tt></li>
+ * <li>The server sends the tell as a Level2 datagram, as specified in {@link ftp://ftp.chessclub.com/pub/icc/formats/formats.txt}.</li>
+ * <li>The connection library (taken from Jin) reads the datagram and delivers it to {@link SimpleBot.Connection#datagramReceived(DatagramEvent)}.
+ * <li>datagramReceived() recognizes the DG_PERSONAL_TELL datagram and dispatches it to
+ * {@link SimpleBot#processPersonalTell(String, String, String, int) processPersonalTell(teller, titles, message, tellType)}.</li>
+ * <li>processPersonalTell() does a few checks for special cases (such as chat from other bots) and then uses the {@link CommandDispatcher} library to
+ * call the corresponding cmdXXXX() method.
+ * <li>The CommandDispatcher then examines the tell and attempts to match the first word to the XXXX part of a cmdXXXX method. Dashes and
+ * capitalization changes are ignored when matching. Once the proper cmdXXXX method is found, the CommandDispatcher examines the input parameter types
+ * and attempts to convert the rest of the tell to the required data types, using various {@link Converter Converters}. For example,
+ * {@link #cmdAdd(User, int, int)} takes 2 numbers as input (the first parameter is always the user sending the command). The command dispatcher
+ * ensures that incoming text is first converted to an int. If that process fails (perhaps the text wasn't a number), the user will receive an
+ * appropriate error message. It then dispatches to the cmdXXXX method using the {@link java.lang.reflect Java Reflection API}. If you don't want to
+ * use Converters, you can also use parameter types String (to capture a single word) or StringBuffer (to capture text through to the end of the
+ * line). But for now just know this part of the framework dispatches to the corresponding cmdXXXX() method and save the magic for later.</li>
+ * <li>Finally cmdXXXX() is where you come in, adding the logic to handle the user's command.</li>
+ *
+ * Writing bots gets fancier when you start wanting information from the server other than tells. You'll need to locate the corresponding Level2
+ * datagram in {@link ftp://ftp.chessclub.com/pub/icc/formats/formats.txt formats.txt} and then modify
+ * {@link SimpleBot.Connection#datagramReceived(DatagramEvent)} to handle the new datagram type. The {@link USCLBot USCL-Bot} uses a number of
+ * different datagrams to be notified when players arrive/depart, when games begin/end, and even when players start observing a given game. When you
+ * get to this stage in your learning, examine both start() and datagramReceived() in SimpleBot, and then compare it to the corresponding versions in
+ * USCLBot. And for now, don't worry about all this... practice adding a few new commands first Maybe by then I'll have improved the framework so you
+ * don't even need to concern yourself with datagrams ever.
+ *
+ * @author Doug Bateman
+ */
+
+//Welcome to SimpleBot, an example program to illustrate writing bots for ICC.
 //
 // This example supports 4 commands: echo, greet, add, and spoof. For example:
 // + tell simplebot echo Hello there!
@@ -94,61 +150,6 @@ import free.chessclub.level2.DatagramListener;
 // worry about all this... practice adding a few new commands first. Maybe by then I'll have improved
 // the framework so you don't even need to concern yourself with datagrams ever. :-).
 
-/**
- * Welcome to SimpleBot, an example program to illustrate writing bots for ICC.
- *
- * This example supports 4 commands: echo, greet, add, and spoof. For example:
- * <ul>
- * <li> <tt>tell simplebot echo Hello there!</tt><br/>
- * This echo's the command back to the sender.</li>
- * <li> <tt>tell simplebot greet DuckStorm</tt><br/>
- * This tells the bot to send "Hello, DuckStorm" to user DuckStorm.</li>
- * <li> <tt>tell simplebot add 2 10</tt><br/>
- * This tells the bot to reply with the sum of 2 and 10.
- * <li> <tt>tell simplebot spoof shout Testing!</tt><br/>
- * This tells the bot to execute an arbitrary command, in this case a shout.</li>
- * </ul>
- *
- * Commands sent to the bot will result in calling a cmdXXX() method. For example, sending the echo command results in a call to the
- * {@link #cmdEcho(User, StringBuffer) cmdEcho()} method. The other command handlers are similarly {@link #cmdGreet(User, User) cmdGreet()},
- * {@link #cmdAdd(User, int, int) cmdAdd()}, and {@link #cmdSpoof(User, StringBuffer) cmdSpoof()}.
- *
- * When writing your own bot, this is the first place you'll start... creating your own commands. Every command sent to the bot will result in calling
- * a cmdXXX() method. You can extend the behavior of the bot simply by adding your own cmdXXX() methods.
- *
- * Try looking at the source code for cmdAdd() now. It's only 2 lines. Use this as an example to create a cmdMultiply() method. Then test out the new
- * multiply command by running the bot.it out. Adding new commands is really just that easy.
- *
- * Later, you'll probably get curious how those cmdXXX methods actually get called. Most of the hard work is hidden by the framework. However here is
- * a quick glimps at the process:
- * <ol>
- * <li>A user on the server sends <tt>tell SimpleBot echo This is a test.</tt></li>
- * <li>The server sends the tell as a Level2 datagram, as specified in {@link ftp://ftp.chessclub.com/pub/icc/formats/formats.txt}.</li>
- * <li>The connection library (taken from Jin) reads the datagram and delivers it to {@link SimpleBot.Connection#datagramReceived(DatagramEvent)}.
- * <li>datagramReceived() recognizes the DG_PERSONAL_TELL datagram and dispatches it to
- * {@link SimpleBot#processPersonalTell(String, String, String, int) processPersonalTell(teller, titles, message, tellType)}.</li>
- * <li>processPersonalTell() does a few checks for special cases (such as chat from other bots) and then uses the {@link CommandDispatcher} library to
- * call the corresponding cmdXXXX() method.
- * <li>The CommandDispatcher then examines the tell and attempts to match the first word to the XXXX part of a cmdXXXX method. Dashes and
- * capitalization changes are ignored when matching. Once the proper cmdXXXX method is found, the CommandDispatcher examines the input parameter types
- * and attempts to convert the rest of the tell to the required data types, using various {@link Converter Converters}. For example,
- * {@link #cmdAdd(User, int, int)} takes 2 numbers as input (the first parameter is always the user sending the command). The command dispatcher
- * ensures that incoming text is first converted to an int. If that process fails (perhaps the text wasn't a number), the user will receive an
- * appropriate error message. It then dispatches to the cmdXXXX method using the {@link java.lang.reflect Java Reflection API}. If you don't want to
- * use Converters, you can also use parameter types String (to capture a single word) or StringBuffer (to capture text through to the end of the
- * line). But for now just know this part of the framework dispatches to the corresponding cmdXXXX() method and save the magic for later.</li>
- * <li>Finally cmdXXXX() is where you come in, adding the logic to handle the user's command.</li>
- *
- * Writing bots gets fancier when you start wanting information from the server other than tells. You'll need to locate the corresponding Level2
- * datagram in {@link ftp://ftp.chessclub.com/pub/icc/formats/formats.txt formats.txt} and then modify
- * {@link SimpleBot.Connection#datagramReceived(DatagramEvent)} to handle the new datagram type. The {@link USCLBot USCL-Bot} uses a number of
- * different datagrams to be notified when players arrive/depart, when games begin/end, and even when players start observing a given game. When you
- * get to this stage in your learning, examine both start() and datagramReceived() in SimpleBot, and then compare it to the corresponding versions in
- * USCLBot. And for now, don't worry about all this... practice adding a few new commands first Maybe by then I'll have improved the framework so you
- * don't even need to concern yourself with datagrams ever.
- *
- * @author Doug Bateman
- */
 public class SimpleBot {
 
 	/**
