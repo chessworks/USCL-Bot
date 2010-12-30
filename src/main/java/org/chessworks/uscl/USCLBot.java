@@ -74,12 +74,13 @@ public class USCLBot {
 	 * setting the "usclbot.settingsFile" system property on the command-line: "-usclbot.settingsFile=myFile.properties".
 	 */
 	public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
+
 	public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
 
+	/** A list of titles used by players on ICC. */
 	public static final List<Title> ICC_TITLES;
-
 	static {
-		ArrayList<Title> list = new ArrayList<Title>(3);
+		ArrayList<Title> list = new ArrayList<Title>(6);
 		list.add(SimpleTitleService.FM);
 		list.add(SimpleTitleService.IM);
 		list.add(SimpleTitleService.GM);
@@ -148,53 +149,112 @@ public class USCLBot {
 		bot.start();
 	}
 
-	//TODO: Fix this ugly hack.
+	/**
+	 * The name of the black player, indexed by server game id.
+	 */
+	//TODO: Move this into a game object.
 	private String[] _blackNames = new String[5000];
 
-	//TODO: Fix this ugly hack.
+	/**
+	 * True if the game hasn't started or hasn't yet been announced. Indexed by server game id.
+	 */
+	//TODO: Move this into a game object.
 	private boolean[] _needsAnnounce = new boolean[5000];
 
-	//TODO: Fix this ugly hack.
+	/**
+	 * The name of the white player, indexed by server game id.
+	 */
+	//TODO: Move this into a game object.
 	private String[] _whiteNames = new String[5000];
 
-	//TODO: Fix this ugly hack.
+	/**
+	 * The number of people currently observing the game. Indexed by server game id.
+	 */
+	//TODO: Move this into a game object.
 	private int[] _observerCountNow = new int[5000];
 
-	//TODO: Fix this ugly hack.
+	/**
+	 * The max number of people who have concurrently observed the game. Indexed by server game id.
+	 */
+	//TODO: Move this into a game object.
 	private int[] _observerCountMax = new int[5000];
 
+	/**
+	 * The password used when executing admin commands on the server.
+	 *
+	 * @see #setAdminPass(String)
+	 */
 	private String adminPass = "*****";
 
+	/** Utility to convert incoming tells into calls to cmdXXX(). */
 	private CommandDispatcher cmd = new CommandDispatcher(this);
 
+	/** Used to send commands to the chess server.  Such as qtell, tell, reserve-game, etc. */
+	private Commands command = new Commands();
+
+	/** The underlying connection to the server. Uses Jin's connection library. */
 	private Connection conn;
 
+	/**
+	 * The host name or I.P. address of the chess server.
+	 *
+	 * @see #setHostName(String)
+	 */
 	private String hostName = "chessclub.com";
 
+	/**
+	 * The TCP port number used when connecting to the chess server.
+	 *
+	 * @see #setHostPort(int)
+	 */
 	private int hostPort = 5001;
 
+	/**
+	 * When first connecting, we'll get lots of notifications about games in progress, etc.. We need to distinguish this information delivered on
+	 * login from events that happen later (like a game starting that we want to announce). This setting makes that possible.
+	 */
 	private volatile boolean loggingIn = true;
 
+	/**
+	 * The user name used during login, such as guest.
+	 *
+	 * @see #setLoginName(String)
+	 */
 	private String loginName = "USCL-Bot";
 
+	/**
+	 * The password used during login.
+	 *
+	 * @see #setLoginPass(String)
+	 */
 	private String loginPass = "*****";
 
+	/** The scheduler lets us schedule commands to execute at some future time. */
 	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+	/**
+	 * TitleService provides facts about known titles. For example that (IM) is short for "International Master".
+	 */
 	private SimpleTitleService titleService;
 
+	/**
+	 * UserService stores the list of managers & programmers authorized to use this bot.
+	 */
 	private UserService userService;
 
+	/**
+	 * TournamentService is used to save information to disk about who is scheduled to play whom, when, and what chess board.
+	 */
 	private TournamentService tournamentService;
 
+	/** Users with the manager role can talk to the bot. */
 	private Role managerRole;
 
+	/** Users with the programmer role receive extra debugging information from the bot. */
 	private Role programmerRole;
 
 	/** The user name assigned by the chess server upon login. e.g. guest233. */
 	private String userName;
-
-	private Commands command = new Commands();
 
 	/**
 	 * Sends an important (non-routine) tell to all managers to alert them to something requiring their attention.
@@ -251,6 +311,16 @@ public class USCLBot {
 		command.sendQuietly("admin");
 	}
 
+	/**
+	 * Adds a player to the tournament. The player name must contain the team's three letter code.
+	 *
+	 * Syntax: <tt>add-player Shirov-NYC</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param playerHandle
+	 *            The player's ICC handle.
+	 */
 	public void cmdAddPlayer(User teller, String playerHandle) {
 		Player player = tournamentService.findPlayer(playerHandle);
 		try {
@@ -275,7 +345,7 @@ public class USCLBot {
 	 * Syntax: <tt>add-team NYC</tt>
 	 *
 	 * @param teller
-	 *            The user/manager adding the team.
+	 *            The user/manager issuing the command.
 	 * @param teamCode
 	 *            The three-letter code for the team, such as NYC.
 	 */
@@ -365,6 +435,14 @@ public class USCLBot {
 		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
+	/**
+	 * Instructs the bot to set the finger profile notes for all players.
+	 *
+	 * Syntax: <tt>refresh-all-profiles</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdRefreshAllProfiles(User teller) {
 		Collection<Player> players = tournamentService.findAllPlayers();
 		for (Player p : players) {
@@ -372,6 +450,15 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Instructs the bot to set the finger profile notes for the given player. The profile will contain the user's real name, USCL rating, USCL
+	 * profile on the USCL website, team name, and team website.
+	 *
+	 * Syntax: <tt>refresh-profile</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	private void cmdRefreshProfile(User teller, Player player) {
 		Team team = player.getTeam();
 		Integer r = player.ratings().get(USCL_RATING);
@@ -396,6 +483,16 @@ public class USCLBot {
 		command.sendAdminCommand("set-other {0} 7", player);
 	}
 
+	/**
+	 * Drops a player player from the tournament.
+	 *
+	 * Syntax: <tt>remove-player Shirov-NYC</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param playerHandle
+	 *            The player's ICC handle.
+	 */
 	public void cmdRemovePlayer(User teller, Player player) {
 		boolean removed = tournamentService.removePlayer(player);
 		tournamentService.flush();
@@ -406,6 +503,16 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Drops an entire team from the tournament, including all players in the team.
+	 *
+	 * Syntax: <tt>remove-team NYC</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param teamCode
+	 *            The three-letter code for the team, such as NYC.
+	 */
 	public void cmdRemoveTeam(User teller, Team team) {
 		int playerCount = tournamentService.removeTeam(team);
 		tournamentService.flush();
@@ -417,29 +524,41 @@ public class USCLBot {
 		}
 	}
 
-	public void cmdReserveGame(User teller, String playerHandle, int board) {
+	/**
+	 * Instructs the bot to ensure the server reserves the given board number for the player.
+	 *
+	 * Syntax: <tt>reserve-game Shirov-NYC 5</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param playerHandle
+	 *            The player's ICC handle.
+	 * @param boardNum
+	 *            The game/board number to reserve on the server for the game. Must be between 1 and 100, inclusive.
+	 */
+	public void cmdReserveGame(User teller, String playerHandle, int boardNum) {
 		Player player = tournamentService.findPlayer(playerHandle);
 		if (player != null) {
 			playerHandle = player.getHandle();
-			tournamentService.reserveBoard(player, board);
+			tournamentService.reserveBoard(player, boardNum);
 		} else {
 			command.tell(teller, "Warning: {0} is not a recognized player name.", playerHandle);
 			command.tell(teller, "    ...  Please tell me \"addPlayer {0}\".", playerHandle);
 			try {
-				player = tournamentService.reserveBoard(playerHandle, board, true);
+				player = tournamentService.reserveBoard(playerHandle, boardNum, true);
 			} catch (InvalidNameException e) {
 				replyError(teller, e);
 				return;
 			}
 		}
 		tournamentService.flush();
-		command.tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", board, player);
+		command.tell(teller, "Okay, I''ve reserved board \"{0}\" for player \"{1}\".", boardNum, player);
 		command.sendCommand("+notify {0}", player);
-		command.sendAdminCommand("reserve-game {0} {1}", player, board);
+		command.sendAdminCommand("reserve-game {0} {1}", player, boardNum);
 	}
 
 	/**
-	 * Restarts with an earlier stable version of the bot. This is useful if a problem in a new version is discovered mid-tournament.
+	 * Restarts the program with an earlier stable version of the bot. This is useful if a problem in a new version is discovered mid-tournament.
 	 *
 	 * For this to work, the bot must be started by a shell script which knows to restore the old version of the bot upon receiving exit code 6.
 	 *
@@ -452,6 +571,20 @@ public class USCLBot {
 		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
 
+	/**
+	 * Instructs the bot to pair the players on the specified board.
+	 *
+	 * Syntax: <tt>schedule 5 Shirov-NYC DuckStorm-YVR</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param boardNum
+	 *            The game/board number to reserve on the server for the game. Must be between 1 and 100, inclusive.
+	 * @param white
+	 *            The white player's ICC handle.
+	 * @param black
+	 *            The white player's ICC handle.
+	 */
 	public void cmdSchedule(User teller, int boardNum, Player white, Player black) {
 		tournamentService.schedule(white, black, boardNum);
 		tournamentService.flush();
@@ -462,6 +595,19 @@ public class USCLBot {
 		command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
 	}
 
+	/**
+	 * Sets a value in the player's profile. Such as the player's real name, USCL profile page, USCL rating, etc..
+	 *
+	 * Syntax: <tt>set-player Nakamura-STL fullname Hikaru Nakamura</tt><br/>
+	 * Syntax: <tt>set-player Nakamura-STL title GM</tt><br/>
+	 * Syntax: <tt>set-player Nakamura-STL rating 2822</tt><br/>
+	 * Syntax: <tt>set-player Nakamura-STL webpage http://www.uschessleague.com/HikaruNakamura.html</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param playerHandle
+	 *            The player's ICC handle.
+	 */
 	public void cmdSetPlayer(User teller, Player player, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
 		String value = setting.toString();
 		var = var.toLowerCase();
@@ -495,6 +641,19 @@ public class USCLBot {
 		tournamentService.flush();
 	}
 
+	/**
+	 * Sets a value in the team's profile. Such as the team's name, USCL profile page, etc..
+	 *
+	 * Syntax: <tt>set-player STL name Arch Bishops</tt><br/>
+	 * Syntax: <tt>set-player STL loc St. Louis</tt><br/>
+	 * Syntax: <tt>set-player STL web http://www.uschessleague.com/StLouisRoster.html</tt><br/>
+	 * Syntax: <tt>set-player Nakamura-STL webpage http://www.uschessleague.com/HikaruNakamura.html</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 * @param playerHandle
+	 *            The player's ICC handle.
+	 */
 	public void cmdSetTeam(User teller, Team team, String var, StringBuffer setting) throws MalformedURLException, InvalidNameException {
 		String value = setting.toString();
 		var = var.toLowerCase();
@@ -513,6 +672,11 @@ public class USCLBot {
 		tournamentService.flush();
 	}
 
+	/**
+	 * Deprecated. Use {@link #cmdShowGames()} instead.
+	 *
+	 * @deprecated
+	 */
 	public void cmdShow(User teller) {
 		Formatter msg = new Formatter();
 		msg.format("%s\\n", " ** The new preferred name for this command is: show-games.");
@@ -521,6 +685,14 @@ public class USCLBot {
 		cmdShowGames(teller);
 	}
 
+	/**
+	 * Asks the bot to list the currently scheduled games.
+	 *
+	 * Syntax: <tt>show-games</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdShowGames(User teller) {
 		int indent = 0;
 		Map<Player, Integer> playerBoards = tournamentService.getPlayerBoardMap();
@@ -543,6 +715,14 @@ public class USCLBot {
 		command.qtell(teller, msg);
 	}
 
+	/**
+	 * Asks the bot to list the player's profile settings.
+	 *
+	 * Syntax: <tt>show-player</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdShowPlayer(User teller, Player player) {
 		Formatter msg = new Formatter();
 		Integer rating = player.ratings().get(USCL_RATING);
@@ -556,6 +736,14 @@ public class USCLBot {
 		command.qtell(teller, msg);
 	}
 
+	/**
+	 * Asks the bot to list the team's profile settings.
+	 *
+	 * Syntax: <tt>show-team</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdShowTeam(User teller, Team team) {
 		Formatter msg = new Formatter();
 		msg.format(" Team %s:\\n", team.getTeamCode());
@@ -581,6 +769,11 @@ public class USCLBot {
 	 *
 	 * When an unexpected error happens in the bot, the bot sends a tell to all programmers, followed by a series of qtells containing debugging
 	 * information.
+	 *
+	 * Syntax: <tt>test-error</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
 	 */
 	public void cmdTestError(User teller) {
 		try {
@@ -592,6 +785,14 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Cancels a reserve-game command issued for the given player.
+	 *
+	 * Syntax: <tt>unreserve-game Shirov-NYC</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdUnreserveGame(User teller, Player player) {
 		int board = tournamentService.unreserveBoard(player);
 		tournamentService.flush();
@@ -1025,7 +1226,9 @@ public class USCLBot {
 		broadcastAdmin("atell", managerList, msg, args);
 	}
 
+
 	/** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
+	/** Used to send commands to the chess server.  Such as qtell, tell, reserve-game, etc. */
 	public class Commands {
 
 		public void qChanPlus(String player, int channel) {
@@ -1124,7 +1327,6 @@ public class USCLBot {
 	}
 
 	/** The underlying connection to the chess server. This uses the Jin connection libraries. */
-
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
 
 		public Connection(String hostname, int port, String username, String password) {
