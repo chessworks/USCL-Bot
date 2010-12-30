@@ -312,7 +312,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Adds a player to the tournament. The player name must contain the team's three letter code.
+	 * Commands the bot to add a player to the tournament. The player name must contain the team's three letter code.
 	 *
 	 * Syntax: <tt>add-player Shirov-NYC</tt>
 	 *
@@ -340,7 +340,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Adds a team to the tournament.
+	 * Commands the bot to add a team to the tournament.
 	 *
 	 * Syntax: <tt>add-team NYC</tt>
 	 *
@@ -381,7 +381,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Clears all games from the schedule. Boards will no longer be reserved for players.
+	 * Commands the bot to clears all games from the schedule. Boards will no longer be reserved for players.
 	 *
 	 * Syntax: <tt>clear-games</tt>
 	 *
@@ -396,7 +396,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Shuts down the bot.
+	 * Commands the bot to logout and shut down..
 	 *
 	 * Syntax: <tt>KILL</tt>
 	 *
@@ -408,7 +408,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Shuts down the bot and then restarts the JVM.
+	 * Commands the bot to logout, quit, and then restart itself.
 	 *
 	 * For this to work, the bot must be started by a shell script which knows to restart the bot upon receiving exit code 2.
 	 *
@@ -422,7 +422,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Shuts down the bot, updates it to the latest version, and then restarts the JVM.
+	 * Commands the bot to logout, quit, update to the latest software version, and then restart itself.
 	 *
 	 * For this to work, the bot must be started by a shell script which knows to recompile and update the bot upon receiving exit code 5.
 	 *
@@ -436,12 +436,14 @@ public class USCLBot {
 	}
 
 	/**
-	 * Instructs the bot to set the finger profile notes for all players.
+	 * Commands the bot to update the online finger notes for all players. The profile will contain the user's real name, USCL rating, USCL profile on
+	 * the USCL website, team name, and team website.
 	 *
 	 * Syntax: <tt>refresh-all-profiles</tt>
 	 *
 	 * @param teller
 	 *            The user/manager issuing the command.
+	 * @see #cmdRefreshProfile(User, Player)
 	 */
 	public void cmdRefreshAllProfiles(User teller) {
 		Collection<Player> players = tournamentService.findAllPlayers();
@@ -451,7 +453,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Instructs the bot to set the finger profile notes for the given player. The profile will contain the user's real name, USCL rating, USCL
+	 * Commands the bot to update the online finger notes for the given player. The profile will contain the user's real name, USCL rating, USCL
 	 * profile on the USCL website, team name, and team website.
 	 *
 	 * Syntax: <tt>refresh-profile</tt>
@@ -484,7 +486,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Drops a player player from the tournament.
+	 * Commands the bot to drop a player from the tournament.
 	 *
 	 * Syntax: <tt>remove-player Shirov-NYC</tt>
 	 *
@@ -504,7 +506,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Drops an entire team from the tournament, including all players in the team.
+	 * Commands the bot to drop an entire team from the tournament, including all players in the team.
 	 *
 	 * Syntax: <tt>remove-team NYC</tt>
 	 *
@@ -525,7 +527,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Instructs the bot to ensure the server reserves the given board number for the player.
+	 * Commands the bot to ensure the server reserves the given board number for the player.
 	 *
 	 * Syntax: <tt>reserve-game Shirov-NYC 5</tt>
 	 *
@@ -558,7 +560,8 @@ public class USCLBot {
 	}
 
 	/**
-	 * Restarts the program with an earlier stable version of the bot. This is useful if a problem in a new version is discovered mid-tournament.
+	 * Commands the bot to restart itself with an earlier stable version of the bot software. This is useful if a problem in a new version is
+	 * discovered mid-tournament.
 	 *
 	 * For this to work, the bot must be started by a shell script which knows to restore the old version of the bot upon receiving exit code 6.
 	 *
@@ -572,7 +575,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Instructs the bot to pair the players on the specified board.
+	 * Commands the bot to pair the players on the specified board.
 	 *
 	 * Syntax: <tt>schedule 5 Shirov-NYC DuckStorm-YVR</tt>
 	 *
@@ -596,7 +599,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sets a value in the player's profile. Such as the player's real name, USCL profile page, USCL rating, etc..
+	 * Commands the bot to set a value in the player's profile. Such as the player's real name, USCL profile page, USCL rating, etc..
 	 *
 	 * Syntax: <tt>set-player Nakamura-STL fullname Hikaru Nakamura</tt><br/>
 	 * Syntax: <tt>set-player Nakamura-STL title GM</tt><br/>
@@ -642,7 +645,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sets a value in the team's profile. Such as the team's name, USCL profile page, etc..
+	 * Commands the bot to set a value in the team's profile. Such as the team's name, USCL profile page, etc..
 	 *
 	 * Syntax: <tt>set-player STL name Arch Bishops</tt><br/>
 	 * Syntax: <tt>set-player STL loc St. Louis</tt><br/>
@@ -686,7 +689,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Asks the bot to list the currently scheduled games.
+	 * Commands the bot to list the currently scheduled games.
 	 *
 	 * Syntax: <tt>show-games</tt>
 	 *
@@ -716,7 +719,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Asks the bot to list the player's profile settings.
+	 * Commands the bot to list the player's profile settings.
 	 *
 	 * Syntax: <tt>show-player</tt>
 	 *
@@ -737,7 +740,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Asks the bot to list the team's profile settings.
+	 * Commands the bot to list the team's profile settings.
 	 *
 	 * Syntax: <tt>show-team</tt>
 	 *
@@ -765,7 +768,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * The "test-error" command is used to test the bot's graceful response to an unexpected internal error.
+	 * Commands the bot to simulate an unexpected internal error. This is used to verify the bot will respond semi-gracefully to unexpected problems.
 	 *
 	 * When an unexpected error happens in the bot, the bot sends a tell to all programmers, followed by a series of qtells containing debugging
 	 * information.
@@ -786,7 +789,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Cancels a reserve-game command issued for the given player.
+	 * Commands the bot to cancel a board reservation made previously using the reserve-game command.
 	 *
 	 * Syntax: <tt>unreserve-game Shirov-NYC</tt>
 	 *
