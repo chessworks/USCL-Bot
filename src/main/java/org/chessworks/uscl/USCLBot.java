@@ -196,7 +196,11 @@ public class USCLBot {
 
 	private Commands command = new Commands();
 
-	/** Sends an atell followed by tell to all managers. */
+	/**
+	 * Sends an important (non-routine) tell to all managers to alert them to something requiring their attention.
+	 *
+	 * To gain the attention of the manager, this method will use both a tell and an atell.
+	 */
 	public void alertManagers(String msg, Object... args) {
 		Set<User> managerList = userService.findUsersInRole(managerRole);
 		broadcast("tell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
@@ -265,6 +269,16 @@ public class USCLBot {
 		cmdShowPlayer(teller, player);
 	}
 
+	/**
+	 * Adds a team to the tournament.
+	 *
+	 * Syntax: <tt>add-team NYC</tt>
+	 *
+	 * @param teller
+	 *            The user/manager adding the team.
+	 * @param teamCode
+	 *            The three-letter code for the team, such as NYC.
+	 */
 	public void cmdAddTeam(User teller, String teamCode) {
 		Team team = tournamentService.findTeam(teamCode);
 		if (team != null) {
@@ -283,6 +297,11 @@ public class USCLBot {
 		cmdShowTeam(teller, team);
 	}
 
+	/**
+	 * Deprecated. Use {@link #cmdClearGames()} instead.
+	 *
+	 * @deprecated
+	 */
 	public void cmdClear(User teller) {
 		Formatter msg = new Formatter();
 		msg.format("%s\\n", " ** The new preferred name for this command is: clear-games.");
@@ -291,6 +310,14 @@ public class USCLBot {
 		cmdClearGames(teller);
 	}
 
+	/**
+	 * Clears all games from the schedule. Boards will no longer be reserved for players.
+	 *
+	 * Syntax: <tt>clear-games</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdClearGames(User teller) {
 		tournamentService.clearSchedule();
 		tournamentService.flush();
@@ -298,14 +325,42 @@ public class USCLBot {
 		command.sendCommand("-notify *");
 	}
 
+	/**
+	 * Shuts down the bot.
+	 *
+	 * Syntax: <tt>KILL</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdKill(User teller) {
 		exit(3, "Quitting at the request of {0}.  Bye!", teller);
 	}
 
+	/**
+	 * Shuts down the bot and then restarts the JVM.
+	 *
+	 * For this to work, the bot must be started by a shell script which knows to restart the bot upon receiving exit code 2.
+	 *
+	 * Syntax: <tt>REBOOT</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdReboot(User teller) {
 		exit(2, "Rebooting at the request of {0}.  I''ll be right back!", teller);
 	}
 
+	/**
+	 * Shuts down the bot, updates it to the latest version, and then restarts the JVM.
+	 *
+	 * For this to work, the bot must be started by a shell script which knows to recompile and update the bot upon receiving exit code 5.
+	 *
+	 * Syntax: <tt>RECOMPILE</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdRecompile(User teller) {
 		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
@@ -383,6 +438,16 @@ public class USCLBot {
 		command.sendAdminCommand("reserve-game {0} {1}", player, board);
 	}
 
+	/**
+	 * Restarts with an earlier stable version of the bot. This is useful if a problem in a new version is discovered mid-tournament.
+	 *
+	 * For this to work, the bot must be started by a shell script which knows to restore the old version of the bot upon receiving exit code 6.
+	 *
+	 * Syntax: <tt>RECOMPILE</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
 	public void cmdRevert(User teller) {
 		exit(6, "Reverting to prior release at the request of {0}.  I''ll be right back!", teller);
 	}
@@ -511,6 +576,12 @@ public class USCLBot {
 		command.qtell(teller, msg);
 	}
 
+	/**
+	 * The "test-error" command is used to test the bot's graceful response to an unexpected internal error.
+	 *
+	 * When an unexpected error happens in the bot, the bot sends a tell to all programmers, followed by a series of qtells containing debugging
+	 * information.
+	 */
 	public void cmdTestError(User teller) {
 		try {
 			throw new Exception("This is a test.  Don''t worry.");
@@ -532,7 +603,7 @@ public class USCLBot {
 		}
 	}
 
-	/** Shuts down the bot with the given exit code, after sending this exit message. */
+	/** Shuts down the bot with the given exit code, after sending this good-bye message. */
 	public void exit(int code, String msg, Object... args) {
 		if (conn.isConnected()) {
 			tellManagers(msg, args);
@@ -546,13 +617,23 @@ public class USCLBot {
 		System.exit(code);
 	}
 
-	/** Returns true if the user is a bot manager. False otherwise. */
+	/** Returns true if the user is a bot manager and false otherwise. */
 	public boolean isManager(String handle) {
 		User user = userService.findUser(handle);
 		boolean result = userService.isUserInRole(user, managerRole);
 		return result;
 	}
 
+	/**
+	 * Processes incoming commands (tells) sent to the bot by managers.
+	 *
+	 * When a command arrives, this method reads the first word of the tell, interpret it as the command name, and dispatch it to the corresponding
+	 * cmdXXX() method. Dashes and capitalization in the command-name are ignored, ensuring that show-games will dispatch to cmdShowGames(). Any
+	 * exceptions thrown by the corresponding cmdXXX() methods are converted into semi-intelligent reply messages to the user.
+	 *
+	 * The inner-workings of this method uses the {@link CommandDispatcher} library to parse the command arguments and invoke the proper cmdXXX
+	 * method.
+	 */
 	private void onCommand(String teller, String message) {
 		try {
 			cmd.dispatch(teller, message);
@@ -566,6 +647,9 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * When first connecting to the server, this method is used to set all the preferences, such as "set noautologout 1".
+	 */
 	public void onConnected() {
 		userName = conn.getUsername();
 		tellManagers("I have arrived.");
@@ -591,6 +675,14 @@ public class USCLBot {
 		System.out.println();
 	}
 
+	/**
+	 * Indicates the bot has finished setup and processed all the initial datagrams sent by the server.
+	 *
+	 * After a successful login, onConnected() is called to initialize the bot's settings on the server, such as "set noautologout 1". The server will
+	 * also send a large number of datagrams, such as the current state of everyone on the bot's notify list. After all this is complete,
+	 * onConnectSpamDone() is called to inform the bot it is now entering normal operations mode. All future datagrams from the server can safely be
+	 * assumed to represent actual activity on the server rather than initial startup.
+	 */
 	public void onConnectSpamDone() {
 		loggingIn = false;
 	}
@@ -600,6 +692,16 @@ public class USCLBot {
 		exit(1, "Disconnected.");
 	}
 
+	/**
+	 * Handles incoming DG_MOVE_LIST datagrams from the server.
+	 *
+	 * The server may send a move list for a variety of reasons, such as when starting to observe a game in progress, or when using the smoves
+	 * command. In this case, the datagram is always received as a result of starting to observe a game, and arrives immediately after
+	 * DG_STARTED_OBSERVING.
+	 *
+	 * The bot uses the moves list to distinguish between new games and resumed ones. It then announces the game in the events channel. The bot also
+	 * qsets the "isolated" variable for the players, to ensure they don't chat during the game.
+	 */
 	protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
 		if (!_needsAnnounce[gameNumber])
 			return;
@@ -612,13 +714,22 @@ public class USCLBot {
 		String startOrResume = (!resumed) ? "Started" : "Resumed";
 		tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
 		if (!resumed) {
-			command.sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.", whiteName,
-					blackName, startOrResume, gameNumber);
+			command.sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.",
+					whiteName, blackName, startOrResume, gameNumber);
 		}
 		command.sendCommand("qset {0} isolated 1", whiteName);
 		command.sendCommand("qset {0} isolated 1", blackName);
 	}
 
+	/**
+	 * Handles incoming DG_MY_GAME_RESULT datagrams from the server.
+	 *
+	 * The server sends this datagram anytime a game observed by (or played by) the bot finishes or adjourns. This datagram indicates who won and how
+	 * (e.g. checkmate, resign, forfeit on disconnect, etc.).
+	 *
+	 * The bot uses this to both inform the event channel about the result, and to remove the "isolated" setting on players. The isolated setting on
+	 * the server ensures that two players can't receive tells or chat while they play.
+	 */
 	protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
 		String whiteName = _whiteNames[gameNumber];
 		String blackName = _blackNames[gameNumber];
@@ -637,6 +748,16 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Handles incoming DG_PERSONAL_TELL datagrams from the server.
+	 *
+	 * The server sends this datagram anytime someone sends the bot a personal tell, qtell, or atell.
+	 *
+	 * The bot uses this datagram to process incoming messages from players, typically commands. Commands from non-managers are ignored. Commands from
+	 * Jeeves are handled as a special case, with replies going to MrBob instead. This ensures that replies sent from the bot aren't read as input
+	 * Jeeves. It's been known to happen that two bots get into a private conversation, constantly telling each other that their tell contained an
+	 * invalid command.
+	 * */
 	protected void processPersonalTell(String teller, String titles, String message, int tellType) {
 		if (tellType != ChessclubConstants.REGULAR_TELL)
 			return;
@@ -656,6 +777,11 @@ public class USCLBot {
 		onCommand(teller, message);
 	}
 
+	/**
+	 * Handles incoming DG_NOTIFY_ARRIVED datagrams from the server.
+	 *
+	 * The server sends this datagram anytime a player on the bots notify list arrives on the server.
+	 */
 	protected void processPlayerArrived(String name) {
 		Player player = tournamentService.findPlayer(name);
 		if (player == null) {
@@ -670,10 +796,21 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Handles incoming DG_NOTIFY_LEFT datagrams from the server.
+	 *
+	 * The server sends this datagram anytime a player on the bots notify list disconnects from the server.
+	 */
 	protected void processPlayerDeparted(String name) {
 		tellManagers("{0} departed", name);
 	}
 
+	/**
+	 * Handles incoming DG_PLAYERS_IN_MY_GAME datagrams from the server.
+	 *
+	 * The server sends this datagram anytime a player joins the game, as a player or as an observer. This enables the bot to learn which game was the
+	 * most popular (in terms of number of observers.
+	 */
 	private void processPlayersInMyGame(int gameNumber, String playerHandle, PlayerState state, boolean seesKibitz) {
 		switch (state) {
 		case NONE:
@@ -690,6 +827,12 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Handles incoming DG_NOTIFY_STATE datagrams from the server.
+	 *
+	 * The server sends this datagram anytime a player on my notify list starts or stops playing, examining, or observing a game. If a player in the
+	 * tournament starts a game, we want to observe it.
+	 */
 	public void processPlayerStateChange(String player, PlayerState state, int game) {
 		if (state.isPlaying()) {
 			command.sendCommand("observe {0}", game);
@@ -698,6 +841,15 @@ public class USCLBot {
 		}
 	}
 
+	/**
+	 * Handles incoming DG_STARTED_OBSERVING datagrams from the server.
+	 *
+	 * The server sends this datagram anytime the bot starts observing a game. It contains information about the game, such as who is playing. This
+	 * datagram doesn't include the move-list for the game so far. That comes immediately after, in a DG_MOVE_LIST datagram.
+	 *
+	 * The bot simply stores information about the game and then waits for the move list to arrive. How the bot announces the game will depend on
+	 * whether it's a resumed adjourned game or a new game. And only by inspecting the move list can the bot make this determination.
+	 */
 	protected void processStartedObserving(int gameNumber, String whiteName, String blackName, int wildNumber, String ratingCategoryString,
 			boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
 			int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
@@ -716,21 +868,33 @@ public class USCLBot {
 		/* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
 	}
 
+	/** Sends a qtell to all programmers. Typically this is used to send debugging information. */
 	public void qtellProgrammers(String msg, Object... args) {
 		Collection<User> programmerList = userService.findUsersInRole(programmerRole);
 		broadcast("qtell", programmerList, msg, args);
 	}
 
+	/**
+	 * If the user sends an invalid command, this sends the user an appropriate error message. For example if the user tries to schedule user for a
+	 * game, and the user doesn't exist, you'd want to say "Invalid Player Name".
+	 */
 	private void replyError(String teller, Throwable t) {
 		t.printStackTrace(System.err);
 		command.tell(teller, t.getMessage());
 	}
 
+	/**
+	 * If the user sends an invalid command, this sends the user an appropriate error message. For example if the user tries to schedule user for a
+	 * game, and the user doesn't exist, you'd want to say "Invalid Player Name".
+	 */
 	private void replyError(User user, Throwable t) {
 		t.printStackTrace(System.err);
 		command.tell(user, "Error - " + t.getMessage());
 	}
 
+	/**
+	 * If something goes unexpectedly wrong in the bot, this will send a series of qtells to all programmers with useful debugging information.
+	 */
 	private void reportException(Throwable t) {
 		t.printStackTrace(System.err);
 		StringWriter w = new StringWriter();
@@ -744,33 +908,34 @@ public class USCLBot {
 	}
 
 	/**
-	 * Set the administrator password the bot uses when turning on the (*).
+	 * Set the administrator password the bot uses when turning on the (*). This should always be set prior to calling {@link #start()}.
 	 */
 	public synchronized void setAdminPass(String adminPass) {
 		this.adminPass = adminPass;
 	}
 
 	/**
-	 * The host name or ip address of the chess server. This defaults to "chessclub.com".
+	 * Sets the host name or ip address to use when connecting to the server. The default value is "chessclub.com". This is should only be set prior
+	 * to calling {@link #start()}.
 	 *
 	 * @param hostName
-	 *            the hostName to set
+	 *            the host name or ip address of the chess server.
 	 */
 	public synchronized void setHostName(String hostName) {
 		this.hostName = hostName;
 	}
 
 	/**
-	 * @param hostPort
-	 *            the hostPort to set
+	 * Sets the port number to use when connecting to the server. The default value is 5001. This is should only be set prior to calling
+	 * {@link #start()}.
 	 */
 	public synchronized void setHostPort(int hostPort) {
 		this.hostPort = hostPort;
 	}
 
 	/**
-	 * @param hostPort
-	 *            the hostPort to set
+	 * Sets the host name or ip address to use when connecting to the server. The default value is "chessclub.com". This is should only be set prior
+	 * to calling {@link #start()}.
 	 */
 	public synchronized void setHostPort(String hostPort) {
 		int port = Integer.parseInt(hostPort);
@@ -778,31 +943,42 @@ public class USCLBot {
 	}
 
 	/**
-	 * @param loginName
-	 *            the loginName to set
+	 * Sets the user name used during login, such as "USCL-Bot" or "guest". The default value is "USCL-Bot". This is should only be set prior to
+	 * calling {@link #start()}.
 	 */
 	public synchronized void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
 
 	/**
-	 * @param loginPass
-	 *            the loginPass to set
+	 * Sets the password used during login. This should always be set prior to calling {@link #start()}.
 	 */
 	public synchronized void setLoginPass(String loginPass) {
 		this.loginPass = loginPass;
 	}
 
+	/**
+	 * Injects the instance of {@link SimpleTitleService TitleService} to use. The {@link SimpleTitleService TitleService} service is used to convert
+	 * strings like "(IM)" into objects that provide additional information, such as the long form description "International Master".
+	 */
 	public void setTitleService(SimpleTitleService service) {
 		this.titleService = service;
 		this.cmd.setTitleService(titleService);
 	}
 
+	/**
+	 * Injects the instance of {@link TournamentService} to use. The {@link TournamentService} service saves information to disk about the tournament,
+	 * including information about players, teams, and pairings.
+	 */
 	public void setTournamentService(TournamentService service) {
 		this.tournamentService = service;
 		this.cmd.setTournamentService(tournamentService);
 	}
 
+	/**
+	 * Injects the instance of {@link UserService} to use. The {@link UserService} service stores the list of managers & programmers authorized to use
+	 * this bot.
+	 */
 	public void setUserService(UserService service) {
 		this.userService = service;
 		this.managerRole = service.findOrCreateRole("manager");
@@ -810,6 +986,10 @@ public class USCLBot {
 		this.cmd.setUserService(service);
 	}
 
+	/**
+	 * Start the bot and connect it to the chess server. All configuration changes (done via the setXXX methods) should be done prior to calling
+	 * start.
+	 */
 	public void start() throws IOException {
 		System.out.println("Starting USCL-Bot...");
 		System.out.println();
@@ -825,7 +1005,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends tells to the event channels (129, 165, and 399).
+	 * Sends tells to the event channels (129 and 399).
 	 */
 	public void tellEventChannels(String msg, Object... args) {
 		if (args.length > 0) {
@@ -836,13 +1016,16 @@ public class USCLBot {
 	}
 
 	/**
-	 * Sends a personal tell to all managers.
+	 * Sends a routine tell to all managers. This is typically used to keep them informed of the progress of the tournament. The bot uses atells
+	 * rather than regular tells, as this makes it easy for the manager to distinguish between tells sent by players (who expect a reply) and routine
+	 * tells sent by the bot.
 	 */
 	public void tellManagers(String msg, Object... args) {
 		Collection<User> managerList = userService.findUsersInRole(managerRole);
 		broadcastAdmin("atell", managerList, msg, args);
 	}
 
+	/** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
 	public class Commands {
 
 		public void qChanPlus(String player, int channel) {
@@ -939,6 +1122,8 @@ public class USCLBot {
 			sendCommand("tell {0} {1}", channel, msg);
 		}
 	}
+
+	/** The underlying connection to the chess server. This uses the Jin connection libraries. */
 
 	private class Connection extends free.chessclub.ChessclubConnection implements DatagramListener {
 
