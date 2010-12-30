@@ -641,15 +641,6 @@ public class SimpleBot {
 
 	}
 
-	/** Utility to convert incoming tells into calls to cmdXXX(). */
-	private CommandDispatcher cmd = new CommandDispatcher(this);
-
-	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-	private Commands command = new Commands();
-
-	/** The underlying connection to the server. Uses Jin's connection library. */
-	private Connection conn;
-
 	/**
 	 * The host name or I.P. address of the chess server.
 	 *
@@ -698,6 +689,15 @@ public class SimpleBot {
 
 	/** Users with the programmer role receive extra debugging information from the bot. */
 	private Role programmerRole;
+
+	/** Utility to convert incoming tells into calls to cmdXXX(). */
+	private CommandDispatcher cmd = new CommandDispatcher(this);
+
+	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
+	private Commands command = new Commands();
+
+	/** The underlying connection to the server. Uses Jin's connection library. */
+	private Connection conn;
 
 	private static void loadConnectionSettings(Properties settings, SimpleBot bot) {
 		String loginName = settings.getProperty("chessclub.loginName", "SimpleBot");
