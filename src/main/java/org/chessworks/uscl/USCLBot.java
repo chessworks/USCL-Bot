@@ -459,7 +459,7 @@ public class USCLBot {
 	 * @param teller
 	 *            The user/manager issuing the command.
 	 */
-	private void cmdRefreshProfile(User teller, Player player) {
+	public void cmdRefreshProfile(User teller, Player player) {
 		Team team = player.getTeam();
 		Integer r = player.ratings().get(USCL_RATING);
 
