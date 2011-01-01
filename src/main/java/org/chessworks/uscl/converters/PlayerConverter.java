@@ -3,6 +3,8 @@
  */
 package org.chessworks.uscl.converters;
 
+import org.chessworks.bots.common.converters.AbstractConverter;
+import org.chessworks.bots.common.converters.ConversionException;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.services.TournamentService;
 

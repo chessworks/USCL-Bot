@@ -10,17 +10,17 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.chessworks.chess.model.Title;
+import org.chessworks.chess.services.InvalidNameException;
+import org.chessworks.chess.services.file.IO;
+import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
-import org.chessworks.uscl.model.Title;
-import org.chessworks.uscl.services.InvalidNameException;
 import org.chessworks.uscl.services.InvalidPlayerException;
 import org.chessworks.uscl.services.InvalidTeamException;
-import org.chessworks.uscl.services.simple.SimpleTitleService;
 import org.chessworks.uscl.services.simple.SimpleTournamentService;
-import org.chessworks.uscl.util.IO;
 
 public class FileTournamentService extends SimpleTournamentService {
 

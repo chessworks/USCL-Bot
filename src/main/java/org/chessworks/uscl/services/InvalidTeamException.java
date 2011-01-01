@@ -3,6 +3,8 @@
  */
 package org.chessworks.uscl.services;
 
+import org.chessworks.chess.services.InvalidNameException;
+
 
 public class InvalidTeamException extends InvalidNameException {
 

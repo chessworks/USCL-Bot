@@ -1,5 +1,7 @@
 package org.chessworks.uscl.model;
 
+import org.chessworks.chess.model.User;
+
 public class Player extends User {
 
 	public static final String UNAVAILABLE = "Unavailable";
