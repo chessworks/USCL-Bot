@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.chessworks.bots.common.CommandDispatcher;
 import org.chessworks.bots.common.NoSuchCommandException;
 import org.chessworks.bots.common.converters.ConversionException;
 import org.chessworks.chess.model.PlayerState;

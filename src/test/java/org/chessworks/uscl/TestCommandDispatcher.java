@@ -1,8 +1,7 @@
-package org.chessworks.bots.common;
+package org.chessworks.uscl;
 
 import junit.framework.TestCase;
 
-import org.chessworks.bots.common.CommandDispatcher;
 import org.chessworks.chess.model.User;
 import org.chessworks.chess.services.simple.SimpleUserService;
 import org.chessworks.uscl.model.Player;
