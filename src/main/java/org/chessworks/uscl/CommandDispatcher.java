@@ -10,8 +10,7 @@ public class CommandDispatcher extends org.chessworks.bots.common.CommandDispatc
 	PlayerConverter playerConverter = new PlayerConverter();
 	TeamConverter teamConverter = new TeamConverter();
 
-	public CommandDispatcher(Object target) {
-		super(target);
+	public CommandDispatcher() {
 		argConverters.register(playerConverter);
 		argConverters.register(teamConverter);
 		tellerConverters.register(playerConverter);

@@ -44,7 +44,8 @@ public class TestCommandDispatcher extends TestCase {
 		testPlayer = tournamentService.createPlayer("TestPlayer-XYZ");
 		testPlayer2 = tournamentService.createPlayer("TestPlayer2-XYZ", testTeam);
 		mock = EasyMock.createStrictMock(Sample.class);
-		dispatch = new CommandDispatcher(mock);
+		dispatch = new CommandDispatcher();
+		dispatch.setTarget(mock);
 		dispatch.setTournamentService(tournamentService);
 		dispatch.setUserService(userService);
 	}

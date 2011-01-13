@@ -189,10 +189,13 @@ public class USCLBot {
 	private String adminPass = "*****";
 
 	/** Utility to convert incoming tells into calls to cmdXXX(). */
-	private CommandDispatcher cmd = new CommandDispatcher(this);
+	private final CommandDispatcher cmd = new CommandDispatcher();
+	{
+		cmd.setTarget(this);
+	}
 
 	/** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-	private Commands command = new Commands();
+	private final Commands command = new Commands();
 
 	/** The underlying connection to the server. Uses Jin's connection library. */
 	private Connection conn;
