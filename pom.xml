@@ -50,6 +50,39 @@
 		<url>${xxx.scm.url}</url>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>org.chessworks</id>
+			<name>Chessworks Release Repository</name>
+			<url>http://chessworks.googlecode.com/svn/releases/</url>
+			<releases>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>org.chessworks.snapshots</id>
+			<name>Chessworks Snapshot Repository</name>
+			<url>http://www.techie.net/~doug/maven/</url>
+			<releases>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.chessworks</groupId>
