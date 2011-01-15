@@ -35,7 +35,7 @@
 	<url>http://www.chessworks.org/projects/USCL-Bot</url>
 
 	<properties>
-		<project.java.mainClass>org.chessworks.uscl.USCLBot</project.java.mainClass>
+		<bot.mainClass>org.chessworks.uscl.USCLBot</bot.mainClass>
 	</properties>
 
 	<parent>
