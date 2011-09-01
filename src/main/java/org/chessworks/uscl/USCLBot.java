@@ -825,7 +825,7 @@ public class USCLBot {
 	 *            The user/manager issuing the command.
 	 */
 	public void cmdUpdate(User teller) {
-		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
+		exit(7, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	/** Shuts down the bot with the given exit code, after sending this good-bye message. */
