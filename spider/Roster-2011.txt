@@ -1,0 +1,965 @@
+#New Handles:
+
+player.Shulman-CHC.handle=Shulman-CHC
+player.Shulman-CHC.name=Yury Shulman
+player.Shulman-CHC.rating=2687
+player.Shulman-CHC.team=CHC
+player.Shulman-CHC.titles=(GM)
+
+player.Erenburg-PHI.handle=Erenburg-PHI
+player.Erenburg-PHI.name=Sergey Erenburg
+player.Erenburg-PHI.rating=2679
+player.Erenburg-PHI.team=PHI
+player.Erenburg-PHI.titles=(GM)
+
+player.Ramirez-LA.handle=Ramirez-LA
+player.Ramirez-LA.name=Alejandro Ramirez
+player.Ramirez-LA.rating=2660
+player.Ramirez-LA.team=LA
+player.Ramirez-LA.titles=(GM)
+
+player.Iotov-DAL.handle=Iotov-DAL
+player.Iotov-DAL.name=Valentin Iotov
+player.Iotov-DAL.rating=2631
+player.Iotov-DAL.team=DAL
+player.Iotov-DAL.titles=(GM)
+
+player.Friedel-CHC.handle=Friedel-CHC
+player.Friedel-CHC.name=Josh Friedel
+player.Friedel-CHC.rating=2609
+player.Friedel-CHC.team=CHC
+player.Friedel-CHC.titles=(GM)
+
+player.MAmanov-CHC.handle=MAmanov-CHC
+player.MAmanov-CHC.name=Mesgen Amanov
+player.MAmanov-CHC.rating=2576
+player.MAmanov-CHC.team=CHC
+player.MAmanov-CHC.titles=(GM)
+
+player.Vojinovic-STL.handle=Vojinovic-STL
+player.Vojinovic-STL.name=Goran Vojinovic
+player.Vojinovic-STL.rating=2567
+player.Vojinovic-STL.team=STL
+player.Vojinovic-STL.titles=(IM)
+
+player.Chirila-DAL.handle=Chirila-DAL
+player.Chirila-DAL.name=Cristian Chirila
+player.Chirila-DAL.rating=2565
+player.Chirila-DAL.team=DAL
+player.Chirila-DAL.titles=(GM)
+
+player.Fishbein-NJ.handle=Fishbein-NJ
+player.Fishbein-NJ.name=Alex Fishbein
+player.Fishbein-NJ.rating=2563
+player.Fishbein-NJ.team=NJ
+player.Fishbein-NJ.titles=(GM)
+
+player.Orlov-SEA.handle=Orlov-SEA
+player.Orlov-SEA.name=Georgi Orlov
+player.Orlov-SEA.rating=2541
+player.Orlov-SEA.team=SEA
+player.Orlov-SEA.titles=(IM)
+
+player.GiorgiM-BAL.handle=GiorgiM-BAL
+player.GiorgiM-BAL.name=Giorgi Margvelashvili
+player.GiorgiM-BAL.rating=2538
+player.GiorgiM-BAL.team=BAL
+player.GiorgiM-BAL.titles=(GM)
+
+player.Holt-DAL.handle=Holt-DAL
+player.Holt-DAL.name=Conrad Holt
+player.Holt-DAL.rating=2520
+player.Holt-DAL.team=DAL
+player.Holt-DAL.titles=(IM)
+
+player.Bartholomew-MAN.handle=Bartholomew-MAN
+player.Bartholomew-MAN.name=John Bartholomew
+player.Bartholomew-MAN.rating=2499
+player.Bartholomew-MAN.team=MAN
+player.Bartholomew-MAN.titles=(IM)
+
+player.vandeMortel-BOS.handle=vandeMortel-BOS
+player.vandeMortel-BOS.name=Jan van de Mortel
+player.vandeMortel-BOS.rating=2499
+player.vandeMortel-BOS.team=BOS
+player.vandeMortel-BOS.titles=(IM)
+
+player.Griego-BOS.handle=Griego-BOS
+player.Griego-BOS.name=David Griego
+player.Griego-BOS.rating=2494
+player.Griego-BOS.team=BOS
+player.Griego-BOS.titles=(FM)
+
+player.Mandizha-MAN.handle=Mandizha-MAN
+player.Mandizha-MAN.name=Farai Mandizha
+player.Mandizha-MAN.rating=2494
+player.Mandizha-MAN.team=MAN
+player.Mandizha-MAN.titles=(FM)
+
+player.Berezovsky-NJ.handle=Berezovsky-NJ
+player.Berezovsky-NJ.name=Igor Berezovsky
+player.Berezovsky-NJ.rating=2487
+player.Berezovsky-NJ.team=NJ
+player.Berezovsky-NJ.titles=(IM)
+
+player.Molner-ARZ.handle=Molner-ARZ
+player.Molner-ARZ.name=Mackenzie Molner
+player.Molner-ARZ.rating=2482
+player.Molner-ARZ.team=ARZ
+player.Molner-ARZ.titles=(IM)
+
+player.ZAmanov-LA.handle=ZAmanov-LA
+player.ZAmanov-LA.name=Zhanibek Amanov
+player.ZAmanov-LA.rating=2472
+player.ZAmanov-LA.team=LA
+player.ZAmanov-LA.titles=(IM)
+
+player.JoelBanawa-LA.handle=JoelBanawa-LA
+player.JoelBanawa-LA.name=Joel Banawa
+player.JoelBanawa-LA.rating=2456
+player.JoelBanawa-LA.team=LA
+player.JoelBanawa-LA.titles=(FM)
+
+player.Matros-CAR.handle=Matros-CAR
+player.Matros-CAR.name=Alexander Matros
+player.Matros-CAR.rating=2440
+player.Matros-CAR.team=CAR
+player.Matros-CAR.titles=(IM)
+
+player.Yedidia-NE.handle=Yedidia-NE
+player.Yedidia-NE.name=Jonathan Yedidia
+player.Yedidia-NE.rating=2428
+player.Yedidia-NE.team=NE
+player.Yedidia-NE.titles=(IM)
+
+player.Battaglini-CAR.handle=Battaglini-CAR
+player.Battaglini-CAR.name=Gabriel Battaglini
+player.Battaglini-CAR.rating=2420
+player.Battaglini-CAR.team=CAR
+player.Battaglini-CAR.titles=(IM)
+
+player.Donaldson-SF.handle=Donaldson-SF
+player.Donaldson-SF.name=John Donaldson
+player.Donaldson-SF.rating=2402
+player.Donaldson-SF.team=SF
+player.Donaldson-SF.titles=(IM)
+
+player.Olivera-MIA.handle=Olivera-MIA
+player.Olivera-MIA.name=Joan Olivera
+player.Olivera-MIA.rating=2399
+player.Olivera-MIA.team=MIA
+player.Olivera-MIA.titles=(FM)
+
+player.Pressman-NY.handle=Pressman-NY
+player.Pressman-NY.name=Leif Pressman
+player.Pressman-NY.rating=2381
+player.Pressman-NY.team=NY
+player.Pressman-NY.titles=
+
+player.Fisher-PHI.handle=Fisher-PHI
+player.Fisher-PHI.name=William Fisher
+player.Fisher-PHI.rating=2369
+player.Fisher-PHI.team=PHI
+player.Fisher-PHI.titles=
+
+player.Korley-CAR.handle=Korley-CAR
+player.Korley-CAR.name=Kassa Korley
+player.Korley-CAR.rating=2368
+player.Korley-CAR.team=CAR
+player.Korley-CAR.titles=(FM)
+
+player.JakeBanawa-STL.handle=JakeBanawa-STL
+player.JakeBanawa-STL.name=Joaquin Banawa
+player.JakeBanawa-STL.rating=2366
+player.JakeBanawa-STL.team=STL
+player.JakeBanawa-STL.titles=(FM)
+
+player.Defibaugh-BAL.handle=Defibaugh-BAL
+player.Defibaugh-BAL.name=Jared Defibaugh
+player.Defibaugh-BAL.rating=2363
+player.Defibaugh-BAL.team=BAL
+player.Defibaugh-BAL.titles=
+
+player.Vedrickas-DAL.handle=Vedrickas-DAL
+player.Vedrickas-DAL.name=Tautyvdas Vedrickas
+player.Vedrickas-DAL.rating=2350
+player.Vedrickas-DAL.team=DAL
+player.Vedrickas-DAL.titles=(FM)
+
+player.Dean-CHC.handle=Dean-CHC
+player.Dean-CHC.name=Jim Dean
+player.Dean-CHC.rating=2336
+player.Dean-CHC.team=CHC
+player.Dean-CHC.titles=(FM)
+
+player.Aliyev-STL.handle=Aliyev-STL
+player.Aliyev-STL.name=Timur Aliyev
+player.Aliyev-STL.rating=2330
+player.Aliyev-STL.team=STL
+player.Aliyev-STL.titles=
+
+player.Atoufi-ARZ.handle=Atoufi-ARZ
+player.Atoufi-ARZ.name=Pedram Atoufi
+player.Atoufi-ARZ.rating=2326
+player.Atoufi-ARZ.team=ARZ
+player.Atoufi-ARZ.titles=
+
+player.Hernandez-MIA.handle=Hernandez-MIA
+player.Hernandez-MIA.name=Alberto Hernandez
+player.Hernandez-MIA.rating=2321
+player.Hernandez-MIA.team=MIA
+player.Hernandez-MIA.titles=
+
+player.Hansen-NJ.handle=Hansen-NJ
+player.Hansen-NJ.name=Carsten Hansen
+player.Hansen-NJ.rating=2318
+player.Hansen-NJ.team=NJ
+player.Hansen-NJ.titles=(FM)
+
+player.Ardaman-CAR.handle=Ardaman-CAR
+player.Ardaman-CAR.name=Miles Ardaman
+player.Ardaman-CAR.rating=2311
+player.Ardaman-CAR.team=CAR
+player.Ardaman-CAR.titles=(FM)
+
+player.Bodek-NY.handle=Bodek-NY
+player.Bodek-NY.name=Michael Bodek
+player.Bodek-NY.rating=2288
+player.Bodek-NY.team=NY
+player.Bodek-NY.titles=
+
+player.Gu-BOS.handle=Gu-BOS
+player.Gu-BOS.name=Christopher Gu
+player.Gu-BOS.rating=2283
+player.Gu-BOS.team=BOS
+player.Gu-BOS.titles=
+
+player.Gershenov-NY.handle=Gershenov-NY
+player.Gershenov-NY.name=Ben Gershenov
+player.Gershenov-NY.rating=2279
+player.Gershenov-NY.team=NY
+player.Gershenov-NY.titles=
+
+player.Minear-PHI.handle=Minear-PHI
+player.Minear-PHI.name=Peter Minear
+player.Minear-PHI.rating=2278
+player.Minear-PHI.team=PHI
+player.Minear-PHI.titles=
+
+player.Pelaez-MIA.handle=Pelaez-MIA
+player.Pelaez-MIA.name=Jorge Pelaez
+player.Pelaez-MIA.rating=2264
+player.Pelaez-MIA.team=MIA
+player.Pelaez-MIA.titles=(FM)
+
+player.Sevian-SF.handle=Sevian-SF
+player.Sevian-SF.name=Samuel Sevian
+player.Sevian-SF.rating=2262
+player.Sevian-SF.team=SF
+player.Sevian-SF.titles=
+
+player.Fikiet-NE.handle=Fikiet-NE
+player.Fikiet-NE.name=Alex Fikiet
+player.Fikiet-NE.rating=2255
+player.Fikiet-NE.team=NE
+player.Fikiet-NE.titles=
+
+player.Ding-STL.handle=Ding-STL
+player.Ding-STL.name=Jialin Ding
+player.Ding-STL.rating=2244
+player.Ding-STL.team=STL
+player.Ding-STL.titles=
+
+player.Kelley-SEA.handle=Kelley-SEA
+player.Kelley-SEA.name=Dereque Kelley
+player.Kelley-SEA.rating=2241
+player.Kelley-SEA.team=SEA
+player.Kelley-SEA.titles=
+
+player.Xiong-DAL.handle=Xiong-DAL
+player.Xiong-DAL.name=Jeffrey Xiong
+player.Xiong-DAL.rating=2237
+player.Xiong-DAL.team=DAL
+player.Xiong-DAL.titles=(FM)
+
+player.Krishnan-LA.handle=Krishnan-LA
+player.Krishnan-LA.name=Varun Krishnan
+player.Krishnan-LA.rating=2232
+player.Krishnan-LA.team=LA
+player.Krishnan-LA.titles=
+
+player.Goldberg-NE.handle=Goldberg-NE
+player.Goldberg-NE.name=Ben Goldberg
+player.Goldberg-NE.rating=2230
+player.Goldberg-NE.team=NE
+player.Goldberg-NE.titles=
+
+player.Menon-CHC.handle=Menon-CHC
+player.Menon-CHC.name=Gopal Menon
+player.Menon-CHC.rating=2222
+player.Menon-CHC.team=CHC
+player.Menon-CHC.titles=
+
+player.Cao-STL.handle=Cao-STL
+player.Cao-STL.name=Kevin Cao
+player.Cao-STL.rating=2215
+player.Cao-STL.team=STL
+player.Cao-STL.titles=
+
+player.Brattain-NE.handle=Brattain-NE
+player.Brattain-NE.name=Mika Brattain
+player.Brattain-NE.rating=2208
+player.Brattain-NE.team=NE
+player.Brattain-NE.titles=
+
+player.Schmakel-CHC.handle=Schmakel-CHC
+player.Schmakel-CHC.name=Sam Schmakel
+player.Schmakel-CHC.rating=2190
+player.Schmakel-CHC.team=CHC
+player.Schmakel-CHC.titles=
+
+player.Golub-SEA.handle=Golub-SEA
+player.Golub-SEA.name=David Golub
+player.Golub-SEA.rating=2188
+player.Golub-SEA.team=SEA
+player.Golub-SEA.titles=
+
+player.Prilleltensky-MAN.handle=Prilleltensky-MAN
+player.Prilleltensky-MAN.name=Matan Prilleltensky
+player.Prilleltensky-MAN.rating=2186
+player.Prilleltensky-MAN.team=MAN
+player.Prilleltensky-MAN.titles=
+
+player.Wu-NJ.handle=Wu-NJ
+player.Wu-NJ.name=Christopher Wu
+player.Wu-NJ.rating=2151
+player.Wu-NJ.team=NJ
+player.Wu-NJ.titles=
+
+player.Mosiyenko-BOS.handle=Mosiyenko-BOS
+player.Mosiyenko-BOS.name=Daniil Mosiyenko
+player.Mosiyenko-BOS.rating=2132
+player.Mosiyenko-BOS.team=BOS
+player.Mosiyenko-BOS.titles=
+
+player.Fernandez-NY.handle=Fernandez-NY
+player.Fernandez-NY.name=John Fernandez
+player.Fernandez-NY.rating=2129
+player.Fernandez-NY.team=NY
+player.Fernandez-NY.titles=
+
+player.Lu-LA.handle=Lu-LA
+player.Lu-LA.name=Albert Lu
+player.Lu-LA.rating=2086
+player.Lu-LA.team=LA
+player.Lu-LA.titles=
+
+player.Feng-SEA.handle=Feng-SEA
+player.Feng-SEA.name=Roland Feng
+player.Feng-SEA.rating=2074
+player.Feng-SEA.team=SEA
+player.Feng-SEA.titles=
+
+player.Karlow-STL.handle=Karlow-STL
+player.Karlow-STL.name=Nick Karlow
+player.Karlow-STL.rating=2068
+player.Karlow-STL.team=STL
+player.Karlow-STL.titles=
+
+player.Luna-MIA.handle=Luna-MIA
+player.Luna-MIA.name=Gil Luna
+player.Luna-MIA.rating=2047
+player.Luna-MIA.team=MIA
+player.Luna-MIA.titles=
+
+player.Yang-BAL.handle=Yang-BAL
+player.Yang-BAL.name=Charles Yang
+player.Yang-BAL.rating=2046
+player.Yang-BAL.team=BAL
+player.Yang-BAL.titles=
+
+player.Allen-MIA.handle=Allen-MIA
+player.Allen-MIA.name=Alejandro Allen
+player.Allen-MIA.rating=1990
+player.Allen-MIA.team=MIA
+player.Allen-MIA.titles=
+
+
+#Old Handles:
+
+player.Nakamura-STL.handle=Nakamura-STL
+player.Nakamura-STL.name=Hikaru Nakamura
+player.Nakamura-STL.rating=2863
+player.Nakamura-STL.team=STL
+player.Nakamura-STL.titles=(GM)
+
+player.Akobian-SEA.handle=Akobian-SEA
+player.Akobian-SEA.name=Varuzhan Akobian
+player.Akobian-SEA.rating=2698
+player.Akobian-SEA.team=SEA
+player.Akobian-SEA.titles=(GM)
+
+player.Stripunsky-MAN.handle=Stripunsky-MAN
+player.Stripunsky-MAN.name=Alex Stripunsky
+player.Stripunsky-MAN.rating=2694
+player.Stripunsky-MAN.team=MAN
+player.Stripunsky-MAN.titles=(GM)
+
+player.Kacheishvili-NY.handle=Kacheishvili-NY
+player.Kacheishvili-NY.name=Giorgi Kacheishvili
+player.Kacheishvili-NY.rating=2653
+player.Kacheishvili-NY.team=NY
+player.Kacheishvili-NY.titles=(GM)
+
+player.LarryC-BOS.handle=LarryC-BOS
+player.LarryC-BOS.name=Larry Christiansen
+player.LarryC-BOS.rating=2648
+player.LarryC-BOS.team=BOS
+player.LarryC-BOS.titles=(GM)
+
+player.Becerra-MIA.handle=Becerra-MIA
+player.Becerra-MIA.name=Julio Becerra
+player.Becerra-MIA.rating=2640
+player.Becerra-MIA.team=MIA
+player.Becerra-MIA.titles=(GM)
+
+player.Benjamin-NJ.handle=Benjamin-NJ
+player.Benjamin-NJ.name=Joel Benjamin
+player.Benjamin-NJ.rating=2640
+player.Benjamin-NJ.team=NJ
+player.Benjamin-NJ.titles=(GM)
+
+player.Shankland-NE.handle=Shankland-NE
+player.Shankland-NE.name=Sam Shankland
+player.Shankland-NE.rating=2624
+player.Shankland-NE.team=NE
+player.Shankland-NE.titles=(GM)
+
+player.Wolff-SF.handle=Wolff-SF
+player.Wolff-SF.name=Patrick Wolff
+player.Wolff-SF.rating=2623
+player.Wolff-SF.team=SF
+player.Wolff-SF.titles=(GM)
+
+player.Hungaski-NE.handle=Hungaski-NE
+player.Hungaski-NE.name=Robert Hungaski
+player.Hungaski-NE.rating=2621
+player.Hungaski-NE.team=NE
+player.Hungaski-NE.titles=(IM)
+
+player.Sammour-BOS.handle=Sammour-BOS
+player.Sammour-BOS.name=Jorge Sammour-Hasbun
+player.Sammour-BOS.rating=2604
+player.Sammour-BOS.team=BOS
+player.Sammour-BOS.titles=
+
+player.Perelshteyn-BOS.handle=Perelshteyn-BOS
+player.Perelshteyn-BOS.name=Eugene Perelshteyn
+player.Perelshteyn-BOS.rating=2591
+player.Perelshteyn-BOS.team=BOS
+player.Perelshteyn-BOS.titles=(GM)
+
+player.Gulko-NJ.handle=Gulko-NJ
+player.Gulko-NJ.name=Boris Gulko
+player.Gulko-NJ.rating=2587
+player.Gulko-NJ.team=NJ
+player.Gulko-NJ.titles=(GM)
+
+player.Barcenilla-ARZ.handle=Barcenilla-ARZ
+player.Barcenilla-ARZ.name=Rogelio Barcenilla
+player.Barcenilla-ARZ.rating=2583
+player.Barcenilla-ARZ.team=ARZ
+player.Barcenilla-ARZ.titles=(GM)
+
+player.Bercys-DAL.handle=Bercys-DAL
+player.Bercys-DAL.name=Salvijus Bercys
+player.Bercys-DAL.rating=2576
+player.Bercys-DAL.team=DAL
+player.Bercys-DAL.titles=(IM)
+
+player.BFinegold-STL.handle=BFinegold-STL
+player.BFinegold-STL.name=Ben Finegold
+player.BFinegold-STL.rating=2568
+player.BFinegold-STL.team=STL
+player.BFinegold-STL.titles=(GM)
+
+player.Kraai-SF.handle=Kraai-SF
+player.Kraai-SF.name=Jesse Kraai
+player.Kraai-SF.rating=2567
+player.Kraai-SF.team=SF
+player.Kraai-SF.titles=(GM)
+
+player.Charbonneau-NY.handle=Charbonneau-NY
+player.Charbonneau-NY.name=Pascal Charbonneau
+player.Charbonneau-NY.rating=2565
+player.Charbonneau-NY.team=NY
+player.Charbonneau-NY.titles=(GM)
+
+player.MageshP-PHI.handle=MageshP-PHI
+player.MageshP-PHI.name=Magesh Panchanathan
+player.MageshP-PHI.rating=2565
+player.MageshP-PHI.team=PHI
+player.MageshP-PHI.titles=(GM)
+
+player.Khachiyan-LA.handle=Khachiyan-LA
+player.Khachiyan-LA.name=Melikset Khachiyan
+player.Khachiyan-LA.rating=2563
+player.Khachiyan-LA.team=LA
+player.Khachiyan-LA.titles=(GM)
+
+player.Sadorra-DAL.handle=Sadorra-DAL
+player.Sadorra-DAL.name=Julio Sadorra
+player.Sadorra-DAL.rating=2561
+player.Sadorra-DAL.team=DAL
+player.Sadorra-DAL.titles=(GM)
+
+player.IrinaKrush-NY.handle=IrinaKrush-NY
+player.IrinaKrush-NY.name=Irina Krush
+player.IrinaKrush-NY.rating=2560
+player.IrinaKrush-NY.team=NY
+player.IrinaKrush-NY.titles=(IM)
+
+player.Bhat-SF.handle=Bhat-SF
+player.Bhat-SF.name=Vinay Bhat
+player.Bhat-SF.rating=2555
+player.Bhat-SF.team=SF
+player.Bhat-SF.titles=(GM)
+
+player.Ippolito-NJ.handle=Ippolito-NJ
+player.Ippolito-NJ.name=Dean Ippolito
+player.Ippolito-NJ.rating=2554
+player.Ippolito-NJ.team=NJ
+player.Ippolito-NJ.titles=(IM)
+
+player.DGurevich-CHC.handle=DGurevich-CHC
+player.DGurevich-CHC.name=Dmitry Gurevich
+player.DGurevich-CHC.rating=2547
+player.DGurevich-CHC.team=CHC
+player.DGurevich-CHC.titles=(GM)
+
+player.Vigorito-NE.handle=Vigorito-NE
+player.Vigorito-NE.name=David Vigorito
+player.Vigorito-NE.rating=2547
+player.Vigorito-NE.team=NE
+player.Vigorito-NE.titles=(IM)
+
+player.Vovsha-MAN.handle=Vovsha-MAN
+player.Vovsha-MAN.name=Eli Vovsha
+player.Vovsha-MAN.rating=2531
+player.Vovsha-MAN.team=MAN
+player.Vovsha-MAN.titles=(IM)
+
+player.Fedorowicz-NY.handle=Fedorowicz-NY
+player.Fedorowicz-NY.name=John Fedorowicz
+player.Fedorowicz-NY.rating=2523
+player.Fedorowicz-NY.team=NY
+player.Fedorowicz-NY.titles=(GM)
+
+player.DSchneider-MAN.handle=DSchneider-MAN
+player.DSchneider-MAN.name=Dmitry Schneider
+player.DSchneider-MAN.rating=2522
+player.DSchneider-MAN.team=MAN
+player.DSchneider-MAN.titles=(IM)
+
+player.Naroditsky-SF.handle=Naroditsky-SF
+player.Naroditsky-SF.name=Daniel Naroditsky
+player.Naroditsky-SF.rating=2516
+player.Naroditsky-SF.team=SF
+player.Naroditsky-SF.titles=(IM)
+
+player.Cozianu-SEA.handle=Cozianu-SEA
+player.Cozianu-SEA.name=Costin Cozianu
+player.Cozianu-SEA.rating=2508
+player.Cozianu-SEA.team=SEA
+player.Cozianu-SEA.titles=(FM)
+
+player.Milman-MAN.handle=Milman-MAN
+player.Milman-MAN.name=Lev Milman
+player.Milman-MAN.rating=2490
+player.Milman-MAN.team=MAN
+player.Milman-MAN.titles=(IM)
+
+player.Altounian-ARZ.handle=Altounian-ARZ
+player.Altounian-ARZ.name=Levon Altounian
+player.Altounian-ARZ.rating=2483
+player.Altounian-ARZ.team=ARZ
+player.Altounian-ARZ.titles=(IM)
+
+player.LKaufman-BAL.handle=LKaufman-BAL
+player.LKaufman-BAL.name=Larry Kaufman
+player.LKaufman-BAL.rating=2467
+player.LKaufman-BAL.team=BAL
+player.LKaufman-BAL.titles=(GM)
+
+player.Zilberstein-SF.handle=Zilberstein-SF
+player.Zilberstein-SF.name=Dmitry Zilberstein
+player.Zilberstein-SF.rating=2461
+player.Zilberstein-SF.team=SF
+player.Zilberstein-SF.titles=(IM)
+
+player.Aldama-ARZ.handle=Aldama-ARZ
+player.Aldama-ARZ.name=Dionisio Aldama
+player.Aldama-ARZ.rating=2453
+player.Aldama-ARZ.team=ARZ
+player.Aldama-ARZ.titles=(IM)
+
+player.Riordan-NE.handle=Riordan-NE
+player.Riordan-NE.name=Charles Riordan
+player.Riordan-NE.rating=2443
+player.Riordan-NE.team=NE
+player.Riordan-NE.titles=(FM)
+
+player.Bonin-PHI.handle=Bonin-PHI
+player.Bonin-PHI.name=Jay Bonin
+player.Bonin-PHI.rating=2438
+player.Bonin-PHI.team=PHI
+player.Bonin-PHI.titles=(IM)
+
+player.Kiewra-DAL.handle=Kiewra-DAL
+player.Kiewra-DAL.name=Keaton Kiewra
+player.Kiewra-DAL.rating=2436
+player.Kiewra-DAL.team=DAL
+player.Kiewra-DAL.titles=(FM)
+
+player.Ginsburg-ARZ.handle=Ginsburg-ARZ
+player.Ginsburg-ARZ.name=Mark Ginsburg
+player.Ginsburg-ARZ.rating=2435
+player.Ginsburg-ARZ.team=ARZ
+player.Ginsburg-ARZ.titles=(IM)
+
+player.Schroer-CAR.handle=Schroer-CAR
+player.Schroer-CAR.name=Jonathan Schroer
+player.Schroer-CAR.rating=2435
+player.Schroer-CAR.team=CAR
+player.Schroer-CAR.titles=(IM)
+
+player.Enkhbat-BAL.handle=Enkhbat-BAL
+player.Enkhbat-BAL.name=Tegshsuren Enkhbat
+player.Enkhbat-BAL.rating=2426
+player.Enkhbat-BAL.team=BAL
+player.Enkhbat-BAL.titles=(IM)
+
+player.Herman-NY.handle=Herman-NY
+player.Herman-NY.name=Matt Herman
+player.Herman-NY.rating=2426
+player.Herman-NY.team=NY
+player.Herman-NY.titles=
+
+player.Zaremba-MAN.handle=Zaremba-MAN
+player.Zaremba-MAN.name=Andrei Zaremba
+player.Zaremba-MAN.rating=2417
+player.Zaremba-MAN.team=MAN
+player.Zaremba-MAN.titles=(FM)
+
+player.Foisor-BAL.handle=Foisor-BAL
+player.Foisor-BAL.name=Sabina Foisor
+player.Foisor-BAL.rating=2416
+player.Foisor-BAL.team=BAL
+player.Foisor-BAL.titles=(WGM)
+
+player.AngeloYoung-CHC.handle=AngeloYoung-CHC
+player.AngeloYoung-CHC.name=Angelo Young
+player.AngeloYoung-CHC.rating=2415
+player.AngeloYoung-CHC.team=CHC
+player.AngeloYoung-CHC.titles=(IM)
+
+player.Abrahamyan-LA.handle=Abrahamyan-LA
+player.Abrahamyan-LA.name=Tatev Abrahamyan
+player.Abrahamyan-LA.rating=2415
+player.Abrahamyan-LA.team=LA
+player.Abrahamyan-LA.titles=(WGM)
+
+player.Mikhailuk-SEA.handle=Mikhailuk-SEA
+player.Mikhailuk-SEA.name=Slava Mikhailuk
+player.Mikhailuk-SEA.rating=2415
+player.Mikhailuk-SEA.team=SEA
+player.Mikhailuk-SEA.titles=(FM)
+
+player.Pruess-SF.handle=Pruess-SF
+player.Pruess-SF.name=David Pruess
+player.Pruess-SF.rating=2414
+player.Pruess-SF.team=SF
+player.Pruess-SF.titles=(IM)
+
+player.Felecan-CHC.handle=Felecan-CHC
+player.Felecan-CHC.name=Florin Felecan
+player.Felecan-CHC.rating=2406
+player.Felecan-CHC.team=CHC
+player.Felecan-CHC.titles=(IM)
+
+player.Bartell-PHI.handle=Bartell-PHI
+player.Bartell-PHI.name=Tom Bartell
+player.Bartell-PHI.rating=2405
+player.Bartell-PHI.team=PHI
+player.Bartell-PHI.titles=(IM)
+
+player.ERodriguez-MIA.handle=ERodriguez-MIA
+player.ERodriguez-MIA.name=Eric Rodriguez
+player.ERodriguez-MIA.rating=2397
+player.ERodriguez-MIA.team=MIA
+player.ERodriguez-MIA.titles=(FM)
+
+player.Bournival-NE.handle=Bournival-NE
+player.Bournival-NE.name=Braden Bournival
+player.Bournival-NE.rating=2396
+player.Bournival-NE.team=NE
+player.Bournival-NE.titles=(FM)
+
+player.Adamson-ARZ.handle=Adamson-ARZ
+player.Adamson-ARZ.name=Robby Adamson
+player.Adamson-ARZ.rating=2388
+player.Adamson-ARZ.team=ARZ
+player.Adamson-ARZ.titles=(FM)
+
+player.Kapengut-NJ.handle=Kapengut-NJ
+player.Kapengut-NJ.name=Albert Kapengut
+player.Kapengut-NJ.rating=2374
+player.Kapengut-NJ.team=NJ
+player.Kapengut-NJ.titles=(IM)
+
+player.Liou-SF.handle=Liou-SF
+player.Liou-SF.name=Yian Liou
+player.Liou-SF.rating=2365
+player.Liou-SF.team=SF
+player.Liou-SF.titles=
+
+player.Milat-SEA.handle=Milat-SEA
+player.Milat-SEA.name=Marcel Milat
+player.Milat-SEA.rating=2358
+player.Milat-SEA.team=SEA
+player.Milat-SEA.titles=(FM)
+
+player.Adelberg-ARZ.handle=Adelberg-ARZ
+player.Adelberg-ARZ.name=David Adelberg
+player.Adelberg-ARZ.rating=2354
+player.Adelberg-ARZ.team=ARZ
+player.Adelberg-ARZ.titles=
+
+player.Casella-LA.handle=Casella-LA
+player.Casella-LA.name=Michael Casella
+player.Casella-LA.rating=2334
+player.Casella-LA.team=LA
+player.Casella-LA.titles=(FM)
+
+player.Rohonyan-SEA.handle=Rohonyan-SEA
+player.Rohonyan-SEA.name=Katerina Rohonyan
+player.Rohonyan-SEA.rating=2333
+player.Rohonyan-SEA.team=SEA
+player.Rohonyan-SEA.titles=(WGM)
+
+player.Rosen-CHC.handle=Rosen-CHC
+player.Rosen-CHC.name=Eric Rosen
+player.Rosen-CHC.rating=2333
+player.Rosen-CHC.team=CHC
+player.Rosen-CHC.titles=
+
+player.Vaidya-DAL.handle=Vaidya-DAL
+player.Vaidya-DAL.name=Chaitanya Vaidya
+player.Vaidya-DAL.rating=2333
+player.Vaidya-DAL.team=DAL
+player.Vaidya-DAL.titles=
+
+player.Martirosov-BOS.handle=Martirosov-BOS
+player.Martirosov-BOS.name=Vadim Martirosov
+player.Martirosov-BOS.rating=2329
+player.Martirosov-BOS.team=BOS
+player.Martirosov-BOS.titles=
+
+player.Corke-BOS.handle=Corke-BOS
+player.Corke-BOS.name=Anya Corke
+player.Corke-BOS.rating=2322
+player.Corke-BOS.team=BOS
+player.Corke-BOS.titles=(WGM)
+
+player.Dehmelt-PHI.handle=Dehmelt-PHI
+player.Dehmelt-PHI.name=Karl Dehmelt
+player.Dehmelt-PHI.rating=2319
+player.Dehmelt-PHI.team=PHI
+player.Dehmelt-PHI.titles=(FM)
+
+player.Cherniack-NE.handle=Cherniack-NE
+player.Cherniack-NE.name=Alex Cherniack
+player.Cherniack-NE.rating=2319
+player.Cherniack-NE.team=NE
+player.Cherniack-NE.titles=
+
+player.Simpson-CAR.handle=Simpson-CAR
+player.Simpson-CAR.name=Ron Simpson
+player.Simpson-CAR.rating=2317
+player.Simpson-CAR.team=CAR
+player.Simpson-CAR.titles=(FM)
+
+player.Yanayt-LA.handle=Yanayt-LA
+player.Yanayt-LA.name=Eugene Yanayt
+player.Yanayt-LA.rating=2305
+player.Yanayt-LA.team=LA
+player.Yanayt-LA.titles=(FM)
+
+player.CraigJones-CA.handle=CraigJones-CA
+player.CraigJones-CA.name=Craig Jones
+player.CraigJones-CA.rating=2305
+player.CraigJones-CA.team=CA
+player.CraigJones-CA.titles=
+
+player.Klein-CAR.handle=Klein-CAR
+player.Klein-CAR.name=Mike Klein
+player.Klein-CAR.rating=2304
+player.Klein-CAR.team=CAR
+player.Klein-CAR.titles=(FM)
+
+player.Mabe-CAR.handle=Mabe-CAR
+player.Mabe-CAR.name=Chris Mabe
+player.Mabe-CAR.rating=2296
+player.Mabe-CAR.team=CAR
+player.Mabe-CAR.titles=
+
+player.Schoch-BAL.handle=Schoch-BAL
+player.Schoch-BAL.name=Ian Schoch
+player.Schoch-BAL.rating=2292
+player.Schoch-BAL.team=BAL
+player.Schoch-BAL.titles=
+
+player.AdithyaB-BAL.handle=AdithyaB-BAL
+player.AdithyaB-BAL.name=Adithya Balasubramanian
+player.AdithyaB-BAL.rating=2292
+player.AdithyaB-BAL.team=BAL
+player.AdithyaB-BAL.titles=
+
+player.AShen-NJ.handle=AShen-NJ
+player.AShen-NJ.name=Arthur Shen
+player.AShen-NJ.rating=2291
+player.AShen-NJ.team=NJ
+player.AShen-NJ.titles=(FM)
+
+player.RCostigan-PHI.handle=RCostigan-PHI
+player.RCostigan-PHI.name=Richard Costigan
+player.RCostigan-PHI.rating=2288
+player.RCostigan-PHI.team=PHI
+player.RCostigan-PHI.titles=(IM)
+
+player.Sinanan-SEA.handle=Sinanan-SEA
+player.Sinanan-SEA.name=Joshua Sinanan
+player.Sinanan-SEA.rating=2288
+player.Sinanan-SEA.team=SEA
+player.Sinanan-SEA.titles=
+
+player.Zimmer-BAL.handle=Zimmer-BAL
+player.Zimmer-BAL.name=Ralph Zimmer
+player.Zimmer-BAL.rating=2280
+player.Zimmer-BAL.team=BAL
+player.Zimmer-BAL.titles=(FM)
+
+player.Kavutskiy-LA.handle=Kavutskiy-LA
+player.Kavutskiy-LA.name=Konstantin Kavutskiy
+player.Kavutskiy-LA.rating=2277
+player.Kavutskiy-LA.team=LA
+player.Kavutskiy-LA.titles=
+
+player.Krasik-BOS.handle=Krasik-BOS
+player.Krasik-BOS.name=Ilya Krasik
+player.Krasik-BOS.rating=2264
+player.Krasik-BOS.team=BOS
+player.Krasik-BOS.titles=
+
+player.Thompson-ARZ.handle=Thompson-ARZ
+player.Thompson-ARZ.name=Nick Thompson
+player.Thompson-ARZ.rating=2242
+player.Thompson-ARZ.team=ARZ
+player.Thompson-ARZ.titles=
+
+player.MShahade-PHI.handle=MShahade-PHI
+player.MShahade-PHI.name=Michael Shahade
+player.MShahade-PHI.rating=2241
+player.MShahade-PHI.team=PHI
+player.MShahade-PHI.titles=
+
+player.Eckert-STL.handle=Eckert-STL
+player.Eckert-STL.name=Doug Eckert
+player.Eckert-STL.rating=2240
+player.Eckert-STL.team=STL
+player.Eckert-STL.titles=(FM)
+
+player.EWilson-PHI.handle=EWilson-PHI
+player.EWilson-PHI.name=Elvin Wilson
+player.EWilson-PHI.rating=2240
+player.EWilson-PHI.team=PHI
+player.EWilson-PHI.titles=
+
+player.Williams-NY.handle=Williams-NY
+player.Williams-NY.name=Justus Williams
+player.Williams-NY.rating=2239
+player.Williams-NY.team=NY
+player.Williams-NY.titles=
+
+player.Selzler-BAL.handle=Selzler-BAL
+player.Selzler-BAL.name=Ricky Selzler
+player.Selzler-BAL.rating=2218
+player.Selzler-BAL.team=BAL
+player.Selzler-BAL.titles=
+
+player.Zorigt-DAL.handle=Zorigt-DAL
+player.Zorigt-DAL.name=Bayaraa Zorigt
+player.Zorigt-DAL.rating=2211
+player.Zorigt-DAL.team=DAL
+player.Zorigt-DAL.titles=(WFM)
+
+player.Alvarez-MIA.handle=Alvarez-MIA
+player.Alvarez-MIA.name=Ernesto Alvarez
+player.Alvarez-MIA.rating=2207
+player.Alvarez-MIA.team=MIA
+player.Alvarez-MIA.titles=
+
+player.JamesBlack-MAN.handle=JamesBlack-MAN
+player.JamesBlack-MAN.name=James Black
+player.JamesBlack-MAN.rating=2184
+player.JamesBlack-MAN.team=MAN
+player.JamesBlack-MAN.titles=
+
+player.Santalla-MIA.handle=Santalla-MIA
+player.Santalla-MIA.name=Andres Santalla
+player.Santalla-MIA.rating=2156
+player.Santalla-MIA.team=MIA
+player.Santalla-MIA.titles=
+
+player.Mateer-ARZ.handle=Mateer-ARZ
+player.Mateer-ARZ.name=Amanda Mateer
+player.Mateer-ARZ.rating=2132
+player.Mateer-ARZ.team=ARZ
+player.Mateer-ARZ.titles=(WFM)
+
+player.Herbst-CAR.handle=Herbst-CAR
+player.Herbst-CAR.name=Richard Herbst
+player.Herbst-CAR.rating=2119
+player.Herbst-CAR.team=CAR
+player.Herbst-CAR.titles=
+
+player.Matlin-NJ.handle=Matlin-NJ
+player.Matlin-NJ.name=Anna Matlin
+player.Matlin-NJ.rating=2082
+player.Matlin-NJ.team=NJ
+player.Matlin-NJ.titles=
+
+player.Smith-MAN.handle=Smith-MAN
+player.Smith-MAN.name=Shaun Smith
+player.Smith-MAN.rating=2081
+player.Smith-MAN.team=MAN
+player.Smith-MAN.titles=
+
+player.Byambaa-SF.handle=Byambaa-SF
+player.Byambaa-SF.name=Uyanga Byambaa
+player.Byambaa-SF.rating=2080
+player.Byambaa-SF.team=SF
+player.Byambaa-SF.titles=
+
+player.Rosenthal-MIA.handle=Rosenthal-MIA
+player.Rosenthal-MIA.name=Nicholas Rosenthal
+player.Rosenthal-MIA.rating=2062
+player.Rosenthal-MIA.team=MIA
+player.Rosenthal-MIA.titles=
+
+player.Hua-STL.handle=Hua-STL
+player.Hua-STL.name=Margaret Hua
+player.Hua-STL.rating=1981
+player.Hua-STL.team=STL
+player.Hua-STL.titles=
+

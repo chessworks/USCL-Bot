@@ -1,0 +1,81 @@
+Manager Commands:
+
+add-player           : Adds a new player to the tournament.
+set-player           : Set player details, such as "name", "titles", and "rating".
+show-player          : Shows the player's full profile, including name, titles, rating, etc..
+remove-player        : Removes a player's data from the bot.
+
+add-team             : Adds a new team to the tournament (STL, etc.)
+set-team             : Sets the team details, such as the team website and team's full name.
+show-team            : Shows the current team details.
+remove-team          : Removes a team profile from the bot, including players.
+
+reserve-game         : Reserves boards for a game.  Syntax: reserve-game <board> <white> <black>
+reserve-game (old)   : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
+unreserve-game       : Removes a board reservation.  Syntax: unreserve-game <board>
+unreserve-game (old) : (Deprecated.)  Removes a board reservation.  Syntax: unreserve-game <player>
+show-games           : Shows a list of all reserved boards.
+clear-games          : Clears the list of all reseved boards.
+clear                : (Deprecated.)  Same as clear-games.
+show                 : (Deprecated.)  Same as show-games.
+
+REBOOT               : Restart the bot.
+KILL                 : Shutdown the bot.  A programmer will then be required to restart it.
+                       (If this fails to kill the bot during an emergency, ban the bot.)
+REVERT               : If the current version of the bot breaks, this restores it to the last known stable release.
+
+Jeeves               : Jeeves gets special treatment.  When Jeeves sends commands the bot pretends they came from MrBob and sends replies to MrBob instead.
+
+
+Programmer Commands:
+
+recompile            : Retrieves the latest updates from source control, compiles, and deploys them.
+test-error           : Generates an error message.
+refresh-all-profiles : Sets the finger notes for all players.
+refresh-profile      : Sets the finger notes for the given player.
+
+
+
+
+Here are special instructions for Wohl and Freebird:
+
+Wohl/Freebird: To manually kill the bot:
+Login to bots.chessclub.com.
+Become the DuckStorm user:  sudo su DuckStorm
+Run ~duckstorm/bin/tasks to locate the process id for both uscl.sh and it's child java process.
+Kill both uscl.sh and it's child java process.
+
+Wohl/Freebird: Relaunching the Bot in the Event it Dies/Hangs:
+First kill the bot as shown above
+Now, MUST MUST be the Duckstorm user for this next step....
+cd ~duckstorm/bots/USCL-Bot
+./uscl.sh
+
+
+Here are special instructions for OrionsKnight:
+
+To manually kill the bot:
+ssh -l DuckStorm bots.chessclub.com  (Your usual ssh key is authorized for login to the DuckStorm account.)
+Run tasks (or tasks -v) to locate the process id for both uscl.sh and it's child java process.
+Kill both uscl.sh and it's child java process.
+
+Relaunching the Bot in the Event it Dies/Hangs:
+ssh -l DuckStorm bots.chessclub.com  (Your usual ssh key is authorized for login to the DuckStorm account.)
+Kill the bot as shown above
+cd ~duckstorm/bots/USCL-Bot
+./uscl.sh
+
+Making code changes
+The source repository is at: https://chessworks.googlecode.com/svn/projects/USCL-Bot/trunk.  I prefer to use Eclipse.
+
+Compiling and Deploying Updates
+On bots.chessclub.com the source code is located at ~duckstorm/bots/USCL-Bot.
+To retrieve updates from SVN, go to that directory and type: svn update.
+To compile, type: ant or run ./build.sh
+When the bot starts, it renames USCL-Bot.jar to USCL-Bot-run.jar.  This allows you to recompile while the bot is running.  And then do a quick restart to pickup the changes.
+To quickly reboot the bot after doing a build, login to chessclub.com and do tell USCL-BOT REBOOT.
+
+Bot Configuration File
+The USCL-Bot.properties in the bot's directory is for show only.  The real configuration file is in ~duckstorm/.secure/USCL-Bot.properties.  This prevents the real password from being accidentally saved in SVN.
+The configuration file contains the login password, as well as lists of bot managers.  There are two access levels: manager and programmer.  Programmer receives a qtell for every command the bot sends, while manager doesn't.
+

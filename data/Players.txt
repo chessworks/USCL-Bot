@@ -1,995 +1,12 @@
 #USCL Players
 
-player.Nakamura-STL.name=Hikaru Nakamura
-player.Nakamura-STL.team=STL
-player.Nakamura-STL.rating=2863
-player.Nakamura-STL.titles=(GM)
-player.Nakamura-STL.website=http://www.uschessleague.com/HikaruNakamura.html
+player.Abrahamyan-LA.handle=Abrahamyan-LA
+player.Abrahamyan-LA.name=Tatev Abrahamyan
+player.Abrahamyan-LA.rating=2415
+player.Abrahamyan-LA.team=LA
+player.Abrahamyan-LA.titles=(WGM)
+player.Abrahamyan-LA.website=http://www.uschessleague.com/TatevAbrahamyan.html
 
-player.Akobian-SEA.name=Varuzhan Akobian
-player.Akobian-SEA.team=SEA
-player.Akobian-SEA.rating=2698
-player.Akobian-SEA.titles=(GM)
-player.Akobian-SEA.website=http://www.uschessleague.com/VaruzhanAkobian.html
-
-player.Stripunsky-MAN.name=Alex Stripunsky
-player.Stripunsky-MAN.team=MAN
-player.Stripunsky-MAN.rating=2694
-player.Stripunsky-MAN.titles=(GM)
-player.Stripunsky-MAN.website=http://www.uschessleague.com/AlexStripunsky.html
-
-player.Shulman-STL.name=Yury Shulman
-player.Shulman-STL.team=STL
-player.Shulman-STL.rating=2687
-player.Shulman-STL.titles=(GM)
-player.Shulman-STL.website=http://www.uschessleague.com/YuryShulman.html
-
-player.Erenburg-BAL.name=Sergey Erenburg
-player.Erenburg-BAL.team=BAL
-player.Erenburg-BAL.rating=2679
-player.Erenburg-BAL.titles=(GM)
-player.Erenburg-BAL.website=http://www.uschessleague.com/SergeyErenburg.html
-
-player.ARamirez-DAL.name=Alejandro Ramirez
-player.ARamirez-DAL.team=DAL
-player.ARamirez-DAL.rating=2660
-player.ARamirez-DAL.titles=(GM)
-player.ARamirez-DAL.website=http://www.uschessleague.com/AlejandroRamirez.html
-
-player.Kacheishvili-NY.name=Giorgi Kacheishvili
-player.Kacheishvili-NY.team=NY
-player.Kacheishvili-NY.rating=2653
-player.Kacheishvili-NY.titles=(GM)
-player.Kacheishvili-NY.website=http://www.uschessleague.com/GiorgiKacheishvili.html
-
-player.LarryC-BOS.name=Larry Christiansen
-player.LarryC-BOS.team=BOS
-player.LarryC-BOS.rating=2648
-player.LarryC-BOS.titles=(GM)
-player.LarryC-BOS.website=http://www.uschessleague.com/LarryChristiansen.html
-
-player.Becerra-MIA.name=Julio Becerra
-player.Becerra-MIA.team=MIA
-player.Becerra-MIA.rating=2640
-player.Becerra-MIA.titles=(GM)
-player.Becerra-MIA.website=http://www.uschessleague.com/JulioBecerra.html
-
-player.Benjamin-NJ.name=Joel Benjamin
-player.Benjamin-NJ.team=NJ
-player.Benjamin-NJ.rating=2640
-player.Benjamin-NJ.titles=(GM)
-player.Benjamin-NJ.website=http://www.uschessleague.com/JoelBenjamin.html
-
-player.ValentinIotov.name=Valentin Iotov
-player.ValentinIotov.team=Dallas
-player.ValentinIotov.rating=2631
-player.ValentinIotov.titles=(GM)
-player.ValentinIotov.website=http://www.uschessleague.com/ValentinIotov.html
-
-player.Shankland-NE.name=Sam Shankland
-player.Shankland-NE.team=NE
-player.Shankland-NE.rating=2624
-player.Shankland-NE.titles=(GM)
-player.Shankland-NE.website=http://www.uschessleague.com/SamShankland.html
-
-player.Wolff-SF.name=Patrick Wolff
-player.Wolff-SF.team=SF
-player.Wolff-SF.rating=2623
-player.Wolff-SF.titles=(GM)
-player.Wolff-SF.website=http://www.uschessleague.com/PatrickWolff.html
-
-player.Hungaski-NE.name=Robert Hungaski
-player.Hungaski-NE.team=NE
-player.Hungaski-NE.rating=2621
-player.Hungaski-NE.titles=(IM)
-player.Hungaski-NE.website=http://www.uschessleague.com/RobertHungaski.html
-
-player.Friedel-SF.name=Josh Friedel
-player.Friedel-SF.team=SF
-player.Friedel-SF.rating=2609
-player.Friedel-SF.titles=(GM)
-player.Friedel-SF.website=http://www.uschessleague.com/JoshFriedel.html
-
-player.Perelshteyn-BOS.name=Eugene Perelshteyn
-player.Perelshteyn-BOS.team=BOS
-player.Perelshteyn-BOS.rating=2591
-player.Perelshteyn-BOS.titles=(GM)
-player.Perelshteyn-BOS.website=http://www.uschessleague.com/EugenePerelshteyn.html
-
-player.Gulko-NJ.name=Boris Gulko
-player.Gulko-NJ.team=NJ
-player.Gulko-NJ.rating=2587
-player.Gulko-NJ.titles=(GM)
-player.Gulko-NJ.website=http://www.uschessleague.com/BorisGulko.html
-
-player.Amanov-CHC.name=Mesgen Amanov
-player.Amanov-CHC.team=CHC
-player.Amanov-CHC.rating=2576
-player.Amanov-CHC.titles=(GM)
-player.Amanov-CHC.website=http://www.uschessleague.com/MesgenAmanov.html
-
-player.Bercys-DAL.name=Salvijus Bercys
-player.Bercys-DAL.team=DAL
-player.Bercys-DAL.rating=2576
-player.Bercys-DAL.titles=(IM)
-player.Bercys-DAL.website=http://www.uschessleague.com/SalvijusBercys.html
-
-player.BFinegold-STL.name=Ben Finegold
-player.BFinegold-STL.team=STL
-player.BFinegold-STL.rating=2568
-player.BFinegold-STL.titles=(GM)
-player.BFinegold-STL.website=http://www.uschessleague.com/BenFinegold.html
-
-player.Kraai-SF.name=Jesse Kraai
-player.Kraai-SF.team=SF
-player.Kraai-SF.rating=2567
-player.Kraai-SF.titles=(GM)
-player.Kraai-SF.website=http://www.uschessleague.com/JesseKraai.html
-
-player.GoranVojinovic.name=Goran Vojinovic
-player.GoranVojinovic.team=StLouis
-player.GoranVojinovic.rating=2567
-player.GoranVojinovic.titles=(IM)
-player.GoranVojinovic.website=http://www.uschessleague.com/GoranVojinovic.html
-
-player.Charbonneau-NY.name=Pascal Charbonneau
-player.Charbonneau-NY.team=NY
-player.Charbonneau-NY.rating=2565
-player.Charbonneau-NY.titles=(GM)
-player.Charbonneau-NY.website=http://www.uschessleague.com/PascalCharbonneau.html
-
-player.AlexFishbein.name=Alex Fishbein
-player.AlexFishbein.team=NewJersey
-player.AlexFishbein.rating=2563
-player.AlexFishbein.titles=(GM)
-player.AlexFishbein.website=http://www.uschessleague.com/AlexFishbein.html
-
-player.Khachiyan-LA.name=Melikset Khachiyan
-player.Khachiyan-LA.team=LA
-player.Khachiyan-LA.rating=2563
-player.Khachiyan-LA.titles=(GM)
-player.Khachiyan-LA.website=http://www.uschessleague.com/MeliksetKhachiyan.html
-
-player.Sadorra-DAL.name=Julio Sadorra
-player.Sadorra-DAL.team=DAL
-player.Sadorra-DAL.rating=2561
-player.Sadorra-DAL.titles=(GM)
-player.Sadorra-DAL.website=http://www.uschessleague.com/JulioSadorra.html
-
-player.IrinaKrush-NY.name=Irina Krush
-player.IrinaKrush-NY.team=NY
-player.IrinaKrush-NY.rating=2560
-player.IrinaKrush-NY.titles=(IM)
-player.IrinaKrush-NY.website=http://www.uschessleague.com/IrinaKrush.html
-
-player.VinayBhat.name=Vinay Bhat
-player.VinayBhat.team=SanFrancisco
-player.VinayBhat.rating=2555
-player.VinayBhat.titles=(GM)
-player.VinayBhat.website=http://www.uschessleague.com/VinayBhat.html
-
-player.Ippolito-NJ.name=Dean Ippolito
-player.Ippolito-NJ.team=NJ
-player.Ippolito-NJ.rating=2554
-player.Ippolito-NJ.titles=(IM)
-player.Ippolito-NJ.website=http://www.uschessleague.com/DeanIppolito.html
-
-player.DGurevich-CHC.name=Dmitry Gurevich
-player.DGurevich-CHC.team=CHC
-player.DGurevich-CHC.rating=2547
-player.DGurevich-CHC.titles=(GM)
-player.DGurevich-CHC.website=http://www.uschessleague.com/DmitryGurevich.html
-
-player.Vigorito-NE.name=David Vigorito
-player.Vigorito-NE.team=NE
-player.Vigorito-NE.rating=2547
-player.Vigorito-NE.titles=(IM)
-player.Vigorito-NE.website=http://www.uschessleague.com/DaveVigorito.html
-
-player.GeorgiOrlov.name=Georgi Orlov
-player.GeorgiOrlov.team=Seattle
-player.GeorgiOrlov.rating=2541
-player.GeorgiOrlov.titles=(IM)
-player.GeorgiOrlov.website=http://www.uschessleague.com/GeorgiOrlov.html
-
-player.GiorgiMargvelashvili.name=Giorgi Margvelashvili
-player.GiorgiMargvelashvili.team=Baltimore
-player.GiorgiMargvelashvili.rating=2538
-player.GiorgiMargvelashvili.titles=(GM)
-player.GiorgiMargvelashvili.website=http://www.uschessleague.com/GiorgiMargvelashvili.html
-
-player.Vovsha-MAN.name=Eli Vovsha
-player.Vovsha-MAN.team=MAN
-player.Vovsha-MAN.rating=2531
-player.Vovsha-MAN.titles=(IM)
-player.Vovsha-MAN.website=http://www.uschessleague.com/EliVovsha.html
-
-player.Fedorowicz-NY.name=John Fedorowicz
-player.Fedorowicz-NY.team=NY
-player.Fedorowicz-NY.rating=2523
-player.Fedorowicz-NY.titles=(GM)
-player.Fedorowicz-NY.website=http://www.uschessleague.com/JohnFedorowicz.html
-
-player.DSchneider-MAN.name=Dmitry Schneider
-player.DSchneider-MAN.team=MAN
-player.DSchneider-MAN.rating=2522
-player.DSchneider-MAN.titles=(IM)
-player.DSchneider-MAN.website=http://www.uschessleague.com/DmitrySchneider.html
-
-player.ConradHolt.name=Conrad Holt
-player.ConradHolt.team=Dallas
-player.ConradHolt.rating=2520
-player.ConradHolt.titles=(IM)
-player.ConradHolt.website=http://www.uschessleague.com/ConradHolt.html
-
-player.Naroditsky-SF.name=Daniel Naroditsky
-player.Naroditsky-SF.team=SF
-player.Naroditsky-SF.rating=2516
-player.Naroditsky-SF.titles=(IM)
-player.Naroditsky-SF.website=http://www.uschessleague.com/DanielNaroditsky.html
-
-player.Cozianu-SEA.name=Costin Cozianu
-player.Cozianu-SEA.team=SEA
-player.Cozianu-SEA.rating=2508
-player.Cozianu-SEA.titles=(FM)
-player.Cozianu-SEA.website=http://www.uschessleague.com/CostinCozianu.html
-
-player.JohnBartholomew.name=John Bartholomew
-player.JohnBartholomew.team=Manhattan
-player.JohnBartholomew.rating=2499
-player.JohnBartholomew.titles=(IM)
-player.JohnBartholomew.website=http://www.uschessleague.com/JohnBartholomew.html
-
-player.vandeMortel-NE.name=Jan van de Mortel
-player.vandeMortel-NE.team=NE
-player.vandeMortel-NE.rating=2499
-player.vandeMortel-NE.titles=(IM)
-player.vandeMortel-NE.website=http://www.uschessleague.com/JanvandeMortel.html
-
-player.DavidGriego.name=David Griego
-player.DavidGriego.team=Boston
-player.DavidGriego.rating=2494
-player.DavidGriego.titles=(FM)
-player.DavidGriego.website=http://www.uschessleague.com/DavidGriego.html
-
-player.FaraiMandizha.name=Farai Mandizha
-player.FaraiMandizha.team=Manhattan
-player.FaraiMandizha.rating=2494
-player.FaraiMandizha.titles=(FM)
-player.FaraiMandizha.website=http://www.uschessleague.com/FaraiMandizha.html
-
-player.Milman-MAN.name=Lev Milman
-player.Milman-MAN.team=MAN
-player.Milman-MAN.rating=2490
-player.Milman-MAN.titles=(IM)
-player.Milman-MAN.website=http://www.uschessleague.com/LevMilman.html
-
-player.IgorBerezovsky.name=Igor Berezovsky
-player.IgorBerezovsky.team=NewJersey
-player.IgorBerezovsky.rating=2487
-player.IgorBerezovsky.titles=(IM)
-player.IgorBerezovsky.website=http://www.uschessleague.com/IgorBerezovsky.html
-
-player.Altounian-ARZ.name=Levon Altounian
-player.Altounian-ARZ.team=ARZ
-player.Altounian-ARZ.rating=2483
-player.Altounian-ARZ.titles=(IM)
-player.Altounian-ARZ.website=http://www.uschessleague.com/LevonAltounian.html
-
-player.Molner-NJ.name=Mackenzie Molner
-player.Molner-NJ.team=NJ
-player.Molner-NJ.rating=2482
-player.Molner-NJ.titles=(IM)
-player.Molner-NJ.website=http://www.uschessleague.com/MackenzieMolner.html
-
-player.ZhanibekAmanov.name=Zhanibek Amanov
-player.ZhanibekAmanov.team=LosAngeles
-player.ZhanibekAmanov.rating=2472
-player.ZhanibekAmanov.titles=(IM)
-player.ZhanibekAmanov.website=http://www.uschessleague.com/ZhanibekAmanov.html
-
-player.LKaufman-BAL.name=Larry Kaufman
-player.LKaufman-BAL.team=BAL
-player.LKaufman-BAL.rating=2467
-player.LKaufman-BAL.titles=(GM)
-player.LKaufman-BAL.website=http://www.uschessleague.com/LarryKaufman.html
-
-player.Zilberstein-SF.name=Dmitry Zilberstein
-player.Zilberstein-SF.team=SF
-player.Zilberstein-SF.rating=2461
-player.Zilberstein-SF.titles=(IM)
-player.Zilberstein-SF.website=http://www.uschessleague.com/DmitryZilberstein.html
-
-player.Banawa-LA.name=Joel Banawa
-player.Banawa-LA.team=LA
-player.Banawa-LA.rating=2456
-player.Banawa-LA.titles=(FM)
-player.Banawa-LA.website=http://www.uschessleague.com/JoelBanawa.html
-
-player.Aldama-ARZ.name=Dionisio Aldama
-player.Aldama-ARZ.team=ARZ
-player.Aldama-ARZ.rating=2453
-player.Aldama-ARZ.titles=(IM)
-player.Aldama-ARZ.website=http://www.uschessleague.com/DionisioAldama.html
-
-player.Riordan-NE.name=Charles Riordan
-player.Riordan-NE.team=NE
-player.Riordan-NE.rating=2443
-player.Riordan-NE.titles=(FM)
-player.Riordan-NE.website=http://www.uschessleague.com/CharlesRiordan.html
-
-player.AlexanderMatros.name=Alexander Matros
-player.AlexanderMatros.team=Carolina
-player.AlexanderMatros.rating=2440
-player.AlexanderMatros.titles=(IM)
-player.AlexanderMatros.website=http://www.uschessleague.com/AlexanderMatros.html
-
-player.Bonin-PHI.name=Jay Bonin
-player.Bonin-PHI.team=PHI
-player.Bonin-PHI.rating=2438
-player.Bonin-PHI.titles=(IM)
-player.Bonin-PHI.website=http://www.uschessleague.com/JayBonin.html
-
-player.Kiewra-DAL.name=Keaton Kiewra
-player.Kiewra-DAL.team=DAL
-player.Kiewra-DAL.rating=2436
-player.Kiewra-DAL.titles=(FM)
-player.Kiewra-DAL.website=http://www.uschessleague.com/KeatonKiewra.html
-
-player.MarkGinsburg.name=Mark Ginsburg
-player.MarkGinsburg.team=Arizona
-player.MarkGinsburg.rating=2435
-player.MarkGinsburg.titles=(IM)
-player.MarkGinsburg.website=http://www.uschessleague.com/MarkGinsburg.html
-
-player.Schroer-CAR.name=Jonathan Schroer
-player.Schroer-CAR.team=CAR
-player.Schroer-CAR.rating=2435
-player.Schroer-CAR.titles=(IM)
-player.Schroer-CAR.website=http://www.uschessleague.com/JonathanSchroer.html
-
-player.JonathanYedidia.name=Jonathan Yedidia
-player.JonathanYedidia.team=NewEngland
-player.JonathanYedidia.rating=2428
-player.JonathanYedidia.titles=(IM)
-player.JonathanYedidia.website=http://www.uschessleague.com/JonathanYedidia.html
-
-player.Enkhbat-BAL.name=Tegshsuren Enkhbat
-player.Enkhbat-BAL.team=BAL
-player.Enkhbat-BAL.rating=2426
-player.Enkhbat-BAL.titles=(IM)
-player.Enkhbat-BAL.website=http://www.uschessleague.com/TegshsurenEnkhbat.html
-
-player.Herman-NY.name=Matt Herman
-player.Herman-NY.team=NY
-player.Herman-NY.rating=2426
-player.Herman-NY.titles=(SM)
-player.Herman-NY.website=http://www.uschessleague.com/MattHerman.html
-
-player.GabrielBattaglini.name=Gabriel Battaglini
-player.GabrielBattaglini.team=Carolina
-player.GabrielBattaglini.rating=2420
-player.GabrielBattaglini.titles=(IM)
-player.GabrielBattaglini.website=http://www.uschessleague.com/GabrielBattaglini.html
-
-player.Zaremba-MAN.name=Andrei Zaremba
-player.Zaremba-MAN.team=MAN
-player.Zaremba-MAN.rating=2417
-player.Zaremba-MAN.titles=(FM)
-player.Zaremba-MAN.website=http://www.uschessleague.com/AndreiZaremba.html
-
-player.Foisor-BAL.name=Sabina Foisor
-player.Foisor-BAL.team=BAL
-player.Foisor-BAL.rating=2416
-player.Foisor-BAL.titles=(WGM)
-player.Foisor-BAL.website=http://www.uschessleague.com/SabinaFoisor.html
-
-player.AngeloYoung-CHC.name=Angelo Young
-player.AngeloYoung-CHC.team=CHC
-player.AngeloYoung-CHC.rating=2415
-player.AngeloYoung-CHC.titles=(IM)
-player.AngeloYoung-CHC.website=http://www.uschessleague.com/AngeloYoung.html
-
-player.Mikhailuk-SEA.name=Slava Mikhailuk
-player.Mikhailuk-SEA.team=SEA
-player.Mikhailuk-SEA.rating=2415
-player.Mikhailuk-SEA.titles=(FM)
-player.Mikhailuk-SEA.website=http://www.uschessleague.com/SlavaMikhailuk.html
-
-player.Pruess-SF.name=David Pruess
-player.Pruess-SF.team=SF
-player.Pruess-SF.rating=2414
-player.Pruess-SF.titles=(IM)
-player.Pruess-SF.website=http://www.uschessleague.com/DavidPruess.html
-
-player.Felecan-CHC.name=Florin Felecan
-player.Felecan-CHC.team=CHC
-player.Felecan-CHC.rating=2406
-player.Felecan-CHC.titles=(IM)
-player.Felecan-CHC.website=http://www.uschessleague.com/FlorinFelecan.html
-
-player.Bartell-PHI.name=Tom Bartell
-player.Bartell-PHI.team=PHI
-player.Bartell-PHI.rating=2405
-player.Bartell-PHI.titles=(FM)
-player.Bartell-PHI.website=http://www.uschessleague.com/TomBartell.html
-
-player.JohnDonaldson.name=John Donaldson
-player.JohnDonaldson.team=SanFrancisco
-player.JohnDonaldson.rating=2402
-player.JohnDonaldson.titles=(IM)
-player.JohnDonaldson.website=http://www.uschessleague.com/JohnDonaldson.html
-
-player.JoanOlivera.name=Joan Olivera
-player.JoanOlivera.team=Miami
-player.JoanOlivera.rating=2399
-player.JoanOlivera.titles=(FM)
-player.JoanOlivera.website=http://www.uschessleague.com/JoanOlivera.html
-
-player.ERodriguez-MIA.name=Eric Rodriguez
-player.ERodriguez-MIA.team=MIA
-player.ERodriguez-MIA.rating=2397
-player.ERodriguez-MIA.titles=(FM)
-player.ERodriguez-MIA.website=http://www.uschessleague.com/EricRodriguez.html
-
-player.Bournival-NE.name=Braden Bournival
-player.Bournival-NE.team=NE
-player.Bournival-NE.rating=2396
-player.Bournival-NE.titles=(FM)
-player.Bournival-NE.website=http://www.uschessleague.com/BradenBournival.html
-
-player.Adamson-ARZ.name=Robby Adamson
-player.Adamson-ARZ.team=ARZ
-player.Adamson-ARZ.rating=2388
-player.Adamson-ARZ.titles=(FM)
-player.Adamson-ARZ.website=http://www.uschessleague.com/RobbyAdamson.html
-
-player.LeifPressman.name=Leif Pressman
-player.LeifPressman.team=NewYork
-player.LeifPressman.rating=2381
-player.LeifPressman.titles=(NM)
-player.LeifPressman.website=http://www.uschessleague.com/LeifPressman.html
-
-player.Kapengut-NJ.name=Albert Kapengut
-player.Kapengut-NJ.team=NJ
-player.Kapengut-NJ.rating=2374
-player.Kapengut-NJ.titles=(IM)
-player.Kapengut-NJ.website=http://www.uschessleague.com/AlbertKapengut.html
-
-player.WilliamFisher.name=William Fisher
-player.WilliamFisher.team=Philadelphia
-player.WilliamFisher.rating=2369
-player.WilliamFisher.titles=(NM)
-player.WilliamFisher.website=http://www.uschessleague.com/WilliamFisher.html
-
-player.KassaKorley.name=Kassa Korley
-player.KassaKorley.team=Carolina
-player.KassaKorley.rating=2368
-player.KassaKorley.titles=(FM)
-player.KassaKorley.website=http://www.uschessleague.com/KassaKorley.html
-
-player.JoaquinBanawa.name=Joaquin Banawa
-player.JoaquinBanawa.team=StLouis
-player.JoaquinBanawa.rating=2366
-player.JoaquinBanawa.titles=(FM)
-player.JoaquinBanawa.website=http://www.uschessleague.com/JoaquinBanawa.html
-
-player.Liou-SF.name=Yian Liou
-player.Liou-SF.team=SF
-player.Liou-SF.rating=2365
-player.Liou-SF.titles=(NM)
-player.Liou-SF.website=http://www.uschessleague.com/YianLiou.html
-
-player.Defibaugh-BAL.name=Jared Defibaugh
-player.Defibaugh-BAL.team=BAL
-player.Defibaugh-BAL.rating=2363
-player.Defibaugh-BAL.titles=(NM)
-player.Defibaugh-BAL.website=http://www.uschessleague.com/JaredDefibaugh.html
-
-player.Milat-SEA.name=Marcel Milat
-player.Milat-SEA.team=SEA
-player.Milat-SEA.rating=2358
-player.Milat-SEA.titles=(FM)
-player.Milat-SEA.website=http://www.uschessleague.com/MarcelMilat.html
-
-player.Adelberg-ARZ.name=David Adelberg
-player.Adelberg-ARZ.team=ARZ
-player.Adelberg-ARZ.rating=2354
-player.Adelberg-ARZ.titles=(NM)
-player.Adelberg-ARZ.website=http://www.uschessleague.com/DavidAdelberg.html
-
-player.JimDean.name=Jim Dean
-player.JimDean.team=Chicago
-player.JimDean.rating=2336
-player.JimDean.titles=(FM)
-player.JimDean.website=http://www.uschessleague.com/JimDean.html
-
-player.Casella-LA.name=Michael Casella
-player.Casella-LA.team=LA
-player.Casella-LA.rating=2334
-player.Casella-LA.titles=(FM)
-player.Casella-LA.website=http://www.uschessleague.com/MichaelCasella.html
-
-player.Rosen-CHC.name=Eric Rosen
-player.Rosen-CHC.team=CHC
-player.Rosen-CHC.rating=2333
-player.Rosen-CHC.titles=(NM)
-player.Rosen-CHC.website=http://www.uschessleague.com/EricRosen.html
-
-player.ChaitanyaVaidya.name=Chaitanya Vaidya
-player.ChaitanyaVaidya.team=Dallas
-player.ChaitanyaVaidya.rating=2333
-player.ChaitanyaVaidya.titles=(NM)
-player.ChaitanyaVaidya.website=http://www.uschessleague.com/ChaitanyaVaidya.html
-
-player.TimurAliyev.name=Timur Aliyev
-player.TimurAliyev.team=StLouis
-player.TimurAliyev.rating=2330
-player.TimurAliyev.titles=(NM)
-player.TimurAliyev.website=http://www.uschessleague.com/TimurAliyev.html
-
-player.Martirosov-BOS.name=Vadim Martirosov
-player.Martirosov-BOS.team=BOS
-player.Martirosov-BOS.rating=2329
-player.Martirosov-BOS.titles=(NM)
-player.Martirosov-BOS.website=http://www.uschessleague.com/VadimMartirosov.html
-
-player.PedramAtoufi.name=Pedram Atoufi
-player.PedramAtoufi.team=Arizona
-player.PedramAtoufi.rating=2326
-player.PedramAtoufi.titles=(FM)
-player.PedramAtoufi.website=http://www.uschessleague.com/PedramAtoufi.html
-
-player.Corke-BOS.name=Anya Corke
-player.Corke-BOS.team=BOS
-player.Corke-BOS.rating=2322
-player.Corke-BOS.titles=(WGM)
-player.Corke-BOS.website=http://www.uschessleague.com/AnyaCorke.html
-
-Miami	http://www.uschessleague.com/AlbertoHernandez	NM Alberto Hernandez	2321
-player.Dehmelt-PHI.name=Karl Dehmelt
-player.Dehmelt-PHI.team=PHI
-player.Dehmelt-PHI.rating=2319
-player.Dehmelt-PHI.titles=(FM)
-player.Dehmelt-PHI.website=http://www.uschessleague.com/KarlDehmelt.html
-
-player.Cherniack-NE.name=Alex Cherniack
-player.Cherniack-NE.team=NE
-player.Cherniack-NE.rating=2319
-player.Cherniack-NE.titles=(NM)
-player.Cherniack-NE.website=http://www.uschessleague.com/AlexCherniack.html
-
-player.CarstenHansen.name=Carsten Hansen
-player.CarstenHansen.team=NewJersey
-player.CarstenHansen.rating=2318
-player.CarstenHansen.titles=(FM)
-player.CarstenHansen.website=http://www.uschessleague.com/CarstenHansen.html
-
-player.Simpson-CAR.name=Ron Simpson
-player.Simpson-CAR.team=CAR
-player.Simpson-CAR.rating=2317
-player.Simpson-CAR.titles=(FM)
-player.Simpson-CAR.website=http://www.uschessleague.com/RonSimpson.html
-
-player.MilesArdaman.name=Miles Ardaman
-player.MilesArdaman.team=Carolina
-player.MilesArdaman.rating=2311
-player.MilesArdaman.titles=(FM)
-player.MilesArdaman.website=http://www.uschessleague.com/MilesArdaman.html
-
-player.Yanayt-LA.name=Eugene Yanayt
-player.Yanayt-LA.team=LA
-player.Yanayt-LA.rating=2305
-player.Yanayt-LA.titles=(FM)
-player.Yanayt-LA.website=http://www.uschessleague.com/EugeneYanayt.html
-
-player.CraigJones-CAR.name=Craig Jones
-player.CraigJones-CAR.team=CAR
-player.CraigJones-CAR.rating=2305
-player.CraigJones-CAR.titles=(NM)
-player.CraigJones-CAR.website=http://www.uschessleague.com/CraigJones.html
-
-player.Klein-CAR.name=Mike Klein
-player.Klein-CAR.team=CAR
-player.Klein-CAR.rating=2304
-player.Klein-CAR.titles=(FM)
-player.Klein-CAR.website=http://www.uschessleague.com/MikeKlein.html
-
-player.Mabe-CAR.name=Chris Mabe
-player.Mabe-CAR.team=CAR
-player.Mabe-CAR.rating=2296
-player.Mabe-CAR.titles=(NM)
-player.Mabe-CAR.website=http://www.uschessleague.com/ChrisMabe.html
-
-player.Schoch-BAL.name=Ian Schoch
-player.Schoch-BAL.team=BAL
-player.Schoch-BAL.rating=2296
-player.Schoch-BAL.titles=(NM)
-player.Schoch-BAL.website=http://www.uschessleague.com/IanSchoch.html
-
-player.AdithyaB-BAL.name=Adithya Balasubramanian
-player.AdithyaB-BAL.team=BAL
-player.AdithyaB-BAL.rating=2292
-player.AdithyaB-BAL.titles=(NM)
-player.AdithyaB-BAL.website=http://www.uschessleague.com/AdithyaBalasubramanian.html
-
-player.AShen-NJ.name=Arthur Shen
-player.AShen-NJ.team=NJ
-player.AShen-NJ.rating=2291
-player.AShen-NJ.titles=(FM)
-player.AShen-NJ.website=http://www.uschessleague.com/ArthurShen.html
-
-player.Sinanan-SEA.name=Joshua Sinanan
-player.Sinanan-SEA.team=SEA
-player.Sinanan-SEA.rating=2288
-player.Sinanan-SEA.titles=(NM)
-player.Sinanan-SEA.website=http://www.uschessleague.com/JoshSinanan.html
-
-player.ChristopherGu.name=Christopher Gu
-player.ChristopherGu.team=Boston
-player.ChristopherGu.rating=2283
-player.ChristopherGu.titles=(NM)
-player.ChristopherGu.website=http://www.uschessleague.com/ChristopherGu.html
-
-player.Zimmer-BAL.name=Ralph Zimmer
-player.Zimmer-BAL.team=BAL
-player.Zimmer-BAL.rating=2280
-player.Zimmer-BAL.titles=(FM)
-player.Zimmer-BAL.website=http://www.uschessleague.com/RalphZimmer.html
-
-player.BenGershenov.name=Ben Gershenov
-player.BenGershenov.team=NewYork
-player.BenGershenov.rating=2279
-player.BenGershenov.titles=(NM)
-player.BenGershenov.website=http://www.uschessleague.com/BenGershenov.html
-
-player.PeterMinear.name=Peter Minear
-player.PeterMinear.team=Philadelphia
-player.PeterMinear.rating=2278
-player.PeterMinear.titles=(NM)
-player.PeterMinear.website=http://www.uschessleague.com/PeterMinear.html
-
-player.JorgePelaez.name=Jorge Pelaez
-player.JorgePelaez.team=Miami
-player.JorgePelaez.rating=2264
-player.JorgePelaez.titles=(FM)
-player.JorgePelaez.website=http://www.uschessleague.com/JorgePelaez.html
-
-player.Krasik-BOS.name=Ilya Krasik
-player.Krasik-BOS.team=BOS
-player.Krasik-BOS.rating=2264
-player.Krasik-BOS.titles=(NM)
-player.Krasik-BOS.website=http://www.uschessleague.com/IlyaKrasik.html
-
-player.SamuelSevian.name=Samuel Sevian
-player.SamuelSevian.team=SanFrancisco
-player.SamuelSevian.rating=2262
-player.SamuelSevian.titles=(NM)
-player.SamuelSevian.website=http://www.uschessleague.com/SamuelSevian.html
-
-player.AlexFikiet.name=Alex Fikiet
-player.AlexFikiet.team=NewEngland
-player.AlexFikiet.rating=2255
-player.AlexFikiet.titles=(NM)
-player.AlexFikiet.website=http://www.uschessleague.com/AlexFikiet.html
-
-player.JialinDing.name=Jialin Ding
-player.JialinDing.team=StLouis
-player.JialinDing.rating=2244
-player.JialinDing.titles=(NM)
-player.JialinDing.website=http://www.uschessleague.com/JialinDing.html
-
-player.Thompson-ARZ.name=Nick Thompson
-player.Thompson-ARZ.team=ARZ
-player.Thompson-ARZ.rating=2242
-player.Thompson-ARZ.titles=(NM)
-player.Thompson-ARZ.website=http://www.uschessleague.com/NickThompson.html
-
-player.Mshahade-PHI.name=Michael Shahade
-player.Mshahade-PHI.team=PHI
-player.Mshahade-PHI.rating=2241
-player.Mshahade-PHI.titles=(FM)
-player.Mshahade-PHI.website=http://www.uschessleague.com/MichaelShahade.html
-
-player.DerequeKelley.name=Dereque Kelley
-player.DerequeKelley.team=Seattle
-player.DerequeKelley.rating=2241
-player.DerequeKelley.titles=(NM)
-player.DerequeKelley.website=http://www.uschessleague.com/DerequeKelley.html
-
-player.Eckert-STL.name=Doug Eckert
-player.Eckert-STL.team=STL
-player.Eckert-STL.rating=2240
-player.Eckert-STL.titles=(FM)
-player.Eckert-STL.website=http://www.uschessleague.com/DougEckert.html
-
-player.EWilson-PHI.name=Elvin Wilson
-player.EWilson-PHI.team=PHI
-player.EWilson-PHI.rating=2240
-player.EWilson-PHI.titles=(NM)
-player.EWilson-PHI.website=http://www.uschessleague.com/ElvinWilson.html
-
-player.Williams-NY.name=Justus Williams
-player.Williams-NY.team=NY
-player.Williams-NY.rating=2239
-player.Williams-NY.titles=(NM)
-player.Williams-NY.website=http://www.uschessleague.com/JustusWilliams.html
-
-player.JeffreyXiong.name=Jeffrey Xiong
-player.JeffreyXiong.team=Dallas
-player.JeffreyXiong.rating=2237
-player.JeffreyXiong.titles=(FM)
-player.JeffreyXiong.website=http://www.uschessleague.com/JeffreyXiong.html
-
-player.VarunKrishnan.name=Varun Krishnan
-player.VarunKrishnan.team=LosAngeles
-player.VarunKrishnan.rating=2232
-player.VarunKrishnan.titles=(NM)
-player.VarunKrishnan.website=http://www.uschessleague.com/VarunKrishnan.html
-
-player.BenGoldberg.name=Ben Goldberg
-player.BenGoldberg.team=NewEngland
-player.BenGoldberg.rating=2230
-player.BenGoldberg.titles=(NM)
-player.BenGoldberg.website=http://www.uschessleague.com/BenGoldberg.html
-
-player.GopalMenon.name=Gopal Menon
-player.GopalMenon.team=Chicago
-player.GopalMenon.rating=2222
-player.GopalMenon.titles=(NM)
-player.GopalMenon.website=http://www.uschessleague.com/GopalMenon.html
-
-player.Selzler-BAL.name=Ricky Selzler
-player.Selzler-BAL.team=BAL
-player.Selzler-BAL.rating=2218
-player.Selzler-BAL.titles=(NM)
-player.Selzler-BAL.website=http://www.uschessleague.com/RickySelzler.html
-
-player.KevinCao.name=Kevin Cao
-player.KevinCao.team=StLouis
-player.KevinCao.rating=2215
-player.KevinCao.titles=(NM)
-player.KevinCao.website=http://www.uschessleague.com/KevinCao.html
-
-player.Zorigt-DAL.name=Bayaraa Zorigt
-player.Zorigt-DAL.team=DAL
-player.Zorigt-DAL.rating=2211
-player.Zorigt-DAL.titles=(WFM)
-player.Zorigt-DAL.website=http://www.uschessleague.com/BayaraaZorigt.html
-
-player.MikaBrattain.name=Mika Brattain
-player.MikaBrattain.team=NewEngland
-player.MikaBrattain.rating=2208
-player.MikaBrattain.titles=(NM)
-player.MikaBrattain.website=http://www.uschessleague.com/MikaBrattain.html
-
-player.ErnestoAlvarez.name=Ernesto Alvarez
-player.ErnestoAlvarez.team=Miami
-player.ErnestoAlvarez.rating=2207
-player.ErnestoAlvarez.titles=(NM)
-player.ErnestoAlvarez.website=http://www.uschessleague.com/ErnestoAlvarez.html
-
-player.SamSchmakel.name=Sam Schmakel
-player.SamSchmakel.team=Chicago
-player.SamSchmakel.rating=2190
-player.SamSchmakel.titles=(NM)
-player.SamSchmakel.website=http://www.uschessleague.com/SamSchmakel.html
-
-player.DavidGolub.name=David Golub
-player.DavidGolub.team=Seattle
-player.DavidGolub.rating=2188
-player.DavidGolub.titles=(NM)
-player.DavidGolub.website=http://www.uschessleague.com/DavidGolub.html
-
-player.MatanPrilleltensky.name=Matan Prilleltensky
-player.MatanPrilleltensky.team=Manhattan
-player.MatanPrilleltensky.rating=2186
-player.MatanPrilleltensky.titles=(NM)
-player.MatanPrilleltensky.website=http://www.uschessleague.com/MatanPrilleltensky.html
-
-player.JamesBlack-MAN.name=James Black
-player.JamesBlack-MAN.team=MAN
-player.JamesBlack-MAN.rating=2184
-player.JamesBlack-MAN.titles=(NM)
-player.JamesBlack-MAN.website=http://www.uschessleague.com/JamesBlack.html
-
-player.Santalla-MIA.name=Andres Santalla
-player.Santalla-MIA.team=MIA
-player.Santalla-MIA.rating=2156
-player.Santalla-MIA.titles=(NM)
-player.Santalla-MIA.website=http://www.uschessleague.com/AndresSantalla.html
-
-player.ChristopherWu.name=Christopher Wu
-player.ChristopherWu.team=NewJersey
-player.ChristopherWu.rating=2151
-player.ChristopherWu.titles=
-player.ChristopherWu.website=http://www.uschessleague.com/ChristopherWu.html
-
-player.Mateer-ARZ.name=Amanda Mateer
-player.Mateer-ARZ.team=ARZ
-player.Mateer-ARZ.rating=2132
-player.Mateer-ARZ.titles=(WFM)
-player.Mateer-ARZ.website=http://www.uschessleague.com/AmandaMateer.html
-
-player.DaniilMosiyenko.name=Daniil Mosiyenko
-player.DaniilMosiyenko.team=Boston
-player.DaniilMosiyenko.rating=2132
-player.DaniilMosiyenko.titles=
-player.DaniilMosiyenko.website=http://www.uschessleague.com/DaniilMosiyenko.html
-
-player.JohnFernandez.name=John Fernandez
-player.JohnFernandez.team=NewYork
-player.JohnFernandez.rating=2129
-player.JohnFernandez.titles=
-player.JohnFernandez.website=http://www.uschessleague.com/JohnFernandez.html
-
-player.Herbst-CAR.name=Richard Herbst
-player.Herbst-CAR.team=CAR
-player.Herbst-CAR.rating=2119
-player.Herbst-CAR.titles=
-player.Herbst-CAR.website=http://www.uschessleague.com/RichardHerbst.html
-
-player.AlbertLu.name=Albert Lu
-player.AlbertLu.team=LosAngeles
-player.AlbertLu.rating=2086
-player.AlbertLu.titles=
-player.AlbertLu.website=http://www.uschessleague.com/AlbertLu.html
-
-player.Matlin-NJ.name=Anna Matlin
-player.Matlin-NJ.team=NJ
-player.Matlin-NJ.rating=2082
-player.Matlin-NJ.titles=
-player.Matlin-NJ.website=http://www.uschessleague.com/AnnaMatlin.html
-
-player.Smith-MAN.name=Shaun Smith
-player.Smith-MAN.team=MAN
-player.Smith-MAN.rating=2081
-player.Smith-MAN.titles=
-player.Smith-MAN.website=http://www.uschessleague.com/ShaunSmith.html
-
-player.RolandFeng.name=Roland Feng
-player.RolandFeng.team=Seattle
-player.RolandFeng.rating=2074
-player.RolandFeng.titles=
-player.RolandFeng.website=http://www.uschessleague.com/RolandFeng.html
-
-player.Byambaa-SF.name=Uyanga Byambaa
-player.Byambaa-SF.team=SF
-player.Byambaa-SF.rating=2070
-player.Byambaa-SF.titles=
-player.Byambaa-SF.website=http://www.uschessleague.com/UyangaByambaa.html
-
-player.NickKarlow.name=Nick Karlow
-player.NickKarlow.team=StLouis
-player.NickKarlow.rating=2068
-player.NickKarlow.titles=
-player.NickKarlow.website=http://www.uschessleague.com/NickKarlow.html
-
-player.Rosenthal-MIA.name=Nicholas Rosenthal
-player.Rosenthal-MIA.team=MIA
-player.Rosenthal-MIA.rating=2062
-player.Rosenthal-MIA.titles=
-player.Rosenthal-MIA.website=http://www.uschessleague.com/NicholasRosenthal.html
-
-player.GilLuna.name=Gil Luna
-player.GilLuna.team=Miami
-player.GilLuna.rating=2047
-player.GilLuna.titles=
-player.GilLuna.website=http://www.uschessleague.com/GilLuna.html
-
-player.CharlesYang.name=Charles Yang
-player.CharlesYang.team=Baltimore
-player.CharlesYang.rating=2046
-player.CharlesYang.titles=
-player.CharlesYang.website=http://www.uschessleague.com/CharlesYang.html
-
-player.AlejandroAllen.name=Alejandro Allen
-player.AlejandroAllen.team=Miami
-player.AlejandroAllen.rating=1990
-player.AlejandroAllen.titles=
-player.AlejandroAllen.website=http://www.uschessleague.com/AlejandroAllen.html
-
-player.Hua-STL.name=Margaret Hua
-player.Hua-STL.team=STL
-player.Hua-STL.rating=1981
-player.Hua-STL.titles=
-player.Hua-STL.website=http://www.uschessleague.com/MargaretHua.html
-
-player.Adamson-ARZ.handle=Adamson-ARZ
-player.Adelberg-ARZ.handle=Adelberg-ARZ
-player.AdithyaB-BAL.handle=AdithyaB-BAL
-player.Akobian-SEA.handle=Akobian-SEA
-player.Aldama-ARZ.handle=Aldama-ARZ
-player.Altounian-ARZ.handle=Altounian-ARZ
-player.Amanov-CHC.handle=Amanov-CHC
-player.AngeloYoung-CHC.handle=AngeloYoung-CHC
-player.ARamirez-DAL.handle=ARamirez-DAL
-player.AShen-NJ.handle=AShen-NJ
-player.Banawa-LA.handle=Banawa-LA
-player.Bartell-PHI.handle=Bartell-PHI
-player.Becerra-MIA.handle=Becerra-MIA
-player.Benjamin-NJ.handle=Benjamin-NJ
-player.Bercys-DAL.handle=Bercys-DAL
-player.BFinegold-STL.handle=BFinegold-STL
-player.Bonin-PHI.handle=Bonin-PHI
-player.Bournival-NE.handle=Bournival-NE
-player.Byambaa-SF.handle=Byambaa-SF
-player.Casella-LA.handle=Casella-LA
-player.Charbonneau-NY.handle=Charbonneau-NY
-player.Cherniack-NE.handle=Cherniack-NE
-player.Corke-BOS.handle=Corke-BOS
-player.Cozianu-SEA.handle=Cozianu-SEA
-player.CraigJones-CAR.handle=CraigJones-CAR
-player.Defibaugh-BAL.handle=Defibaugh-BAL
-player.Dehmelt-PHI.handle=Dehmelt-PHI
-player.DGurevich-CHC.handle=DGurevich-CHC
-player.DSchneider-MAN.handle=DSchneider-MAN
-player.Eckert-STL.handle=Eckert-STL
-player.Enkhbat-BAL.handle=Enkhbat-BAL
-player.Erenburg-BAL.handle=Erenburg-BAL
-player.ERodriguez-MIA.handle=ERodriguez-MIA
-player.EWilson-PHI.handle=EWilson-PHI
-player.Fedorowicz-NY.handle=Fedorowicz-NY
-player.Felecan-CHC.handle=Felecan-CHC
-player.Foisor-BAL.handle=Foisor-BAL
-player.Friedel-SF.handle=Friedel-SF
-player.Gulko-NJ.handle=Gulko-NJ
-player.Herbst-CAR.handle=Herbst-CAR
-player.Herman-NY.handle=Herman-NY
-player.Hua-STL.handle=Hua-STL
-player.Hungaski-NE.handle=Hungaski-NE
-player.Ippolito-NJ.handle=Ippolito-NJ
-player.IrinaKrush-NY.handle=IrinaKrush-NY
-player.JamesBlack-MAN.handle=JamesBlack-MAN
-player.Kacheishvili-NY.handle=Kacheishvili-NY
-player.Kapengut-NJ.handle=Kapengut-NJ
-player.Khachiyan-LA.handle=Khachiyan-LA
-player.Kiewra-DAL.handle=Kiewra-DAL
-player.Klein-CAR.handle=Klein-CAR
-player.Kraai-SF.handle=Kraai-SF
-player.Krasik-BOS.handle=Krasik-BOS
-player.LarryC-BOS.handle=LarryC-BOS
-player.Liou-SF.handle=Liou-SF
-player.LKaufman-BAL.handle=LKaufman-BAL
-player.Mabe-CAR.handle=Mabe-CAR
-player.Martirosov-BOS.handle=Martirosov-BOS
-player.Mateer-ARZ.handle=Mateer-ARZ
-player.Matlin-NJ.handle=Matlin-NJ
-player.Mikhailuk-SEA.handle=Mikhailuk-SEA
-player.Milat-SEA.handle=Milat-SEA
-player.Milman-MAN.handle=Milman-MAN
-player.Molner-NJ.handle=Molner-NJ
-player.Mshahade-PHI.handle=Mshahade-PHI
-player.Nakamura-STL.handle=Nakamura-STL
-player.Naroditsky-SF.handle=Naroditsky-SF
-player.Perelshteyn-BOS.handle=Perelshteyn-BOS
-player.Pruess-SF.handle=Pruess-SF
-player.Riordan-NE.handle=Riordan-NE
-player.Rosen-CHC.handle=Rosen-CHC
-player.Rosenthal-MIA.handle=Rosenthal-MIA
-player.Sadorra-DAL.handle=Sadorra-DAL
-player.Santalla-MIA.handle=Santalla-MIA
-player.Schoch-BAL.handle=Schoch-BAL
-player.Schroer-CAR.handle=Schroer-CAR
-player.Selzler-BAL.handle=Selzler-BAL
-player.Shankland-NE.handle=Shankland-NE
-player.Shulman-STL.handle=Shulman-STL
-player.Simpson-CAR.handle=Simpson-CAR
-player.Sinanan-SEA.handle=Sinanan-SEA
-player.Smith-MAN.handle=Smith-MAN
-player.Stripunsky-MAN.handle=Stripunsky-MAN
-player.Thompson-ARZ.handle=Thompson-ARZ
-player.vandeMortel-NE.handle=vandeMortel-NE
-player.Vigorito-NE.handle=Vigorito-NE
-player.Vovsha-MAN.handle=Vovsha-MAN
-player.Williams-NY.handle=Williams-NY
-player.Wolff-SF.handle=Wolff-SF
-player.Yanayt-LA.handle=Yanayt-LA
-player.Zaremba-MAN.handle=Zaremba-MAN
-player.Zilberstein-SF.handle=Zilberstein-SF
-player.Zimmer-BAL.handle=Zimmer-BAL
-player.Zorigt-DAL.handle=Zorigt-DAL
-Miami	http://www.uschessleague.com/AlbertoHernandez	NM Alberto Hernandez	2321
 player.Adamson-ARZ.handle=Adamson-ARZ
 player.Adamson-ARZ.name=Robby Adamson
 player.Adamson-ARZ.rating=2388
@@ -1018,12 +35,6 @@ player.Akobian-SEA.team=SEA
 player.Akobian-SEA.titles=(GM)
 player.Akobian-SEA.website=http://www.uschessleague.com/VaruzhanAkobian.html
 
-player.AlbertLu.name=Albert Lu
-player.AlbertLu.rating=2086
-player.AlbertLu.team=LosAngeles
-player.AlbertLu.titles=
-player.AlbertLu.website=http://www.uschessleague.com/AlbertLu.html
-
 player.Aldama-ARZ.handle=Aldama-ARZ
 player.Aldama-ARZ.name=Dionisio Aldama
 player.Aldama-ARZ.rating=2453
@@ -1031,29 +42,19 @@ player.Aldama-ARZ.team=ARZ
 player.Aldama-ARZ.titles=(IM)
 player.Aldama-ARZ.website=http://www.uschessleague.com/DionisioAldama.html
 
-player.AlejandroAllen.name=Alejandro Allen
-player.AlejandroAllen.rating=1990
-player.AlejandroAllen.team=Miami
-player.AlejandroAllen.titles=
-player.AlejandroAllen.website=http://www.uschessleague.com/AlejandroAllen.html
+player.Aliyev-STL.handle=Aliyev-STL
+player.Aliyev-STL.name=Timur Aliyev
+player.Aliyev-STL.rating=2330
+player.Aliyev-STL.team=STL
+player.Aliyev-STL.titles=(NM)
+player.Aliyev-STL.website=http://www.uschessleague.com/TimurAliyev.html
 
-player.AlexanderMatros.name=Alexander Matros
-player.AlexanderMatros.rating=2440
-player.AlexanderMatros.team=Carolina
-player.AlexanderMatros.titles=(IM)
-player.AlexanderMatros.website=http://www.uschessleague.com/AlexanderMatros.html
-
-player.AlexFikiet.name=Alex Fikiet
-player.AlexFikiet.rating=2255
-player.AlexFikiet.team=NewEngland
-player.AlexFikiet.titles=(NM)
-player.AlexFikiet.website=http://www.uschessleague.com/AlexFikiet.html
-
-player.AlexFishbein.name=Alex Fishbein
-player.AlexFishbein.rating=2563
-player.AlexFishbein.team=NewJersey
-player.AlexFishbein.titles=(GM)
-player.AlexFishbein.website=http://www.uschessleague.com/AlexFishbein.html
+player.Allen-MIA.handle=Allen-MIA
+player.Allen-MIA.name=Alejandro Allen
+player.Allen-MIA.rating=1990
+player.Allen-MIA.team=MIA
+player.Allen-MIA.titles=
+player.Allen-MIA.website=http://www.uschessleague.com/AlejandroAllen.html
 
 player.Altounian-ARZ.handle=Altounian-ARZ
 player.Altounian-ARZ.name=Levon Altounian
@@ -1061,6 +62,13 @@ player.Altounian-ARZ.rating=2483
 player.Altounian-ARZ.team=ARZ
 player.Altounian-ARZ.titles=(IM)
 player.Altounian-ARZ.website=http://www.uschessleague.com/LevonAltounian.html
+
+player.Alvarez-MIA.handle=Alvarez-MIA
+player.Alvarez-MIA.name=Ernesto Alvarez
+player.Alvarez-MIA.rating=2207
+player.Alvarez-MIA.team=MIA
+player.Alvarez-MIA.titles=(NM)
+player.Alvarez-MIA.website=http://www.uschessleague.com/ErnestoAlvarez.html
 
 player.Amanov-CHC.handle=Amanov-CHC
 player.Amanov-CHC.name=Mesgen Amanov
@@ -1083,12 +91,26 @@ player.ARamirez-DAL.team=DAL
 player.ARamirez-DAL.titles=(GM)
 player.ARamirez-DAL.website=http://www.uschessleague.com/AlejandroRamirez.html
 
+player.Ardaman-CAR.handle=Ardaman-CAR
+player.Ardaman-CAR.name=Miles Ardaman
+player.Ardaman-CAR.rating=2311
+player.Ardaman-CAR.team=CAR
+player.Ardaman-CAR.titles=(FM)
+player.Ardaman-CAR.website=http://www.uschessleague.com/MilesArdaman.html
+
 player.AShen-NJ.handle=AShen-NJ
 player.AShen-NJ.name=Arthur Shen
 player.AShen-NJ.rating=2291
 player.AShen-NJ.team=NJ
 player.AShen-NJ.titles=(FM)
 player.AShen-NJ.website=http://www.uschessleague.com/ArthurShen.html
+
+player.Atoufi-ARZ.handle=Atoufi-ARZ
+player.Atoufi-ARZ.name=Pedram Atoufi
+player.Atoufi-ARZ.rating=2326
+player.Atoufi-ARZ.team=ARZ
+player.Atoufi-ARZ.titles=(FM)
+player.Atoufi-ARZ.website=http://www.uschessleague.com/PedramAtoufi.html
 
 player.Banawa-LA.handle=Banawa-LA
 player.Banawa-LA.name=Joel Banawa
@@ -1097,6 +119,13 @@ player.Banawa-LA.team=LA
 player.Banawa-LA.titles=(FM)
 player.Banawa-LA.website=http://www.uschessleague.com/JoelBanawa.html
 
+player.Barcenilla-ARZ.handle=Barcenilla-ARZ
+player.Barcenilla-ARZ.name=Rogelio Barcenilla
+player.Barcenilla-ARZ.rating=2583
+player.Barcenilla-ARZ.team=ARZ
+player.Barcenilla-ARZ.titles=(GM)
+player.Barcenilla-ARZ.website=http://www.uschessleague.com/RogelioBarcenilla.html
+
 player.Bartell-PHI.handle=Bartell-PHI
 player.Bartell-PHI.name=Tom Bartell
 player.Bartell-PHI.rating=2405
@@ -1104,24 +133,26 @@ player.Bartell-PHI.team=PHI
 player.Bartell-PHI.titles=(FM)
 player.Bartell-PHI.website=http://www.uschessleague.com/TomBartell.html
 
+player.Bartholomew-MAN.handle=Bartholomew-MAN
+player.Bartholomew-MAN.name=John Bartholomew
+player.Bartholomew-MAN.rating=2499
+player.Bartholomew-MAN.team=MAN
+player.Bartholomew-MAN.titles=(IM)
+player.Bartholomew-MAN.website=http://www.uschessleague.com/JohnBartholomew.html
+
+player.Battaglini-CAR.handle=Battaglini-CAR
+player.Battaglini-CAR.name=Gabriel Battaglini
+player.Battaglini-CAR.rating=2420
+player.Battaglini-CAR.team=CAR
+player.Battaglini-CAR.titles=(IM)
+player.Battaglini-CAR.website=http://www.uschessleague.com/GabrielBattaglini.html
+
 player.Becerra-MIA.handle=Becerra-MIA
 player.Becerra-MIA.name=Julio Becerra
 player.Becerra-MIA.rating=2640
 player.Becerra-MIA.team=MIA
 player.Becerra-MIA.titles=(GM)
 player.Becerra-MIA.website=http://www.uschessleague.com/JulioBecerra.html
-
-player.BenGershenov.name=Ben Gershenov
-player.BenGershenov.rating=2279
-player.BenGershenov.team=NewYork
-player.BenGershenov.titles=(NM)
-player.BenGershenov.website=http://www.uschessleague.com/BenGershenov.html
-
-player.BenGoldberg.name=Ben Goldberg
-player.BenGoldberg.rating=2230
-player.BenGoldberg.team=NewEngland
-player.BenGoldberg.titles=(NM)
-player.BenGoldberg.website=http://www.uschessleague.com/BenGoldberg.html
 
 player.Benjamin-NJ.handle=Benjamin-NJ
 player.Benjamin-NJ.name=Joel Benjamin
@@ -1137,12 +168,33 @@ player.Bercys-DAL.team=DAL
 player.Bercys-DAL.titles=(IM)
 player.Bercys-DAL.website=http://www.uschessleague.com/SalvijusBercys.html
 
+player.Berezovsky-NJ.handle=Berezovsky-NJ
+player.Berezovsky-NJ.name=Igor Berezovsky
+player.Berezovsky-NJ.rating=2487
+player.Berezovsky-NJ.team=NJ
+player.Berezovsky-NJ.titles=(IM)
+player.Berezovsky-NJ.website=http://www.uschessleague.com/IgorBerezovsky.html
+
 player.BFinegold-STL.handle=BFinegold-STL
 player.BFinegold-STL.name=Ben Finegold
 player.BFinegold-STL.rating=2568
 player.BFinegold-STL.team=STL
 player.BFinegold-STL.titles=(GM)
 player.BFinegold-STL.website=http://www.uschessleague.com/BenFinegold.html
+
+player.Bhat-SF.handle=Bhat-SF
+player.Bhat-SF.name=Vinay Bhat
+player.Bhat-SF.rating=2555
+player.Bhat-SF.team=SF
+player.Bhat-SF.titles=(GM)
+player.Bhat-SF.website=http://www.uschessleague.com/VinayBhat.html
+
+player.Bodek-NY.handle=Bodek-NY
+player.Bodek-NY.name=Michael Bodek
+player.Bodek-NY.rating=2288
+player.Bodek-NY.team=NY
+player.Bodek-NY.titles=(NM)
+player.Bodek-NY.website=http://www.uschessleague.com/MichaelBodek.html
 
 player.Bonin-PHI.handle=Bonin-PHI
 player.Bonin-PHI.name=Jay Bonin
@@ -1158,6 +210,13 @@ player.Bournival-NE.team=NE
 player.Bournival-NE.titles=(FM)
 player.Bournival-NE.website=http://www.uschessleague.com/BradenBournival.html
 
+player.Brattain-NE.handle=Brattain-NE
+player.Brattain-NE.name=Mika Brattain
+player.Brattain-NE.rating=2208
+player.Brattain-NE.team=NE
+player.Brattain-NE.titles=(NM)
+player.Brattain-NE.website=http://www.uschessleague.com/MikaBrattain.html
+
 player.Byambaa-SF.handle=Byambaa-SF
 player.Byambaa-SF.name=Uyanga Byambaa
 player.Byambaa-SF.rating=2070
@@ -1165,11 +224,12 @@ player.Byambaa-SF.team=SF
 player.Byambaa-SF.titles=
 player.Byambaa-SF.website=http://www.uschessleague.com/UyangaByambaa.html
 
-player.CarstenHansen.name=Carsten Hansen
-player.CarstenHansen.rating=2318
-player.CarstenHansen.team=NewJersey
-player.CarstenHansen.titles=(FM)
-player.CarstenHansen.website=http://www.uschessleague.com/CarstenHansen.html
+player.Cao-STL.handle=Cao-STL
+player.Cao-STL.name=Kevin Cao
+player.Cao-STL.rating=2215
+player.Cao-STL.team=STL
+player.Cao-STL.titles=(NM)
+player.Cao-STL.website=http://www.uschessleague.com/KevinCao.html
 
 player.Casella-LA.handle=Casella-LA
 player.Casella-LA.name=Michael Casella
@@ -1178,24 +238,12 @@ player.Casella-LA.team=LA
 player.Casella-LA.titles=(FM)
 player.Casella-LA.website=http://www.uschessleague.com/MichaelCasella.html
 
-player.ChaitanyaVaidya.name=Chaitanya Vaidya
-player.ChaitanyaVaidya.rating=2333
-player.ChaitanyaVaidya.team=Dallas
-player.ChaitanyaVaidya.titles=(NM)
-player.ChaitanyaVaidya.website=http://www.uschessleague.com/ChaitanyaVaidya.html
-
 player.Charbonneau-NY.handle=Charbonneau-NY
 player.Charbonneau-NY.name=Pascal Charbonneau
 player.Charbonneau-NY.rating=2565
 player.Charbonneau-NY.team=NY
 player.Charbonneau-NY.titles=(GM)
 player.Charbonneau-NY.website=http://www.uschessleague.com/PascalCharbonneau.html
-
-player.CharlesYang.name=Charles Yang
-player.CharlesYang.rating=2046
-player.CharlesYang.team=Baltimore
-player.CharlesYang.titles=
-player.CharlesYang.website=http://www.uschessleague.com/CharlesYang.html
 
 player.Cherniack-NE.handle=Cherniack-NE
 player.Cherniack-NE.name=Alex Cherniack
@@ -1204,23 +252,12 @@ player.Cherniack-NE.team=NE
 player.Cherniack-NE.titles=(NM)
 player.Cherniack-NE.website=http://www.uschessleague.com/AlexCherniack.html
 
-player.ChristopherGu.name=Christopher Gu
-player.ChristopherGu.rating=2283
-player.ChristopherGu.team=Boston
-player.ChristopherGu.titles=(NM)
-player.ChristopherGu.website=http://www.uschessleague.com/ChristopherGu.html
-
-player.ChristopherWu.name=Christopher Wu
-player.ChristopherWu.rating=2151
-player.ChristopherWu.team=NewJersey
-player.ChristopherWu.titles=
-player.ChristopherWu.website=http://www.uschessleague.com/ChristopherWu.html
-
-player.ConradHolt.name=Conrad Holt
-player.ConradHolt.rating=2520
-player.ConradHolt.team=Dallas
-player.ConradHolt.titles=(IM)
-player.ConradHolt.website=http://www.uschessleague.com/ConradHolt.html
+player.Chirila-DAL.handle=Chirila-DAL
+player.Chirila-DAL.name=Cristian Chirila
+player.Chirila-DAL.rating=2565
+player.Chirila-DAL.team=DAL
+player.Chirila-DAL.titles=(GM)
+player.Chirila-DAL.website=http://www.uschessleague.com/CristianChirila.html
 
 player.Corke-BOS.handle=Corke-BOS
 player.Corke-BOS.name=Anya Corke
@@ -1243,23 +280,12 @@ player.CraigJones-CAR.team=CAR
 player.CraigJones-CAR.titles=(NM)
 player.CraigJones-CAR.website=http://www.uschessleague.com/CraigJones.html
 
-player.DaniilMosiyenko.name=Daniil Mosiyenko
-player.DaniilMosiyenko.rating=2132
-player.DaniilMosiyenko.team=Boston
-player.DaniilMosiyenko.titles=
-player.DaniilMosiyenko.website=http://www.uschessleague.com/DaniilMosiyenko.html
-
-player.DavidGolub.name=David Golub
-player.DavidGolub.rating=2188
-player.DavidGolub.team=Seattle
-player.DavidGolub.titles=(NM)
-player.DavidGolub.website=http://www.uschessleague.com/DavidGolub.html
-
-player.DavidGriego.name=David Griego
-player.DavidGriego.rating=2494
-player.DavidGriego.team=Boston
-player.DavidGriego.titles=(FM)
-player.DavidGriego.website=http://www.uschessleague.com/DavidGriego.html
+player.Dean-CHC.handle=Dean-CHC
+player.Dean-CHC.name=Jim Dean
+player.Dean-CHC.rating=2336
+player.Dean-CHC.team=CHC
+player.Dean-CHC.titles=(FM)
+player.Dean-CHC.website=http://www.uschessleague.com/JimDean.html
 
 player.Defibaugh-BAL.handle=Defibaugh-BAL
 player.Defibaugh-BAL.name=Jared Defibaugh
@@ -1275,18 +301,26 @@ player.Dehmelt-PHI.team=PHI
 player.Dehmelt-PHI.titles=(FM)
 player.Dehmelt-PHI.website=http://www.uschessleague.com/KarlDehmelt.html
 
-player.DerequeKelley.name=Dereque Kelley
-player.DerequeKelley.rating=2241
-player.DerequeKelley.team=Seattle
-player.DerequeKelley.titles=(NM)
-player.DerequeKelley.website=http://www.uschessleague.com/DerequeKelley.html
-
 player.DGurevich-CHC.handle=DGurevich-CHC
 player.DGurevich-CHC.name=Dmitry Gurevich
 player.DGurevich-CHC.rating=2547
 player.DGurevich-CHC.team=CHC
 player.DGurevich-CHC.titles=(GM)
 player.DGurevich-CHC.website=http://www.uschessleague.com/DmitryGurevich.html
+
+player.Ding-STL.handle=Ding-STL
+player.Ding-STL.name=Jialin Ding
+player.Ding-STL.rating=2244
+player.Ding-STL.team=STL
+player.Ding-STL.titles=(NM)
+player.Ding-STL.website=http://www.uschessleague.com/JialinDing.html
+
+player.Donaldson-SF.handle=Donaldson-SF
+player.Donaldson-SF.name=John Donaldson
+player.Donaldson-SF.rating=2402
+player.Donaldson-SF.team=SF
+player.Donaldson-SF.titles=(IM)
+player.Donaldson-SF.website=http://www.uschessleague.com/JohnDonaldson.html
 
 player.DSchneider-MAN.handle=DSchneider-MAN
 player.DSchneider-MAN.name=Dmitry Schneider
@@ -1316,12 +350,6 @@ player.Erenburg-BAL.team=BAL
 player.Erenburg-BAL.titles=(GM)
 player.Erenburg-BAL.website=http://www.uschessleague.com/SergeyErenburg.html
 
-player.ErnestoAlvarez.name=Ernesto Alvarez
-player.ErnestoAlvarez.rating=2207
-player.ErnestoAlvarez.team=Miami
-player.ErnestoAlvarez.titles=(NM)
-player.ErnestoAlvarez.website=http://www.uschessleague.com/ErnestoAlvarez.html
-
 player.ERodriguez-MIA.handle=ERodriguez-MIA
 player.ERodriguez-MIA.name=Eric Rodriguez
 player.ERodriguez-MIA.rating=2397
@@ -1335,12 +363,6 @@ player.EWilson-PHI.rating=2240
 player.EWilson-PHI.team=PHI
 player.EWilson-PHI.titles=(NM)
 player.EWilson-PHI.website=http://www.uschessleague.com/ElvinWilson.html
-
-player.FaraiMandizha.name=Farai Mandizha
-player.FaraiMandizha.rating=2494
-player.FaraiMandizha.team=Manhattan
-player.FaraiMandizha.titles=(FM)
-player.FaraiMandizha.website=http://www.uschessleague.com/FaraiMandizha.html
 
 player.Fedorowicz-NY.handle=Fedorowicz-NY
 player.Fedorowicz-NY.name=John Fedorowicz
@@ -1356,6 +378,41 @@ player.Felecan-CHC.team=CHC
 player.Felecan-CHC.titles=(IM)
 player.Felecan-CHC.website=http://www.uschessleague.com/FlorinFelecan.html
 
+player.Feng-SEA.handle=Feng-SEA
+player.Feng-SEA.name=Roland Feng
+player.Feng-SEA.rating=2074
+player.Feng-SEA.team=SEA
+player.Feng-SEA.titles=
+player.Feng-SEA.website=http://www.uschessleague.com/RolandFeng.html
+
+player.Fernandez-NY.handle=Fernandez-NY
+player.Fernandez-NY.name=John Fernandez
+player.Fernandez-NY.rating=2129
+player.Fernandez-NY.team=NY
+player.Fernandez-NY.titles=
+player.Fernandez-NY.website=http://www.uschessleague.com/JohnFernandez.html
+
+player.Fikiet-NE.handle=Fikiet-NE
+player.Fikiet-NE.name=Alex Fikiet
+player.Fikiet-NE.rating=2255
+player.Fikiet-NE.team=NE
+player.Fikiet-NE.titles=(NM)
+player.Fikiet-NE.website=http://www.uschessleague.com/AlexFikiet.html
+
+player.Fishbein-NJ.handle=Fishbein-NJ
+player.Fishbein-NJ.name=Alex Fishbein
+player.Fishbein-NJ.rating=2563
+player.Fishbein-NJ.team=NJ
+player.Fishbein-NJ.titles=(GM)
+player.Fishbein-NJ.website=http://www.uschessleague.com/AlexFishbein.html
+
+player.Fisher-PHI.handle=Fisher-PHI
+player.Fisher-PHI.name=William Fisher
+player.Fisher-PHI.rating=2369
+player.Fisher-PHI.team=PHI
+player.Fisher-PHI.titles=(NM)
+player.Fisher-PHI.website=http://www.uschessleague.com/WilliamFisher.html
+
 player.Foisor-BAL.handle=Foisor-BAL
 player.Foisor-BAL.name=Sabina Foisor
 player.Foisor-BAL.rating=2416
@@ -1363,48 +420,61 @@ player.Foisor-BAL.team=BAL
 player.Foisor-BAL.titles=(WGM)
 player.Foisor-BAL.website=http://www.uschessleague.com/SabinaFoisor.html
 
-player.Friedel-SF.handle=Friedel-SF
-player.Friedel-SF.name=Josh Friedel
-player.Friedel-SF.rating=2609
-player.Friedel-SF.team=SF
-player.Friedel-SF.titles=(GM)
-player.Friedel-SF.website=http://www.uschessleague.com/JoshFriedel.html
+player.Friedel-CHC.handle=Friedel-CHC
+player.Friedel-CHC.name=Josh Friedel
+player.Friedel-CHC.rating=2609
+player.Friedel-CHC.team=CHC
+player.Friedel-CHC.titles=(GM)
+player.Friedel-CHC.website=http://www.uschessleague.com/JoshFriedel.html
 
-player.GabrielBattaglini.name=Gabriel Battaglini
-player.GabrielBattaglini.rating=2420
-player.GabrielBattaglini.team=Carolina
-player.GabrielBattaglini.titles=(IM)
-player.GabrielBattaglini.website=http://www.uschessleague.com/GabrielBattaglini.html
+player.Gershenov-NY.handle=Gershenov-NY
+player.Gershenov-NY.name=Ben Gershenov
+player.Gershenov-NY.rating=2279
+player.Gershenov-NY.team=NY
+player.Gershenov-NY.titles=(NM)
+player.Gershenov-NY.website=http://www.uschessleague.com/BenGershenov.html
 
-player.GeorgiOrlov.name=Georgi Orlov
-player.GeorgiOrlov.rating=2541
-player.GeorgiOrlov.team=Seattle
-player.GeorgiOrlov.titles=(IM)
-player.GeorgiOrlov.website=http://www.uschessleague.com/GeorgiOrlov.html
+player.Ginsburg-ARZ.handle=Ginsburg-ARZ
+player.Ginsburg-ARZ.name=Mark Ginsburg
+player.Ginsburg-ARZ.rating=2435
+player.Ginsburg-ARZ.team=ARZ
+player.Ginsburg-ARZ.titles=(IM)
+player.Ginsburg-ARZ.website=http://www.uschessleague.com/MarkGinsburg.html
 
-player.GilLuna.name=Gil Luna
-player.GilLuna.rating=2047
-player.GilLuna.team=Miami
-player.GilLuna.titles=
-player.GilLuna.website=http://www.uschessleague.com/GilLuna.html
+player.GiorgiM-BAL.handle=GiorgiM-BAL
+player.GiorgiM-BAL.name=Giorgi Margvelashvili
+player.GiorgiM-BAL.rating=2538
+player.GiorgiM-BAL.team=BAL
+player.GiorgiM-BAL.titles=(GM)
+player.GiorgiM-BAL.website=http://www.uschessleague.com/GiorgiMargvelashvili.html
 
-player.GiorgiMargvelashvili.name=Giorgi Margvelashvili
-player.GiorgiMargvelashvili.rating=2538
-player.GiorgiMargvelashvili.team=Baltimore
-player.GiorgiMargvelashvili.titles=(GM)
-player.GiorgiMargvelashvili.website=http://www.uschessleague.com/GiorgiMargvelashvili.html
+player.Goldberg-NE.handle=Goldberg-NE
+player.Goldberg-NE.name=Ben Goldberg
+player.Goldberg-NE.rating=2230
+player.Goldberg-NE.team=NE
+player.Goldberg-NE.titles=(NM)
+player.Goldberg-NE.website=http://www.uschessleague.com/BenGoldberg.html
 
-player.GopalMenon.name=Gopal Menon
-player.GopalMenon.rating=2222
-player.GopalMenon.team=Chicago
-player.GopalMenon.titles=(NM)
-player.GopalMenon.website=http://www.uschessleague.com/GopalMenon.html
+player.Golub-SEA.handle=Golub-SEA
+player.Golub-SEA.name=David Golub
+player.Golub-SEA.rating=2188
+player.Golub-SEA.team=SEA
+player.Golub-SEA.titles=(NM)
+player.Golub-SEA.website=http://www.uschessleague.com/DavidGolub.html
 
-player.GoranVojinovic.name=Goran Vojinovic
-player.GoranVojinovic.rating=2567
-player.GoranVojinovic.team=StLouis
-player.GoranVojinovic.titles=(IM)
-player.GoranVojinovic.website=http://www.uschessleague.com/GoranVojinovic.html
+player.Griego-BOS.handle=Griego-BOS
+player.Griego-BOS.name=David Griego
+player.Griego-BOS.rating=2494
+player.Griego-BOS.team=BOS
+player.Griego-BOS.titles=(FM)
+player.Griego-BOS.website=http://www.uschessleague.com/DavidGriego.html
+
+player.Gu-BOS.handle=Gu-BOS
+player.Gu-BOS.name=Christopher Gu
+player.Gu-BOS.rating=2283
+player.Gu-BOS.team=BOS
+player.Gu-BOS.titles=(NM)
+player.Gu-BOS.website=http://www.uschessleague.com/ChristopherGu.html
 
 player.Gulko-NJ.handle=Gulko-NJ
 player.Gulko-NJ.name=Boris Gulko
@@ -1412,6 +482,13 @@ player.Gulko-NJ.rating=2587
 player.Gulko-NJ.team=NJ
 player.Gulko-NJ.titles=(GM)
 player.Gulko-NJ.website=http://www.uschessleague.com/BorisGulko.html
+
+player.Hansen-NJ.handle=Hansen-NJ
+player.Hansen-NJ.name=Carsten Hansen
+player.Hansen-NJ.rating=2318
+player.Hansen-NJ.team=NJ
+player.Hansen-NJ.titles=(FM)
+player.Hansen-NJ.website=http://www.uschessleague.com/CarstenHansen.html
 
 player.Herbst-CAR.handle=Herbst-CAR
 player.Herbst-CAR.name=Richard Herbst
@@ -1427,6 +504,20 @@ player.Herman-NY.team=NY
 player.Herman-NY.titles=(SM)
 player.Herman-NY.website=http://www.uschessleague.com/MattHerman.html
 
+player.Hernandez-MIA.handle=Hernandez-MIA
+player.Hernandez-MIA.name=Alberto Hernandez
+player.Hernandez-MIA.rating=2321
+player.Hernandez-MIA.team=MIA
+player.Hernandez-MIA.titles=(NM)
+player.Hernandez-MIA.website=http://www.uschessleague.com/AlbertoHernandez
+
+player.Holt-DAL.handle=Holt-DAL
+player.Holt-DAL.name=Conrad Holt
+player.Holt-DAL.rating=2520
+player.Holt-DAL.team=DAL
+player.Holt-DAL.titles=(IM)
+player.Holt-DAL.website=http://www.uschessleague.com/ConradHolt.html
+
 player.Hua-STL.handle=Hua-STL
 player.Hua-STL.name=Margaret Hua
 player.Hua-STL.rating=1981
@@ -1441,11 +532,12 @@ player.Hungaski-NE.team=NE
 player.Hungaski-NE.titles=(IM)
 player.Hungaski-NE.website=http://www.uschessleague.com/RobertHungaski.html
 
-player.IgorBerezovsky.name=Igor Berezovsky
-player.IgorBerezovsky.rating=2487
-player.IgorBerezovsky.team=NewJersey
-player.IgorBerezovsky.titles=(IM)
-player.IgorBerezovsky.website=http://www.uschessleague.com/IgorBerezovsky.html
+player.Iotov-DAL.handle=Iotov-DAL
+player.Iotov-DAL.name=Valentin Iotov
+player.Iotov-DAL.rating=2631
+player.Iotov-DAL.team=DAL
+player.Iotov-DAL.titles=(GM)
+player.Iotov-DAL.website=http://www.uschessleague.com/ValentinIotov.html
 
 player.Ippolito-NJ.handle=Ippolito-NJ
 player.Ippolito-NJ.name=Dean Ippolito
@@ -1461,72 +553,19 @@ player.IrinaKrush-NY.team=NY
 player.IrinaKrush-NY.titles=(IM)
 player.IrinaKrush-NY.website=http://www.uschessleague.com/IrinaKrush.html
 
+player.JakeBanawa-STL.handle=JakeBanawa-STL
+player.JakeBanawa-STL.name=Joaquin Banawa
+player.JakeBanawa-STL.rating=2366
+player.JakeBanawa-STL.team=STL
+player.JakeBanawa-STL.titles=(FM)
+player.JakeBanawa-STL.website=http://www.uschessleague.com/JoaquinBanawa.html
+
 player.JamesBlack-MAN.handle=JamesBlack-MAN
 player.JamesBlack-MAN.name=James Black
 player.JamesBlack-MAN.rating=2184
 player.JamesBlack-MAN.team=MAN
 player.JamesBlack-MAN.titles=(NM)
 player.JamesBlack-MAN.website=http://www.uschessleague.com/JamesBlack.html
-
-player.JeffreyXiong.name=Jeffrey Xiong
-player.JeffreyXiong.rating=2237
-player.JeffreyXiong.team=Dallas
-player.JeffreyXiong.titles=(FM)
-player.JeffreyXiong.website=http://www.uschessleague.com/JeffreyXiong.html
-
-player.JialinDing.name=Jialin Ding
-player.JialinDing.rating=2244
-player.JialinDing.team=StLouis
-player.JialinDing.titles=(NM)
-player.JialinDing.website=http://www.uschessleague.com/JialinDing.html
-
-player.JimDean.name=Jim Dean
-player.JimDean.rating=2336
-player.JimDean.team=Chicago
-player.JimDean.titles=(FM)
-player.JimDean.website=http://www.uschessleague.com/JimDean.html
-
-player.JoanOlivera.name=Joan Olivera
-player.JoanOlivera.rating=2399
-player.JoanOlivera.team=Miami
-player.JoanOlivera.titles=(FM)
-player.JoanOlivera.website=http://www.uschessleague.com/JoanOlivera.html
-
-player.JoaquinBanawa.name=Joaquin Banawa
-player.JoaquinBanawa.rating=2366
-player.JoaquinBanawa.team=StLouis
-player.JoaquinBanawa.titles=(FM)
-player.JoaquinBanawa.website=http://www.uschessleague.com/JoaquinBanawa.html
-
-player.JohnBartholomew.name=John Bartholomew
-player.JohnBartholomew.rating=2499
-player.JohnBartholomew.team=Manhattan
-player.JohnBartholomew.titles=(IM)
-player.JohnBartholomew.website=http://www.uschessleague.com/JohnBartholomew.html
-
-player.JohnDonaldson.name=John Donaldson
-player.JohnDonaldson.rating=2402
-player.JohnDonaldson.team=SanFrancisco
-player.JohnDonaldson.titles=(IM)
-player.JohnDonaldson.website=http://www.uschessleague.com/JohnDonaldson.html
-
-player.JohnFernandez.name=John Fernandez
-player.JohnFernandez.rating=2129
-player.JohnFernandez.team=NewYork
-player.JohnFernandez.titles=
-player.JohnFernandez.website=http://www.uschessleague.com/JohnFernandez.html
-
-player.JonathanYedidia.name=Jonathan Yedidia
-player.JonathanYedidia.rating=2428
-player.JonathanYedidia.team=NewEngland
-player.JonathanYedidia.titles=(IM)
-player.JonathanYedidia.website=http://www.uschessleague.com/JonathanYedidia.html
-
-player.JorgePelaez.name=Jorge Pelaez
-player.JorgePelaez.rating=2264
-player.JorgePelaez.team=Miami
-player.JorgePelaez.titles=(FM)
-player.JorgePelaez.website=http://www.uschessleague.com/JorgePelaez.html
 
 player.Kacheishvili-NY.handle=Kacheishvili-NY
 player.Kacheishvili-NY.name=Giorgi Kacheishvili
@@ -1542,17 +581,26 @@ player.Kapengut-NJ.team=NJ
 player.Kapengut-NJ.titles=(IM)
 player.Kapengut-NJ.website=http://www.uschessleague.com/AlbertKapengut.html
 
-player.KassaKorley.name=Kassa Korley
-player.KassaKorley.rating=2368
-player.KassaKorley.team=Carolina
-player.KassaKorley.titles=(FM)
-player.KassaKorley.website=http://www.uschessleague.com/KassaKorley.html
+player.Karlow-STL.handle=Karlow-STL
+player.Karlow-STL.name=Nick Karlow
+player.Karlow-STL.rating=2068
+player.Karlow-STL.team=STL
+player.Karlow-STL.titles=
+player.Karlow-STL.website=http://www.uschessleague.com/NickKarlow.html
 
-player.KevinCao.name=Kevin Cao
-player.KevinCao.rating=2215
-player.KevinCao.team=StLouis
-player.KevinCao.titles=(NM)
-player.KevinCao.website=http://www.uschessleague.com/KevinCao.html
+player.Kavutskiy-LA.handle=Kavutskiy-LA
+player.Kavutskiy-LA.name=Konstantin Kavutskiy
+player.Kavutskiy-LA.rating=2277
+player.Kavutskiy-LA.team=LA
+player.Kavutskiy-LA.titles=(NM)
+player.Kavutskiy-LA.website=http://www.uschessleague.com/KonstantinKavutskiy.html
+
+player.Kelley-SEA.handle=Kelley-SEA
+player.Kelley-SEA.name=Dereque Kelley
+player.Kelley-SEA.rating=2241
+player.Kelley-SEA.team=SEA
+player.Kelley-SEA.titles=(NM)
+player.Kelley-SEA.website=http://www.uschessleague.com/DerequeKelley.html
 
 player.Khachiyan-LA.handle=Khachiyan-LA
 player.Khachiyan-LA.name=Melikset Khachiyan
@@ -1575,6 +623,13 @@ player.Klein-CAR.team=CAR
 player.Klein-CAR.titles=(FM)
 player.Klein-CAR.website=http://www.uschessleague.com/MikeKlein.html
 
+player.Korley-CAR.handle=Korley-CAR
+player.Korley-CAR.name=Kassa Korley
+player.Korley-CAR.rating=2368
+player.Korley-CAR.team=CAR
+player.Korley-CAR.titles=(FM)
+player.Korley-CAR.website=http://www.uschessleague.com/KassaKorley.html
+
 player.Kraai-SF.handle=Kraai-SF
 player.Kraai-SF.name=Jesse Kraai
 player.Kraai-SF.rating=2567
@@ -1589,18 +644,19 @@ player.Krasik-BOS.team=BOS
 player.Krasik-BOS.titles=(NM)
 player.Krasik-BOS.website=http://www.uschessleague.com/IlyaKrasik.html
 
+player.Krishnan-LA.handle=Krishnan-LA
+player.Krishnan-LA.name=Varun Krishnan
+player.Krishnan-LA.rating=2232
+player.Krishnan-LA.team=LA
+player.Krishnan-LA.titles=(NM)
+player.Krishnan-LA.website=http://www.uschessleague.com/VarunKrishnan.html
+
 player.LarryC-BOS.handle=LarryC-BOS
 player.LarryC-BOS.name=Larry Christiansen
 player.LarryC-BOS.rating=2648
 player.LarryC-BOS.team=BOS
 player.LarryC-BOS.titles=(GM)
 player.LarryC-BOS.website=http://www.uschessleague.com/LarryChristiansen.html
-
-player.LeifPressman.name=Leif Pressman
-player.LeifPressman.rating=2381
-player.LeifPressman.team=NewYork
-player.LeifPressman.titles=(NM)
-player.LeifPressman.website=http://www.uschessleague.com/LeifPressman.html
 
 player.Liou-SF.handle=Liou-SF
 player.Liou-SF.name=Yian Liou
@@ -1616,6 +672,20 @@ player.LKaufman-BAL.team=BAL
 player.LKaufman-BAL.titles=(GM)
 player.LKaufman-BAL.website=http://www.uschessleague.com/LarryKaufman.html
 
+player.Lu-LA.handle=Lu-LA
+player.Lu-LA.name=Albert Lu
+player.Lu-LA.rating=2086
+player.Lu-LA.team=LA
+player.Lu-LA.titles=
+player.Lu-LA.website=http://www.uschessleague.com/AlbertLu.html
+
+player.Luna-MIA.handle=Luna-MIA
+player.Luna-MIA.name=Gil Luna
+player.Luna-MIA.rating=2047
+player.Luna-MIA.team=MIA
+player.Luna-MIA.titles=
+player.Luna-MIA.website=http://www.uschessleague.com/GilLuna.html
+
 player.Mabe-CAR.handle=Mabe-CAR
 player.Mabe-CAR.name=Chris Mabe
 player.Mabe-CAR.rating=2296
@@ -1623,11 +693,19 @@ player.Mabe-CAR.team=CAR
 player.Mabe-CAR.titles=(NM)
 player.Mabe-CAR.website=http://www.uschessleague.com/ChrisMabe.html
 
-player.MarkGinsburg.name=Mark Ginsburg
-player.MarkGinsburg.rating=2435
-player.MarkGinsburg.team=Arizona
-player.MarkGinsburg.titles=(IM)
-player.MarkGinsburg.website=http://www.uschessleague.com/MarkGinsburg.html
+player.MageshP-PHI.handle=MageshP-PHI
+player.MageshP-PHI.name=Magesh Panchanathan
+player.MageshP-PHI.rating=2565
+player.MageshP-PHI.team=PHI
+player.MageshP-PHI.titles=(GM)
+player.MageshP-PHI.website=http://www.uschessleague.com/MageshPanchanathan.html
+
+player.Mandizha-MAN.handle=Mandizha-MAN
+player.Mandizha-MAN.name=Farai Mandizha
+player.Mandizha-MAN.rating=2494
+player.Mandizha-MAN.team=MAN
+player.Mandizha-MAN.titles=(FM)
+player.Mandizha-MAN.website=http://www.uschessleague.com/FaraiMandizha.html
 
 player.Martirosov-BOS.handle=Martirosov-BOS
 player.Martirosov-BOS.name=Vadim Martirosov
@@ -1636,11 +714,12 @@ player.Martirosov-BOS.team=BOS
 player.Martirosov-BOS.titles=(NM)
 player.Martirosov-BOS.website=http://www.uschessleague.com/VadimMartirosov.html
 
-player.MatanPrilleltensky.name=Matan Prilleltensky
-player.MatanPrilleltensky.rating=2186
-player.MatanPrilleltensky.team=Manhattan
-player.MatanPrilleltensky.titles=(NM)
-player.MatanPrilleltensky.website=http://www.uschessleague.com/MatanPrilleltensky.html
+player.MatanP-MAN.handle=MatanP-MAN
+player.MatanP-MAN.name=Matan Prilleltensky
+player.MatanP-MAN.rating=2186
+player.MatanP-MAN.team=MAN
+player.MatanP-MAN.titles=(NM)
+player.MatanP-MAN.website=http://www.uschessleague.com/MatanPrilleltensky.html
 
 player.Mateer-ARZ.handle=Mateer-ARZ
 player.Mateer-ARZ.name=Amanda Mateer
@@ -1656,11 +735,19 @@ player.Matlin-NJ.team=NJ
 player.Matlin-NJ.titles=
 player.Matlin-NJ.website=http://www.uschessleague.com/AnnaMatlin.html
 
-player.MikaBrattain.name=Mika Brattain
-player.MikaBrattain.rating=2208
-player.MikaBrattain.team=NewEngland
-player.MikaBrattain.titles=(NM)
-player.MikaBrattain.website=http://www.uschessleague.com/MikaBrattain.html
+player.Matros-CAR.handle=Matros-CAR
+player.Matros-CAR.name=Alexander Matros
+player.Matros-CAR.rating=2440
+player.Matros-CAR.team=CAR
+player.Matros-CAR.titles=(IM)
+player.Matros-CAR.website=http://www.uschessleague.com/AlexanderMatros.html
+
+player.Menon-CHC.handle=Menon-CHC
+player.Menon-CHC.name=Gopal Menon
+player.Menon-CHC.rating=2222
+player.Menon-CHC.team=CHC
+player.Menon-CHC.titles=(NM)
+player.Menon-CHC.website=http://www.uschessleague.com/GopalMenon.html
 
 player.Mikhailuk-SEA.handle=Mikhailuk-SEA
 player.Mikhailuk-SEA.name=Slava Mikhailuk
@@ -1676,12 +763,6 @@ player.Milat-SEA.team=SEA
 player.Milat-SEA.titles=(FM)
 player.Milat-SEA.website=http://www.uschessleague.com/MarcelMilat.html
 
-player.MilesArdaman.name=Miles Ardaman
-player.MilesArdaman.rating=2311
-player.MilesArdaman.team=Carolina
-player.MilesArdaman.titles=(FM)
-player.MilesArdaman.website=http://www.uschessleague.com/MilesArdaman.html
-
 player.Milman-MAN.handle=Milman-MAN
 player.Milman-MAN.name=Lev Milman
 player.Milman-MAN.rating=2490
@@ -1689,19 +770,33 @@ player.Milman-MAN.team=MAN
 player.Milman-MAN.titles=(IM)
 player.Milman-MAN.website=http://www.uschessleague.com/LevMilman.html
 
-player.Molner-NJ.handle=Molner-NJ
-player.Molner-NJ.name=Mackenzie Molner
-player.Molner-NJ.rating=2482
-player.Molner-NJ.team=NJ
-player.Molner-NJ.titles=(IM)
-player.Molner-NJ.website=http://www.uschessleague.com/MackenzieMolner.html
+player.Minear-PHI.handle=Minear-PHI
+player.Minear-PHI.name=Peter Minear
+player.Minear-PHI.rating=2278
+player.Minear-PHI.team=PHI
+player.Minear-PHI.titles=(NM)
+player.Minear-PHI.website=http://www.uschessleague.com/PeterMinear.html
 
-player.Mshahade-PHI.handle=Mshahade-PHI
-player.Mshahade-PHI.name=Michael Shahade
-player.Mshahade-PHI.rating=2241
-player.Mshahade-PHI.team=PHI
-player.Mshahade-PHI.titles=(FM)
-player.Mshahade-PHI.website=http://www.uschessleague.com/MichaelShahade.html
+player.Molner-ARZ.handle=Molner-ARZ
+player.Molner-ARZ.name=Mackenzie Molner
+player.Molner-ARZ.rating=2482
+player.Molner-ARZ.team=ARZ
+player.Molner-ARZ.titles=(IM)
+player.Molner-ARZ.website=http://www.uschessleague.com/MackenzieMolner.html
+
+player.Mosiyenko-BOS.handle=Mosiyenko-BOS
+player.Mosiyenko-BOS.name=Daniil Mosiyenko
+player.Mosiyenko-BOS.rating=2132
+player.Mosiyenko-BOS.team=BOS
+player.Mosiyenko-BOS.titles=
+player.Mosiyenko-BOS.website=http://www.uschessleague.com/DaniilMosiyenko.html
+
+player.MShahade-PHI.handle=MShahade-PHI
+player.MShahade-PHI.name=Michael Shahade
+player.MShahade-PHI.rating=2241
+player.MShahade-PHI.team=PHI
+player.MShahade-PHI.titles=(FM)
+player.MShahade-PHI.website=http://www.uschessleague.com/MichaelShahade.html
 
 player.Nakamura-STL.handle=Nakamura-STL
 player.Nakamura-STL.name=Hikaru Nakamura
@@ -1717,17 +812,26 @@ player.Naroditsky-SF.team=SF
 player.Naroditsky-SF.titles=(IM)
 player.Naroditsky-SF.website=http://www.uschessleague.com/DanielNaroditsky.html
 
-player.NickKarlow.name=Nick Karlow
-player.NickKarlow.rating=2068
-player.NickKarlow.team=StLouis
-player.NickKarlow.titles=
-player.NickKarlow.website=http://www.uschessleague.com/NickKarlow.html
+player.Olivera-MIA.handle=Olivera-MIA
+player.Olivera-MIA.name=Joan Olivera
+player.Olivera-MIA.rating=2399
+player.Olivera-MIA.team=MIA
+player.Olivera-MIA.titles=(FM)
+player.Olivera-MIA.website=http://www.uschessleague.com/JoanOlivera.html
 
-player.PedramAtoufi.name=Pedram Atoufi
-player.PedramAtoufi.rating=2326
-player.PedramAtoufi.team=Arizona
-player.PedramAtoufi.titles=(FM)
-player.PedramAtoufi.website=http://www.uschessleague.com/PedramAtoufi.html
+player.Orlov-SEA.handle=Orlov-SEA
+player.Orlov-SEA.name=Georgi Orlov
+player.Orlov-SEA.rating=2541
+player.Orlov-SEA.team=SEA
+player.Orlov-SEA.titles=(IM)
+player.Orlov-SEA.website=http://www.uschessleague.com/GeorgiOrlov.html
+
+player.Pelaez-MIA.handle=Pelaez-MIA
+player.Pelaez-MIA.name=Jorge Pelaez
+player.Pelaez-MIA.rating=2264
+player.Pelaez-MIA.team=MIA
+player.Pelaez-MIA.titles=(FM)
+player.Pelaez-MIA.website=http://www.uschessleague.com/JorgePelaez.html
 
 player.Perelshteyn-BOS.handle=Perelshteyn-BOS
 player.Perelshteyn-BOS.name=Eugene Perelshteyn
@@ -1736,11 +840,12 @@ player.Perelshteyn-BOS.team=BOS
 player.Perelshteyn-BOS.titles=(GM)
 player.Perelshteyn-BOS.website=http://www.uschessleague.com/EugenePerelshteyn.html
 
-player.PeterMinear.name=Peter Minear
-player.PeterMinear.rating=2278
-player.PeterMinear.team=Philadelphia
-player.PeterMinear.titles=(NM)
-player.PeterMinear.website=http://www.uschessleague.com/PeterMinear.html
+player.Pressman-NY.handle=Pressman-NY
+player.Pressman-NY.name=Leif Pressman
+player.Pressman-NY.rating=2381
+player.Pressman-NY.team=NY
+player.Pressman-NY.titles=(NM)
+player.Pressman-NY.website=http://www.uschessleague.com/LeifPressman.html
 
 player.Pruess-SF.handle=Pruess-SF
 player.Pruess-SF.name=David Pruess
@@ -1749,6 +854,13 @@ player.Pruess-SF.team=SF
 player.Pruess-SF.titles=(IM)
 player.Pruess-SF.website=http://www.uschessleague.com/DavidPruess.html
 
+player.RCostigan-PHI.handle=RCostigan-PHI
+player.RCostigan-PHI.name=Richard Costigan
+player.RCostigan-PHI.rating=2288
+player.RCostigan-PHI.team=PHI
+player.RCostigan-PHI.titles=(IM)
+player.RCostigan-PHI.website=http://www.uschessleague.com/RichardCostigan.html
+
 player.Riordan-NE.handle=Riordan-NE
 player.Riordan-NE.name=Charles Riordan
 player.Riordan-NE.rating=2443
@@ -1756,11 +868,12 @@ player.Riordan-NE.team=NE
 player.Riordan-NE.titles=(FM)
 player.Riordan-NE.website=http://www.uschessleague.com/CharlesRiordan.html
 
-player.RolandFeng.name=Roland Feng
-player.RolandFeng.rating=2074
-player.RolandFeng.team=Seattle
-player.RolandFeng.titles=
-player.RolandFeng.website=http://www.uschessleague.com/RolandFeng.html
+player.Rohonyan-SEA.handle=Rohonyan-SEA
+player.Rohonyan-SEA.name=Katerina Rohonyan
+player.Rohonyan-SEA.rating=2333
+player.Rohonyan-SEA.team=SEA
+player.Rohonyan-SEA.titles=(WGM)
+player.Rohonyan-SEA.website=http://www.uschessleague.com/KaterinaRohonyan.html
 
 player.Rosen-CHC.handle=Rosen-CHC
 player.Rosen-CHC.name=Eric Rosen
@@ -1783,17 +896,12 @@ player.Sadorra-DAL.team=DAL
 player.Sadorra-DAL.titles=(GM)
 player.Sadorra-DAL.website=http://www.uschessleague.com/JulioSadorra.html
 
-player.SamSchmakel.name=Sam Schmakel
-player.SamSchmakel.rating=2190
-player.SamSchmakel.team=Chicago
-player.SamSchmakel.titles=(NM)
-player.SamSchmakel.website=http://www.uschessleague.com/SamSchmakel.html
-
-player.SamuelSevian.name=Samuel Sevian
-player.SamuelSevian.rating=2262
-player.SamuelSevian.team=SanFrancisco
-player.SamuelSevian.titles=(NM)
-player.SamuelSevian.website=http://www.uschessleague.com/SamuelSevian.html
+player.Sammour-BOS.handle=Sammour-BOS
+player.Sammour-BOS.name=Jorge Sammour-Hasbun
+player.Sammour-BOS.rating=2604
+player.Sammour-BOS.team=BOS
+player.Sammour-BOS.titles=(SM)
+player.Sammour-BOS.website=http://www.uschessleague.com/JorgeSammourHasbun.html
 
 player.Santalla-MIA.handle=Santalla-MIA
 player.Santalla-MIA.name=Andres Santalla
@@ -1801,6 +909,13 @@ player.Santalla-MIA.rating=2156
 player.Santalla-MIA.team=MIA
 player.Santalla-MIA.titles=(NM)
 player.Santalla-MIA.website=http://www.uschessleague.com/AndresSantalla.html
+
+player.Schmakel-CHC.handle=Schmakel-CHC
+player.Schmakel-CHC.name=Sam Schmakel
+player.Schmakel-CHC.rating=2190
+player.Schmakel-CHC.team=CHC
+player.Schmakel-CHC.titles=(NM)
+player.Schmakel-CHC.website=http://www.uschessleague.com/SamSchmakel.html
 
 player.Schoch-BAL.handle=Schoch-BAL
 player.Schoch-BAL.name=Ian Schoch
@@ -1823,6 +938,13 @@ player.Selzler-BAL.team=BAL
 player.Selzler-BAL.titles=(NM)
 player.Selzler-BAL.website=http://www.uschessleague.com/RickySelzler.html
 
+player.Sevian-SF.handle=Sevian-SF
+player.Sevian-SF.name=Samuel Sevian
+player.Sevian-SF.rating=2262
+player.Sevian-SF.team=SF
+player.Sevian-SF.titles=(NM)
+player.Sevian-SF.website=http://www.uschessleague.com/SamuelSevian.html
+
 player.Shankland-NE.handle=Shankland-NE
 player.Shankland-NE.name=Sam Shankland
 player.Shankland-NE.rating=2624
@@ -1830,12 +952,12 @@ player.Shankland-NE.team=NE
 player.Shankland-NE.titles=(GM)
 player.Shankland-NE.website=http://www.uschessleague.com/SamShankland.html
 
-player.Shulman-STL.handle=Shulman-STL
-player.Shulman-STL.name=Yury Shulman
-player.Shulman-STL.rating=2687
-player.Shulman-STL.team=STL
-player.Shulman-STL.titles=(GM)
-player.Shulman-STL.website=http://www.uschessleague.com/YuryShulman.html
+player.Shulman-CHC.handle=Shulman-CHC
+player.Shulman-CHC.name=Yury Shulman
+player.Shulman-CHC.rating=2687
+player.Shulman-CHC.team=CHC
+player.Shulman-CHC.titles=(GM)
+player.Shulman-CHC.website=http://www.uschessleague.com/YuryShulman.html
 
 player.Simpson-CAR.handle=Simpson-CAR
 player.Simpson-CAR.name=Ron Simpson
@@ -1872,30 +994,26 @@ player.Thompson-ARZ.team=ARZ
 player.Thompson-ARZ.titles=(NM)
 player.Thompson-ARZ.website=http://www.uschessleague.com/NickThompson.html
 
-player.TimurAliyev.name=Timur Aliyev
-player.TimurAliyev.rating=2330
-player.TimurAliyev.team=StLouis
-player.TimurAliyev.titles=(NM)
-player.TimurAliyev.website=http://www.uschessleague.com/TimurAliyev.html
+player.Vaidya-DAL.handle=Vaidya-DAL
+player.Vaidya-DAL.name=Chaitanya Vaidya
+player.Vaidya-DAL.rating=2333
+player.Vaidya-DAL.team=DAL
+player.Vaidya-DAL.titles=(NM)
+player.Vaidya-DAL.website=http://www.uschessleague.com/ChaitanyaVaidya.html
 
-player.ValentinIotov.name=Valentin Iotov
-player.ValentinIotov.rating=2631
-player.ValentinIotov.team=Dallas
-player.ValentinIotov.titles=(GM)
-player.ValentinIotov.website=http://www.uschessleague.com/ValentinIotov.html
+player.vandeMortel-BOS.handle=vandeMortel-BOS
+player.vandeMortel-BOS.name=Jan van de Mortel
+player.vandeMortel-BOS.rating=2499
+player.vandeMortel-BOS.team=BOS
+player.vandeMortel-BOS.titles=(IM)
+player.vandeMortel-BOS.website=http://www.uschessleague.com/JanvandeMortel.html
 
-player.vandeMortel-NE.handle=vandeMortel-NE
-player.vandeMortel-NE.name=Jan van de Mortel
-player.vandeMortel-NE.rating=2499
-player.vandeMortel-NE.team=NE
-player.vandeMortel-NE.titles=(IM)
-player.vandeMortel-NE.website=http://www.uschessleague.com/JanvandeMortel.html
-
-player.VarunKrishnan.name=Varun Krishnan
-player.VarunKrishnan.rating=2232
-player.VarunKrishnan.team=LosAngeles
-player.VarunKrishnan.titles=(NM)
-player.VarunKrishnan.website=http://www.uschessleague.com/VarunKrishnan.html
+player.Vedrickas-DAL.handle=Vedrickas-DAL
+player.Vedrickas-DAL.name=Tautvydas Vedrickas
+player.Vedrickas-DAL.rating=2350
+player.Vedrickas-DAL.team=DAL
+player.Vedrickas-DAL.titles=(FM)
+player.Vedrickas-DAL.website=http://www.uschessleague.com/TautvydasVedrickas.html
 
 player.Vigorito-NE.handle=Vigorito-NE
 player.Vigorito-NE.name=David Vigorito
@@ -1904,11 +1022,12 @@ player.Vigorito-NE.team=NE
 player.Vigorito-NE.titles=(IM)
 player.Vigorito-NE.website=http://www.uschessleague.com/DaveVigorito.html
 
-player.VinayBhat.name=Vinay Bhat
-player.VinayBhat.rating=2555
-player.VinayBhat.team=SanFrancisco
-player.VinayBhat.titles=(GM)
-player.VinayBhat.website=http://www.uschessleague.com/VinayBhat.html
+player.Vojinovic-STL.handle=Vojinovic-STL
+player.Vojinovic-STL.name=Goran Vojinovic
+player.Vojinovic-STL.rating=2567
+player.Vojinovic-STL.team=STL
+player.Vojinovic-STL.titles=(IM)
+player.Vojinovic-STL.website=http://www.uschessleague.com/GoranVojinovic.html
 
 player.Vovsha-MAN.handle=Vovsha-MAN
 player.Vovsha-MAN.name=Eli Vovsha
@@ -1916,12 +1035,6 @@ player.Vovsha-MAN.rating=2531
 player.Vovsha-MAN.team=MAN
 player.Vovsha-MAN.titles=(IM)
 player.Vovsha-MAN.website=http://www.uschessleague.com/EliVovsha.html
-
-player.WilliamFisher.name=William Fisher
-player.WilliamFisher.rating=2369
-player.WilliamFisher.team=Philadelphia
-player.WilliamFisher.titles=(NM)
-player.WilliamFisher.website=http://www.uschessleague.com/WilliamFisher.html
 
 player.Williams-NY.handle=Williams-NY
 player.Williams-NY.name=Justus Williams
@@ -1937,6 +1050,20 @@ player.Wolff-SF.team=SF
 player.Wolff-SF.titles=(GM)
 player.Wolff-SF.website=http://www.uschessleague.com/PatrickWolff.html
 
+player.Wu-NJ.handle=Wu-NJ
+player.Wu-NJ.name=Christopher Wu
+player.Wu-NJ.rating=2151
+player.Wu-NJ.team=NJ
+player.Wu-NJ.titles=
+player.Wu-NJ.website=http://www.uschessleague.com/ChristopherWu.html
+
+player.Xiong-DAL.handle=Xiong-DAL
+player.Xiong-DAL.name=Jeffrey Xiong
+player.Xiong-DAL.rating=2237
+player.Xiong-DAL.team=DAL
+player.Xiong-DAL.titles=(FM)
+player.Xiong-DAL.website=http://www.uschessleague.com/JeffreyXiong.html
+
 player.Yanayt-LA.handle=Yanayt-LA
 player.Yanayt-LA.name=Eugene Yanayt
 player.Yanayt-LA.rating=2305
@@ -1944,18 +1071,33 @@ player.Yanayt-LA.team=LA
 player.Yanayt-LA.titles=(FM)
 player.Yanayt-LA.website=http://www.uschessleague.com/EugeneYanayt.html
 
+player.Yang-BAL.handle=Yang-BAL
+player.Yang-BAL.name=Charles Yang
+player.Yang-BAL.rating=2046
+player.Yang-BAL.team=BAL
+player.Yang-BAL.titles=
+player.Yang-BAL.website=http://www.uschessleague.com/CharlesYang.html
+
+player.Yedidia-NE.handle=Yedidia-NE
+player.Yedidia-NE.name=Jonathan Yedidia
+player.Yedidia-NE.rating=2428
+player.Yedidia-NE.team=NE
+player.Yedidia-NE.titles=(IM)
+player.Yedidia-NE.website=http://www.uschessleague.com/JonathanYedidia.html
+
+player.ZAmanov-LA.handle=ZAmanov-LA
+player.ZAmanov-LA.name=Zhanibek Amanov
+player.ZAmanov-LA.rating=2472
+player.ZAmanov-LA.team=LA
+player.ZAmanov-LA.titles=(IM)
+player.ZAmanov-LA.website=http://www.uschessleague.com/ZhanibekAmanov.html
+
 player.Zaremba-MAN.handle=Zaremba-MAN
 player.Zaremba-MAN.name=Andrei Zaremba
 player.Zaremba-MAN.rating=2417
 player.Zaremba-MAN.team=MAN
 player.Zaremba-MAN.titles=(FM)
 player.Zaremba-MAN.website=http://www.uschessleague.com/AndreiZaremba.html
-
-player.ZhanibekAmanov.name=Zhanibek Amanov
-player.ZhanibekAmanov.rating=2472
-player.ZhanibekAmanov.team=LosAngeles
-player.ZhanibekAmanov.titles=(IM)
-player.ZhanibekAmanov.website=http://www.uschessleague.com/ZhanibekAmanov.html
 
 player.Zilberstein-SF.handle=Zilberstein-SF
 player.Zilberstein-SF.name=Dmitry Zilberstein

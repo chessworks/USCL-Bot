@@ -36,6 +36,7 @@
 
 	<properties>
 		<bot.mainClass>org.chessworks.uscl.USCLBot</bot.mainClass>
+		<bot.mainClass>org.chessworks.uscl.USCLBot</bot.mainClass>
 	</properties>
 
 	<parent>

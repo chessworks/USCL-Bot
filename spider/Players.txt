@@ -1,0 +1,1 @@
+/home/duckstorm/bots/USCL-Bot/data/Players.txt

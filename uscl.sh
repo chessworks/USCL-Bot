@@ -3,9 +3,10 @@
 basedir=$HOME/bots/USCL-Bot
 
 botname=USCL-Bot
-buildJarFile=$basedir/USCL-Bot.jar
+latestJarFile=$basedir/USCL-Bot-latest.jar
 stableJarFile=$basedir/USCL-Bot-stable.jar
-runJarFile=$basedir/USCL-Bot-run.jar
+currentJarFile=$basedir/USCL-Bot-active.jar
+runJarFile=$basedir/USCL-Bot-locked.jar
 
 logfile=$basedir/logs/$botname.log
 settingsFile=$HOME/.secure/$botname.properties
@@ -15,11 +16,8 @@ if [[ "$1" != '--console' ]]; then
 	 exit
 fi
 
-#while ./build.sh; do
 while true; do
-	if [[ -f $buildJarFile ]]; then
-		/bin/mv $buildJarFile $runJarFile
-	fi
+	/bin/cp $currentJarFile $runJarFile
 	nice -n 5 java -Dusclbot.settingsFile="$settingsFile" -jar $runJarFile
 	case $? in
 		0)
@@ -35,6 +33,7 @@ while true; do
 			;;
 		3)
 			echo "Exit code 3: Shutting down."
+			rm $runJarFile
 			exit;
 			;;
 		4)
@@ -45,14 +44,21 @@ while true; do
 			echo "Exit code 5: Recompiling and restarting."
 			svn update .
 			./build.sh
+			if [[ -f $latestJarFile ]]; then
+				/bin/cp $latestJarFile $currentJarFile
+			fi
 			;;
 		6)
 			echo "Exit code 6: Reverting to prior stable release."
-			/bin/cp $stableJarFile $runJarFile
+			if [[ -f $stableJarFile ]]; then
+				/bin/cp $stableJarFile $currentJarFile
+			fi
 			;;
 		*)
 			echo "Exit code $?: Sleeping 20 seconds and restarting."
 			sleep 20
 			;;
 	esac
+	/bin/rm $runJarFile
 done
+
