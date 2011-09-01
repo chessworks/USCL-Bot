@@ -57,7 +57,7 @@ while true; do
 		7)
 			echo "Exit code 7: Installing latest release."
 			if [[ -f $latestJarFile ]]; then
-				/bin/cp $stableJarFile $currentJarFile
+				/bin/cp $latestJarFile $currentJarFile
 			fi
 			;;
 		*)
