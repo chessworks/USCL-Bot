@@ -3,7 +3,7 @@ package org.chessworks.uscl.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Team implements Comparable<Team> {
+public class Team implements Comparable<Team>{
 
 	public static final String UNAVAILABLE = "Unavailable";
 
@@ -21,6 +21,9 @@ public class Team implements Comparable<Team> {
 		this.realName = teamCode;
 	}
 
+	/**
+	 * Teams are naturally sorted by the case-sensitive alphabetical ordering of their teamCode's.
+	 */
 	@Override
 	public int compareTo(Team o) {
 		return teamCode.compareTo(o.teamCode);
