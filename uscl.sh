@@ -54,6 +54,12 @@ while true; do
 				/bin/cp $stableJarFile $currentJarFile
 			fi
 			;;
+		7)
+			echo "Exit code 7: Installing latest release."
+			if [[ -f $latestJarFile ]]; then
+				/bin/cp $stableJarFile $currentJarFile
+			fi
+			;;
 		*)
 			echo "Exit code $?: Sleeping 20 seconds and restarting."
 			sleep 20

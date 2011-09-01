@@ -58,11 +58,11 @@ public class USCLBot {
 	 */
 	public static final String BOARDS_FILE = "Games.txt";
 
-	public static final String BOT_RELEASE_DATE = "September 27, 2010";
+	public static final String BOT_RELEASE_DATE = "August 31, 2011";
 
 	public static final String BOT_RELEASE_NAME = "USCL-Bot";
 
-	public static final String BOT_RELEASE_NUMBER = "1.02";
+	public static final String BOT_RELEASE_NUMBER = "1.03";
 
 	public static final PrintStream ECHO_STREAM = System.out;
 
@@ -428,7 +428,7 @@ public class USCLBot {
 	}
 
 	/**
-	 * Commands the bot to logout, quit, update to the latest software version, and then restart itself.
+	 * Commands the bot to logout, quit, compile the latest version, and then restart itself.
 	 *
 	 * For this to work, the bot must be started by a shell script which knows to recompile and update the bot upon receiving exit code 5.
 	 *
@@ -812,6 +812,20 @@ public class USCLBot {
 			command.tell(teller, "Okay, player \"{0}\" is no longer tied to board \"{1}\".", player, board);
 			command.sendCommand("-notify {0}", player);
 		}
+	}
+
+	/**
+	 * Commands the bot to logout, quit, update to the latest software version, and then restart itself.
+	 *
+	 * For this to work, the bot must be started by a shell script which knows to recompile and update the bot upon receiving exit code 7.
+	 *
+	 * Syntax: <tt>UPDATE</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
+	public void cmdUpdate(User teller) {
+		exit(5, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
 	/** Shuts down the bot with the given exit code, after sending this good-bye message. */
