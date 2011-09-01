@@ -824,7 +824,7 @@ public class USCLBot {
 	 * @param teller
 	 *            The user/manager issuing the command.
 	 */
-	public void cmdUpdate(User teller) {
+	public void cmdUpgrade(User teller) {
 		exit(7, "Deploying version update at the request of {0}.  I''ll be right back!", teller);
 	}
 
