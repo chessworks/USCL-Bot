@@ -30,6 +30,7 @@ import org.chessworks.chess.services.InvalidNameException;
 import org.chessworks.chess.services.UserService;
 import org.chessworks.chess.services.file.FileUserService;
 import org.chessworks.chess.services.simple.SimpleTitleService;
+import org.chessworks.common.javatools.BaseException;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.common.javatools.io.FileHelper;
@@ -622,7 +623,8 @@ public class USCLBot {
 		if (ComparisionHelper.anyEquals(var, "name", "fullname")) {
 			player.setRealName(value);
 		} else if (ComparisionHelper.anyEquals(var, "handle", "username")) {
-			player.setHandle(var);
+			String handle = setting.toString();
+			player.setHandle(handle);
 		} else if (ComparisionHelper.anyEquals(var, "title", "titles")) {
 			Set<Title> titles = player.getTitles();
 			titles.clear();
@@ -850,6 +852,10 @@ public class USCLBot {
 			replyError(teller, e);
 		} catch (NoSuchCommandException e) {
 			command.tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
+		} catch (BaseException e) {
+			//TODO: We need something better than BaseException to capture user friendly messages.
+			String msg = e.getMessage();
+			command.tell(teller, msg);
 		} catch (Exception e) {
 			reportException(e);
 			command.tell(teller, "Uggg, something went wrong.  Unable to execute command.");
