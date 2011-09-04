@@ -408,25 +408,26 @@ public class USCLBot {
 	public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl)
 	{
 		//String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
-		command.qtell(teller, "reserve-game {1} {2}", board, player1);
-		command.qtell(teller, "reserve-game {1} {2}", board, player2);
-		command.qtell(teller, "spoof {1} set open 1", player1);
-		command.qtell(teller, "spoof {1} set open 1", player2);
-		command.qtell(teller, "spoof {1} match {2} u w0 white {3}", player1, player2, timeControl);
-		command.qtell(teller, "spoof {2} accept {1}", player1, player2);
-		command.qtell(teller, "spoof jimmys qset {1} isolated 1", player1);
-		command.qtell(teller, "spoof jimmys qset {1} isolated 1", player2);
-		command.qtell(teller, "spoof {1} set examine 0", player1);
-		command.qtell(teller, "spoof {2} set examine 0", player2);
-		command.qtell(teller, "spoof {1} set kib 0", player1);
-		command.qtell(teller, "spoof {1} set kib 0", player2);
-		command.qtell(teller, "spoof {1} set allowkib 0", player1);
-		command.qtell(teller, "spoof {1} set allowkib 0", player2);
-		command.qtell(teller, "spoof {1} set quietplay 2", player1);
-		command.qtell(teller, "spoof {1} set quietplay 2", player2);
-		command.qtell(teller, "observe {1}", board);
-		command.qtell(teller, "spoof roboadmin observe {1}", board);
-		command.qtell(teller, "qadd {1} 5 LIVE {2} - {3} || observe {4}", event, player1, player2, board);
+		command.sendQuietly("qtell {1} {2} {3}", teller, board, player1);
+		command.sendQuietly("qtell {1} reserve-game {2} {3}", teller, board, player2);
+		command.sendQuietly("qtell {1} spoof {2} set open 1", teller, player1);
+		command.sendQuietly("qtell {1} spoof {2} set open 1", teller, player2);
+		command.sendQuietly("qtell {1} spoof {2} match {3} u w0 white {4}", teller, player1, player2, timeControl);
+		command.sendQuietly("qtell {1} spoof {2} accept {3}", teller, player2, player1);
+		command.sendQuietly("qtell {1} spoof jimmys qset {2} isolated 1", player1);
+		command.sendQuietly("qtell {1} spoof jimmys qset {2} isolated 1", player2);
+		command.sendQuietly("qtell {1} spoof {2} set examine 0", teller, player1);
+		command.sendQuietly("qtell {1} spoof {2} set examine 0", teller, player2);
+		command.sendQuietly("qtell {1} spoof {2} set kib 0", teller, player1);
+		command.sendQuietly("qtell {1} spoof {2} set kib 0", teller, player2);
+		command.sendQuietly("qtell {1} spoof {2} set allowkib 0", teller, player1);
+		command.sendQuietly("qtell {1} spoof {2} set allowkib 0", teller, player2);
+		command.sendQuietly("qtell {1} spoof {2} set quietplay 2", teller, player1);
+		command.sendQuietly("qtell {1} spoof {2} set quietplay 2", teller, player2);
+		command.sendQuietly("qtell {1} observe {2}", teller, board);
+		command.sendQuietly("qtell {1} spoof roboadmin observe {2}", teller, board);
+		command.sendQuietly("qtell {1} qadd {2} 5 LIVE {4}({5}) - {6}({7}) || observe {3}", teller, event, board,
+				player1.getTitledRealName(), player1.getRating(USCL_RATING), player1.getTitledRealName(), player1.getRating(USCL_RATING));
 	}
 
 	/**
