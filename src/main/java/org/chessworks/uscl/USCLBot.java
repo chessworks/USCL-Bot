@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,9 +32,12 @@ import org.chessworks.chess.services.UserService;
 import org.chessworks.chess.services.file.FileUserService;
 import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.common.javatools.BaseException;
+import org.chessworks.common.javatools.ClassloaderHelper;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.common.javatools.io.FileHelper;
+import org.chessworks.common.javatools.io.IOHelper;
+import org.chessworks.common.javatools.io.codec.TextCodec;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -399,6 +403,30 @@ public class USCLBot {
 		tournamentService.flush();
 		command.qtell(teller, " Okay, I''ve cleared the schedule.  Tell me \"show\" to see.");
 		command.sendCommand("-notify *");
+	}
+
+	public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl)
+	{
+		//String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
+		command.qtell(teller, "reserve-game {1} {2}", board, player1);
+		command.qtell(teller, "reserve-game {1} {2}", board, player2);
+		command.qtell(teller, "spoof {1} set open 1", player1);
+		command.qtell(teller, "spoof {1} set open 1", player2);
+		command.qtell(teller, "spoof {1} match {2} u w0 white {3}", player1, player2, timeControl);
+		command.qtell(teller, "spoof {2} accept {1}", player1, player2);
+		command.qtell(teller, "spoof jimmys qset {1} isolated 1", player1);
+		command.qtell(teller, "spoof jimmys qset {1} isolated 1", player2);
+		command.qtell(teller, "spoof {1} set examine 0", player1);
+		command.qtell(teller, "spoof {2} set examine 0", player2);
+		command.qtell(teller, "spoof {1} set kib 0", player1);
+		command.qtell(teller, "spoof {1} set kib 0", player2);
+		command.qtell(teller, "spoof {1} set allowkib 0", player1);
+		command.qtell(teller, "spoof {1} set allowkib 0", player2);
+		command.qtell(teller, "spoof {1} set quietplay 2", player1);
+		command.qtell(teller, "spoof {1} set quietplay 2", player2);
+		command.qtell(teller, "observe {1}", board);
+		command.qtell(teller, "spoof roboadmin observe {1}", board);
+		command.qtell(teller, "qadd {1} 5 LIVE {2} - {3} || observe {4}", event, player1, player2, board);
 	}
 
 	/**
@@ -1271,11 +1299,21 @@ public class USCLBot {
 			sendQuietly("qtell {0} {1}\\n", handle, qtell);
 		}
 
+		public void qtell(String handle, String pattern, Object... args) {
+			String qtell = MessageFormat.format(pattern, args);
+			sendQuietly("qtell {0} {1}\\n", handle, qtell);
+		}
+
 		public void qtell(User user, Formatter qtell) {
 			sendQuietly("qtell {0} {1}", user, qtell);
 		}
 
 		public void qtell(User user, String qtell) {
+			sendQuietly("qtell {0} {1}\\n", user, qtell);
+		}
+
+		public void qtell(User user, String pattern, Object... args) {
+			String qtell = MessageFormat.format(pattern, args);
 			sendQuietly("qtell {0} {1}\\n", user, qtell);
 		}
 
