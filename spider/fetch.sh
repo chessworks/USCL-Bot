@@ -1,6 +1,6 @@
 #!/bin/sh
-#rm Players.html
-#wget --output-document=Players.html --output-file=/dev/null 'http://www.uschessleague.com/Players.html'
+rm Players.html
+wget --output-document=Players.html --output-file=/dev/null 'http://www.uschessleague.com/Players.html'
 cat Players.html | sed --regexp-extended '
 	/\/index.html/,/\/rules\.html/ d
 	/\.html/ ! d
@@ -42,7 +42,7 @@ cat Players.html | sed '
 	s/  */ /g
 	s/(http:[^ ]*)	(W?[A-Z]M)? ?(.*)$/\1	\2	\3/
 	s/\((W?[A-Z]M) \)/(\1)/
-	s/^(.*http:.*com\/)([^/	.]*)(\.html)?/\2	\1\2\3/
+	s/^(.*http:.*com\/)([^/	.]*)(\.html)/\2	\1\2\3/
 	s/ *<[^>]*> *//g
 	s/ +$//
 	s/^ +//

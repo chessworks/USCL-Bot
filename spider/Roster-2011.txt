@@ -795,11 +795,11 @@ player.Yanayt-LA.rating=2305
 player.Yanayt-LA.team=LA
 player.Yanayt-LA.titles=(FM)
 
-player.CraigJones-CA.handle=CraigJones-CA
-player.CraigJones-CA.name=Craig Jones
-player.CraigJones-CA.rating=2305
-player.CraigJones-CA.team=CA
-player.CraigJones-CA.titles=
+player.CraigJones-CAR.handle=CraigJones-CAR
+player.CraigJones-CAR.name=Craig Jones
+player.CraigJones-CAR.rating=2305
+player.CraigJones-CAR.team=CA
+player.CraigJones-CAR.titles=
 
 player.Klein-CAR.handle=Klein-CAR
 player.Klein-CAR.name=Mike Klein
