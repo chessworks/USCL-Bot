@@ -408,6 +408,7 @@ public class USCLBot {
 	public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl)
 	{
 		//String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
+		command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, board, player1);
 		command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, board, player2);
 		command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player1);
 		command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player2);
