@@ -405,7 +405,7 @@ public class USCLBot {
 		command.sendCommand("-notify *");
 	}
 
-	public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl)
+	public void cmdRunScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl)
 	{
 		//String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
 		command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, board, player1);
@@ -427,7 +427,7 @@ public class USCLBot {
 		command.sendQuietly("qtell {0}  observe {1}", teller, board);
 		command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
 		command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
-				player1.getTitledRealName(), player1.getRating(USCL_RATING), player1.getTitledRealName(), player1.getRating(USCL_RATING));
+				player1.getTitledHandle(), player1.getRating(USCL_RATING), player2.getTitledHandle(), player2.getRating(USCL_RATING));
 	}
 
 	/**
