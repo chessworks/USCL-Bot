@@ -1,6 +1,8 @@
 package org.chessworks.uscl;
 
 import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -19,6 +21,8 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.chessworks.bots.common.NoSuchCommandException;
 import org.chessworks.bots.common.converters.ConversionException;
@@ -50,6 +54,9 @@ import free.chessclub.level2.Datagram;
 import free.chessclub.level2.DatagramEvent;
 import free.chessclub.level2.DatagramListener;
 import free.util.SafeRunnable;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  * @author Doug Bateman
@@ -428,7 +435,7 @@ public class USCLBot {
 		command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
 		command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
 				player1.getTitledHandle(), player1.getRating(USCL_RATING), player2.getTitledHandle(), player2.getRating(USCL_RATING));
-	}
+}
 
 	/**
 	 * Commands the bot to logout and shut down..
@@ -776,6 +783,29 @@ public class USCLBot {
 	}
 
 	/**
+	 * Commands the bot to list the games.
+	 *
+	 * Syntax: <tt>show-sched</tt>
+	 *
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
+        public void cmdShowSched(User teller){
+                   try {
+                   BufferedReader in = new BufferedReader(new FileReader("data/sched.txt"));
+                    String str;
+                    do {
+                      str = in.readLine();
+                      command.tell(teller, str);
+                    } while(in.ready());
+
+                    in.close();
+                    } catch (IOException e) {
+                        command.tell(teller,"Games Not Found ");
+                    }
+        }
+
+	/**
 	 * Commands the bot to list the team's profile settings.
 	 *
 	 * Syntax: <tt>show-team</tt>
@@ -949,6 +979,20 @@ public class USCLBot {
 		scheduler.shutdown();
 		exit(1, "Disconnected.");
 	}
+
+   public void editSchedule(int board,Player player1, Player player2) throws IOException{
+        PrintWriter out = null;
+        try {
+           out = new PrintWriter("data/sched.txt");
+           String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})",board,player1.getTitledRealName(),player1.getRatingText(USCL_RATING),player2.getTitledRealName(),player2.getRatingText(USCL_RATING));
+           out.println(line);
+
+        } finally {
+           FileHelper.closeQuietly(out);
+        }
+    }
+
+
 
 	/**
 	 * Handles incoming DG_MOVE_LIST datagrams from the server.
