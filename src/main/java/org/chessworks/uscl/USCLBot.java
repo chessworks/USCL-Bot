@@ -406,7 +406,7 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
         command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
                 player1.getTitledHandle(), player1.getRating(USCL_RATING), player2.getTitledHandle(), player2.getRating(USCL_RATING));
-        PrintWriter out = null;
+      /* PrintWriter out = null;
         try {
             out = new PrintWriter("data/sched.txt");
             String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
@@ -414,7 +414,7 @@ public class USCLBot {
 
         } finally {
             FileHelper.closeQuietly(out);
-        }
+        }*/
     }
 
     /**
@@ -771,7 +771,7 @@ public class USCLBot {
      * @param teller
      *            The user/manager issuing the command.
      */
-    public void cmdShowSched(User teller) {
+/*    public void cmdShowSched(User teller) {
         try {
             BufferedReader in = new BufferedReader(new FileReader("data/sched.txt"));
             String str;
@@ -785,7 +785,7 @@ public class USCLBot {
             command.tell(teller, "Games Not Found ");
         }
     }
-
+*/
     /**
      * Commands the bot to list the team's profile settings.
      *
