@@ -22,7 +22,7 @@ user.OrionsKnight.roles=manager
 
 user.BillScotty.handle=billscotty
 user.BillScotty.name=Bill
-user.BillScotty.roles=manager, debugger, test-user
+user.BillScotty.roles=manager, test-user
 
 user.Freebird.handle=FREEBIRD
 user.Freebird.name=Freebird

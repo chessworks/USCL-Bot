@@ -70,12 +70,12 @@ player.Alvarez-MIA.team=MIA
 player.Alvarez-MIA.titles=(NM)
 player.Alvarez-MIA.website=http://www.uschessleague.com/ErnestoAlvarez.html
 
-player.Amanov-CHC.handle=Amanov-CHC
-player.Amanov-CHC.name=Mesgen Amanov
-player.Amanov-CHC.rating=2576
-player.Amanov-CHC.team=CHC
-player.Amanov-CHC.titles=(GM)
-player.Amanov-CHC.website=http://www.uschessleague.com/MesgenAmanov.html
+player.MAmanov-CHC.handle=MAmanov-CHC
+player.MAmanov-CHC.name=Mesgen Amanov
+player.MAmanov-CHC.rating=2576
+player.MAmanov-CHC.team=CHC
+player.MAmanov-CHC.titles=(GM)
+player.MAmanov-CHC.website=http://www.uschessleague.com/MesgenAmanov.html
 
 player.AngeloYoung-CHC.handle=AngeloYoung-CHC
 player.AngeloYoung-CHC.name=Angelo Young
@@ -84,12 +84,12 @@ player.AngeloYoung-CHC.team=CHC
 player.AngeloYoung-CHC.titles=(IM)
 player.AngeloYoung-CHC.website=http://www.uschessleague.com/AngeloYoung.html
 
-player.ARamirez-DAL.handle=ARamirez-DAL
-player.ARamirez-DAL.name=Alejandro Ramirez
-player.ARamirez-DAL.rating=2660
-player.ARamirez-DAL.team=DAL
-player.ARamirez-DAL.titles=(GM)
-player.ARamirez-DAL.website=http://www.uschessleague.com/AlejandroRamirez.html
+player.Ramirez-LA.handle=Ramirez-LA
+player.Ramirez-LA.name=Alejandro Ramirez
+player.Ramirez-LA.rating=2660
+player.Ramirez-LA.team=DAL
+player.Ramirez-LA.titles=(GM)
+player.Ramirez-LA.website=http://www.uschessleague.com/AlejandroRamirez.html
 
 player.Ardaman-CAR.handle=Ardaman-CAR
 player.Ardaman-CAR.name=Miles Ardaman
@@ -112,12 +112,12 @@ player.Atoufi-ARZ.team=ARZ
 player.Atoufi-ARZ.titles=(FM)
 player.Atoufi-ARZ.website=http://www.uschessleague.com/PedramAtoufi.html
 
-player.Banawa-LA.handle=Banawa-LA
-player.Banawa-LA.name=Joel Banawa
-player.Banawa-LA.rating=2456
-player.Banawa-LA.team=LA
-player.Banawa-LA.titles=(FM)
-player.Banawa-LA.website=http://www.uschessleague.com/JoelBanawa.html
+player.JoelBanawa-LA.handle=JoelBanawa-LA
+player.JoelBanawa-LA.name=Joel Banawa
+player.JoelBanawa-LA.rating=2456
+player.JoelBanawa-LA.team=LA
+player.JoelBanawa-LA.titles=(FM)
+player.JoelBanawa-LA.website=http://www.uschessleague.com/JoelBanawa.html
 
 player.Barcenilla-ARZ.handle=Barcenilla-ARZ
 player.Barcenilla-ARZ.name=Rogelio Barcenilla
@@ -343,12 +343,12 @@ player.Enkhbat-BAL.team=BAL
 player.Enkhbat-BAL.titles=(IM)
 player.Enkhbat-BAL.website=http://www.uschessleague.com/TegshsurenEnkhbat.html
 
-player.Erenburg-BAL.handle=Erenburg-BAL
-player.Erenburg-BAL.name=Sergey Erenburg
-player.Erenburg-BAL.rating=2679
-player.Erenburg-BAL.team=BAL
-player.Erenburg-BAL.titles=(GM)
-player.Erenburg-BAL.website=http://www.uschessleague.com/SergeyErenburg.html
+player.Erenburg-PHI.handle=Erenburg-PHI
+player.Erenburg-PHI.name=Sergey Erenburg
+player.Erenburg-PHI.rating=2679
+player.Erenburg-PHI.team=PHI
+player.Erenburg-PHI.titles=(GM)
+player.Erenburg-PHI.website=http://www.uschessleague.com/SergeyErenburg.html
 
 player.ERodriguez-MIA.handle=ERodriguez-MIA
 player.ERodriguez-MIA.name=Eric Rodriguez
@@ -714,12 +714,12 @@ player.Martirosov-BOS.team=BOS
 player.Martirosov-BOS.titles=(NM)
 player.Martirosov-BOS.website=http://www.uschessleague.com/VadimMartirosov.html
 
-player.MatanP-MAN.handle=MatanP-MAN
-player.MatanP-MAN.name=Matan Prilleltensky
-player.MatanP-MAN.rating=2186
-player.MatanP-MAN.team=MAN
-player.MatanP-MAN.titles=(NM)
-player.MatanP-MAN.website=http://www.uschessleague.com/MatanPrilleltensky.html
+player.Prilleltensky-MAN.handle=Prilleltensky-MAN
+player.Prilleltensky-MAN.name=Matan Prilleltensky
+player.Prilleltensky-MAN.rating=2186
+player.Prilleltensky-MAN.team=MAN
+player.Prilleltensky-MAN.titles=(NM)
+player.Prilleltensky-MAN.website=http://www.uschessleague.com/MatanPrilleltensky.html
 
 player.Mateer-ARZ.handle=Mateer-ARZ
 player.Mateer-ARZ.name=Amanda Mateer
