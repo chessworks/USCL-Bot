@@ -14,7 +14,11 @@ user.Thor.roles=manager
 
 user.RdgMx.handle=RdgMx
 user.RdgMx.name=Rodrigo de Mello
-user.RdgMx.roles=manager, debugger, test-user
+user.RdgMx.roles=manager, test-user
+
+user.Ralph.handle=Ralph
+user.Ralph.name=Rodrigo de Mello
+user.Ralph.roles=manager, debugger, test-user
 
 user.OrionsKnight.handle=OrionsKnight
 user.OrionsKnight.name=Ryan
@@ -22,7 +26,7 @@ user.OrionsKnight.roles=manager
 
 user.BillScotty.handle=billscotty
 user.BillScotty.name=Bill
-user.BillScotty.roles=manager, test-user
+user.BillScotty.roles=manager
 
 user.Freebird.handle=FREEBIRD
 user.Freebird.name=Freebird
