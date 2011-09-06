@@ -386,8 +386,8 @@ public class USCLBot {
 
     public void cmdRunScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
         //String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
-        command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, board, player1);
-        command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, board, player2);
+        command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player1, board);
+        command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player2, board);
         command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player1);
         command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player2);
         command.sendQuietly("qtell {0}  spoof {1} match {2} u w0 white {3}", teller, player1, player2, timeControl);
