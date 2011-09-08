@@ -771,21 +771,13 @@ public class USCLBot {
      * @param teller
      *            The user/manager issuing the command.
      */
-/*    public void cmdShowSched(User teller) {
-        try {
-            BufferedReader in = new BufferedReader(new FileReader("data/sched.txt"));
-            String str;
-            do {
-                str = in.readLine();
-                command.tell(teller, str);
-            } while (in.ready());
 
-            in.close();
-        } catch (IOException e) {
-            command.tell(teller, "Games Not Found ");
-        }
+    public void cmdUpdateFInger(User teller, Player player){
+        Integer rating;
+        rating = player.ratings().get(USCL_RATING);
+        command.sendAdminCommand("spoof ", teller, " rating ", player," standard {0}",rating);
     }
-*/
+
     /**
      * Commands the bot to list the team's profile settings.
      *
@@ -814,6 +806,8 @@ public class USCLBot {
         }
         command.qtell(teller, msg);
     }
+
+
 
     /**
      * Commands the bot to simulate an unexpected internal error. This is used to verify the bot will respond semi-gracefully to unexpected problems.
