@@ -404,7 +404,7 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set quietplay 2", teller, player2);
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
-        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
+        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4.0}) - {5}({6.0}) || observe {2}", teller, event, board,
                 player1.getTitledHandle(), player1.getRating(USCL_RATING), player2.getTitledHandle(), player2.getRating(USCL_RATING));
       /* PrintWriter out = null;
         try {
@@ -764,9 +764,9 @@ public class USCLBot {
     }
 
     /**
-     * Commands the bot to list the games.
+     * USCL-Bot spoof the player
      *
-     * Syntax: <tt>show-sched</tt>
+     * Syntax: <tt>updatefinger</tt>
      *
      * @param teller
      *            The user/manager issuing the command.
