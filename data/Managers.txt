@@ -14,7 +14,7 @@ user.Thor.roles=manager
 
 user.RdgMx.handle=RdgMx
 user.RdgMx.name=Rodrigo de Mello
-user.RdgMx.roles=manager, test-user
+user.RdgMx.roles=manager,debugger, test-user
 
 user.Ralph.handle=Ralph
 user.Ralph.name=Rodrigo de Mello
