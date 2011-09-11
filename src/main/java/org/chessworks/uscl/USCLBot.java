@@ -386,6 +386,8 @@ public class USCLBot {
 
     public void cmdRunScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
         //String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
+        Integer r1 = player1.ratings().get(USCL_RATING);
+        Integer r2 = player2.ratings().get(USCL_RATING);
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player1, board);
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player2, board);
         command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player1);
@@ -404,8 +406,8 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set quietplay 2", teller, player2);
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
-        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4.0}) - {5}({6.0}) || observe {2}", teller, event, board,
-                player1.getTitledHandle(), player1.getRating(USCL_RATING), player2.getTitledHandle(), player2.getRating(USCL_RATING));
+        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
+                player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
       /* PrintWriter out = null;
         try {
             out = new PrintWriter("data/sched.txt");
