@@ -396,8 +396,8 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} accept {2}", teller, player2, player1);
         command.sendQuietly("qtell {0}  spoof jimmys qset {1} isolated 1", teller, player1);
         command.sendQuietly("qtell {0}  spoof jimmys qset {1} isolated 1", teller, player2);
-        command.sendQuietly("qtell {0}  spoof {1} set examine 0", teller, player1);
-        command.sendQuietly("qtell {0}  spoof {1} set examine 0", teller, player2);
+        command.sendQuietly("qtell {0}  spoof {1} set examine 1", teller, player1);
+        command.sendQuietly("qtell {0}  spoof {1} set examine 1", teller, player2);
         command.sendQuietly("qtell {0}  spoof {1} set kib 0", teller, player1);
         command.sendQuietly("qtell {0}  spoof {1} set kib 0", teller, player2);
         command.sendQuietly("qtell {0}  spoof {1} set allowkib 0", teller, player1);
@@ -617,6 +617,8 @@ public class USCLBot {
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
         command.sendCommand("+notify {0}", black);
+        command.sendCommand("spoof {0} +notify {0}",teller, black);
+        command.sendCommand("spoof {0} +notify {0}",teller, black);
         command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
         command.sendAdminCommand("reserve-game {0} {1}", black, boardNum);
         command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
