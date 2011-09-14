@@ -1062,7 +1062,7 @@ public class USCLBot {
         if (board >= 0) {
             if (!loggingIn) {
                 tellManagers("{0} has arrived.  Reserving game {1}.", name, board);
-                command.sendCommand("{0} has arrived.", player.getTitledHandle());
+                command.sendCommand("tell 399 {0} has arrived.", player.getTitledHandle());
             }
             command.sendAdminCommand("spoof {0} tell JudgeBot nowin", name);
             command.sendAdminCommand("reserve-game {0} {1}", name, board);
@@ -1077,7 +1077,7 @@ public class USCLBot {
      */
     protected void processPlayerDeparted(String name) {
         tellManagers("{0} departed", name);
-        command.sendCommand("{0} has arrived.", name);
+        command.sendCommand("tell 399 {0} has arrived.", name);
     }
 
     /**
