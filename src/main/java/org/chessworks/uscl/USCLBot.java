@@ -408,14 +408,14 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
         command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
                 player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
-      /* PrintWriter out = null;
+        /* PrintWriter out = null;
         try {
-            out = new PrintWriter("data/sched.txt");
-            String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
-            out.println(line);
+        out = new PrintWriter("data/sched.txt");
+        String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
+        out.println(line);
 
         } finally {
-            FileHelper.closeQuietly(out);
+        FileHelper.closeQuietly(out);
         }*/
     }
 
@@ -612,16 +612,38 @@ public class USCLBot {
      * @param black
      *            The white player's ICC handle.
      */
-    public void cmdSchedule(User teller, int boardNum, Player white, Player black) {
+    public void cmdSchedule(User teller, int boardNum, Player white, Player black) throws IOException {
         tournamentService.schedule(white, black, boardNum);
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
-        command.sendCommand("+notify {0}", black);
-        command.sendCommand("spoof {0} +notify {0}",teller, black);
-        command.sendCommand("spoof {0} +notify {0}",teller, black);
+        command.sendAdminCommand("+notify {0}", black);
+        command.sendAdminCommand("spoof {0} +notify {1}", teller, black);
+        command.sendCommand("spoof {0} +notify {1}", teller, black);
         command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
         command.sendAdminCommand("reserve-game {0} {1}", black, boardNum);
         command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
+        processEditPair(boardNum, white, black);
+    }
+
+    public void processEditPair(Integer board, Player white, Player black) throws IOException {
+        String line;
+        String whiteRating = white.getRatingText(USCL_RATING);
+        String blackRating = black.getRatingText(USCL_RATING);
+        FileWriter pair = new FileWriter("data/pair.txt");
+
+        line = "{0} {1}({2}) vs {3}({4}) - \"observe {0}\"\n" + board + white.getTitledRealName() + whiteRating + black.getTitledRealName() + blackRating + board;
+        pair.write(line);
+        pair.close();
+    }
+
+    public void cmdGames(User teller, int boardNum, Player white, Player black) throws IOException {
+        FileReader fr = new FileReader("data/pair.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String s;
+        while ((s = br.readLine()) != null) {
+            command.sendCommand("tell {0} {1}", teller, s);
+        }
+        fr.close();
     }
 
     /**
@@ -775,11 +797,10 @@ public class USCLBot {
      * @param teller
      *            The user/manager issuing the command.
      */
-
-    public void cmdUpdateFInger(User teller, Player player){
+    public void cmdUpdateFInger(User teller, Player player) {
         Integer rating;
         rating = player.ratings().get(USCL_RATING);
-        command.sendAdminCommand("spoof ", teller, " rating ", player," standard {0}",rating);
+        command.sendAdminCommand("spoof ", teller, " rating ", player, " standard {0}", rating);
     }
 
     /**
@@ -810,8 +831,6 @@ public class USCLBot {
         }
         command.qtell(teller, msg);
     }
-
-
 
     /**
      * Commands the bot to simulate an unexpected internal error. This is used to verify the bot will respond semi-gracefully to unexpected problems.
