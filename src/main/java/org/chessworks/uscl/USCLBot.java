@@ -636,7 +636,7 @@ public class USCLBot {
         pair.close();
     }
 
-    public void cmdGames(User teller, int boardNum, Player white, Player black) throws IOException {
+    public void cmdView(User teller) throws IOException {
         FileReader fr = new FileReader("data/pair.txt");
         BufferedReader br = new BufferedReader(fr);
         String s;
