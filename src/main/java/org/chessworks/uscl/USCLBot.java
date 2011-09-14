@@ -622,16 +622,12 @@ public class USCLBot {
         command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
         command.sendAdminCommand("reserve-game {0} {1}", black, boardNum);
         command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
-        processEditPair(boardNum, white, black);
-    }
-
-    public void processEditPair(Integer board, Player white, Player black) throws IOException {
         String line;
         String whiteRating = white.getRatingText(USCL_RATING);
         String blackRating = black.getRatingText(USCL_RATING);
         FileWriter pair = new FileWriter("data/pair.txt");
 
-        line = "{0} {1}({2}) vs {3}({4}) - \"observe {0}\"\n" + board + white.getTitledRealName() + whiteRating + black.getTitledRealName() + blackRating + board;
+        line = "{0} {1}({2}) vs {3}({4}) - \"observe {0}\"\n" + boardNum + white.getTitledRealName() + whiteRating + black.getTitledRealName() + blackRating + boardNum;
         pair.write(line);
         pair.close();
     }
