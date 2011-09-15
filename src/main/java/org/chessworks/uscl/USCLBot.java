@@ -1077,7 +1077,7 @@ public class USCLBot {
      */
     protected void processPlayerDeparted(String name) {
         tellManagers("{0} departed", name);
-        command.sendCommand("tell 399 {0} has arrived.", name);
+        command.sendCommand("tell 399 {0} has departed.", name);
     }
 
     /**
