@@ -618,7 +618,7 @@ public class USCLBot {
         command.sendCommand("+notify {0}", white);
         command.sendAdminCommand("+notify {0}", black);
         command.sendAdminCommand("spoof {0} +notify {1}", teller, black);
-        command.sendCommand("spoof {0} +notify {1}", teller, black);
+        command.sendAdminCommand("spoof {0} +notify {1}", teller, black);
         command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
         command.sendAdminCommand("reserve-game {0} {1}", black, boardNum);
         command.tell(teller, "Okay, I''ve reserved board \"{0}\" for players \"{1}\" and \"{2}\".", boardNum, white, black);
