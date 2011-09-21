@@ -1098,8 +1098,7 @@ public class USCLBot {
                 }
             //Fall through...
             case PLAYING:
-               command.tell(playerHandle, "Hello, the official USCL Channel is 129, please join in this channel with the command \"+channel 129\"");
-                // command.qChanPlus(playerHandle, CHANNEL_USCL);
+               // command.qChanPlus(playerHandle, CHANNEL_USCL);
         }
     }
 
