@@ -93,6 +93,7 @@ public class USCLBot {
         list.add(SimpleTitleService.WFM);
         list.add(SimpleTitleService.WIM);
         list.add(SimpleTitleService.WGM);
+        list.add(SimpleTitleService.NM);
         list.trimToSize();
         ICC_TITLES = Collections.unmodifiableList(list);
     }
@@ -616,7 +617,7 @@ public class USCLBot {
         tournamentService.schedule(white, black, boardNum);
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
-        command.sendAdminCommand("+notify {0}", black);
+        command.sendCommand("+notify {0}", black);
         command.sendAdminCommand("spoof {0} +notify {1}", teller, white);
         command.sendAdminCommand("spoof {0} +notify {1}", teller, black);
         command.sendAdminCommand("reserve-game {0} {1}", white, boardNum);
