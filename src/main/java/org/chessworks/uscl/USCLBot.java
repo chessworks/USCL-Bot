@@ -2,13 +2,10 @@ package org.chessworks.uscl;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,8 +19,6 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.chessworks.bots.common.NoSuchCommandException;
 import org.chessworks.bots.common.converters.ConversionException;
@@ -37,12 +32,9 @@ import org.chessworks.chess.services.UserService;
 import org.chessworks.chess.services.file.FileUserService;
 import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.common.javatools.BaseException;
-import org.chessworks.common.javatools.ClassloaderHelper;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.common.javatools.io.FileHelper;
-import org.chessworks.common.javatools.io.IOHelper;
-import org.chessworks.common.javatools.io.codec.TextCodec;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -55,9 +47,6 @@ import free.chessclub.level2.Datagram;
 import free.chessclub.level2.DatagramEvent;
 import free.chessclub.level2.DatagramListener;
 import free.util.SafeRunnable;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 /**
  * @author Doug Bateman
@@ -69,9 +58,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "August 31, 2011";
+    public static final String BOT_RELEASE_DATE = "September 23, 2011";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.03";
+    public static final String BOT_RELEASE_NUMBER = "1.04";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
