@@ -1150,6 +1150,8 @@ public class USCLBot {
         }
         _observerCountNow[gameNumber] = 0;
         command.spoof("ROBOadmin", "observe {0}", gameNumber);
+        command.sendAdminCommand("set-o {0} busy 2", whiteName);
+        command.sendAdminCommand("set-o {0} busy 2", blackName);
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
     }
 
