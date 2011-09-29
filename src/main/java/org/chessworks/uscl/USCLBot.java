@@ -1075,8 +1075,11 @@ public class USCLBot {
         	return;
         }
         player.setState(PlayerState.OFFLINE);
-        tellManagers("{0} departed", name);
-        command.sendCommand("tell 399 {0} has departed.", name);
+        Game game = tournamentService.findPlayerGame(player);
+        if (game != null) {
+        	tellManagers("{0} departed", name);
+            command.sendCommand("tell 399 {0} has departed.", name);
+        }
     }
 
     /**
