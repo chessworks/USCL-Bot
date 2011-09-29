@@ -140,10 +140,16 @@ public class TestFileTournamentService extends TestCase {
 		assertEquals("Test1", test3.getRealName());
 	}
 
+	public void testPlayerInTwoGames() throws Exception {
+		//TODO testPlayerInTwoGames
+	}
+	
 	public void testCreateTeam() throws Exception {
+		//TODO testCreateTeam
 	}
 
 	public void testRemovePlayer() throws Exception {
+		//TODO testRemovePlayer
 	}
 
 	public void testRemoveTeam() throws Exception {

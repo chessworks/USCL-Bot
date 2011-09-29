@@ -676,7 +676,7 @@ public class USCLBot {
         Formatter msg = new Formatter();
         msg.format(" Current Schedule:\\n");
         for (Game g : games) {
-        	msg.format("  %1$2d - %2$15s %3$15s\\n", g.boardNumber, g.whitePlayer, g.blackPlayer);
+        	msg.format("  %1$2d - %2$15s %3$15s - %4s\\n", g.boardNumber, g.whitePlayer, g.blackPlayer, g.getStatusString());
         }
         String consoleMsg = msg.toString().replaceAll("\\n","\n");
         System.out.format(consoleMsg);
@@ -990,13 +990,13 @@ public class USCLBot {
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
         if (adjourned) {
             game.status = GameState.ADJOURNED;
-        } else if ("0-1".equals(gameResultCode)) {
+        } else if ("0-1".equals(scoreString)) {
         	game.status = GameState.BLACK_WINS;
-        } else if ("1-0".equals(gameResultCode)) {
+        } else if ("1-0".equals(scoreString)) {
         	game.status = GameState.WHITE_WINS;
-        } else if ("1/2-1/2".equals(gameResultCode)) {
+        } else if ("1/2-1/2".equals(scoreString)) {
         	game.status = GameState.DRAW;
-        } else if ("aborted".equals(gameResultCode)) {
+        } else if ("aborted".equals(scoreString)) {
         	game.status = GameState.NOT_STARTED;
         } else {
         	game.status = GameState.UNKNOWN;
