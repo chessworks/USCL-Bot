@@ -675,8 +675,14 @@ public class USCLBot {
         Collection<Game> games = tournamentService.findAllGames();
         Formatter msg = new Formatter();
         msg.format(" Current Schedule:\\n");
-        for (Game g : games) {
-        	msg.format("  %1$2d - %2$15s %3$15s - %4$s\\n", g.boardNumber, g.whitePlayer, g.blackPlayer, g.getStatusString());
+        for (Game game : games) {
+    		int boardNum = game.boardNumber;
+    		String whiteStatus = (game.whitePlayer.getStatus().isOnline()) ? "+" : "?";
+    		String whitePlayer = whiteStatus + game.whitePlayer.getHandle();
+    		String blackStatus = (game.blackPlayer.getStatus().isOnline()) ? "+" : "?";
+    		String blackPlayer = blackStatus + game.blackPlayer.getHandle();
+    		String gameStatus = game.getStatusString();
+    		msg.format("Board %d: %s %s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
         }
         String consoleMsg = msg.toString().replaceAll("\\n","\n");
         System.out.format(consoleMsg);
@@ -718,20 +724,6 @@ public class USCLBot {
         command.sendAdminCommand("spoof ", teller, " rating ", player, " standard {0}", rating);
     }
 
-    public void cmdGames(User teller) {
-    	Collection<Game> boards = tournamentService.findAllGames();
-    	for(Game game : boards) {
-    		int boardNum = game.boardNumber;
-    		String whiteStatus = (game.whitePlayer.getStatus().isOnline()) ? "+" : "?";
-    		String whitePlayer = whiteStatus + game.whitePlayer.getHandle();
-    		String blackStatus = (game.blackPlayer.getStatus().isOnline()) ? "+" : "?";
-    		String blackPlayer = blackStatus + game.blackPlayer.getHandle();
-    		String gameStatus = game.getStatusString();
-    		String msg = String.format("Board %d: %s %s - %s", boardNum, whitePlayer, blackPlayer, gameStatus);
-    		command.qtell(teller, msg);
-    	}
-    }
-    
     /**
      * Commands the bot to list the team's profile settings.
      *
