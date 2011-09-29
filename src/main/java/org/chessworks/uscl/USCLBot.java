@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Formatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -144,6 +145,8 @@ public class USCLBot {
         bot.setTournamentService(tournamentService);
         bot.start();
     }
+    ArrayList players = new ArrayList();
+
     /**
      * The name of the black player, indexed by server game id.
      */
@@ -823,6 +826,20 @@ public class USCLBot {
     }
 
     /**
+     * Commands the bot to show the online players at his notify.
+     *
+     * Syntax: <tt>who</tt>
+     *
+     * @param teller
+     *            The users issuing the command.
+     */
+    public void cmdWho(User teller) {
+        for(int i=0; i<players.size(); i++){
+        command.tell(teller, "{0}", players.get(i));
+        }
+    }
+
+    /**
      * Commands the bot to cancel a board reservation made previously using the reserve-game command.
      *
      * Syntax: <tt>unreserve-game Shirov-NYC</tt>
@@ -1058,6 +1075,7 @@ public class USCLBot {
             command.sendAdminCommand("reserve-game {0} {1}", name, board);
             command.sendCommand("observe {0}", name);
             command.sendAdminCommand("set-other {0} busy 2", name);
+            players.add(name);
         }
     }
 
@@ -1069,6 +1087,7 @@ public class USCLBot {
     protected void processPlayerDeparted(String name) {
         tellManagers("{0} departed", name);
         command.sendCommand("tell 399 {0} has departed.", name);
+        players.remove(name);
     }
 
     /**
