@@ -1074,7 +1074,6 @@ public class USCLBot {
             command.sendAdminCommand("spoof {0} tell JudgeBot nowin", name);
             command.sendAdminCommand("reserve-game {0} {1}", name, board);
             command.sendCommand("observe {0}", name);
-            command.sendAdminCommand("set-other {0} busy 2", name);
             players.add(name);
         }
     }
