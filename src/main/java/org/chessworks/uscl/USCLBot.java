@@ -677,10 +677,10 @@ public class USCLBot {
         msg.format(" Current Schedule:\\n");
         for (Game game : games) {
     		int boardNum = game.boardNumber;
-    		String whiteStatus = (game.whitePlayer.getStatus().isOnline()) ? "+" : "?";
-    		String whitePlayer = whiteStatus + game.whitePlayer.getHandle();
-    		String blackStatus = (game.blackPlayer.getStatus().isOnline()) ? "+" : "?";
-    		String blackPlayer = blackStatus + game.blackPlayer.getHandle();
+    		String whiteStatus = (game.whitePlayer.isOnline()) ? "+" : "?";
+    		String whitePlayer = game.whitePlayer.getHandle() + whiteStatus;
+    		String blackStatus = (game.blackPlayer.isOnline()) ? "+" : "?";
+    		String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
     		String gameStatus = game.getStatusString();
     		msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
         }
