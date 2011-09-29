@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Formatter;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +36,7 @@ import org.chessworks.common.javatools.BaseException;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.common.javatools.io.FileHelper;
+import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -145,33 +146,10 @@ public class USCLBot {
         bot.setTournamentService(tournamentService);
         bot.start();
     }
-    ArrayList players = new ArrayList();
 
-    /**
-     * The name of the black player, indexed by server game id.
-     */
-    //TODO: Move this into a game object.
-    private String[] _blackNames = new String[5000];
-    /**
-     * True if the game hasn't started or hasn't yet been announced. Indexed by server game id.
-     */
-    //TODO: Move this into a game object.
-    private boolean[] _needsAnnounce = new boolean[5000];
-    /**
-     * The name of the white player, indexed by server game id.
-     */
-    //TODO: Move this into a game object.
-    private String[] _whiteNames = new String[5000];
-    /**
-     * The number of people currently observing the game. Indexed by server game id.
-     */
-    //TODO: Move this into a game object.
-    private int[] _observerCountNow = new int[5000];
-    /**
-     * The max number of people who have concurrently observed the game. Indexed by server game id.
-     */
-    //TODO: Move this into a game object.
-    private int[] _observerCountMax = new int[5000];
+    private Set<Player> _playersOnline = new TreeSet<Player>();
+    private Game[] _games = new Game[5000];
+
     /**
      * The password used when executing admin commands on the server.
      *
@@ -775,6 +753,10 @@ public class USCLBot {
         command.sendAdminCommand("spoof ", teller, " rating ", player, " standard {0}", rating);
     }
 
+    public void cmdShowGame(User teller) {
+    	//DOUG
+    }
+    
     /**
      * Commands the bot to list the team's profile settings.
      *
@@ -834,9 +816,9 @@ public class USCLBot {
      *            The users issuing the command.
      */
     public void cmdWho(User teller) {
-        for(int i=0; i<players.size(); i++){
-        command.tell(teller, "{0}", players.get(i));
-        }
+    	for (Player player : _playersOnline) {
+            command.tell(teller, "{0}", player);
+    	}
     }
 
     /**
@@ -977,24 +959,27 @@ public class USCLBot {
      * qsets the "isolated" variable for the players, to ensure they don't chat during the game.
      */
     protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
-        if (!_needsAnnounce[gameNumber]) {
+        if (_games[gameNumber] == null) {
+        	return;
+        }
+    	if (!_games[gameNumber].needsAnnounce) {
             return;
         }
-        _needsAnnounce[gameNumber] = false;
+        _games[gameNumber].needsAnnounce = false;
         if (loggingIn) {
             return;
         }
-        String whiteName = _whiteNames[gameNumber];
-        String blackName = _blackNames[gameNumber];
+        Game game = _games[gameNumber];
         boolean resumed = (numHalfMoves != 0);
         String startOrResume = (!resumed) ? "Started" : "Resumed";
-        tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", whiteName, blackName, startOrResume, gameNumber);
+        tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", game.whitePlayer, game.blackPlayer,
+        		startOrResume, game.boardNumber);
         if (!resumed) {
             command.sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.",
-                    whiteName, blackName, startOrResume, gameNumber);
+                    game.whitePlayer, game.blackPlayer, startOrResume, game.boardNumber);
         }
-        command.sendCommand("qset {0} isolated 1", whiteName);
-        command.sendCommand("qset {0} isolated 1", blackName);
+        command.sendCommand("qset {0} isolated 1", game.whitePlayer);
+        command.sendCommand("qset {0} isolated 1", game.blackPlayer);
     }
 
     /**
@@ -1007,21 +992,20 @@ public class USCLBot {
      * the server ensures that two players can't receive tells or chat while they play.
      */
     protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
-        String whiteName = _whiteNames[gameNumber];
-        String blackName = _blackNames[gameNumber];
-        /* Subtract USCL-Bot itself */
-        int observerCount = _observerCountMax[gameNumber] - 1;
-        if (whiteName == null) {
+    	Game game = _games[gameNumber];
+        if (game == null) {
             return;
         }
-        tellEventChannels("{0} vs {1}: {2}  ({3} observers)", whiteName, blackName, descriptionString, observerCount);
+        /* Subtract USCL-Bot itself */
+        int observerCount = _games[gameNumber].observerCountMax - 1;
+        tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
-        _whiteNames[gameNumber] = null;
-        _blackNames[gameNumber] = null;
+        _games[gameNumber].whitePlayer = null;
+        _games[gameNumber].blackPlayer = null;
         if (!adjourned) {
-            _observerCountMax[gameNumber] = 0;
-            command.sendCommand("qset {0} isolated 0", whiteName);
-            command.sendCommand("qset {0} isolated 0", blackName);
+            _games[gameNumber].observerCountMax = 0;
+            command.sendCommand("qset {0} isolated 0", game.whitePlayer);
+            command.sendCommand("qset {0} isolated 0", game.blackPlayer);
         }
     }
 
@@ -1075,7 +1059,8 @@ public class USCLBot {
             command.sendAdminCommand("reserve-game {0} {1}", name, board);
             command.sendCommand("observe {0}", name);
             command.sendAdminCommand("set-other {0} busy 0", name);
-            players.add(name);
+            Player p = tournamentService.findPlayer(name);
+            _playersOnline.add(p);
         }
     }
 
@@ -1087,7 +1072,10 @@ public class USCLBot {
     protected void processPlayerDeparted(String name) {
         tellManagers("{0} departed", name);
         command.sendCommand("tell 399 {0} has departed.", name);
-        players.remove(name);
+        Player p = tournamentService.findPlayer(name);
+        if (p != null) {
+        	_playersOnline.remove(p);
+        }
     }
 
     /**
@@ -1099,12 +1087,12 @@ public class USCLBot {
     private void processPlayersInMyGame(int gameNumber, String playerHandle, PlayerState state, boolean seesKibitz) {
         switch (state) {
             case NONE:
-                _observerCountNow[gameNumber]--;
+                _games[gameNumber].observerCountCurrent--;
                 break;
             case OBSERVING:
-                _observerCountNow[gameNumber]++;
-                if (_observerCountMax[gameNumber] < _observerCountNow[gameNumber]) {
-                    _observerCountMax[gameNumber] = _observerCountNow[gameNumber];
+                _games[gameNumber].observerCountCurrent++;
+                if (_games[gameNumber].observerCountMax < _games[gameNumber].observerCountCurrent) {
+                    _games[gameNumber].observerCountMax = _games[gameNumber].observerCountCurrent;
                 }
             //Fall through...
             case PLAYING:
@@ -1139,16 +1127,17 @@ public class USCLBot {
             boolean isRated, int whiteInitial, int whiteIncrement, int blackInitial, int blackIncrement, boolean isPlayedGame, String exString,
             int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
             boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
-        if (isPlayedGame) {
-            _needsAnnounce[gameNumber] = true;
-            _whiteNames[gameNumber] = whiteName;
-            _blackNames[gameNumber] = blackName;
-        } else {
-            _needsAnnounce[gameNumber] = false;
-            _whiteNames[gameNumber] = null;
-            _blackNames[gameNumber] = null;
+        if (!isPlayedGame) {
+        	_games[gameNumber] = null;
+        	return;
         }
-        _observerCountNow[gameNumber] = 0;
+    	_games[gameNumber] = new Game();
+        Player whitePlayer = tournamentService.findPlayer(whiteName);
+        Player blackPlayer = tournamentService.findPlayer(blackName);
+        _games[gameNumber].needsAnnounce = true;
+        _games[gameNumber].whitePlayer = whitePlayer;
+        _games[gameNumber].blackPlayer = blackPlayer;
+        _games[gameNumber].observerCountCurrent = 0;
         command.spoof("ROBOadmin", "observe {0}", gameNumber);
         command.sendAdminCommand("set-o {0} busy 2", whiteName);
         command.sendAdminCommand("set-o {0} busy 2", blackName);
