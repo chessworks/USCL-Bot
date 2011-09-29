@@ -1,8 +1,8 @@
 package org.chessworks.uscl.services.simple;
 
 import java.util.Collection;
-import java.util.Map;
 
+import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -14,7 +14,6 @@ import org.chessworks.uscl.services.TournamentService;
  * decorate a TournamentService used for data storage with live functionality that connects with a chess server.
  *
  * @author Doug Bateman
- *
  */
 public class DecoratingTournamentService implements TournamentService {
 
@@ -23,8 +22,39 @@ public class DecoratingTournamentService implements TournamentService {
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(Game)
+	 */
+	@Override
+	public Game cancelGame(Game game) {
+		return service.cancelGame(game);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(int)
+	 */
+	@Override
+	public Game cancelGame(int board) {
+		return service.cancelGame(board);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(Player)
+	 */
+	@Override
+	public Game cancelGame(Player player) {
+		return service.cancelGame(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#clearSchedule()
 	 */
+	@Override
 	public void clearSchedule() {
 		service.clearSchedule();
 	}
@@ -36,6 +66,7 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String)
 	 */
+	@Override
 	public Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		return service.createPlayer(handle);
 	}
@@ -46,6 +77,7 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createPlayer(java.lang.String, org.chessworks.uscl.model.Team)
 	 */
+	@Override
 	public Player createPlayer(String handle, Team team) throws InvalidPlayerException {
 		return service.createPlayer(handle, team);
 	}
@@ -56,6 +88,7 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#createTeam(java.lang.String)
 	 */
+	@Override
 	public Team createTeam(String teamCode) throws InvalidTeamException {
 		return service.createTeam(teamCode);
 	}
@@ -63,8 +96,19 @@ public class DecoratingTournamentService implements TournamentService {
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findAllGames()
+	 */
+	@Override
+	public Collection<Game> findAllGames() {
+		return service.findAllGames();
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllPlayers()
 	 */
+	@Override
 	public Collection<Player> findAllPlayers() {
 		return service.findAllPlayers();
 	}
@@ -74,8 +118,29 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findAllTeams()
 	 */
+	@Override
 	public Collection<Team> findAllTeams() {
 		return service.findAllTeams();
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findGame(int)
+	 */
+	@Override
+	public Game findGame(int gameNumber) {
+		return service.findGame(gameNumber);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findOnlinePlayers()
+	 */
+	@Override
+	public Collection<Player> findOnlinePlayers() {
+		return service.findOnlinePlayers();
 	}
 
 	/**
@@ -85,16 +150,21 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreatePlayer(java.lang.String)
 	 */
+	@Override
 	public Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		return service.findOrCreatePlayer(handle);
 	}
 
+
+	
+	
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 * @throws InvalidTeamException
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findOrCreateTeam(java.lang.String)
 	 */
+	@Override
 	public Team findOrCreateTeam(String handle) throws InvalidTeamException {
 		return service.findOrCreateTeam(handle);
 	}
@@ -104,6 +174,7 @@ public class DecoratingTournamentService implements TournamentService {
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findPlayer(java.lang.String)
 	 */
+	@Override
 	public Player findPlayer(String handle) {
 		return service.findPlayer(handle);
 	}
@@ -111,101 +182,21 @@ public class DecoratingTournamentService implements TournamentService {
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findPlayerGame(Player)
+	 */
+	@Override
+	public Game findPlayerGame(Player player) {
+		return service.findPlayerGame(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
 	 * @see org.chessworks.uscl.services.TournamentService#findTeam(java.lang.String)
 	 */
+	@Override
 	public Team findTeam(String teamCode) {
 		return service.findTeam(teamCode);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoard(org.chessworks.uscl.model.Player)
-	 */
-	public int getPlayerBoard(Player player) {
-		return service.getPlayerBoard(player);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoardMap()
-	 */
-	public Map<Player, Integer> getPlayerBoardMap() {
-		return service.getPlayerBoardMap();
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#removePlayer(org.chessworks.uscl.model.Player)
-	 */
-	public boolean removePlayer(Player player) {
-		return service.removePlayer(player);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#removeTeam(org.chessworks.uscl.model.Team)
-	 */
-	public int removeTeam(Team team) {
-		return service.removeTeam(team);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(org.chessworks.uscl.model.Player, int)
-	 */
-	public void reserveBoard(Player player, int board) {
-		service.reserveBoard(player, board);
-	}
-
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(java.lang.String, int, boolean)
-	 */
-	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
-		return service.reserveBoard(playerName, board, allowNewPlayer);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#schedule(org.chessworks.uscl.model.Player, org.chessworks.uscl.model.Player, int)
-	 */
-	public void schedule(Player white, Player black, int board) {
-		service.schedule(white, black, board);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#unreserveBoard(org.chessworks.uscl.model.Player)
-	 */
-	public int unreserveBoard(Player player) {
-		return service.unreserveBoard(player);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#updatePlayer(org.chessworks.uscl.model.Player)
-	 */
-	public void updatePlayer(Player player) {
-		service.updatePlayer(player);
-	}
-
-	/**
-	 * Delegates all calls to the underlying {@link TournamentService}.
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#updateTeam(org.chessworks.uscl.model.Team)
-	 */
-	public void updateTeam(Team team) {
-		service.updateTeam(team);
 	}
 
 	/**
@@ -216,5 +207,66 @@ public class DecoratingTournamentService implements TournamentService {
 	public void flush() {
 		service.flush();
 	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removePlayer(org.chessworks.uscl.model.Player)
+	 */
+	@Override
+	public boolean removePlayer(Player player) {
+		return service.removePlayer(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#removeTeam(org.chessworks.uscl.model.Team)
+	 */
+	@Override
+	public int removeTeam(Team team) {
+		return service.removeTeam(team);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(Game)
+	 */
+	@Override
+	public Game scheduleGame(Game game) {
+		return service.scheduleGame(game);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, org.chessworks.uscl.model.Player, org.chessworks.uscl.model.Player)
+	 */
+	@Override
+	public Game scheduleGame(int board, Player white, Player black) {
+		return service.scheduleGame(board, white, black);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#updatePlayer(org.chessworks.uscl.model.Player)
+	 */
+	@Override
+	public void updatePlayer(Player player) {
+		service.updatePlayer(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#updateTeam(org.chessworks.uscl.model.Team)
+	 */
+	@Override
+	public void updateTeam(Team team) {
+		service.updateTeam(team);
+	}
+
 
 }

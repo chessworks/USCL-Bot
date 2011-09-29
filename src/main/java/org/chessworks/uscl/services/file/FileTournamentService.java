@@ -5,10 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.MessageFormat;
-import java.util.Map;
+import java.util.Collection;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.chessworks.chess.model.Title;
 import org.chessworks.chess.services.InvalidNameException;
@@ -16,6 +16,7 @@ import org.chessworks.chess.services.file.IO;
 import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.uscl.USCLBot;
+import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -60,9 +61,10 @@ public class FileTournamentService extends SimpleTournamentService {
 	}
 
 	@Override
-	public void schedule(Player white, Player black, int board) {
-		super.schedule(white, black, board);
+	public Game scheduleGame(Game game) {
+		Game result = super.scheduleGame(game);
 		scheduleIO.setDirty();
+		return result;
 	}
 
 	@Override
@@ -83,23 +85,12 @@ public class FileTournamentService extends SimpleTournamentService {
 	}
 
 	@Override
-	public void reserveBoard(Player player, int board) {
-		super.reserveBoard(player, board);
-		scheduleIO.setDirty();
-	}
-
-	@Override
-	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
-		Player player = super.reserveBoard(playerName, board, allowNewPlayer);
-		scheduleIO.setDirty();
-		return player;
-	}
-
-	@Override
-	public int unreserveBoard(Player player) {
-		int board = super.unreserveBoard(player);
-		scheduleIO.setDirty();
-		return board;
+	public Game cancelGame(Game game) {
+		Game result = super.cancelGame(game);
+		if (result != null) {
+			scheduleIO.setDirty();
+		}
+		return result;
 	}
 
 	@Override
@@ -292,22 +283,26 @@ public class FileTournamentService extends SimpleTournamentService {
 				if (line.startsWith("#"))
 					continue;
 				String[] args = line.split("[ \t]+");
-				String handle = args[1];
-				String game = args[2];
-				int gameNum = Integer.parseInt(game);
-				FileTournamentService.super.reserveBoard(handle, gameNum, true);
+				String game = args[1];
+				String white = args[2];
+				String black = args[3];
+				int board = Integer.parseInt(game);
+				Player whitePlayer = findPlayer(white);
+				Player blackPlayer = findPlayer(black);
+				FileTournamentService.super.scheduleGame(board, whitePlayer, blackPlayer);
 			}
 		}
 
 		@Override
 		public void doWrite(PrintWriter out) throws IOException {
-//			out.println("#USCL Reserved Boards");
-//			out.println();
-			Map<Player, Integer> playerBoards = FileTournamentService.super.getPlayerBoardMap();
-			for (Map.Entry<Player, Integer> entry : playerBoards.entrySet()) {
-				Player player = entry.getKey();
-				int board = entry.getValue();
-				String line = MessageFormat.format("reserve-game {0} {1}", player, board);
+			out.println("#USCL Schedule");
+			out.println();
+			Collection<Game> schedule = FileTournamentService.super.findAllGames();
+			for (Game game : schedule) {
+				Player white = game.whitePlayer;
+				Player black = game.blackPlayer;
+				int board = game.boardNumber;
+				String line = MessageFormat.format("schedule-game {0} {1} {2}", board, white.getHandle(), black.getHandle());
 				out.println(line);
 			}
 			out.println();

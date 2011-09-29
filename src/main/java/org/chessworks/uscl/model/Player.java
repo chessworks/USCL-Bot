@@ -1,13 +1,15 @@
 package org.chessworks.uscl.model;
 
+import org.chessworks.chess.model.PlayerState;
 import org.chessworks.chess.model.User;
 
 public class Player extends User {
 
-	public static final String UNAVAILABLE = "Unavailable";
+	public static final String WEBSITE_UNAVAILABLE = "Unavailable";
 
+	private PlayerState status = PlayerState.OFFLINE;
 	private final Team team;
-	private String website = UNAVAILABLE;
+	private String website = WEBSITE_UNAVAILABLE;
 
 	public Player(String handle, Team team) {
 		super(handle);
@@ -17,6 +19,14 @@ public class Player extends User {
 		this.team = team;
 	}
 
+	public PlayerState getStatus() {
+		return status;
+	}
+
+	public void setState(PlayerState status) {
+		this.status = status;
+	}
+	
 	public Team getTeam() {
 		return team;
 	}
@@ -27,12 +37,16 @@ public class Player extends User {
 
 	public void setWebsite(String website) {
 		if (website == null) {
-			this.website = UNAVAILABLE;
+			this.website = WEBSITE_UNAVAILABLE;
 		} else if (website.isEmpty()) {
-			this.website = UNAVAILABLE;
+			this.website = WEBSITE_UNAVAILABLE;
 		} else {
 			this.website = website;
 		}
+	}
+
+	public boolean isOnline() {
+		return status.isOnline();
 	}
 
 }

@@ -2,11 +2,11 @@ package org.chessworks.uscl.services.file;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.Map;
 
 import junit.framework.TestCase;
 
 import org.apache.commons.io.FileUtils;
+import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 
@@ -58,49 +58,59 @@ public class TestFileTournamentService extends TestCase {
 	public void testClearSchedule() throws Exception {
 		service.load();
 		Player duckstorm = service.findPlayer("DuckStorm");
-		int board = service.getPlayerBoard(duckstorm);
-		assertEquals(90, board);
+		Game board = service.findPlayerGame(duckstorm);
+		assertNotNull(board);
+		assertEquals(90, board.boardNumber);
 		service.clearSchedule();
-		board = service.getPlayerBoard(duckstorm);
-		assertEquals(-1, board);
+		board = service.findPlayerGame(duckstorm);
+		assertNull(board);
 		duckstorm = service.findPlayer("DuckStorm");
 		assertNotNull(duckstorm);
 		Team icc = service.findTeam("ICC");
 		assertNotNull(icc);
 	}
 
-	public void testGetPlayerBoard() throws Exception {
+	public void testFindPlayerGame() throws Exception {
 		service.load();
 		Player duckstorm = service.findPlayer("DuckStorm");
-		int board = service.getPlayerBoard(duckstorm);
-		assertEquals(90, board);
+		Game board = service.findPlayerGame(duckstorm);
+		assertNotNull(board);
+		assertEquals(90, board.boardNumber);
 	}
 
-	public void testGetPlayerBoardMap() throws Exception {
+	public void testFindAllGames() throws Exception {
 		service.load();
-		Map<Player, Integer> map = service.getPlayerBoardMap();
-		Player duckstorm = service.findPlayer("DuckStorm");
-		Integer board = map.get(duckstorm);
-		assertEquals(new Integer(90), board);
+		Collection<Game> games = service.findAllGames();
+		assertFalse(games.isEmpty());
 		service.clearSchedule();
-		board = map.get(duckstorm);
-		assertEquals(null, board);
+		games = service.findAllGames();
+		assertTrue(games.isEmpty());
 	}
 
-	public void testReserveBoard() throws Exception {
+	public void testScheduleGame() throws Exception {
 		service.load();
 		service.clearSchedule();
 		Player duckstorm = service.findPlayer("DuckStorm");
 		assertNotNull(duckstorm);
-		int board = service.getPlayerBoard(duckstorm);
-		assertEquals(-1, board);
-		service.reserveBoard(duckstorm, 69);
-		board = service.getPlayerBoard(duckstorm);
-		assertEquals(69, board);
+		Player mrbob = service.findPlayer("MrBob");
+		assertNotNull(duckstorm);
+		Game board = service.findPlayerGame(duckstorm);
+		assertNull(board);
+		service.scheduleGame(80, duckstorm, mrbob);
+		board = service.findPlayerGame(duckstorm);
+		assertNotNull(board);
+		assertEquals(80, board.boardNumber);
+		board = service.findPlayerGame(mrbob);
+		assertNotNull(board);
+		assertEquals(80, board.boardNumber);
 		service.save();
 		service2.load();
-		board = service2.getPlayerBoard(duckstorm);
-		assertEquals(69, board);
+		board = service2.findPlayerGame(duckstorm);
+		assertNotNull(board);
+		assertEquals(80, board.boardNumber);
+		board = service2.findPlayerGame(mrbob);
+		assertNotNull(board);
+		assertEquals(80, board.boardNumber);
 	}
 
 	public void testSchedule() throws Exception {

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.chessworks.common.service.BasicLifecycle;
+import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -16,8 +19,11 @@ import org.chessworks.uscl.services.TournamentService;
 
 public class SimpleTournamentService extends BasicLifecycle implements TournamentService {
 
-	/** Map players to board numbers */
-	private final Map<Player, Integer> playerBoards = new LinkedHashMap<Player, Integer>();
+	/** Map players to games */
+	private final Map<Player, Game> playerBoards = new LinkedHashMap<Player, Game>();
+
+	/** Map board numbers to games */
+	private final Map<Integer, Game> boards = new TreeMap<Integer, Game>();
 
 	/** Map codes to teams */
 	private final Map<String, Team> teams;
@@ -46,90 +52,113 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	@Override
 	public void clearSchedule() {
 		playerBoards.clear();
+		boards.clear();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#schedule(Player, Player, int)
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, Player, Player)
 	 */
 	@Override
-	public void schedule(Player white, Player black, int board) {
-		reserveBoard(white, board);
-		reserveBoard(black, board);
+	public Game scheduleGame(int board, Player white, Player black) {
+		Game game = new Game(board, white, black);
+		game.whitePlayer = white;
+		game.blackPlayer = black;
+		game.boardNumber = board;
+		return scheduleGame(game);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(Player, int)
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(Game)
 	 */
 	@Override
-	public void reserveBoard(Player player, int board) {
-		playerBoards.put(player, board);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see org.chessworks.uscl.services.TournamentService#reserveBoard(String, int, boolean)
-	 */
-	@Override
-	public Player reserveBoard(String playerName, int board, boolean allowNewPlayer) throws InvalidPlayerException, InvalidTeamException {
-		Player player = findPlayer(playerName);
-		if (player == null) {
-			if (!allowNewPlayer) {
-				throw new InvalidPlayerException("\"{0} is not a recognized player name. Tell me \\\"addPlayer {0}\\\" to register the player.\"", playerName);
-			} else {
-				String teamCode = teamCode(playerName);
-				Team team = findTeam(teamCode);
-				if (team == null) {
-					throw new InvalidTeamException("Unknown team: {0}", teamCode);
-				}
-				player = new Player(playerName, team);
-			}
-		}
-		playerBoards.put(player, board);
-		return player;
+	public Game scheduleGame(Game game) {
+		Player white = game.whitePlayer;
+		Player black = game.blackPlayer;
+		playerBoards.put(white, game);
+		playerBoards.put(black,  game);
+		boards.put(game.boardNumber, game);
+		return game;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#unreserveBoard(Player)
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(Game)
 	 */
 	@Override
-	public int unreserveBoard(Player player) {
+	public Game cancelGame(Game game) {
+		if (game == null)
+			return null;
+		if (!boards.containsValue(game))
+			return null;
+		Player white = game.whitePlayer;
+		Player black = game.blackPlayer;
+		playerBoards.remove(white);
+		playerBoards.remove(black);
+		boards.remove(game.boardNumber);
+		return game;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(Player)
+	 */
+	@Override
+	public Game cancelGame(Player player) {
+		Game game = playerBoards.get(player);
+		cancelGame(game);
+		return game;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#cancelGame(int)
+	 */
+	@Override
+	public Game cancelGame(int board) {
+		Game game = boards.get(board);
+		cancelGame(game);
+		return game;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findPlayerGame(Player)
+	 */
+	@Override
+	public Game findPlayerGame(Player player) {
 		if (player == null)
-			return -1;
-		Integer board = playerBoards.remove(player);
-		if (board == null)
-			return -1;
-		return board;
+			return null;
+		Game game = playerBoards.get(player);
+		return game;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findGame(int)
+	 */
+	@Override
+	public Game findGame(int gameNumber) {
+		Game game = boards.get(gameNumber);
+		return game;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoard(Player)
+	 * @see org.chessworks.uscl.services.TournamentService#findAllGames()
 	 */
 	@Override
-	public int getPlayerBoard(Player player) {
-		if (player == null)
-			return -1;
-		Integer board = playerBoards.get(player);
-		if (board == null)
-			return -1;
-		return board;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.chessworks.uscl.services.TournamentService#getPlayerBoardMap()
-	 */
-	@Override
-	public Map<Player, Integer> getPlayerBoardMap() {
-		return Collections.unmodifiableMap(playerBoards);
+	public Collection<Game> findAllGames() {
+		return Collections.unmodifiableCollection(boards.values());
 	}
 
 	/**
@@ -333,6 +362,24 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		}
 		String teamCode = handle.substring(i + 1);
 		return teamCode;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findOnlinePlayers()
+	 */
+	@Override
+	public Set<Player> findOnlinePlayers() {
+		//TODO: Make this set dynamically updated
+		Set<Player> players = new LinkedHashSet<Player>();
+		for (Player p : this.players.values()) {
+			if (p.isOnline()) {
+				players.add(p);
+			}
+		}
+		players = Collections.unmodifiableSet(players);
+		return players;
 	}
 
 }
