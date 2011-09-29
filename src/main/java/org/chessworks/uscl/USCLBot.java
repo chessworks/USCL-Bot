@@ -676,7 +676,7 @@ public class USCLBot {
         Formatter msg = new Formatter();
         msg.format(" Current Schedule:\\n");
         for (Game g : games) {
-        	msg.format("  %1$2d - %2$15s %3$15s - %4s\\n", g.boardNumber, g.whitePlayer, g.blackPlayer, g.getStatusString());
+        	msg.format("  %1$2d - %2$15s %3$15s - %4$s\\n", g.boardNumber, g.whitePlayer, g.blackPlayer, g.getStatusString());
         }
         String consoleMsg = msg.toString().replaceAll("\\n","\n");
         System.out.format(consoleMsg);
