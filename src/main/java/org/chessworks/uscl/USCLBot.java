@@ -652,6 +652,7 @@ public class USCLBot {
      */
     public void cmdShow(User teller) {
         command.qtell(teller, " ** Use: show-schedule");
+        cmdShowSchedule(teller);
     }
 
     /**
