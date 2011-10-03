@@ -683,7 +683,7 @@ public class USCLBot {
     		String blackStatus = (game.blackPlayer.isOnline()) ? "" : " ?";
     		String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
     		String gameStatus = game.getStatusString();
-    		msg.format("Board %2d: %16s %16s    - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
+    		msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
         }
         String consoleMsg = msg.toString().replaceAll("\\n","\n");
         System.out.format(consoleMsg);
