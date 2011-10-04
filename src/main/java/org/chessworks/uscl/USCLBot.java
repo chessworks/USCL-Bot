@@ -646,12 +646,9 @@ public class USCLBot {
     }
 
     /**
-     * Deprecated. Use {@link #cmdShowSchedule()} instead.
-     *
-     * @deprecated
+     * An alias for "show-schedule".
      */
     public void cmdShow(User teller) {
-        command.qtell(teller, " ** Use: show-schedule");
         cmdShowSchedule(teller);
     }
 
@@ -678,9 +675,9 @@ public class USCLBot {
         msg.format(" Current Schedule:\\n");
         for (Game game : games) {
     		int boardNum = game.boardNumber;
-    		String whiteStatus = (game.whitePlayer.isOnline()) ? "" : "?";
+    		String whiteStatus = (game.whitePlayer.isOnline()) ? " " : "?";
     		String whitePlayer = game.whitePlayer.getHandle() + whiteStatus;
-    		String blackStatus = (game.blackPlayer.isOnline()) ? "" : "?";
+    		String blackStatus = (game.blackPlayer.isOnline()) ? " " : "?";
     		String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
     		String gameStatus = game.getStatusString();
     		msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
@@ -893,7 +890,7 @@ public class USCLBot {
         command.sendCommand("set noautologout 1");
         command.sendCommand("set style 13");
         command.sendCommand("-notify *");
-        Collection<Player> players = tournamentService.findAllPlayers();
+        Collection<Player> players = tournamentService.findScheduledPlayers();
         for (Player p : players) {
             command.sendCommand("+notify {0}", p);
         }

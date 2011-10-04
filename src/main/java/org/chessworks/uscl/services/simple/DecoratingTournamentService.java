@@ -154,9 +154,6 @@ public class DecoratingTournamentService implements TournamentService {
 	public Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException {
 		return service.findOrCreatePlayer(handle);
 	}
-
-
-	
 	
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
@@ -187,6 +184,16 @@ public class DecoratingTournamentService implements TournamentService {
 	@Override
 	public Game findPlayerGame(Player player) {
 		return service.findPlayerGame(player);
+	}
+
+	/**
+	 * Delegates all calls to the underlying {@link TournamentService}.
+	 *
+	 * @see org.chessworks.uscl.services.TournamentService#findScheduledPlayers()
+	 */
+	@Override
+	public Collection<Player> findScheduledPlayers() {
+		return service.findScheduledPlayers();
 	}
 
 	/**

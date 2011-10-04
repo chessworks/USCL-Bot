@@ -21,6 +21,8 @@ public interface TournamentService extends Flushable {
 
 	Collection<Player> findAllPlayers();
 
+	Collection<Player> findScheduledPlayers();
+
 	boolean removePlayer(Player player);
 
 	void updatePlayer(Player player);
