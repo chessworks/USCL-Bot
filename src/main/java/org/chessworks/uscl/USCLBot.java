@@ -19,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.security.PermitAll;
+
 import org.chessworks.bots.common.NoSuchCommandException;
 import org.chessworks.bots.common.converters.ConversionException;
 import org.chessworks.chess.model.PlayerState;
@@ -73,7 +75,7 @@ public class USCLBot {
     public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
     public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
     /** A list of titles used by players on ICC. */
-    public static final List<Title> ICC_TITLES;
+    public static final List<Title> USCL_TITLES;
 
     static {
         ArrayList<Title> list = new ArrayList<Title>(6);
@@ -85,7 +87,7 @@ public class USCLBot {
         list.add(SimpleTitleService.WGM);
         list.add(SimpleTitleService.NM);
         list.trimToSize();
-        ICC_TITLES = Collections.unmodifiableList(list);
+        USCL_TITLES = Collections.unmodifiableList(list);
     }
 
     private static void loadConnectionSettings(Properties settings, USCLBot bot) {
@@ -462,7 +464,7 @@ public class USCLBot {
         String teamName = team.toString();
         String teamPage = player.getTeam().getWebsite();
         for (Title title : player.getTitles()) {
-            if (ICC_TITLES.contains(title)) {
+            if (USCL_TITLES.contains(title)) {
                 command.sendAdminCommand("+{0} {1}", title, player);
             }
         }
@@ -648,6 +650,7 @@ public class USCLBot {
     /**
      * An alias for "show-schedule".
      */
+    @PermitAll
     public void cmdShow(User teller) {
         cmdShowSchedule(teller);
     }
@@ -669,6 +672,7 @@ public class USCLBot {
      * @param teller
      *            The user/manager issuing the command.
      */
+    @PermitAll
     public void cmdShowSchedule(User teller) {
         Collection<Game> games = tournamentService.findAllGames();
         Formatter msg = new Formatter();
