@@ -1045,16 +1045,17 @@ public class USCLBot {
         }
         player.setState(PlayerState.WAITING);
         Game game = tournamentService.findPlayerGame(player);
-        if (game != null) {
-            if (!loggingIn) {
-                tellManagers("{0} has arrived.  Reserving game {1}.", name, game.boardNumber);
-                command.sendCommand("tell 399 {0} has arrived.", player.getTitledHandle());
-            }
-            command.sendAdminCommand("spoof {0} tell JudgeBot nowin", name);
-            command.sendAdminCommand("reserve-game {0} {1}", name, game.boardNumber);
-            command.sendCommand("observe {0}", name);
-            command.sendAdminCommand("set-other {0} busy 0", name);
+        if (game == null) return;
+        if (game.status.isFinished()) return;
+        if (!loggingIn) {
+            tellManagers("{0} has arrived.  Reserving game {1}.", name, game.boardNumber);
+            command.sendCommand("tell 399 {0} has arrived.", player.getTitledHandle());
         }
+        command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.whitePlayer);
+        command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.blackPlayer);
+        command.sendAdminCommand("reserve-game {0} {1}", game.whitePlayer, game.boardNumber);
+        command.sendAdminCommand("reserve-game {0} {1}", game.blackPlayer, game.boardNumber);
+        command.sendCommand("observe {0}", name);
     }
 
     /**
