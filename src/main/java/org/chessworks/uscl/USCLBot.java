@@ -61,9 +61,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "September 23, 2011";
+    public static final String BOT_RELEASE_DATE = "October 17, 2011";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.04";
+    public static final String BOT_RELEASE_NUMBER = "1.05";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
@@ -353,7 +353,7 @@ public class USCLBot {
         command.sendCommand("-notify *");
     }
 
-    public void cmdRunScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
+    public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
         //String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
         Integer r1 = player1.ratings().get(USCL_RATING);
         Integer r2 = player2.ratings().get(USCL_RATING);
