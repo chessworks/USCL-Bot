@@ -36,7 +36,6 @@ user.Lyon.handle=Lyon
 user.Lyon.name=Sandro
 user.Lyon.roles=manager
 
-user.KingsRook12.handle=KingsRook12
-user.KingsRook12.name=KingsRook12
-user.KingsRook12.roles=manager
-
+user.Lyon.handle=albi
+user.Lyon.name=Vincent
+user.Lyon.roles=manager
