@@ -85,6 +85,6 @@ sort --ignore-case x2 | sed '
 
 ' >> New-Players.txt
 rm x1 x2 RealNames.sed RealNames2.sed
-diff New-Players.txt Players.txt > Changes.txt
+diff Players.txt New-Players.txt > Changes.txt
 vim Changes.txt
 
