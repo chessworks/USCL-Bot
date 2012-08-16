@@ -568,7 +568,7 @@ player.JamesBlack-MAN.titles=(NM)
 player.JamesBlack-MAN.website=http://www.uschessleague.com/JamesBlack.html
 
 player.JoelBanawa-ARZ.handle=JoelBanawa-ARZ
-player.JoelBanawa-ARZ.name=JoelBanawa-ARZ
+player.JoelBanawa-ARZ.name=Joel Banawa
 player.JoelBanawa-ARZ.rating=2456
 player.JoelBanawa-ARZ.team=ARZ
 player.JoelBanawa-ARZ.titles=(FM)
@@ -646,7 +646,7 @@ player.Kraai-SF.website=http://www.uschessleague.com/JesseKraai.html
 
 player.Krasik-BOS.handle=Krasik-BOS
 player.Krasik-BOS.name=Ilya Krasik
-player.Krasik-BOS.rating=2243
+player.Krasik-BOS.rating=2264
 player.Krasik-BOS.team=BOS
 player.Krasik-BOS.titles=(NM)
 player.Krasik-BOS.website=http://www.uschessleague.com/IlyaKrasik.html
@@ -666,7 +666,7 @@ player.Labedz-DAL.titles=(WFM)
 player.Labedz-DAL.website=http://www.uschessleague.com/PatrycjaLabedz.html
 
 player.LaRota-MIA.handle=LaRota-MIA
-player.LaRota-MIA.name=LaRota-MIA
+player.LaRota-MIA.name=Fabio La Rota
 player.LaRota-MIA.rating=2309
 player.LaRota-MIA.team=MIA
 player.LaRota-MIA.titles=(FM)
@@ -757,7 +757,7 @@ player.Mateer-ARZ.titles=(WFM)
 player.Mateer-ARZ.website=http://www.uschessleague.com/AmandaMateer.html
 
 player.Matikozyan-LA.handle=Matikozyan-LA
-player.Matikozyan-LA.name=Matikozyan-LA
+player.Matikozyan-LA.name=Andranik Matikozyan
 player.Matikozyan-LA.rating=2505
 player.Matikozyan-LA.team=LA
 player.Matikozyan-LA.titles=(IM)
