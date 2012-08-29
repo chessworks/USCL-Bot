@@ -3,85 +3,102 @@
 team.ARZ.code=ARZ
 team.ARZ.location=Arizona
 team.ARZ.name=Arizona Scorpions
-team.ARZ.website=http://www.uschessleague.com/Arizona.html
+team.ARZ.website=http://uschessleague.com/arizona.php
+team.ARZ.division=Western
 
 team.BAL.code=BAL
 team.BAL.location=Baltimore
 team.BAL.name=Baltimore Kingfishers
-team.BAL.website=http://www.uschessleague.com/Baltimore.html
+team.BAL.website=http://uschessleague.com/baltimore.php
+team.BAL.division=Eastern
 
 team.BOS.code=BOS
 team.BOS.location=Boston
 team.BOS.name=Boston Blitz
-team.BOS.website=http://www.uschessleague.com/Boston.html
+team.BOS.website=http://uschessleague.com/boston.php
+team.BOS.division=Eastern
 
 team.CAR.code=CAR
 team.CAR.location=Carolina
 team.CAR.name=Carolina Cobras
-team.CAR.website=http://www.uschessleague.com/Carolina.html
+team.CAR.website=http://uschessleague.com/carolina.php
+team.CAR.division=Western
 
-team.CHC.code=CHC
-team.CHC.location=Chicago
-team.CHC.name=Chicago Blaze
-team.CHC.website=http://www.uschessleague.com/Chicago.html
+team.CON.code=CON
+team.CON.location=Connecticut
+team.CON.name=Connecticut Dreadnoughts
+team.CON.website=http://uschessleague.com/connecticut.php
+team.CON.division=Eastern
 
 team.DAL.code=DAL
 team.DAL.location=Dallas
 team.DAL.name=Dallas Destiny
-team.DAL.website=http://www.uschessleague.com/Dallas.html
+team.DAL.website=http://uschessleague.com/dallas.php
+team.DAL.division=Western
 
 team.ICC.code=ICC
 team.ICC.location=Internet Chess Club
 team.ICC.name=USCL-Bot Testers
 team.ICC.website=http://www.chessclub.com/
+team.ICC.division=Test
 
 team.LA.code=LA
 team.LA.location=Los Angeles
 team.LA.name=Los Angeles Vibe
-team.LA.website=http://www.uschessleague.com/LosAngeles.html
+team.LA.website=http://uschessleague.com/losangeles.php
+team.LA.division=Western
 
 team.MAN.code=MAN
 team.MAN.location=Manhattan
 team.MAN.name=Manhattan Applesauce
-team.MAN.website=http://www.uschessleague.com/Manhattan.html
+team.MAN.website=http://uschessleague.com/manhattan.php
+team.MAN.division=Eastern
 
 team.MIA.code=MIA
 team.MIA.location=Miami
 team.MIA.name=Miami Sharks
-team.MIA.website=http://www.uschessleague.com/Miami.html
+team.MIA.website=http://uschessleague.com/miami.php
+team.MIA.division=Western
 
 team.NE.code=NE
 team.NE.location=New England
 team.NE.name=New England Nor'easters
-team.NE.website=http://www.uschessleague.com/NewEngland.html
+team.NE.website=http://uschessleague.com/newengland.php
+team.NE.division=Eastern
 
 team.NJ.code=NJ
 team.NJ.location=New Jersey
 team.NJ.name=New Jersey Knockouts
-team.NJ.website=http://www.uschessleague.com/NewJersey.html
+team.NJ.website=http://uschessleague.com/newjersey.php
+team.NJ.division=Eastern
 
 team.NY.code=NY
 team.NY.location=New York
 team.NY.name=New York Knights
-team.NY.website=http://www.uschessleague.com/NewYork.html
+team.NY.website=http://uschessleague.com/newyork.php
+team.NY.division=Eastern
 
 team.PHI.code=PHI
 team.PHI.location=Philadelphia
 team.PHI.name=Philadelphia Inventors
-team.PHI.website=http://www.uschessleague.com/Philadelphia.html
+team.PHI.website=http://uschessleague.com/philadelphia.php
+team.PHI.division=Eastern
 
 team.SEA.code=SEA
 team.SEA.location=Seattle
 team.SEA.name=Seattle Sluggers
-team.SEA.website=http://www.uschessleague.com/Seattle.html
+team.SEA.website=http://uschessleague.com/seattle.php
+team.SEA.division=Western
 
 team.SF.code=SF
 team.SF.location=San Francisco
 team.SF.name=San Francisco Mechanics
-team.SF.website=http://www.uschessleague.com/SanFrancisco.html
+team.SF.website=http://uschessleague.com/sanfrancisco.php
+team.SF.division=Western
 
 team.STL.code=STL
 team.STL.location=St. Louis
 team.STL.name=St. Louis Arch Bishops
-team.STL.website=http://www.uschessleague.com/StLouis.html
+team.STL.website=http://uschessleague.com/stlouis.php
+team.STL.division=Western
 
