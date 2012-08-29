@@ -237,10 +237,12 @@ public class FileTournamentService extends SimpleTournamentService {
 				String location = data.getProperty(prefix + ".location");
 				String name = data.getProperty(prefix + ".name");
 				String url = data.getProperty(prefix + ".website");
+				String division = data.getProperty(prefix + ".division");
 				Team t = FileTournamentService.super.createTeam(teamCode);
 				t.setRealName(name);
 				t.setLocation(location);
 				t.setWebsite(url);
+				t.setDivision(division);
 			}
 		}
 
@@ -253,12 +255,14 @@ public class FileTournamentService extends SimpleTournamentService {
 				String location = team.getLocation();
 				String name = team.getRealName();
 				String website = team.getWebsite();
+				String division = team.getDivision();
 				out.format("team.%s.code=%s%n", code, code);
 				out.format("team.%s.location=%s%n", code, location);
 				out.format("team.%s.name=%s%n", code, name);
 				if (website != null) {
 					out.format("team.%s.website=%s%n", code, website);
 				}
+				out.format("team.%s.division=%s%n", code, division);
 				out.println();
 			}
 		}

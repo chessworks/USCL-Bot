@@ -9,6 +9,7 @@ public class Team implements Comparable<Team>{
 
 	private String teamCode;
 	private String realName;
+	private String division = UNAVAILABLE;
 	private String location = UNAVAILABLE;
 	private String website = UNAVAILABLE;
 	private List<Player> players = new LinkedList<Player>();
@@ -35,6 +36,20 @@ public class Team implements Comparable<Team>{
 
 	public String getTeamCode() {
 		return teamCode;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		if (division == null) {
+			this.division = UNAVAILABLE;
+		} else if (location.isEmpty()) {
+			this.division = UNAVAILABLE;
+		} else {
+			this.division = division;
+		}
 	}
 
 	public String getLocation() {

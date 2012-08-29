@@ -61,9 +61,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "October 17, 2011";
+    public static final String BOT_RELEASE_DATE = "August 29, 2012";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.05";
+    public static final String BOT_RELEASE_NUMBER = "1.06";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
@@ -640,6 +640,8 @@ public class USCLBot {
             team.setLocation(value);
         } else if (ComparisionHelper.anyEquals(var, "web", "webpage", "website")) {
             team.setWebsite(value);
+        } else if (ComparisionHelper.anyEquals(var, "div", "division")) {
+            team.setDivision(value);
         } else {
             command.tell(teller, "Unknown variable: " + var);
             return;
@@ -742,6 +744,7 @@ public class USCLBot {
         msg.format("   %4s: %s\\n", "Name", team.getRealName());
         msg.format("   %4s: %s\\n", "Loc.", team.getLocation());
         msg.format("   %4s: %s\\n", "Web ", team.getWebsite());
+        msg.format("   %4s: %s\\n", "Div ", team.getDivision());
         msg.format(" Team Members:\\n");
         int indent = 0;
         for (Player player : team.getPlayers()) {
