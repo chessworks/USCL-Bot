@@ -376,16 +376,18 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
         command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
-                player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
-        /* PrintWriter out = null;
+        player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
+        /*
+        PrintWriter out = null;
         try {
-        out = new PrintWriter("data/sched.txt");
-        String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
+            out = new PrintWriter("data/sched.txt");
+            String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
         out.println(line);
 
         } finally {
         FileHelper.closeQuietly(out);
-        }*/
+        }
+*/
     }
 
     /**
@@ -678,13 +680,13 @@ public class USCLBot {
         Formatter msg = new Formatter();
         msg.format(" Current Schedule:\\n");
         for (Game game : games) {
-    		int boardNum = game.boardNumber;
-    		String whiteStatus = (game.whitePlayer.isOnline()) ? " " : "?";
-    		String whitePlayer = game.whitePlayer.getHandle() + whiteStatus;
-    		String blackStatus = (game.blackPlayer.isOnline()) ? " " : "?";
-    		String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
-    		String gameStatus = game.getStatusString();
-    		msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
+            int boardNum = game.boardNumber;
+            String whiteStatus = (game.whitePlayer.isOnline()) ? " " : "?";
+            String whitePlayer = game.whitePlayer.getHandle() + whiteStatus;
+            String blackStatus = (game.blackPlayer.isOnline()) ? " " : "?";
+            String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
+            String gameStatus = game.getStatusString();
+            msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
         }
         String consoleMsg = msg.toString().replaceAll("\\n","\n");
         System.out.format(consoleMsg);
@@ -785,10 +787,10 @@ public class USCLBot {
      *            The users issuing the command.
      */
     public void cmdWho(User teller) {
-    	Collection<Player> playersOnline = tournamentService.findOnlinePlayers();
-    	for (Player player : playersOnline) {
+        Collection<Player> playersOnline = tournamentService.findOnlinePlayers();
+        for (Player player : playersOnline) {
             command.tell(teller, "{0}", player);
-    	}
+        }
     }
 
     /**
@@ -797,7 +799,7 @@ public class USCLBot {
      * @deprecated
      */
     public void cmdUnreserveGame(User teller, Player player) {
-    	command.qtell(teller, " ** Use: cancel-game <player>");
+        command.qtell(teller, " ** Use: cancel-game <player>");
     }
 
     /**
@@ -941,11 +943,11 @@ public class USCLBot {
      * qsets the "isolated" variable for the players, to ensure they don't chat during the game.
      */
     protected void processMoveList(int gameNumber, String initialPosition, int numHalfMoves) {
-    	Game game = tournamentService.findGame(gameNumber);
-    	if (game == null) {
-    		return;
-    	}
-    	if (!game.needsAnnounce) {
+        Game game = tournamentService.findGame(gameNumber);
+        if (game == null) {
+            return;
+        }
+        if (!game.needsAnnounce) {
             return;
         }
         game.needsAnnounce = false;
@@ -955,7 +957,7 @@ public class USCLBot {
         boolean resumed = (numHalfMoves != 0);
         String startOrResume = (!resumed) ? "Started" : "Resumed";
         tellEventChannels("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".", game.whitePlayer, game.blackPlayer,
-        		startOrResume, game.boardNumber);
+                startOrResume, game.boardNumber);
         if (!resumed) {
             command.sshout("{0} vs {1}: {2} on board {3}.  To watch, type or click: \"observe {3}\".  Results will be announced in channel 129.",
                     game.whitePlayer, game.blackPlayer, startOrResume, game.boardNumber);
@@ -974,7 +976,7 @@ public class USCLBot {
      * the server ensures that two players can't receive tells or chat while they play.
      */
     protected void processMyGameResult(int gameNumber, boolean becomesExamined, String gameResultCode, String scoreString, String descriptionString) {
-    	Game game = tournamentService.findGame(gameNumber);
+        Game game = tournamentService.findGame(gameNumber);
         if (game == null) {
             return;
         }
@@ -985,16 +987,16 @@ public class USCLBot {
         if (adjourned) {
             game.status = GameState.ADJOURNED;
         } else if ("0-1".equals(scoreString)) {
-        	game.status = GameState.BLACK_WINS;
+            game.status = GameState.BLACK_WINS;
         } else if ("1-0".equals(scoreString)) {
-        	game.status = GameState.WHITE_WINS;
+            game.status = GameState.WHITE_WINS;
         } else if ("1/2-1/2".equals(scoreString)) {
-        	game.status = GameState.DRAW;
+            game.status = GameState.DRAW;
         } else if ("aborted".equals(scoreString)) {
-        	game.status = GameState.NOT_STARTED;
+            game.status = GameState.NOT_STARTED;
         } else {
-        	game.status = GameState.UNKNOWN;
-        	alertManagers("Error: unexpected game status \"{0}\": {1}", gameResultCode, scoreString);
+            game.status = GameState.UNKNOWN;
+            alertManagers("Error: unexpected game status \"{0}\": {1}", gameResultCode, scoreString);
         }
         if (!adjourned) {
             command.sendCommand("qset {0} isolated 0", game.whitePlayer);
@@ -1069,12 +1071,12 @@ public class USCLBot {
         Player player = tournamentService.findPlayer(name);
         if (player == null) {
             alertManagers("Departing player {0} is on my notify list, but I don''t have him in the tournament roster.", name);
-        	return;
+            return;
         }
         player.setState(PlayerState.OFFLINE);
         Game game = tournamentService.findPlayerGame(player);
         if (game != null) {
-        	tellManagers("{0} departed", name);
+            tellManagers("{0} departed", name);
             command.sendCommand("tell 399 {0} has departed.", name);
         }
     }
@@ -1086,10 +1088,10 @@ public class USCLBot {
      * most popular (in terms of number of observers.
      */
     private void processPlayersInMyGame(int gameNumber, String playerHandle, PlayerState state, boolean seesKibitz) {
-    	Game game = tournamentService.findGame(gameNumber);
-    	if (game == null) {
-    		return;
-    	}
+        Game game = tournamentService.findGame(gameNumber);
+        if (game == null) {
+            return;
+        }
         switch (state) {
             case WAITING:
                 game.observerCountCurrent--;
@@ -1112,10 +1114,10 @@ public class USCLBot {
      * tournament starts a game, we want to observe it.
      */
     public void processPlayerStateChange(String player, PlayerState state, int game) {
-    	Player p = tournamentService.findPlayer(player);
-    	if (p == null)
-    		return;
-    	p.setState(state);
+        Player p = tournamentService.findPlayer(player);
+        if (p == null)
+            return;
+        p.setState(state);
         if (state.isPlaying()) {
             command.sendCommand("observe {0}", game);
         } else {
@@ -1137,7 +1139,7 @@ public class USCLBot {
             int whiteRating, int blackRating, long gameID, String whiteTitles, String blackTitles, boolean isIrregularLegality,
             boolean isIrregularSemantics, boolean usesPlunkers, String fancyTimeControls) {
         if (!isPlayedGame) {
-        	return;
+            return;
         }
         Player whitePlayer = tournamentService.findPlayer(whiteName);
         Player blackPlayer = tournamentService.findPlayer(blackName);
@@ -1145,12 +1147,12 @@ public class USCLBot {
         if (blackPlayer == null) return;
         Game game = tournamentService.findGame(gameNumber);
         if (game == null) {
-        	alertManagers("A game has started on an unpredicted board: {0} - {1} {2}", gameNumber, whiteName, blackName);
-        	game = tournamentService.findPlayerGame(whitePlayer);
+            alertManagers("A game has started on an unpredicted board: {0} - {1} {2}", gameNumber, whiteName, blackName);
+            game = tournamentService.findPlayerGame(whitePlayer);
         }
         if (game == null) {
-        	alertManagers("I am totally confused.  I don't have a scheduled game for: {0} {1}", whiteName, blackName);
-        	return;
+            alertManagers("I am totally confused.  I don't have a scheduled game for: {0} {1}", whiteName, blackName);
+            return;
         }
         game.status = GameState.PLAYING;
         game.needsAnnounce = true;
