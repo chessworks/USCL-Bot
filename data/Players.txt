@@ -1,26 +1,5 @@
 #USCL Players
 
-player.AIvanov-NE.handle=AIvanov-NE
-player.AIvanov-NE.name=Alexander Ivanov
-player.AIvanov-NE.rating=2656
-player.AIvanov-NE.team=NE
-player.AIvanov-NE.titles=(GM)
-player.AIvanov-NE.website=http://uschessleague.com/player.php?p=alexander-ivanov
-
-player.AKatz-NY.handle=AKatz-NY
-player.AKatz-NY.name=Alexander Katz
-player.AKatz-NY.rating=2250
-player.AKatz-NY.team=NY
-player.AKatz-NY.titles=(NM)
-player.AKatz-NY.website=http://uschessleague.com/player.php?p=alexander-katz
-
-player.AShen-NJ.handle=AShen-NJ
-player.AShen-NJ.name=Arthur Shen
-player.AShen-NJ.rating=2358
-player.AShen-NJ.team=NJ
-player.AShen-NJ.titles=(FM)
-player.AShen-NJ.website=http://uschessleague.com/player.php?p=arthur-shen
-
 player.Abrahamyan-LA.handle=Abrahamyan-LA
 player.Abrahamyan-LA.name=Tatev Abrahamyan
 player.Abrahamyan-LA.rating=2432
@@ -49,6 +28,20 @@ player.Agner-CAR.team=CAR
 player.Agner-CAR.titles=(NM)
 player.Agner-CAR.website=http://uschessleague.com/player.php?p=carlito-agner
 
+player.AIvanov-NE.handle=AIvanov-NE
+player.AIvanov-NE.name=Alexander Ivanov
+player.AIvanov-NE.rating=2656
+player.AIvanov-NE.team=NE
+player.AIvanov-NE.titles=(GM)
+player.AIvanov-NE.website=http://uschessleague.com/player.php?p=alexander-ivanov
+
+player.AKatz-NY.handle=AKatz-NY
+player.AKatz-NY.name=Alexander Katz
+player.AKatz-NY.rating=2250
+player.AKatz-NY.team=NY
+player.AKatz-NY.titles=(NM)
+player.AKatz-NY.website=http://uschessleague.com/player.php?p=alexander-katz
+
 player.Akobian-SEA.handle=Akobian-SEA
 player.Akobian-SEA.name=Varuzhan Akobian
 player.Akobian-SEA.rating=2697
@@ -76,6 +69,13 @@ player.Alvarez-MIA.rating=2257
 player.Alvarez-MIA.team=MIA
 player.Alvarez-MIA.titles=(NM)
 player.Alvarez-MIA.website=http://uschessleague.com/player.php?p=ernesto-alvarez
+
+player.AShen-NJ.handle=AShen-NJ
+player.AShen-NJ.name=Arthur Shen
+player.AShen-NJ.rating=2358
+player.AShen-NJ.team=NJ
+player.AShen-NJ.titles=(FM)
+player.AShen-NJ.website=http://uschessleague.com/player.php?p=arthur-shen
 
 player.Atoufi-ARZ.handle=Atoufi-ARZ
 player.Atoufi-ARZ.name=Pedram Atoufi
@@ -266,13 +266,6 @@ player.Cozianu-SEA.team=SEA
 player.Cozianu-SEA.titles=(FM)
 player.Cozianu-SEA.website=http://uschessleague.com/player.php?p=costin-cozianu
 
-player.DSchneider-MAN.handle=DSchneider-MAN
-player.DSchneider-MAN.name=Dmitry Schneider
-player.DSchneider-MAN.rating=2522
-player.DSchneider-MAN.team=MAN
-player.DSchneider-MAN.titles=(IM)
-player.DSchneider-MAN.website=http://uschessleague.com/player.php?p=dmitry-schneider
-
 player.Daly-PHI.handle=Daly-PHI
 player.Daly-PHI.name=Troy Daly
 player.Daly-PHI.rating=2238
@@ -300,6 +293,13 @@ player.Donaldson-SF.rating=2408
 player.Donaldson-SF.team=SF
 player.Donaldson-SF.titles=(IM)
 player.Donaldson-SF.website=http://uschessleague.com/player.php?p=john-donaldson
+
+player.DSchneider-MAN.handle=DSchneider-MAN
+player.DSchneider-MAN.name=Dmitry Schneider
+player.DSchneider-MAN.rating=2522
+player.DSchneider-MAN.team=MAN
+player.DSchneider-MAN.titles=(IM)
+player.DSchneider-MAN.website=http://uschessleague.com/player.php?p=dmitry-schneider
 
 player.Eckert-STL.handle=Eckert-STL
 player.Eckert-STL.name=Doug Eckert
@@ -490,13 +490,6 @@ player.Jones-CAR.team=CAR
 player.Jones-CAR.titles=(NM)
 player.Jones-CAR.website=http://uschessleague.com/player.php?p=craig-jones
 
-player.KWang-BAL.handle=KWang-BAL
-player.KWang-BAL.name=Kevin Wang
-player.KWang-BAL.rating=2366
-player.KWang-BAL.team=BAL
-player.KWang-BAL.titles=(NM)
-player.KWang-BAL.website=http://uschessleague.com/player.php?p=kevin-wang
-
 player.Kacheishvili-NY.handle=Kacheishvili-NY
 player.Kacheishvili-NY.name=Giorgi Kacheishvili
 player.Kacheishvili-NY.rating=2697
@@ -595,12 +588,12 @@ player.Krasik-BOS.team=BOS
 player.Krasik-BOS.titles=(NM)
 player.Krasik-BOS.website=http://uschessleague.com/player.php?p=ilya-krasik
 
-player.LKaufman-BAL.handle=LKaufman-BAL
-player.LKaufman-BAL.name=Larry Kaufman
-player.LKaufman-BAL.rating=2445
-player.LKaufman-BAL.team=BAL
-player.LKaufman-BAL.titles=(GM)
-player.LKaufman-BAL.website=http://uschessleague.com/player.php?p=larry-kaufman
+player.KWang-BAL.handle=KWang-BAL
+player.KWang-BAL.name=Kevin Wang
+player.KWang-BAL.rating=2366
+player.KWang-BAL.team=BAL
+player.KWang-BAL.titles=(NM)
+player.KWang-BAL.website=http://uschessleague.com/player.php?p=kevin-wang
 
 player.Larson-STL.handle=Larson-STL
 player.Larson-STL.name=Matthew Larson
@@ -637,19 +630,19 @@ player.Liou-SF.team=SF
 player.Liou-SF.titles=(FM)
 player.Liou-SF.website=http://uschessleague.com/player.php?p=yian-liou
 
+player.LKaufman-BAL.handle=LKaufman-BAL
+player.LKaufman-BAL.name=Larry Kaufman
+player.LKaufman-BAL.rating=2445
+player.LKaufman-BAL.team=BAL
+player.LKaufman-BAL.titles=(GM)
+player.LKaufman-BAL.website=http://uschessleague.com/player.php?p=larry-kaufman
+
 player.Lowinger-CON.handle=Lowinger-CON
 player.Lowinger-CON.name=Daniel Lowinger
 player.Lowinger-CON.rating=2318
 player.Lowinger-CON.team=CON
 player.Lowinger-CON.titles=(NM)
 player.Lowinger-CON.website=http://uschessleague.com/player.php?p=daniel-lowinger
-
-player.MShahade-PHI.handle=MShahade-PHI
-player.MShahade-PHI.name=Michael Shahade
-player.MShahade-PHI.rating=2210
-player.MShahade-PHI.team=PHI
-player.MShahade-PHI.titles=(FM)
-player.MShahade-PHI.website=http://uschessleague.com/player.php?p=michael-shahade
 
 player.Mabe-CAR.handle=Mabe-CAR
 player.Mabe-CAR.name=Chris Mabe
@@ -735,6 +728,13 @@ player.Molner-ARZ.team=ARZ
 player.Molner-ARZ.titles=(IM)
 player.Molner-ARZ.website=http://uschessleague.com/player.php?p=mackenzie-molner
 
+player.MShahade-PHI.handle=MShahade-PHI
+player.MShahade-PHI.name=Michael Shahade
+player.MShahade-PHI.rating=2210
+player.MShahade-PHI.team=PHI
+player.MShahade-PHI.titles=(FM)
+player.MShahade-PHI.website=http://uschessleague.com/player.php?p=michael-shahade
+
 player.Mu-CAR.handle=Mu-CAR
 player.Mu-CAR.name=Joshua Mu
 player.Mu-CAR.rating=2242
@@ -770,13 +770,6 @@ player.Otchiyev-CON.team=CON
 player.Otchiyev-CON.titles=(IM)
 player.Otchiyev-CON.website=http://uschessleague.com/player.php?p=arslan-otchiyev
 
-player.PWang-DAL.handle=PWang-DAL
-player.PWang-DAL.name=Puchen Wang
-player.PWang-DAL.rating=2509
-player.PWang-DAL.team=DAL
-player.PWang-DAL.titles=(IM)
-player.PWang-DAL.website=http://uschessleague.com/player.php?p=puchen-wang
-
 player.Paikidze-BAL.handle=Paikidze-BAL
 player.Paikidze-BAL.name=Nazi Paikidze
 player.Paikidze-BAL.rating=2444
@@ -804,6 +797,13 @@ player.Perez-MIA.rating=2504
 player.Perez-MIA.team=MIA
 player.Perez-MIA.titles=(SM)
 player.Perez-MIA.website=http://uschessleague.com/player.php?p=robert-perez
+
+player.PWang-DAL.handle=PWang-DAL
+player.PWang-DAL.name=Puchen Wang
+player.PWang-DAL.rating=2509
+player.PWang-DAL.team=DAL
+player.PWang-DAL.titles=(IM)
+player.PWang-DAL.website=http://uschessleague.com/player.php?p=puchen-wang
 
 player.RCostigan-PHI.handle=RCostigan-PHI
 player.RCostigan-PHI.name=Richard Costigan
@@ -861,20 +861,6 @@ player.Ryba-MAN.team=MAN
 player.Ryba-MAN.titles=(NM)
 player.Ryba-MAN.website=http://uschessleague.com/player.php?p=andrew-ryba
 
-player.SChiang-DAL.handle=SChiang-DAL
-player.SChiang-DAL.name=Sarah Chiang
-player.SChiang-DAL.rating=2257
-player.SChiang-DAL.team=DAL
-player.SChiang-DAL.titles=(NM)
-player.SChiang-DAL.website=http://uschessleague.com/player.php?p=sarah-chiang
-
-player.SSmith-MAN.handle=SSmith-MAN
-player.SSmith-MAN.name=Shaun Smith
-player.SSmith-MAN.rating=2066
-player.SSmith-MAN.team=MAN
-player.SSmith-MAN.titles=
-player.SSmith-MAN.website=http://uschessleague.com/player.php?p=shaun-smith
-
 player.Sadorra-DAL.handle=Sadorra-DAL
 player.Sadorra-DAL.name=Julio Sadorra
 player.Sadorra-DAL.rating=2598
@@ -902,6 +888,13 @@ player.Sarkar-CON.rating=2483
 player.Sarkar-CON.team=CON
 player.Sarkar-CON.titles=(IM)
 player.Sarkar-CON.website=http://uschessleague.com/player.php?p=justin-sarkar
+
+player.SChiang-DAL.handle=SChiang-DAL
+player.SChiang-DAL.name=Sarah Chiang
+player.SChiang-DAL.rating=2257
+player.SChiang-DAL.team=DAL
+player.SChiang-DAL.titles=(NM)
+player.SChiang-DAL.website=http://uschessleague.com/player.php?p=sarah-chiang
 
 player.Schroer-CAR.handle=Schroer-CAR
 player.Schroer-CAR.name=Jonathan Schroer
@@ -972,6 +965,13 @@ player.Sinanan-SEA.rating=2263
 player.Sinanan-SEA.team=SEA
 player.Sinanan-SEA.titles=(NM)
 player.Sinanan-SEA.website=http://uschessleague.com/player.php?p=joshua-sinanan
+
+player.SSmith-MAN.handle=SSmith-MAN
+player.SSmith-MAN.name=Shaun Smith
+player.SSmith-MAN.rating=2066
+player.SSmith-MAN.team=MAN
+player.SSmith-MAN.titles=
+player.SSmith-MAN.website=http://uschessleague.com/player.php?p=shaun-smith
 
 player.Stripunsky-NJ.handle=Stripunsky-NJ
 player.Stripunsky-NJ.name=Alex Stripunsky
@@ -1071,19 +1071,19 @@ player.Yuan-CON.team=CON
 player.Yuan-CON.titles=(WIM)
 player.Yuan-CON.website=http://uschessleague.com/player.php?p=yuanling-yuan
 
-player.ZAmanov-LA.handle=ZAmanov-LA
-player.ZAmanov-LA.name=Zhanibek Amanov
-player.ZAmanov-LA.rating=2463
-player.ZAmanov-LA.team=LA
-player.ZAmanov-LA.titles=(IM)
-player.ZAmanov-LA.website=http://uschessleague.com/player.php?p=zhanibek-amanov
-
 player.Zaikov-MAN.handle=Zaikov-MAN
 player.Zaikov-MAN.name=Oleg Zaikov
 player.Zaikov-MAN.rating=2374
 player.Zaikov-MAN.team=MAN
 player.Zaikov-MAN.titles=(FM)
 player.Zaikov-MAN.website=http://uschessleague.com/player.php?p=oleg-zaikov
+
+player.ZAmanov-LA.handle=ZAmanov-LA
+player.ZAmanov-LA.name=Zhanibek Amanov
+player.ZAmanov-LA.rating=2463
+player.ZAmanov-LA.team=LA
+player.ZAmanov-LA.titles=(IM)
+player.ZAmanov-LA.website=http://uschessleague.com/player.php?p=zhanibek-amanov
 
 player.Zierk-BOS.handle=Zierk-BOS
 player.Zierk-BOS.name=Steven Zierk
