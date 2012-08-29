@@ -376,7 +376,7 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
         command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
-        player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
+            player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
         /*
         PrintWriter out = null;
         try {
@@ -387,7 +387,7 @@ public class USCLBot {
         } finally {
         FileHelper.closeQuietly(out);
         }
-*/
+        */
     }
 
     /**
