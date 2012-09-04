@@ -478,6 +478,7 @@ public class USCLBot {
         command.sendAdminCommand("set-other {0} 5 Team: {1}", player, teamName);
         command.sendAdminCommand("set-other {0} 6 Team page: {1}", player, teamPage);
         command.sendAdminCommand("set-other {0} 7", player);
+        command.sendAdminCommand("rating {0} standard {1}", player, rating);
     }
 
     /**
@@ -714,20 +715,6 @@ public class USCLBot {
         msg.format("   %6s: %s\\n", "Team", player.getTeam());
         msg.format("   %6s: %s\\n", "Web", player.getWebsite());
         command.qtell(teller, msg);
-    }
-
-    /**
-     * USCL-Bot spoof the player
-     *
-     * Syntax: <tt>updatefinger</tt>
-     *
-     * @param teller
-     *            The user/manager issuing the command.
-     */
-    public void cmdUpdateFInger(User teller, Player player) {
-        Integer rating;
-        rating = player.ratings().get(USCL_RATING);
-        command.sendAdminCommand("spoof ", teller, " rating ", player, " standard {0}", rating);
     }
 
     /**
@@ -1058,8 +1045,8 @@ public class USCLBot {
         }
         command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.whitePlayer);
         command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.blackPlayer);
-        command.sendAdminCommand("set-o {0} kib 0", game.blackPlayer);
-        command.sendAdminCommand("set-o {0} kib 0", game.whitePlayer);
+        command.sendAdminCommand("set-other {0} kib 0", game.blackPlayer);
+        command.sendAdminCommand("set-other {0} kib 0", game.whitePlayer);
         command.sendAdminCommand("reserve-game {0} {1}", game.whitePlayer, game.boardNumber);
         command.sendAdminCommand("reserve-game {0} {1}", game.blackPlayer, game.boardNumber);
         command.sendCommand("observe {0}", name);
