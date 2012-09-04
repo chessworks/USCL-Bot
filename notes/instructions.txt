@@ -10,6 +10,7 @@ set-team             : Sets the team details, such as the team website and team'
 show-team            : Shows the current team details.
 remove-team          : Removes a team profile from the bot, including players.
 
+createscript         : Creates all scripts to run at scripter.exe Syntax: createscript <slot-number> <board> <white> <black> <time> <inc>
 reserve-game         : Reserves boards for a game.  Syntax: reserve-game <board> <white> <black>
 reserve-game (old)   : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
 unreserve-game       : Removes a board reservation.  Syntax: unreserve-game <board>
