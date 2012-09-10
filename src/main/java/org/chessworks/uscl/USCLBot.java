@@ -373,6 +373,8 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set allowkib 0", teller, player2);
         command.sendQuietly("qtell {0}  spoof {1} set quietplay 2", teller, player1);
         command.sendQuietly("qtell {0}  spoof {1} set quietplay 2", teller, player2);
+        command.sendQuietly("qtell {0}  spoof {1} set busy 2", teller, player1);
+        command.sendQuietly("qtell {0}  spoof {1} set busy 2", teller, player2);        
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
         command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
@@ -1150,6 +1152,8 @@ public class USCLBot {
         game.blackPlayer = blackPlayer;
         game.observerCountCurrent = 0;
         command.spoof("ROBOadmin", "observe {0}", gameNumber);
+        command.sendAdminCommand("spoof {0} set busy 2", whitePlayer);
+        command.sendAdminCommand("spoof {0} set busy 2", blackPlayer);
         
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
     }
