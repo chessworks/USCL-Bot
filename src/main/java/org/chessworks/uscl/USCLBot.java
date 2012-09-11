@@ -156,63 +156,77 @@ public class USCLBot {
      * @see #setAdminPass(String)
      */
     private String adminPass = "*****";
+    
     /** Utility to convert incoming tells into calls to cmdXXX(). */
     private final CommandDispatcher cmd = new CommandDispatcher();
-
     {
         cmd.setTarget(this);
     }
+    
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
     private final Commands command = new Commands();
+    
     /** The underlying connection to the server. Uses Jin's connection library. */
     private Connection conn;
+    
     /**
      * The host name or I.P. address of the chess server.
      *
      * @see #setHostName(String)
      */
     private String hostName = "chessclub.com";
+    
     /**
      * The TCP port number used when connecting to the chess server.
      *
      * @see #setHostPort(int)
      */
     private int hostPort = 5001;
+    
     /**
      * When first connecting, we'll get lots of notifications about games in progress, etc.. We need to distinguish this information delivered on
      * login from events that happen later (like a game starting that we want to announce). This setting makes that possible.
      */
     private volatile boolean loggingIn = true;
+    
     /**
      * The user name used during login, such as guest.
      *
      * @see #setLoginName(String)
      */
     private String loginName = "USCL-Bot";
+    
     /**
      * The password used during login.
      *
      * @see #setLoginPass(String)
      */
     private String loginPass = "*****";
+    
     /** The scheduler lets us schedule commands to execute at some future time. */
     private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    
     /**
      * TitleService provides facts about known titles. For example that (IM) is short for "International Master".
      */
     private SimpleTitleService titleService;
+    
     /**
      * UserService stores the list of managers & programmers authorized to use this bot.
      */
     private UserService userService;
+    
     /**
      * TournamentService is used to save information to disk about who is scheduled to play whom, when, and what chess board.
      */
     private TournamentService tournamentService;
+    
     /** Users with the manager role can talk to the bot. */
     private Role managerRole;
+    
     /** Users with the programmer role receive extra debugging information from the bot. */
     private Role programmerRole;
+    
     /** The user name assigned by the chess server upon login. e.g. guest233. */
     private String userName;
 
@@ -1284,6 +1298,7 @@ public class USCLBot {
     public void start() throws IOException {
         System.out.println("Starting USCL-Bot...");
         System.out.println();
+        cmd.init();
         conn = new Connection(hostName, hostPort, loginName, loginPass);
         conn.addDatagramListener(conn, Datagram.DG_PERSONAL_TELL);
         conn.addDatagramListener(conn, Datagram.DG_NOTIFY_STATE);
