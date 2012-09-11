@@ -20,6 +20,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 import org.chessworks.bots.common.NoSuchCommandException;
 import org.chessworks.bots.common.converters.ConversionException;
@@ -54,6 +55,7 @@ import free.util.SafeRunnable;
 /**
  * @author Doug Bateman
  */
+@RolesAllowed("manager")
 public class USCLBot {
 
     /**
@@ -868,6 +870,8 @@ public class USCLBot {
             replyError(teller, e);
         } catch (NoSuchCommandException e) {
             command.tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
+        } catch (SecurityException e) {
+            command.tell(teller, "I don''t understand.  Are you sure you spelled the command correctly?");
         } catch (BaseException e) {
             //TODO: We need something better than BaseException to capture user friendly messages.
             String msg = e.getMessage();
@@ -1019,11 +1023,8 @@ public class USCLBot {
             alertManagers("{0} just executed command: {1}", teller, message);
             teller = "MrBob";
         } else {
-            if (!isManager(teller)) {
-                return;
-            }
+        	onCommand(teller, message);
         }
-        onCommand(teller, message);
     }
 
     /**
