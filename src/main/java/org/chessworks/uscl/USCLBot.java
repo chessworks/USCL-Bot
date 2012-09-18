@@ -1170,8 +1170,8 @@ public class USCLBot {
         command.sendAdminCommand("spoof {0} set busy 2", whitePlayer);
         command.sendAdminCommand("spoof {0} set busy 2", blackPlayer);
         command.sendAdminCommand("qsuggest USCLTD observe {0}", gameNumber);
-        command.sendAdminCommand("spoof {0} ;-notify *; +notify USCLTD", whitePlayer);
-        command.sendAdminCommand("spoof {0} ;-notify *; +notify USCLTD", blackPlayer);
+        command.sendAdminCommand("spoof {0} ;-notify USCL; +notify USCLTD", whitePlayer);
+        command.sendAdminCommand("spoof {0} ;-notify USCL; +notify USCLTD", blackPlayer);
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
     }
 
