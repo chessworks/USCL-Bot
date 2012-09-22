@@ -710,7 +710,7 @@ public class USCLBot {
             String blackStatus = (game.blackPlayer.isOnline()) ? " " : "?";
             String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
             String gameStatus = game.getStatusString();
-            if(!team1.equals(game.whitePlayer.getTeam()) && !team2.equals(game.blackPlayer.getTeam()))
+            if(team1!=(game.whitePlayer.getTeam()) && team2!=(game.blackPlayer.getTeam()))
             {
                 team1 = game.whitePlayer.getTeam();
                 team2 = game.blackPlayer.getTeam();
