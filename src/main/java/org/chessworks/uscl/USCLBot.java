@@ -701,12 +701,12 @@ public class USCLBot {
         Collection<Game> games = tournamentService.findAllGames();
         for (Game game : games) {
             int boardNum = game.boardNumber;
-            String whiteStatus = (game.whitePlayer.isOnline()) ? " " : "-?";
+            String whiteStatus = (game.whitePlayer.isOnline()) ? "  " : "-?";
             String whitePlayer = game.whitePlayer.getHandle() + whiteStatus;
-            String blackStatus = (game.blackPlayer.isOnline()) ? " " : "-?";
+            String blackStatus = (game.blackPlayer.isOnline()) ? "  " : "-?";
             String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
             String gameStatus = game.getStatusString();
-            String msg = String.format("Board %2d: %16s %16s - %s", boardNum, whitePlayer, blackPlayer, gameStatus);
+            String msg = String.format("Board %2d: %20s %20s - %s", boardNum, whitePlayer, blackPlayer, gameStatus);
             command.sendQuietly("qtell {0} {1}", teller, msg);
         }
     }
