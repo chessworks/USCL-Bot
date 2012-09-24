@@ -697,10 +697,8 @@ public class USCLBot {
      */
     @PermitAll
     public void cmdShowSchedule(User teller) {
+        command.qtell(teller, "CurrentSchedule:");
         Collection<Game> games = tournamentService.findAllGames();
-        
-        Formatter msg = new Formatter();
-        msg.format(" Current Schedule:\\n");
         for (Game game : games) {
             int boardNum = game.boardNumber;
             String whiteStatus = (game.whitePlayer.isOnline()) ? " " : "-?";
@@ -708,11 +706,9 @@ public class USCLBot {
             String blackStatus = (game.blackPlayer.isOnline()) ? " " : "-?";
             String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
             String gameStatus = game.getStatusString();
-            msg.format("Board %2d: %16s %16s - %s\\n", boardNum, whitePlayer, blackPlayer, gameStatus);
+            String msg = String.format("Board %2d: %16s %16s - %s", boardNum, whitePlayer, blackPlayer, gameStatus);
+            command.qtell(teller, msg);
         }
-        String consoleMsg = msg.toString().replaceAll("\\n","\n");
-        System.out.format(consoleMsg);
-        command.qtell(teller, msg);
     }
 
     /**
