@@ -697,7 +697,7 @@ public class USCLBot {
      */
     @PermitAll
     public void cmdShowSchedule(User teller) {
-        command.qtell(teller, "CurrentSchedule:");
+        command.sendQuietly("qtell {0} {1}", teller, "Current Schedule:");
         Collection<Game> games = tournamentService.findAllGames();
         for (Game game : games) {
             int boardNum = game.boardNumber;
@@ -707,7 +707,7 @@ public class USCLBot {
             String blackPlayer = game.blackPlayer.getHandle() + blackStatus;
             String gameStatus = game.getStatusString();
             String msg = String.format("Board %2d: %16s %16s - %s", boardNum, whitePlayer, blackPlayer, gameStatus);
-            command.qtell(teller, msg);
+            command.sendQuietly("qtell {0} {1}", teller, msg);
         }
     }
 
