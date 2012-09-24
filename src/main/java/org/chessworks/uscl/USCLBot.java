@@ -706,8 +706,8 @@ public class USCLBot {
             String blackStatus = (game.blackPlayer.isOnline()) ? "" : " ?";
             String blackPlayer = game.blackPlayer.getHandle();
             String gameStatus = game.getStatusString();
-            String msg = String.format("Board %2d: %20s%2s %20s%2s     %s", boardNum, whitePlayer, whiteStatus, blackPlayer, blackStatus, gameStatus);
-            command.sendQuietly("qtell {0} {1}", teller, msg);
+            String msg = String.format("Board %2d: %18s%2s %18s%2s     %s", boardNum, whitePlayer, whiteStatus, blackPlayer, blackStatus, gameStatus);
+            command.sendQuietly("qtell {0}  {1}", teller, msg);
         }
         command.sendQuietly("qtell {0}", teller);
     }
