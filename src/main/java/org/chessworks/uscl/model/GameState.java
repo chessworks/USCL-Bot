@@ -1,7 +1,7 @@
 package org.chessworks.uscl.model;
 
 public enum GameState {
-	NOT_STARTED("X"), PLAYING("*"), ADJOURNED("adj"), WHITE_WINS("1-0"), BLACK_WINS("0-1"), DRAW("1/2-1/2"), UNKNOWN("?");
+	NOT_STARTED("NOT_STARTED"), PLAYING("*"), ADJOURNED("adj"), WHITE_WINS("1-0"), BLACK_WINS("0-1"), DRAW("1/2-1/2"), UNKNOWN("?");
 	
 	private String code;
 	
