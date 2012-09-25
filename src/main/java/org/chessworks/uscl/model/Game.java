@@ -38,6 +38,6 @@ public class Game {
 		if (status.isPlaying()) {
 			return String.format("\"observe %d\"", boardNumber);
 		}
-		else return status.toString();
+		else return status.getCode();
 	}
 }
