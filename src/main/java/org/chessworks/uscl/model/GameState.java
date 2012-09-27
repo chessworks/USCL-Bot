@@ -28,4 +28,8 @@ public enum GameState {
 		}
 	}
 	
+	public boolean isAdjourned() {
+		return (this == ADJOURNED);
+	}
+	
 }

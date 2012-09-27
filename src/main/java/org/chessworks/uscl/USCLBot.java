@@ -1054,7 +1054,9 @@ public class USCLBot {
         Game game = tournamentService.findPlayerGame(player);
         if (game == null) return;
         if (game.status.isFinished()) return;
-        if (!loggingIn) {
+        if (loggingIn) {
+        	command.sendCommand("observe {0}", name);
+        } else {
             tellManagers("{0} has arrived.  Reserving game {1}.", name, game.boardNumber);
             command.sendCommand("tell 399 {0} has arrived.", player.getTitledHandle());
         }
@@ -1064,7 +1066,10 @@ public class USCLBot {
         command.sendAdminCommand("set-other {0} kib 0", game.whitePlayer);
         command.sendAdminCommand("reserve-game {0} {1}", game.whitePlayer, game.boardNumber);
         command.sendAdminCommand("reserve-game {0} {1}", game.blackPlayer, game.boardNumber);
-        command.sendCommand("observe {0}", name);
+        if (game.status.isAdjourned()) {
+            command.sendAdminCommand("spoof {0} match {1}", game.whitePlayer, game.blackPlayer);
+            command.sendAdminCommand("spoof {0} match {1}", game.blackPlayer, game.whitePlayer);
+        }
     }
 
     /**
