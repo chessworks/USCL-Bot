@@ -36,6 +36,10 @@ user.Lyon.handle=Lyon
 user.Lyon.name=Sandro
 user.Lyon.roles=manager
 
-user.Lyon.handle=albi
-user.Lyon.name=Vincent
-user.Lyon.roles=manager
+user.albi.handle=albi
+user.albi.name=Vincent
+user.albi.roles=manager
+
+user.xtal.handle=xtal
+user.xtal.name=Raul
+user.xtal.roles=manager
