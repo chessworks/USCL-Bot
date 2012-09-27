@@ -42,6 +42,13 @@ player.AKatz-NY.team=NY
 player.AKatz-NY.titles=(NM)
 player.AKatz-NY.website=http://uschessleague.com/player.php?p=alexander-katz
 
+player.AKing-MAN.handle=AKing-MAN
+player.AKing-MAN.name=Alex King
+player.AKing-MAN.rating=2303
+player.AKing-MAN.team=MAN
+player.AKing-MAN.titles=(NM)
+player.AKing-MAN.website=http://www.uschessleague.com/player.php?p=alex-king
+
 player.Akobian-SEA.handle=Akobian-SEA
 player.Akobian-SEA.name=Varuzhan Akobian
 player.Akobian-SEA.rating=2697
@@ -55,6 +62,13 @@ player.Akopyan-LA.rating=2295
 player.Akopyan-LA.team=LA
 player.Akopyan-LA.titles=(FM)
 player.Akopyan-LA.website=http://uschessleague.com/player.php?p=harutyun-akopyan
+
+player.ALiu-BOS.handle=ALiu-BOS
+player.ALiu-BOS.name=Andrew Liu
+player.ALiu-BOS.rating=2148
+player.ALiu-BOS.team=BOS
+player.ALiu-BOS.titles=
+player.ALiu-BOS.website=http://www.uschessleague.com/player.php?p=andrew-liu
 
 player.Altounian-ARZ.handle=Altounian-ARZ
 player.Altounian-ARZ.name=Levon Altounian
@@ -83,6 +97,13 @@ player.Atoufi-ARZ.rating=2275
 player.Atoufi-ARZ.team=ARZ
 player.Atoufi-ARZ.titles=(FM)
 player.Atoufi-ARZ.website=http://uschessleague.com/player.php?p=pedram-atoufi
+
+player.AWang-NE.handle=AWang-NE
+player.AWang-NE.name=Andrew Wang
+player.AWang-NE.rating=2302
+player.AWang-NE.team=NE
+player.AWang-NE.titles=(NM)
+player.AWang-NE.website=http://www.uschessleague.com/player.php?p=andrew-wang
 
 player.Balakrishnan-NJ.handle=Balakrishnan-NJ
 player.Balakrishnan-NJ.name=Praveen Balakrishnan
@@ -126,12 +147,12 @@ player.Benjamin-NJ.team=NJ
 player.Benjamin-NJ.titles=(GM)
 player.Benjamin-NJ.website=http://uschessleague.com/player.php?p=joel-benjamin
 
-player.Bfinegold-STL.handle=Bfinegold-STL
-player.Bfinegold-STL.name=Ben Finegold
-player.Bfinegold-STL.rating=2568
-player.Bfinegold-STL.team=STL
-player.Bfinegold-STL.titles=(GM)
-player.Bfinegold-STL.website=http://uschessleague.com/player.php?p=ben-finegold
+player.BFinegold-STL.handle=BFinegold-STL
+player.BFinegold-STL.name=Ben Finegold
+player.BFinegold-STL.rating=2568
+player.BFinegold-STL.team=STL
+player.BFinegold-STL.titles=(GM)
+player.BFinegold-STL.website=http://uschessleague.com/player.php?p=ben-finegold
 
 player.Bhat-SF.handle=Bhat-SF
 player.Bhat-SF.name=Vinay Bhat
@@ -385,6 +406,13 @@ player.Gorman-PHI.team=PHI
 player.Gorman-PHI.titles=(FM)
 player.Gorman-PHI.website=http://uschessleague.com/player.php?p=dov-gorman
 
+player.Guenther-DAL.handle=Guenther-DAL
+player.Guenther-DAL.name=Travis Guenther
+player.Guenther-DAL.rating=1969
+player.Guenther-DAL.team=DAL
+player.Guenther-DAL.titles=
+player.Guenther-DAL.website=http://www.uschessleague.com/player.php?p=travis-guenther
+
 player.Gulamali-BOS.handle=Gulamali-BOS
 player.Gulamali-BOS.name=Kazim Gulamali
 player.Gulamali-BOS.rating=2443
@@ -459,7 +487,7 @@ player.Holt-DAL.handle=Holt-DAL
 player.Holt-DAL.name=Conrad Holt
 player.Holt-DAL.rating=2569
 player.Holt-DAL.team=DAL
-player.Holt-DAL.titles=(IM)
+player.Holt-DAL.titles=(GM)
 player.Holt-DAL.website=http://uschessleague.com/player.php?p=conrad-holt
 
 player.Huschenbeth-BAL.handle=Huschenbeth-BAL
@@ -469,12 +497,12 @@ player.Huschenbeth-BAL.team=BAL
 player.Huschenbeth-BAL.titles=(GM)
 player.Huschenbeth-BAL.website=http://uschessleague.com/player.php?p=niclas-huschenbeth
 
-player.IMartinez-ARZ.handle=IMartinez-ARZ
-player.IMartinez-ARZ.name=Isaac Martinez
-player.IMartinez-ARZ.rating=2174
-player.IMartinez-ARZ.team=ARZ
-player.IMartinez-ARZ.titles=
-player.IMartinez-ARZ.website=http://uschessleague.com/player.php?p=isaac-martinez
+player.IsaacM-ARZ.handle=IsaacM-ARZ
+player.IsaacM-ARZ.name=Isaac Martinez
+player.IsaacM-ARZ.rating=2174
+player.IsaacM-ARZ.team=ARZ
+player.IsaacM-ARZ.titles=
+player.IsaacM-ARZ.website=http://uschessleague.com/player.php?p=isaac-martinez
 
 player.JChiang-DAL.handle=JChiang-DAL
 player.JChiang-DAL.name=Jonathan Chiang
@@ -545,13 +573,6 @@ player.Kiewra-LA.rating=2436
 player.Kiewra-LA.team=LA
 player.Kiewra-LA.titles=(FM)
 player.Kiewra-LA.website=http://uschessleague.com/player.php?p=keaton-kiewra
-
-player.King-MAN.handle=King-MAN
-player.King-MAN.name=Alex King
-player.King-MAN.rating=2303
-player.King-MAN.team=MAN
-player.King-MAN.titles=(NM)
-player.King-MAN.website=http://uschessleague.com/player.php?p=alex-king
 
 player.Klemm-NJ.handle=Klemm-NJ
 player.Klemm-NJ.name=Vince Klemm
@@ -767,7 +788,7 @@ player.Otchiyev-CON.handle=Otchiyev-CON
 player.Otchiyev-CON.name=Arslan Otchiyev
 player.Otchiyev-CON.rating=2399
 player.Otchiyev-CON.team=CON
-player.Otchiyev-CON.titles=(IM)
+player.Otchiyev-CON.titles=(NM)
 player.Otchiyev-CON.website=http://uschessleague.com/player.php?p=arslan-otchiyev
 
 player.Paikidze-BAL.handle=Paikidze-BAL
@@ -1007,6 +1028,13 @@ player.Vigorito-NE.rating=2548
 player.Vigorito-NE.team=NE
 player.Vigorito-NE.titles=(IM)
 player.Vigorito-NE.website=http://uschessleague.com/player.php?p=david-vigorito
+
+player.Vilenchuk-BOS.handle=Vilenchuk-BOS
+player.Vilenchuk-BOS.name=Michael Vilenchuk
+player.Vilenchuk-BOS.rating=2306
+player.Vilenchuk-BOS.team=BOS
+player.Vilenchuk-BOS.titles=(NM)
+player.Vilenchuk-BOS.website=http://www.uschessleague.com/player.php?p=michael-vilenchuk
 
 player.Viswanadha-SF.handle=Viswanadha-SF
 player.Viswanadha-SF.name=Kesav Viswanadha
