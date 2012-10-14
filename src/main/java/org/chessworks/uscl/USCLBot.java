@@ -696,7 +696,7 @@ public class USCLBot {
      *            The user/manager issuing the command.
      */
     @PermitAll
-    public void cmdShowSchedule(User teller) {
+    public void cmdShowSchedule(User teller, String args[]) {
         command.sendQuietly("qtell {0} {1}", teller, "Current Schedule:\\n");
         Collection<Game> games = tournamentService.findAllGames();
         for (Game game : games) {
