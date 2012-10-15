@@ -792,11 +792,14 @@ public class USCLBot {
      * @param teller
      *            The users issuing the command.
      */
+    @PermitAll
     public void cmdWho(User teller) {
+        Formatter msg = new Formatter();
         Collection<Player> playersOnline = tournamentService.findOnlinePlayers();
         for (Player player : playersOnline) {
-            command.tell(teller, "{0}", player);
+            msg.format("  %s \\n", player);
         }
+        command.qtell(teller, msg);
     }
 
     /**
