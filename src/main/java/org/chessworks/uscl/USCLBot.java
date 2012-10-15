@@ -697,7 +697,6 @@ public class USCLBot {
      */
     @PermitAll
     public void cmdShowSchedule(User teller) {
-        Formatter msg = new Formatter();
         command.sendQuietly("qtell {0} {1}", teller, "Current Schedule:\\n");
         Collection<Game> games = tournamentService.findAllGames();
         for (Game game : games) {
