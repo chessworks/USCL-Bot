@@ -992,14 +992,20 @@ public class USCLBot {
         int observerCount = game.observerCountMax - 1;
         tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
+        
+        int eventNumber = (game.boardNumber + 380);
+        
         if (adjourned) {
             game.status = GameState.ADJOURNED;
         } else if ("0-1".equals(scoreString)) {
             game.status = GameState.BLACK_WINS;
+            command.sendCommand("xtell rdgmx qadd {0} 6 0-1 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1-0".equals(scoreString)) {
             game.status = GameState.WHITE_WINS;
+            command.sendCommand("xtell rdgmx qadd {0} 6 1-0 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1/2-1/2".equals(scoreString)) {
             game.status = GameState.DRAW;
+            command.sendCommand("xtell rdgmx qadd {0} 6 1/2 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("aborted".equals(scoreString)) {
             game.status = GameState.NOT_STARTED;
         } else {
