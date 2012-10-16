@@ -22,7 +22,7 @@ public class TeamConverter extends AbstractConverter<Team> {
 			throw new ConversionException("Missing required input: <team>");
 		Team t = service.findTeam(s);
 		if (t == null) {
-			throw new ConversionException("Unknown team: {0}", s);
+			throw new ConversionException("Unknown team: %s", s);
 		}
 		return t;
 	}

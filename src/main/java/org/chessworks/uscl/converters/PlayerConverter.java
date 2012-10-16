@@ -22,7 +22,7 @@ public class PlayerConverter extends AbstractConverter<Player> {
 			throw new ConversionException("Missing required input: <player>");
 		Player p = service.findPlayer(s);
 		if (p == null) {
-			throw new ConversionException("Unknown player: {0}", s);
+			throw new ConversionException("Unknown player: %s", s);
 		}
 		return p;
 	}

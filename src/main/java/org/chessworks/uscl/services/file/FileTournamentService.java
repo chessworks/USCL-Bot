@@ -176,7 +176,7 @@ public class FileTournamentService extends SimpleTournamentService {
 				int rating = (ratingStr == null) ? -1 : Integer.parseInt(ratingStr);
 				Team team = FileTournamentService.super.findTeam(teamCode);
 				if (team == null)
-					throw new InvalidTeamException("Team \"{0}\" does not exist.");
+					throw new InvalidTeamException("Team \"%s\" does not exist.", teamCode);
 				assert team != null;
 				Player p = FileTournamentService.super.createPlayer(handle, team);
 				p.setRealName(realName);
