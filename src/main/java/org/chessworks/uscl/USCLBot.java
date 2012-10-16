@@ -1243,6 +1243,24 @@ public class USCLBot {
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
     }
 
+    /**
+     * Handles incoming DG_GAME_MESSAGE datagrams from the server.
+     * 
+     * The server sends this datagram anytime it wishes to print a message about
+     * the game. Such messages include going forward/backwards/etc.. USCLBot is
+     * a Speedtrap member and uses this datagram receive task-switch
+     * notification messages.
+     * 
+     * If a task switch event occurs, the bot will alert the event channel so
+     * the tournament director can take appropriate action.
+     */
+    public void processGameMessage(int gameNumber, String message) {
+        boolean isTaskSwitch = (message.contains(" focus "));
+        if (isTaskSwitch) {
+            command.tellAndEcho(CHANNEL_EVENTS_GROUP, "Task Switch: {0}", message);
+        }
+    }
+
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
     public void qtellProgrammers(String msg, Object... args) {
         Collection<User> programmerList = userService.findUsersInRole(programmerRole);
@@ -1386,6 +1404,7 @@ public class USCLBot {
         conn.addDatagramListener(conn, Datagram.DG_MOVE_LIST);
         conn.addDatagramListener(conn, Datagram.DG_SEND_MOVES);
         conn.addDatagramListener(conn, Datagram.DG_PLAYERS_IN_MY_GAME);
+        conn.addDatagramListener(conn, Datagram.DG_GAME_MESSAGE);
         conn.initiateConnect(hostName, hostPort);
     }
 
@@ -1616,6 +1635,11 @@ public class USCLBot {
                     PlayerState status = PlayerState.forCode(statusSymbol);
                     processPlayersInMyGame(gameNumber, playerHandle, status, seesKibitz);
                     break;
+                }
+                case Datagram.DG_GAME_MESSAGE : {
+                    int gameNumber = datagram.getInteger(0);
+                    String message = datagram.getString(1);
+                    processGameMessage(gameNumber, message);
                 }
             }
         }
