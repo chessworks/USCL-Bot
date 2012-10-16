@@ -45,6 +45,7 @@ import org.chessworks.uscl.services.InvalidPlayerException;
 import org.chessworks.uscl.services.InvalidTeamException;
 import org.chessworks.uscl.services.TournamentService;
 import org.chessworks.uscl.services.file.FileTournamentService;
+import org.chessworks.uscl.services.file.UsclSettingsService;
 
 import free.chessclub.ChessclubConstants;
 import free.chessclub.level2.Datagram;
@@ -63,9 +64,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "September 26, 2012";
+    public static final String BOT_RELEASE_DATE = "October 16, 2012";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.09";
+    public static final String BOT_RELEASE_NUMBER = "1.10";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
@@ -129,6 +130,7 @@ public class USCLBot {
         String playersFile = settings.getProperty("file.players", "data/Players.txt");
         String scheduleFile = settings.getProperty("file.schedule", "data/Games.txt");
         String teamsFile = settings.getProperty("file.teams", "data/Teams.txt");
+        String settingsFile = settings.getProperty("file.settings", "data/Settings.txt");
 
         SimpleTitleService titleService = new SimpleTitleService();
 
@@ -143,14 +145,19 @@ public class USCLBot {
         tournamentService.setTeamsFile(teamsFile);
         tournamentService.setTitleService(titleService);
         tournamentService.load();
+        
+        UsclSettingsService settingsService = new UsclSettingsService();
+        settingsService.setSettingsFile(settingsFile);
+        settingsService.load();
 
         bot.setTitleService(titleService);
         bot.setUserService(userService);
         bot.setTournamentService(tournamentService);
+        bot.setSettingsService(settingsService);
         bot.start();
     }
 
-    /**
+	/**
      * The password used when executing admin commands on the server.
      *
      * @see #setAdminPass(String)
@@ -220,6 +227,11 @@ public class USCLBot {
      * TournamentService is used to save information to disk about who is scheduled to play whom, when, and what chess board.
      */
     private TournamentService tournamentService;
+    
+    /**
+     * The {@link UsclSettingsService} service saves bot settings such as the library in which to save completed games.
+     */
+    private UsclSettingsService settingsService;
     
     /** Users with the manager role can talk to the bot. */
     private Role managerRole;
@@ -669,7 +681,7 @@ public class USCLBot {
         tournamentService.updateTeam(team);
         tournamentService.flush();
     }
-
+    
     /**
      * An alias for "show-schedule".
      */
@@ -782,6 +794,50 @@ public class USCLBot {
             command.tell(teller, "Test successful.");
             return;
         }
+    }
+
+	/**
+	 * Commands the bot to set a bot setting variable. This is used to change
+	 * any system settings, such as the LibList to append games.
+	 * 
+	 * Syntax: <tt>tset variable value</tt>
+	 * 
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
+	public void cmdTSet(User teller, String settingName,
+			StringBuffer settingValue) {
+		String val = settingValue.toString().trim();
+		try {
+			settingsService.setSettingAsString(settingName, val);
+			command.qtell(teller, " {0} set to {1}.", settingName, val);
+		} catch (ConversionException e) {
+			replyError(teller, e);
+		}
+	}
+
+	/**
+	 * Commands the bot to list all changeable bot settings.
+	 * 
+	 * Syntax: <tt>tvar</tt>
+	 * 
+	 * @param teller
+	 *            The user/manager issuing the command.
+	 */
+	public void cmdTVar(User teller) {
+    	Properties vars = settingsService.listSettings();
+    	int maxKeyLen = 0;
+    	for (Object key : vars.keySet()) {
+    		String varName = (String) key;
+    		maxKeyLen = Math.max(maxKeyLen, varName.length());
+    	}
+    	String pattern = "   %-" + maxKeyLen + "s : %s\\n";
+    	Formatter msg = new Formatter();
+    	msg.format(" Bot Variables:\\n");
+    	for (Map.Entry<Object, Object> entry : vars.entrySet()) {
+    		msg.format(pattern, entry.getKey(), entry.getValue());
+    	}
+    	command.qtell(teller, msg);
     }
 
     /**
@@ -1293,6 +1349,15 @@ public class USCLBot {
         this.tournamentService = service;
         this.cmd.setTournamentService(tournamentService);
     }
+    
+    /**
+     * Injects the instance of {@link UsclSettingsService} to use. The {@link UsclSettingsService} service saves bot settings such as the
+     * library in which to save completed games.
+     */
+    public void setSettingsService(UsclSettingsService settingsService) {
+    	this.settingsService = settingsService;
+	}
+
 
     /**
      * Injects the instance of {@link UserService} to use. The {@link UserService} service stores the list of managers & programmers authorized to use

@@ -54,6 +54,13 @@ public class TestFileTournamentService extends TestCase {
 		service4.setScheduleFile(scheduleFile);
 		service4.setTeamsFile(teamsFile);
 	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		playersFile.delete();
+		scheduleFile.delete();
+		teamsFile.delete();
+	}
 
 	public void testClearSchedule() throws Exception {
 		service.load();

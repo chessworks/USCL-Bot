@@ -1,0 +1,5 @@
+#USCL Bot Settings
+library-handle=USCL
+library-nextslot=196
+events-list-max-id=200
+events-list-min-id=100

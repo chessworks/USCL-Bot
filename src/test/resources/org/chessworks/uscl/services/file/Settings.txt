@@ -1,0 +1,8 @@
+#USCL Bot Settings
+
+testTrue=true
+testFalse=false
+test0=0
+test1=1
+testHello=hello
+textExtraSetting=5
