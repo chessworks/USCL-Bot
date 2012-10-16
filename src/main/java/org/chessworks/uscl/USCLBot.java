@@ -1255,10 +1255,17 @@ public class USCLBot {
      * the tournament director can take appropriate action.
      */
     public void processGameMessage(int gameNumber, String message) {
-        boolean isTaskSwitch = (message.contains(" focus "));
-        if (isTaskSwitch) {
-            command.tellAndEcho(CHANNEL_EVENTS_GROUP, "Task Switch: {0}", message);
+        boolean taskSwitch = (message.contains(" focus "));
+        if (!taskSwitch)
+            return;
+        Game game = tournamentService.findGame(gameNumber);
+        if (game == null) {
+            return;
         }
+        if (!game.status.isPlaying()) {
+            return;
+        }
+        command.tellAndEcho(CHANNEL_EVENTS_GROUP, "Task Switch: {0}", message);
     }
 
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
