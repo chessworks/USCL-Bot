@@ -40,4 +40,11 @@ public class Game {
 		}
 		else return status.getCode();
 	}
+
+    @Override
+    public String toString() {
+        String s = String.format("Game %d (%s vs %s - %s)", boardNumber, whitePlayer, blackPlayer, status.getCode());
+        return s;
+    }
+	
 }
