@@ -42,7 +42,7 @@ public class FileSettingsService implements Flushable {
 		if (converter == null) {
 			throw new NoSuchSettingException(settingName);
 		}
-		Object objectValue = converter.convert(value);
+		Object objectValue = converter.getAsObject(value);
 		storage.setProperty(settingName, value);
 		values.put(settingName, objectValue);
 		settingsIO.setDirty();
@@ -69,7 +69,7 @@ public class FileSettingsService implements Flushable {
 		}
 		Class<T> settingType = converter.getTargetType();
 		settingType.cast(value); //verify type.
-		String stringValue = converter.stringValue(value);
+		String stringValue = converter.getAsString(value);
 		storage.setProperty(settingName, stringValue);
 		values.put(settingName, value);
 		settingsIO.setDirty();
@@ -125,7 +125,7 @@ public class FileSettingsService implements Flushable {
 				String settingValue = (String) entry.getValue();
 				Converter<?> converter = converters.get(settingName);
 				if (converter != null) {
-					Object value = converter.convert(settingValue);
+					Object value = converter.getAsObject(settingValue);
 					values.put(settingName,  value);
 				} else {
 					values.put(settingName, settingValue);

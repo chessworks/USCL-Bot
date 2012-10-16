@@ -17,7 +17,7 @@ public class TeamConverter extends AbstractConverter<Team> {
 	}
 
 	@Override
-	public Team convert(String s) throws ConversionException {
+	public Team getAsObject(String s) throws ConversionException {
 		if (s == null)
 			throw new ConversionException("Missing required input: <team>");
 		Team t = service.findTeam(s);

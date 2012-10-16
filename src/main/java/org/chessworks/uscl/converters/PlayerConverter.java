@@ -17,7 +17,7 @@ public class PlayerConverter extends AbstractConverter<Player> {
 	}
 
 	@Override
-	public Player convert(String s) throws ConversionException {
+	public Player getAsObject(String s) throws ConversionException {
 		if (s == null)
 			throw new ConversionException("Missing required input: <player>");
 		Player p = service.findPlayer(s);
