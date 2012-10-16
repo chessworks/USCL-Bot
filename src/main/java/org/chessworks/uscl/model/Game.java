@@ -43,7 +43,7 @@ public class Game {
 
     @Override
     public String toString() {
-        String s = String.format("Game %d (%s vs %s - %s)", boardNumber, whitePlayer, blackPlayer, status.getCode());
+        String s = String.format("Game %d (%s vs %s - %s)", boardNumber, whitePlayer, blackPlayer, getStatusString());
         return s;
     }
 	
