@@ -1053,6 +1053,7 @@ public class USCLBot {
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
         
         int eventNumber = (game.boardNumber + 380);
+        if(game.boardNumber>4 && game.boardNumber<9) {  }
         
         if (adjourned) {
             game.status = GameState.ADJOURNED;
@@ -1150,7 +1151,7 @@ public class USCLBot {
         }
         player.setState(PlayerState.OFFLINE);
         Game game = tournamentService.findPlayerGame(player);
-        if (game != null) {
+        if (!game.status.isFinished()) {
             tellManagers("{0} departed", name);
             command.sendCommand("tell 399 {0} has departed.", name);
         }
