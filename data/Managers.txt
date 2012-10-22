@@ -28,10 +28,6 @@ user.Freebird.handle=FREEBIRD
 user.Freebird.name=Freebird
 user.Freebird.roles=manager
 
-user.Lisebeth.handle=Lisebeth
-user.Lisebeth.name=Liesbeth
-user.Lisebeth.roles=manager
-
 user.Lyon.handle=Lyon
 user.Lyon.name=Sandro
 user.Lyon.roles=manager
