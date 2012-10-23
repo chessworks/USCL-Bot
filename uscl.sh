@@ -16,6 +16,7 @@ if [[ "$1" != '--console' ]]; then
 	 exit
 fi
 
+cd $basedir
 while true; do
 	/bin/cp $currentJarFile $runJarFile
 	nice -n 5 java -Dusclbot.settingsFile="$settingsFile" -jar $runJarFile
