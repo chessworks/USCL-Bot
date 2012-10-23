@@ -1266,7 +1266,7 @@ public class USCLBot {
         if (!game.status.isPlaying()) {
             return;
         }
-        command.sendCommand("tell USCLTD Task Switch in {0}: {1}", game.getStatusString(), message);
+        command.atell("USCLTD", "Task Switch in {0}: {1}", game.getStatusString(), message);
     }
 
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
@@ -1533,6 +1533,32 @@ public class USCLBot {
                 msg = MessageFormat.format(msg, args);
             }
             sendQuietly("tell {0} {1}", user, msg);
+        }
+
+        /**
+         * Sends an admin tell to the user.  Admin tells should be used for routine
+         * messages and tells reserved for important messages.  While this seems
+         * backwards, it helps the user avoid confusing routine bot tells with personal
+         * tells from others.
+         */
+        public void atell(String handle, String msg, Object... args) {
+            if (args.length > 0) {
+                msg = MessageFormat.format(msg, args);
+            }
+            sendQuietly("atell {0} {1}", handle, msg);
+        }
+
+        /**
+         * Sends an admin tell to the user.  Admin tells should be used for routine
+         * messages and tells reserved for important messages.  While this seems
+         * backwards, it helps the user avoid confusing routine bot tells with personal
+         * tells from others.
+         */
+        public void atell(User user, String msg, Object... args) {
+            if (args.length > 0) {
+                msg = MessageFormat.format(msg, args);
+            }
+            sendQuietly("atell {0} {1}", user, msg);
         }
 
         /**
