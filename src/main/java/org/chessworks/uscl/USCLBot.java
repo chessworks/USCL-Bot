@@ -64,9 +64,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "October 16, 2012";
+    public static final String BOT_RELEASE_DATE = "October 23, 2012";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.10";
+    public static final String BOT_RELEASE_NUMBER = "1.11";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
