@@ -1056,20 +1056,20 @@ public class USCLBot {
         if(game.boardNumber>4 && game.boardNumber<9) {  }
         
         if (adjourned) {
-            game.status = GameState.ADJOURNED;
+            tournamentService.updateGameStatus(game, GameState.ADJOURNED);
         } else if ("0-1".equals(scoreString)) {
-            game.status = GameState.BLACK_WINS;
+            tournamentService.updateGameStatus(game, GameState.BLACK_WINS);
             command.sendCommand("xtell rdgmx qadd {0} 6 0-1 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1-0".equals(scoreString)) {
-            game.status = GameState.WHITE_WINS;
+            tournamentService.updateGameStatus(game, GameState.WHITE_WINS);
             command.sendCommand("xtell rdgmx qadd {0} 6 1-0 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1/2-1/2".equals(scoreString)) {
-            game.status = GameState.DRAW;
+            tournamentService.updateGameStatus(game, GameState.DRAW);
             command.sendCommand("xtell rdgmx qadd {0} 6 1/2 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("aborted".equals(scoreString)) {
-            game.status = GameState.NOT_STARTED;
+            tournamentService.updateGameStatus(game, GameState.NOT_STARTED);
         } else {
-            game.status = GameState.UNKNOWN;
+            tournamentService.updateGameStatus(game, GameState.UNKNOWN);
             alertManagers("Error: unexpected game status \"{0}\": {1}", gameResultCode, scoreString);
         }
         if (!adjourned) {
@@ -1230,7 +1230,7 @@ public class USCLBot {
             alertManagers("I am totally confused.  I don't have a scheduled game for: {0} {1}", whiteName, blackName);
             return;
         }
-        game.status = GameState.PLAYING;
+        tournamentService.updateGameStatus(game, GameState.PLAYING);
         game.needsAnnounce = true;
         game.whitePlayer = whitePlayer;
         game.blackPlayer = blackPlayer;

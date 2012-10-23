@@ -17,6 +17,7 @@ import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.common.javatools.collections.CollectionHelper;
 import org.chessworks.uscl.USCLBot;
 import org.chessworks.uscl.model.Game;
+import org.chessworks.uscl.model.GameState;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -66,6 +67,12 @@ public class FileTournamentService extends SimpleTournamentService {
 		scheduleIO.setDirty();
 		return result;
 	}
+
+	@Override
+    public void updateGameStatus(Game game, GameState status) {
+        game.status = status;
+        scheduleIO.setDirty();
+    }
 
 	@Override
 	public boolean removePlayer(Player player) {
@@ -290,10 +297,13 @@ public class FileTournamentService extends SimpleTournamentService {
 				String game = args[1];
 				String white = args[2];
 				String black = args[3];
+                String statusString = args[4];
 				int board = Integer.parseInt(game);
 				Player whitePlayer = findPlayer(white);
 				Player blackPlayer = findPlayer(black);
-				FileTournamentService.super.scheduleGame(board, whitePlayer, blackPlayer);
+                GameState status = GameState.valueOf(statusString);
+				Game g = FileTournamentService.super.scheduleGame(board, whitePlayer, blackPlayer);
+                FileTournamentService.super.updateGameStatus(g, status);
 			}
 		}
 
@@ -306,12 +316,13 @@ public class FileTournamentService extends SimpleTournamentService {
 				Player white = game.whitePlayer;
 				Player black = game.blackPlayer;
 				int board = game.boardNumber;
-				String line = MessageFormat.format("schedule-game {0} {1} {2}", board, white.getHandle(), black.getHandle());
+				GameState status = game.status;
+				String line = MessageFormat.format("schedule-game {0} {1} {2} {3}", board, white.getHandle(), black.getHandle(), status.name());
 				out.println(line);
 			}
 			out.println();
 		}
 
-	};
+	}
 
 }

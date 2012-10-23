@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import org.chessworks.common.service.BasicLifecycle;
 import org.chessworks.uscl.model.Game;
+import org.chessworks.uscl.model.GameState;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -396,5 +397,15 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		list = Collections.unmodifiableList(list);
 		return list;
 	}
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.chessworks.uscl.services.TournamentService#updateGameStatus(Game, GameState)
+     */
+    @Override
+    public void updateGameStatus(Game game, GameState status) {
+        game.status = status;
+    }
 
 }

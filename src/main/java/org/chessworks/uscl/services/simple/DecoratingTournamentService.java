@@ -3,6 +3,7 @@ package org.chessworks.uscl.services.simple;
 import java.util.Collection;
 
 import org.chessworks.uscl.model.Game;
+import org.chessworks.uscl.model.GameState;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.chessworks.uscl.services.InvalidPlayerException;
@@ -255,7 +256,17 @@ public class DecoratingTournamentService implements TournamentService {
 		return service.scheduleGame(board, white, black);
 	}
 
-	/**
+    /**
+     * Delegates all calls to the underlying {@link TournamentService}.
+     *
+     * @see org.chessworks.uscl.services.TournamentService#updateGameStatus(Game, GameState)
+     */
+	@Override
+    public void updateGameStatus(Game game, GameState status) {
+	    service.updateGameStatus(game, status);
+    }
+
+    /**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
 	 * @see org.chessworks.uscl.services.TournamentService#updatePlayer(org.chessworks.uscl.model.Player)

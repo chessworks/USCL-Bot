@@ -4,63 +4,63 @@ import java.io.Flushable;
 import java.util.Collection;
 
 import org.chessworks.uscl.model.Game;
+import org.chessworks.uscl.model.GameState;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 
 public interface TournamentService extends Flushable {
 
-	Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
+    Player createPlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
 
-	Player createPlayer(String handle, Team team) throws InvalidPlayerException;
+    Player createPlayer(String handle, Team team) throws InvalidPlayerException;
 
-	Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
+    Player findOrCreatePlayer(String handle) throws InvalidPlayerException, InvalidTeamException;
 
-	Player findPlayer(String handle);
+    Player findPlayer(String handle);
 
-	Collection<Player> findOnlinePlayers();
+    Collection<Player> findOnlinePlayers();
 
-	Collection<Player> findAllPlayers();
+    Collection<Player> findAllPlayers();
 
-	Collection<Player> findScheduledPlayers();
+    Collection<Player> findScheduledPlayers();
 
-	boolean removePlayer(Player player);
+    boolean removePlayer(Player player);
 
-	void updatePlayer(Player player);
+    void updatePlayer(Player player);
 
-	
-	Team createTeam(String teamCode) throws InvalidTeamException;
+    Team createTeam(String teamCode) throws InvalidTeamException;
 
-	Team findOrCreateTeam(String handle) throws InvalidTeamException;
+    Team findOrCreateTeam(String handle) throws InvalidTeamException;
 
-	Team findTeam(String teamCode);
+    Team findTeam(String teamCode);
 
-	Collection<Team> findAllTeams();
+    Collection<Team> findAllTeams();
 
-	int removeTeam(Team team);
+    int removeTeam(Team team);
 
-	void updateTeam(Team team);
+    void updateTeam(Team team);
 
+    Game findGame(int gameNumber);
 
-	Game findGame(int gameNumber);
+    Game findPlayerGame(Player player);
 
-	Game findPlayerGame(Player player);
+    Collection<Game> findAllGames();
 
-	Collection<Game> findAllGames();
+    Game scheduleGame(Game game);
 
-	Game scheduleGame(Game game);
-	
-	Game scheduleGame(int board, Player white, Player black);
+    Game scheduleGame(int board, Player white, Player black);
 
-	Game cancelGame(Game game);
+    void updateGameStatus(Game game, GameState status);
 
-	Game cancelGame(Player player);
+    Game cancelGame(Game game);
 
-	Game cancelGame(int board);
+    Game cancelGame(Player player);
 
-	void clearSchedule();
-	
+    Game cancelGame(int board);
 
-	/** Saves any unwritten data. */
-	void flush();
+    void clearSchedule();
+
+    /** Saves any unwritten data. */
+    void flush();
 
 }
