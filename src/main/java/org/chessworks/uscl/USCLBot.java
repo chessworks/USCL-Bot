@@ -1266,7 +1266,7 @@ public class USCLBot {
         if (!game.status.isPlaying()) {
             return;
         }
-        command.tellAndEcho(CHANNEL_EVENTS_GROUP, "Task Switch in {0}: {1}", game.getStatusString(), message);
+        command.sendCommand("tell USCLTD Task Switch in {0}: {1}", game.getStatusString(), message);
     }
 
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
