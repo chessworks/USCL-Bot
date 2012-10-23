@@ -1076,6 +1076,7 @@ public class USCLBot {
             command.sendCommand("qset {0} isolated 0", game.whitePlayer);
             command.sendCommand("qset {0} isolated 0", game.blackPlayer);
         }
+        tournamentService.flush();
     }
 
     /**
@@ -1231,6 +1232,7 @@ public class USCLBot {
             return;
         }
         tournamentService.updateGameStatus(game, GameState.PLAYING);
+        tournamentService.flush();
         game.needsAnnounce = true;
         game.whitePlayer = whitePlayer;
         game.blackPlayer = blackPlayer;
