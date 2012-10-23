@@ -1,5 +1,6 @@
 #USCL Bot Settings
+#Mon Oct 22 18:32:01 EDT 2012
 library-handle=USCL
-library-nextslot=196
+library-nextslot=211
 events-list-max-id=200
 events-list-min-id=100

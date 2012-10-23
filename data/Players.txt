@@ -925,11 +925,11 @@ player.Schroer-CAR.titles=(IM)
 player.Schroer-CAR.website=http://uschessleague.com/player.php?p=jonathan-schroer
 
 player.Selzler-BAL.handle=Selzler-BAL
-player.Selzler-BAL.name=Ricky Selzler
+player.Selzler-BAL.name=Richard Selzler
 player.Selzler-BAL.rating=2242
 player.Selzler-BAL.team=BAL
 player.Selzler-BAL.titles=(NM)
-player.Selzler-BAL.website=http://uschessleague.com/player.php?p=ricky-selzler
+player.Selzler-BAL.website=http://uschessleague.com/player.php?p=richard-selzler
 
 player.Sevian-SF.handle=Sevian-SF
 player.Sevian-SF.name=Samuel Sevian
@@ -1133,4 +1133,14 @@ player.Zimmer-BAL.rating=2304
 player.Zimmer-BAL.team=BAL
 player.Zimmer-BAL.titles=(FM)
 player.Zimmer-BAL.website=http://uschessleague.com/player.php?p=ralph-zimmer
+
+player.DuckStorm.handle=DuckStorm
+player.DuckStorm.name=Doug Bateman
+player.DuckStorm.rating=1538
+player.DuckStorm.team=ICC
+
+player.QuackAttack.handle=QuackAttack
+player.QuackAttack.name=Doug Bateman
+player.QuackAttack.rating=1538
+player.QuackAttack.team=ICC
 
