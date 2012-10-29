@@ -308,6 +308,13 @@ player.Dehmelt-PHI.team=PHI
 player.Dehmelt-PHI.titles=(FM)
 player.Dehmelt-PHI.website=http://uschessleague.com/player.php?p=karl-dehmelt
 
+player.Diamant-STL.handle=Diamant-STL
+player.Diamant-STL.name=Andre Diamant
+player.Diamant-STL.rating=2527
+player.Diamant-STL.team=STL
+player.Diamant-STL.titles=(GM)
+player.Diamant-STL.website=http://www.uschessleague.com/player.php?p=andre-diamant
+
 player.Donaldson-SF.handle=Donaldson-SF
 player.Donaldson-SF.name=John Donaldson
 player.Donaldson-SF.rating=2408
@@ -321,6 +328,13 @@ player.DSchneider-MAN.rating=2522
 player.DSchneider-MAN.team=MAN
 player.DSchneider-MAN.titles=(IM)
 player.DSchneider-MAN.website=http://uschessleague.com/player.php?p=dmitry-schneider
+
+player.DuckStorm.handle=DuckStorm
+player.DuckStorm.name=Doug Bateman
+player.DuckStorm.rating=1538
+player.DuckStorm.team=ICC
+player.DuckStorm.titles=
+player.DuckStorm.website=Unavailable
 
 player.Eckert-STL.handle=Eckert-STL
 player.Eckert-STL.name=Doug Eckert
@@ -826,6 +840,13 @@ player.PWang-DAL.team=DAL
 player.PWang-DAL.titles=(IM)
 player.PWang-DAL.website=http://uschessleague.com/player.php?p=puchen-wang
 
+player.QuackAttack.handle=QuackAttack
+player.QuackAttack.name=Doug Bateman
+player.QuackAttack.rating=1538
+player.QuackAttack.team=ICC
+player.QuackAttack.titles=
+player.QuackAttack.website=Unavailable
+
 player.RCostigan-PHI.handle=RCostigan-PHI
 player.RCostigan-PHI.name=Richard Costigan
 player.RCostigan-PHI.rating=2288
@@ -1133,14 +1154,4 @@ player.Zimmer-BAL.rating=2304
 player.Zimmer-BAL.team=BAL
 player.Zimmer-BAL.titles=(FM)
 player.Zimmer-BAL.website=http://uschessleague.com/player.php?p=ralph-zimmer
-
-player.DuckStorm.handle=DuckStorm
-player.DuckStorm.name=Doug Bateman
-player.DuckStorm.rating=1538
-player.DuckStorm.team=ICC
-
-player.QuackAttack.handle=QuackAttack
-player.QuackAttack.name=Doug Bateman
-player.QuackAttack.rating=1538
-player.QuackAttack.team=ICC
 
