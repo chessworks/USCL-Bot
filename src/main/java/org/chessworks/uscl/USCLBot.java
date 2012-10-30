@@ -33,6 +33,7 @@ import org.chessworks.chess.services.InvalidNameException;
 import org.chessworks.chess.services.UserService;
 import org.chessworks.chess.services.file.FileUserService;
 import org.chessworks.chess.services.simple.SimpleTitleService;
+import org.chessworks.chessclub.ChatType;
 import org.chessworks.common.javatools.BaseException;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
@@ -239,6 +240,9 @@ public class USCLBot {
     /** Users with the programmer role receive extra debugging information from the bot. */
     private Role programmerRole;
     
+    /** Users with the busters role get notifications about task-switch events. */
+    private Role bustersRole;
+    
     /** The user name assigned by the chess server upon login. e.g. guest233. */
     private String userName;
 
@@ -249,7 +253,7 @@ public class USCLBot {
      */
     public void alertManagers(String msg, Object... args) {
         Set<User> managerList = userService.findUsersInRole(managerRole);
-        broadcast("tell", managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
+        broadcast(ChatType.PERSONAL_TELL, managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
         tellManagers(msg, args);
     }
 
@@ -265,36 +269,19 @@ public class USCLBot {
      * @param args
      *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
      */
-    public void broadcast(String tellType, Collection<User> users, String msg, Object... args) {
+    public void broadcast(ChatType tellType, Collection<User> users, String msg, Object... args) {
         if (args.length > 0) {
             msg = MessageFormat.format(msg, args);
         }
+        if (tellType.requiresAdmin) {
+            command.sendQuietly("admin {0}", adminPass);
+        }
         for (User user : users) {
-            command.sendQuietly("{0} {1} {2}", tellType, user, msg);
+            command.sendQuietly("{0} {1} {2}", tellType.command, user, msg);
         }
-    }
-
-    /**
-     * Sends a message to all players in the list, with the admin (*) enabled.
-     *
-     * @param tellType
-     *            The type of tell to use: "tell", "qtell", "message", etc.
-     * @param users
-     *            The users to receive the message.
-     * @param msg
-     *            The message to send. It may optionally use {@link MessageFormat} style formatting.
-     * @param args
-     *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
-     */
-    public void broadcastAsAdmin(String tellType, Collection<User> users, String msg, Object... args) {
-        if (args.length > 0) {
-            msg = MessageFormat.format(msg, args);
+        if (tellType.requiresAdmin) {
+            command.sendQuietly("admin");
         }
-        command.sendQuietly("admin {0}", adminPass);
-        for (User user : users) {
-            command.sendQuietly("{0} {1} {2}", tellType, user, msg);
-        }
-        command.sendQuietly("admin");
     }
 
     /**
@@ -1268,13 +1255,13 @@ public class USCLBot {
         if (!game.status.isPlaying()) {
             return;
         }
-        command.atell("USCLTD", "Task Switch in {0}: {1}", game.getStatusString(), message);
+        tellBusters("Task Switch in {0}: {1}", game.getStatusString(), message);
     }
 
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
     public void qtellProgrammers(String msg, Object... args) {
         Collection<User> programmerList = userService.findUsersInRole(programmerRole);
-        broadcast("qtell", programmerList, msg, args);
+        broadcast(ChatType.PERSONAL_QTELL, programmerList, msg, args);
     }
 
     /**
@@ -1306,7 +1293,7 @@ public class USCLBot {
         String msg = w.toString();
         msg = msg.replaceAll("\n", "\\\\n");
         Collection<User> programmerList = userService.findUsersInRole(programmerRole);
-        broadcast("tell", programmerList, t.toString());
+        broadcast(ChatType.PERSONAL_TELL, programmerList, t.toString());
         qtellProgrammers(msg);
     }
 
@@ -1395,6 +1382,7 @@ public class USCLBot {
         this.userService = service;
         this.managerRole = service.findOrCreateRole("manager");
         this.programmerRole = service.findOrCreateRole("debugger");
+        this.bustersRole = service.findOrCreateRole("busters");
         this.cmd.setUserService(service);
     }
 
@@ -1436,7 +1424,17 @@ public class USCLBot {
      */
     public void tellManagers(String msg, Object... args) {
         Collection<User> managerList = userService.findUsersInRole(managerRole);
-        broadcastAsAdmin("atell", managerList, msg, args);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerList, msg, args);
+    }
+
+    /**
+     * Sends a routine tell to busters/speedtrap. This is typically used to keep them informed of task-switch notifications. The bot uses atells
+     * rather than regular tells, as this makes it easy for the manager to distinguish between tells sent by players (who expect a reply) and routine
+     * tells sent by the bot.
+     */
+    public void tellBusters(String msg, Object... args) {
+        Collection<User> managerList = userService.findUsersInRole(bustersRole);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerList, msg, args);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */

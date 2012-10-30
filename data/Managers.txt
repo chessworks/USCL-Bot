@@ -2,7 +2,7 @@
 
 user.DuckStorm.handle=DuckStorm
 user.DuckStorm.name=Doug Bateman
-user.DuckStorm.roles=manager, debugger, test-user
+user.DuckStorm.roles=manager, debugger, busters, test-user
 
 user.MrBob.handle=MrBob
 user.MrBob.name=Bob
@@ -39,3 +39,7 @@ user.albi.roles=manager
 user.xtal.handle=xtal
 user.xtal.name=Raul
 user.xtal.roles=manager
+
+user.USCLTD.handle=USCLTD
+user.USCLTD.name=Chris
+user.USCLTD.roles=busters
