@@ -339,25 +339,6 @@ public class USCLBot {
         command.tell(teller, "To set the team name, use: \"set-team {0} name New York Giants\"", team.getTeamCode());
         cmdShowTeam(teller, team);
     }
-    
-     /**
-     * Commands the bot to spoofs rdgmx to ban all USCL accounts when the season is over.
-     *
-     * Syntax: <tt>refresh-all-profiles</tt>
-     *
-     * @param teller
-     *            The user/manager issuing the command.
-     */
-    public void cmdBanAllProfiles(User teller) {
-        String msg = '';
-        Collection<Player> players = tournamentService.findAllPlayers();
-        for (Player p : players) {
-
-             msg = "+ban {0}",p;
-            command.qtell(teller, msg);
-        }
-    }
-
 
     /**
      * Deprecated. Use {@link #cmdClearGames()} instead.
@@ -476,12 +457,12 @@ public class USCLBot {
      *            The user/manager issuing the command.
      * @see #cmdRefreshProfile(User, Player)
      */
-     public void cmdRefreshAllProfiles(User teller) {
+    public void cmdRefreshAllProfiles(User teller) {
         Collection<Player> players = tournamentService.findAllPlayers();
         for (Player p : players) {
-            sendCommand
+            cmdRefreshProfile(teller, p);
         }
-     }
+    }
 
     /**
      * Commands the bot to update the online finger notes for the given player. The profile will contain the user's real name, USCL rating, USCL
