@@ -1,6 +1,6 @@
 package org.chessworks.uscl.services;
 
-import org.chessworks.common.javatools.BaseRuntimeException;
+import org.chessworks.common.javatools.exceptions.BaseRuntimeException;
 
 public class NoSuchSettingException extends BaseRuntimeException {
 
