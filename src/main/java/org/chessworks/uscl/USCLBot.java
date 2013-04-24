@@ -34,9 +34,9 @@ import org.chessworks.chess.services.UserService;
 import org.chessworks.chess.services.file.FileUserService;
 import org.chessworks.chess.services.simple.SimpleTitleService;
 import org.chessworks.chessclub.ChatType;
-import org.chessworks.common.javatools.BaseException;
 import org.chessworks.common.javatools.ComparisionHelper;
 import org.chessworks.common.javatools.collections.CollectionHelper;
+import org.chessworks.common.javatools.exceptions.BaseException;
 import org.chessworks.common.javatools.io.FileHelper;
 import org.chessworks.uscl.model.Game;
 import org.chessworks.uscl.model.GameState;
@@ -252,8 +252,7 @@ public class USCLBot {
      * To gain the attention of the manager, this method will use both a tell and an atell.
      */
     public void alertManagers(String msg, Object... args) {
-        Set<User> managerList = userService.findUsersInRole(managerRole);
-        broadcast(ChatType.PERSONAL_TELL, managerList, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
+        broadcast(ChatType.PERSONAL_TELL, managerRole, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
         tellManagers(msg, args);
     }
 
@@ -282,6 +281,23 @@ public class USCLBot {
         if (tellType.requiresAdmin) {
             command.sendQuietly("admin");
         }
+    }
+
+    /**
+     * Sends a message to all users with the given role/group.
+     *
+     * @param tellType
+     *            The type of tell to use: "tell", "qtell", "message", etc.
+     * @param role
+     *            The role/group who's users will receive the message.
+     * @param msg
+     *            The message to send. It may optionally use {@link MessageFormat} style formatting.
+     * @param args
+     *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
+     */
+    public void broadcast(ChatType tellType, Role role, String msg, Object... args) {
+        Set<User> users = userService.findUsersInRole(role);
+        broadcast(tellType, users, msg, args);
     }
 
     /**
@@ -338,6 +354,22 @@ public class USCLBot {
         command.tell(teller, "Done.  Team {0} has now been created.", team.getTeamCode());
         command.tell(teller, "To set the team name, use: \"set-team {0} name New York Giants\"", team.getTeamCode());
         cmdShowTeam(teller, team);
+    }
+    
+    /**
+     * Commands the bot to send sample commands to ban all USCL accounts when the season
+     * is over.
+     * 
+     * Syntax: <tt>ban-all-players</tt>
+     * 
+     * @param teller
+     *            The user/manager issuing the command.
+     */
+    public void cmdBanAllPlayers(User teller) {
+        Collection<Player> players = tournamentService.findAllPlayers();
+        for (Player p : players) {
+            command.qtell(teller, "+ban {0}", p);
+        }
     }
 
     /**
@@ -1227,7 +1259,7 @@ public class USCLBot {
         command.spoof("ROBOadmin", "observe {0}", gameNumber);
         command.sendAdminCommand("spoof {0} set busy 2", whitePlayer);
         command.sendAdminCommand("spoof {0} set busy 2", blackPlayer);
-        command.sendAdminCommand("qsuggest USCLTD observe {0}", gameNumber);
+        command.qsuggest("USCLTD", "observe {0}", gameNumber);
         command.sendAdminCommand("spoof {0} ;-notify USCL; +notify USCLTD", whitePlayer);
         command.sendAdminCommand("spoof {0} ;-notify USCL; +notify USCLTD", blackPlayer);
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
@@ -1260,8 +1292,7 @@ public class USCLBot {
 
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
     public void qtellProgrammers(String msg, Object... args) {
-        Collection<User> programmerList = userService.findUsersInRole(programmerRole);
-        broadcast(ChatType.PERSONAL_QTELL, programmerList, msg, args);
+        broadcast(ChatType.PERSONAL_QTELL, programmerRole, msg, args);
     }
 
     /**
@@ -1292,8 +1323,7 @@ public class USCLBot {
         t.printStackTrace(p);
         String msg = w.toString();
         msg = msg.replaceAll("\n", "\\\\n");
-        Collection<User> programmerList = userService.findUsersInRole(programmerRole);
-        broadcast(ChatType.PERSONAL_TELL, programmerList, t.toString());
+        broadcast(ChatType.PERSONAL_TELL, programmerRole, t.toString());
         qtellProgrammers(msg);
     }
 
@@ -1423,8 +1453,7 @@ public class USCLBot {
      * tells sent by the bot.
      */
     public void tellManagers(String msg, Object... args) {
-        Collection<User> managerList = userService.findUsersInRole(managerRole);
-        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerList, msg, args);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerRole, msg, args);
     }
 
     /**
@@ -1433,8 +1462,7 @@ public class USCLBot {
      * tells sent by the bot.
      */
     public void tellBusters(String msg, Object... args) {
-        Collection<User> managerList = userService.findUsersInRole(bustersRole);
-        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerList, msg, args);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, bustersRole, msg, args);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
@@ -1470,7 +1498,17 @@ public class USCLBot {
             String qtell = MessageFormat.format(pattern, args);
             sendQuietly("qtell {0} {1}\\n", user, qtell);
         }
-
+        
+        public void qsuggest(User user, String pattern, Object... args) {
+            String qtell = MessageFormat.format(pattern, args);
+            sendQuietly("qsuggest {0} {1}\\n", user, qtell);
+        }
+        
+        public void qsuggest(String handle, String pattern, Object... args) {
+            String qtell = MessageFormat.format(pattern, args);
+            sendQuietly("qsuggest {0} {1}\\n", handle, qtell);
+        }
+        
         public void sendAdminCommand(String command, Object... args) {
             if (args.length > 0) {
                 command = MessageFormat.format(command, args);
