@@ -240,8 +240,8 @@ public class USCLBot {
     /** Users with the programmer role receive extra debugging information from the bot. */
     private Role programmerRole;
     
-    /** Users with the busters role get notifications about task-switch events. */
-    private Role bustersRole;
+    /** Module which assists speedtrap by tracking task-switch notifications during tournament games */
+    private TaskSwitchTracker taskSwitchTracker = new TaskSwitchTracker();
     
     /** The user name assigned by the chess server upon login. e.g. guest233. */
     private String userName;
@@ -1265,31 +1265,6 @@ public class USCLBot {
         /* Announcement will occur when the move list arrives, since we can then tell if it's a resumed game. */
     }
 
-    /**
-     * Handles incoming DG_GAME_MESSAGE datagrams from the server.
-     * 
-     * The server sends this datagram anytime it wishes to print a message about
-     * the game. Such messages include going forward/backwards/etc.. USCLBot is
-     * a Speedtrap member and uses this datagram receive task-switch
-     * notification messages.
-     * 
-     * If a task switch event occurs, the bot will alert the event channel so
-     * the tournament director can take appropriate action.
-     */
-    public void processGameMessage(int gameNumber, String message) {
-        boolean taskSwitch = (message.contains(" focus "));
-        if (!taskSwitch)
-            return;
-        Game game = tournamentService.findGame(gameNumber);
-        if (game == null) {
-            return;
-        }
-        if (!game.status.isPlaying()) {
-            return;
-        }
-        tellBusters("Task Switch in {0}: {1}", game.getStatusString(), message);
-    }
-
     /** Sends a qtell to all programmers. Typically this is used to send debugging information. */
     public void qtellProgrammers(String msg, Object... args) {
         broadcast(ChatType.PERSONAL_QTELL, programmerRole, msg, args);
@@ -1412,7 +1387,6 @@ public class USCLBot {
         this.userService = service;
         this.managerRole = service.findOrCreateRole("manager");
         this.programmerRole = service.findOrCreateRole("debugger");
-        this.bustersRole = service.findOrCreateRole("busters");
         this.cmd.setUserService(service);
     }
 
@@ -1433,6 +1407,11 @@ public class USCLBot {
         conn.addDatagramListener(conn, Datagram.DG_SEND_MOVES);
         conn.addDatagramListener(conn, Datagram.DG_PLAYERS_IN_MY_GAME);
         conn.addDatagramListener(conn, Datagram.DG_GAME_MESSAGE);
+        taskSwitchTracker.setUserService(userService);
+        taskSwitchTracker.setTournamentService(tournamentService);
+        taskSwitchTracker.setConnection(conn);
+        taskSwitchTracker.setUSCLBot(this);
+        taskSwitchTracker.start();
         conn.initiateConnect(hostName, hostPort);
     }
 
@@ -1454,15 +1433,6 @@ public class USCLBot {
      */
     public void tellManagers(String msg, Object... args) {
         broadcast(ChatType.PERSONAL_ADMIN_TELL, managerRole, msg, args);
-    }
-
-    /**
-     * Sends a routine tell to busters/speedtrap. This is typically used to keep them informed of task-switch notifications. The bot uses atells
-     * rather than regular tells, as this makes it easy for the manager to distinguish between tells sent by players (who expect a reply) and routine
-     * tells sent by the bot.
-     */
-    public void tellBusters(String msg, Object... args) {
-        broadcast(ChatType.PERSONAL_ADMIN_TELL, bustersRole, msg, args);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
@@ -1707,11 +1677,6 @@ public class USCLBot {
                     PlayerState status = PlayerState.forCode(statusSymbol);
                     processPlayersInMyGame(gameNumber, playerHandle, status, seesKibitz);
                     break;
-                }
-                case Datagram.DG_GAME_MESSAGE : {
-                    int gameNumber = datagram.getInteger(0);
-                    String message = datagram.getString(1);
-                    processGameMessage(gameNumber, message);
                 }
             }
         }
