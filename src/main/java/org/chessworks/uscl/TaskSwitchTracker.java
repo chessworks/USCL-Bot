@@ -74,7 +74,7 @@ public class TaskSwitchTracker implements DatagramListener {
     }
 
     public void setConnection(ChessclubConnection conn) {
-        conn.addDatagramListener(this, Datagram.DG_GAME_MESSAGE);
+        this.conn = conn;
     }
 
     public final void setUSCLBot(USCLBot bot) {
