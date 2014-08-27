@@ -40,6 +40,3 @@ user.xtal.handle=xtal
 user.xtal.name=Raul
 user.xtal.roles=manager
 
-user.USCLTD.handle=USCLTD
-user.USCLTD.name=Chris
-user.USCLTD.roles=busters
