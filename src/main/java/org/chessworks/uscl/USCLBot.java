@@ -904,6 +904,8 @@ public class USCLBot {
         } else {
             command.tell(teller, "Okay, game \"{0} - {1} {2}\" is no longer scheduled.", game.boardNumber, game.whitePlayer, game.blackPlayer);
             command.sendCommand("-notify {0}", game.whitePlayer);
+            command.sendAdminCommand("spoof rdgmx -notify {0}", game.whitePlayer);
+            command.sendAdminCommand("spoof rdgmx -notify {0}", game.blackPlayer);
             command.sendCommand("-notify {0}", game.blackPlayer);
         }
     }
