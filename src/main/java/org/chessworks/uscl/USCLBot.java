@@ -1052,6 +1052,8 @@ public class USCLBot {
         }
         command.sendCommand("qset {0} isolated 1", game.whitePlayer);
         command.sendCommand("qset {0} isolated 1", game.blackPlayer);
+        command.sendAdminCommand("+kmuzzle {0}", game.whitePlayer);
+        command.sendAdminCommand("+kmuzzle {0}", game.blackPlayer);
     }
 
     /**
@@ -1096,6 +1098,8 @@ public class USCLBot {
         if (!adjourned) {
             command.sendCommand("qset {0} isolated 0", game.whitePlayer);
             command.sendCommand("qset {0} isolated 0", game.blackPlayer);
+            command.sendAdminCommand("-kmuzzle {0}", game.whitePlayer);
+            command.sendAdminCommand("-kmuzzle {0}", game.blackPlayer);
         }
         tournamentService.flush();
     }
