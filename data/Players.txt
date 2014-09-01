@@ -1,3 +1,1549 @@
 #USCL Players
 
+player.Aaron-ATL.handle=Aaron-ATL
+player.Aaron-ATL.name=Deepak Aaron
+player.Aaron-ATL.rating=2446
+player.Aaron-ATL.team=ATL
+player.Aaron-ATL.titles=(SM)
+player.Aaron-ATL.website=http://uschessleague.com/player.php?p=deepak-aaron
+
+player.Adamson-ARZ.handle=Adamson-ARZ
+player.Adamson-ARZ.name=Robby Adamson
+player.Adamson-ARZ.rating=2347
+player.Adamson-ARZ.team=ARZ
+player.Adamson-ARZ.titles=(FM)
+player.Adamson-ARZ.website=http://uschessleague.com/player.php?p=robby-adamson
+
+player.AdithyaB-BAL.handle=AdithyaB-BAL
+player.AdithyaB-BAL.name=Adithya Balasubramanian
+player.AdithyaB-BAL.rating=2345
+player.AdithyaB-BAL.team=BAL
+player.AdithyaB-BAL.titles=(NM)
+player.AdithyaB-BAL.website=http://uschessleague.com/player.php?p=adithya-balasubramanian
+
+player.Agner-CAR.handle=Agner-CAR
+player.Agner-CAR.name=Carlito Agner
+player.Agner-CAR.rating=2228
+player.Agner-CAR.team=CAR
+player.Agner-CAR.titles=(NM)
+player.Agner-CAR.website=http://uschessleague.com/player.php?p=carlito-agner
+
+player.AIvanov-NE.handle=AIvanov-NE
+player.AIvanov-NE.name=Alexander Ivanov
+player.AIvanov-NE.rating=2589
+player.AIvanov-NE.team=NE
+player.AIvanov-NE.titles=(GM)
+player.AIvanov-NE.website=http://uschessleague.com/player.php?p=alexander-ivanov
+
+player.AKatz-NJ.handle=AKatz-NJ
+player.AKatz-NJ.name=Alexander Katz
+player.AKatz-NJ.rating=2380
+player.AKatz-NJ.team=NJ
+player.AKatz-NJ.titles=(IM)
+player.AKatz-NJ.website=http://uschessleague.com/player.php?p=alexander-katz
+
+player.Akobian-SEA.handle=Akobian-SEA
+player.Akobian-SEA.name=Varuzhan Akobian
+player.Akobian-SEA.rating=2697
+player.Akobian-SEA.team=SEA
+player.Akobian-SEA.titles=(GM)
+player.Akobian-SEA.website=http://uschessleague.com/player.php?p=varuzhan-akobian
+
+player.Akobian-STL.handle=Akobian-STL
+player.Akobian-STL.name=Varuzhan Akobian
+player.Akobian-STL.rating=2758
+player.Akobian-STL.team=STL
+player.Akobian-STL.titles=(GM)
+player.Akobian-STL.website=http://uschessleague.com/player.php?p=varuzhan-akobian
+
+player.Altounian-ARZ.handle=Altounian-ARZ
+player.Altounian-ARZ.name=Levon Altounian
+player.Altounian-ARZ.rating=2493
+player.Altounian-ARZ.team=ARZ
+player.Altounian-ARZ.titles=(IM)
+player.Altounian-ARZ.website=http://uschessleague.com/player.php?p=levon-altounian
+
+player.Alvarez-MIA.handle=Alvarez-MIA
+player.Alvarez-MIA.name=Ernesto Alvarez
+player.Alvarez-MIA.rating=2257
+player.Alvarez-MIA.team=MIA
+player.Alvarez-MIA.titles=(NM)
+player.Alvarez-MIA.website=http://uschessleague.com/player.php?p=ernesto-alvarez
+
+player.Andretta-MIA.handle=Andretta-MIA
+player.Andretta-MIA.name=Carlos Gaston Andretta
+player.Andretta-MIA.rating=2228
+player.Andretta-MIA.team=MIA
+player.Andretta-MIA.titles=(NM)
+player.Andretta-MIA.website=http://uschessleague.com/player.php?p=carlos-gaston-andretta
+
+player.Anka-SEA.handle=Anka-SEA
+player.Anka-SEA.name=Emil Anka
+player.Anka-SEA.rating=2497
+player.Anka-SEA.team=SEA
+player.Anka-SEA.titles=(GM)
+player.Anka-SEA.website=http://uschessleague.com/player.php?p=emil-anka
+
+player.Arencibia-MIA.handle=Arencibia-MIA
+player.Arencibia-MIA.name=Tony Arencibia
+player.Arencibia-MIA.rating=2251
+player.Arencibia-MIA.team=MIA
+player.Arencibia-MIA.titles=(NM)
+player.Arencibia-MIA.website=http://uschessleague.com/player.php?p=tony-arencibia
+
+player.Atoufi-ARZ.handle=Atoufi-ARZ
+player.Atoufi-ARZ.name=Pedram Atoufi
+player.Atoufi-ARZ.rating=2355
+player.Atoufi-ARZ.team=ARZ
+player.Atoufi-ARZ.titles=(FM)
+player.Atoufi-ARZ.website=http://uschessleague.com/player.php?p=pedram-atoufi
+
+player.AVaidya-DAL.handle=AVaidya-DAL
+player.AVaidya-DAL.name=Atulya Vaidya
+player.AVaidya-DAL.rating=2165
+player.AVaidya-DAL.team=DAL
+player.AVaidya-DAL.titles=(NM)
+player.AVaidya-DAL.website=http://uschessleague.com/player.php?p=atulya-vaidya
+
+player.Balleisen-CAR.handle=Balleisen-CAR
+player.Balleisen-CAR.name=Aaron Balleisen
+player.Balleisen-CAR.rating=2105
+player.Balleisen-CAR.team=CAR
+player.Balleisen-CAR.titles=
+player.Balleisen-CAR.website=http://uschessleague.com/player.php?p=aaron-balleisen
+
+player.Banik-SF.handle=Banik-SF
+player.Banik-SF.name=Siddharth Banik
+player.Banik-SF.rating=2236
+player.Banik-SF.team=SF
+player.Banik-SF.titles=(NM)
+player.Banik-SF.website=http://uschessleague.com/player.php?p=siddharth-banik
+
+player.Barbosa-CON.handle=Barbosa-CON
+player.Barbosa-CON.name=Oliver Barbosa
+player.Barbosa-CON.rating=2579
+player.Barbosa-CON.team=CON
+player.Barbosa-CON.titles=(GM)
+player.Barbosa-CON.website=http://uschessleague.com/player.php?p=oliver-barbosa
+
+player.Barcenilla-ARZ.handle=Barcenilla-ARZ
+player.Barcenilla-ARZ.name=Rogelio Barcenilla
+player.Barcenilla-ARZ.rating=2583
+player.Barcenilla-ARZ.team=ARZ
+player.Barcenilla-ARZ.titles=(GM)
+player.Barcenilla-ARZ.website=http://uschessleague.com/player.php?p=rogelio-barcenilla
+
+player.Bartell-PHI.handle=Bartell-PHI
+player.Bartell-PHI.name=Tom Bartell
+player.Bartell-PHI.rating=2448
+player.Bartell-PHI.team=PHI
+player.Bartell-PHI.titles=(IM)
+player.Bartell-PHI.website=http://uschessleague.com/player.php?p=tom-bartell
+
+player.Becerra-MIA.handle=Becerra-MIA
+player.Becerra-MIA.name=Julio Becerra
+player.Becerra-MIA.rating=2626
+player.Becerra-MIA.team=MIA
+player.Becerra-MIA.titles=(GM)
+player.Becerra-MIA.website=http://uschessleague.com/player.php?p=julio-becerra
+
+player.Benjamin-NJ.handle=Benjamin-NJ
+player.Benjamin-NJ.name=Joel Benjamin
+player.Benjamin-NJ.rating=2634
+player.Benjamin-NJ.team=NJ
+player.Benjamin-NJ.titles=(GM)
+player.Benjamin-NJ.website=http://uschessleague.com/player.php?p=joel-benjamin
+
+player.BFinegold-STL.handle=BFinegold-STL
+player.BFinegold-STL.name=Ben Finegold
+player.BFinegold-STL.rating=2591
+player.BFinegold-STL.team=STL
+player.BFinegold-STL.titles=(GM)
+player.BFinegold-STL.website=http://uschessleague.com/player.php?p=ben-finegold
+
+player.Bhat-SF.handle=Bhat-SF
+player.Bhat-SF.name=Vinay Bhat
+player.Bhat-SF.rating=2555
+player.Bhat-SF.team=SF
+player.Bhat-SF.titles=(GM)
+player.Bhat-SF.website=http://uschessleague.com/player.php?p=vinay-bhat
+
+player.Bodek-NY.handle=Bodek-NY
+player.Bodek-NY.name=Michael Bodek
+player.Bodek-NY.rating=2502
+player.Bodek-NY.team=NY
+player.Bodek-NY.titles=(FM)
+player.Bodek-NY.website=http://uschessleague.com/player.php?p=michael-bodek
+
+player.Bozkurt-CAR.handle=Bozkurt-CAR
+player.Bozkurt-CAR.name=Ilker Bozkurt
+player.Bozkurt-CAR.rating=2383
+player.Bozkurt-CAR.team=CAR
+player.Bozkurt-CAR.titles=(NM)
+player.Bozkurt-CAR.website=http://uschessleague.com/player.php?p=ilker-bozkurt
+
+player.Brattain-NE.handle=Brattain-NE
+player.Brattain-NE.name=Mika Brattain
+player.Brattain-NE.rating=2453
+player.Brattain-NE.team=NE
+player.Brattain-NE.titles=(SM)
+player.Brattain-NE.website=http://uschessleague.com/player.php?p=mika-brattain
+
+player.Bregadze-BAL.handle=Bregadze-BAL
+player.Bregadze-BAL.name=Levan Bregadze
+player.Bregadze-BAL.rating=2530
+player.Bregadze-BAL.team=BAL
+player.Bregadze-BAL.titles=(IM)
+player.Bregadze-BAL.website=http://uschessleague.com/player.php?p=levan-bregadze
+
+player.Bregadze-STL.handle=Bregadze-STL
+player.Bregadze-STL.name=Levan Bregadze
+player.Bregadze-STL.rating=2416
+player.Bregadze-STL.team=STL
+player.Bregadze-STL.titles=(IM)
+player.Bregadze-STL.website=http://uschessleague.com/player.php?p=levan-bregadze
+
+player.Brodsky-NY.handle=Brodsky-NY
+player.Brodsky-NY.name=David Brodsky
+player.Brodsky-NY.rating=2249
+player.Brodsky-NY.team=NY
+player.Brodsky-NY.titles=(FM)
+player.Brodsky-NY.website=http://uschessleague.com/player.php?p=david-brodsky
+
+player.Bryant-PHI.handle=Bryant-PHI
+player.Bryant-PHI.name=Todd Bryant
+player.Bryant-PHI.rating=2201
+player.Bryant-PHI.team=PHI
+player.Bryant-PHI.titles=(NM)
+player.Bryant-PHI.website=http://uschessleague.com/player.php?p=todd-bryant
+
+player.Burke-NJ.handle=Burke-NJ
+player.Burke-NJ.name=John Michael Burke
+player.Burke-NJ.rating=2295
+player.Burke-NJ.team=NJ
+player.Burke-NJ.titles=(NM)
+player.Burke-NJ.website=http://uschessleague.com/player.php?p=john-michael-burke
+
+player.Byambaa-SF.handle=Byambaa-SF
+player.Byambaa-SF.name=Uyanga Byambaa
+player.Byambaa-SF.rating=2136
+player.Byambaa-SF.team=SF
+player.Byambaa-SF.titles=(WFM)
+player.Byambaa-SF.website=http://uschessleague.com/player.php?p=uyanga-byambaa
+
+player.Cao-STL.handle=Cao-STL
+player.Cao-STL.name=Kevin Cao
+player.Cao-STL.rating=2309
+player.Cao-STL.team=STL
+player.Cao-STL.titles=(NM)
+player.Cao-STL.website=http://uschessleague.com/player.php?p=kevin-cao
+
+player.Casella-LA.handle=Casella-LA
+player.Casella-LA.name=Casella-LA
+player.Casella-LA.rating=2262
+player.Casella-LA.team=LA
+player.Casella-LA.titles=(FM)
+player.Casella-LA.website=http://uschessleague.com/player.php?p=michael-casella
+
+player.Chakraborty-ARZ.handle=Chakraborty-ARZ
+player.Chakraborty-ARZ.name=Dipro Chakraborty
+player.Chakraborty-ARZ.rating=2306
+player.Chakraborty-ARZ.team=ARZ
+player.Chakraborty-ARZ.titles=(NM)
+player.Chakraborty-ARZ.website=http://uschessleague.com/player.php?p=dipro-chakraborty
+
+player.Chandran-CON.handle=Chandran-CON
+player.Chandran-CON.name=Kapil Chandran
+player.Chandran-CON.rating=2246
+player.Chandran-CON.team=CON
+player.Chandran-CON.titles=(NM)
+player.Chandran-CON.website=http://uschessleague.com/player.php?p=kapil-chandran
+
+player.Charbonneau-NY.handle=Charbonneau-NY
+player.Charbonneau-NY.name=Pascal Charbonneau
+player.Charbonneau-NY.rating=2552
+player.Charbonneau-NY.team=NY
+player.Charbonneau-NY.titles=(GM)
+player.Charbonneau-NY.website=http://uschessleague.com/player.php?p=pascal-charbonneau
+
+player.Chase-NE.handle=Chase-NE
+player.Chase-NE.name=Christopher Chase
+player.Chase-NE.rating=2411
+player.Chase-NE.team=NE
+player.Chase-NE.titles=(FM)
+player.Chase-NE.website=http://uschessleague.com/player.php?p=christopher-chase
+
+player.Checa-NY.handle=Checa-NY
+player.Checa-NY.name=Nicolas Checa
+player.Checa-NY.rating=2396
+player.Checa-NY.team=NY
+player.Checa-NY.titles=(SM)
+player.Checa-NY.website=http://uschessleague.com/player.php?p=nicolas-checa
+
+player.Chirila-DAL.handle=Chirila-DAL
+player.Chirila-DAL.name=Cristian Chirila
+player.Chirila-DAL.rating=2575
+player.Chirila-DAL.team=DAL
+player.Chirila-DAL.titles=(GM)
+player.Chirila-DAL.website=http://uschessleague.com/player.php?p=cristian-chirila
+
+player.Chumachenko-CAR.handle=Chumachenko-CAR
+player.Chumachenko-CAR.name=Andrey Chumachenko
+player.Chumachenko-CAR.rating=2433
+player.Chumachenko-CAR.team=CAR
+player.Chumachenko-CAR.titles=(SM)
+player.Chumachenko-CAR.website=http://uschessleague.com/player.php?p=andrey-chumachenko
+
+player.Ciubara-MIA.handle=Ciubara-MIA
+player.Ciubara-MIA.name=Vladlena Ciubara
+player.Ciubara-MIA.rating=2155
+player.Ciubara-MIA.team=MIA
+player.Ciubara-MIA.titles=(WFM)
+player.Ciubara-MIA.website=http://uschessleague.com/player.php?p=vladlena-ciubara
+
+player.Colas-CON.handle=Colas-CON
+player.Colas-CON.name=Joshua Colas
+player.Colas-CON.rating=2400
+player.Colas-CON.team=CON
+player.Colas-CON.titles=(SM)
+player.Colas-CON.website=http://uschessleague.com/player.php?p=joshua-colas
+
+player.Collyer-SEA.handle=Collyer-SEA
+player.Collyer-SEA.name=Curt Collyer
+player.Collyer-SEA.rating=2302
+player.Collyer-SEA.team=SEA
+player.Collyer-SEA.titles=(FM)
+player.Collyer-SEA.website=http://uschessleague.com/player.php?p=curt-collyer
+
+player.Corallo-ATL.handle=Corallo-ATL
+player.Corallo-ATL.name=Michael Corallo
+player.Corallo-ATL.rating=2284
+player.Corallo-ATL.team=ATL
+player.Corallo-ATL.titles=(NM)
+player.Corallo-ATL.website=http://uschessleague.com/player.php?p=michael-corallo
+
+player.Cornejo-RIO.handle=Cornejo-RIO
+player.Cornejo-RIO.name=Max Cornejo
+player.Cornejo-RIO.rating=2467
+player.Cornejo-RIO.team=RIO
+player.Cornejo-RIO.titles=(IM)
+player.Cornejo-RIO.website=http://uschessleague.com/player.php?p=max-cornejo
+
+player.Cozianu-SEA.handle=Cozianu-SEA
+player.Cozianu-SEA.name=Costin Cozianu
+player.Cozianu-SEA.rating=2466
+player.Cozianu-SEA.team=SEA
+player.Cozianu-SEA.titles=(FM)
+player.Cozianu-SEA.website=http://uschessleague.com/player.php?p=costin-cozianu
+
+player.Cunningham-CAR.handle=Cunningham-CAR
+player.Cunningham-CAR.name=Robin Cunningham
+player.Cunningham-CAR.rating=2268
+player.Cunningham-CAR.team=CAR
+player.Cunningham-CAR.titles=(FM)
+player.Cunningham-CAR.website=http://uschessleague.com/player.php?p=robin-cunningham
+
+player.Defibaugh-BAL.handle=Defibaugh-BAL
+player.Defibaugh-BAL.name=Jared Defibaugh
+player.Defibaugh-BAL.rating=2325
+player.Defibaugh-BAL.team=BAL
+player.Defibaugh-BAL.titles=(NM)
+player.Defibaugh-BAL.website=http://uschessleague.com/player.php?p=jared-defibaugh
+
+player.Dehmelt-PHI.handle=Dehmelt-PHI
+player.Dehmelt-PHI.name=Karl Dehmelt
+player.Dehmelt-PHI.rating=2255
+player.Dehmelt-PHI.team=PHI
+player.Dehmelt-PHI.titles=(FM)
+player.Dehmelt-PHI.website=http://uschessleague.com/player.php?p=karl-dehmelt
+
+player.delaParra-RIO.handle=delaParra-RIO
+player.delaParra-RIO.name=Daniela De la Parra
+player.delaParra-RIO.rating=1999
+player.delaParra-RIO.team=RIO
+player.delaParra-RIO.titles=(WIM)
+player.delaParra-RIO.website=http://uschessleague.com/player.php?p=daniela-de-la-parra
+
+player.Diulger-ARZ.handle=Diulger-ARZ
+player.Diulger-ARZ.name=Alexey Diulger
+player.Diulger-ARZ.rating=2421
+player.Diulger-ARZ.team=ARZ
+player.Diulger-ARZ.titles=(IM)
+player.Diulger-ARZ.website=http://uschessleague.com/player.php?p=alexey-diulger
+
+player.Donaldson-SF.handle=Donaldson-SF
+player.Donaldson-SF.name=John Donaldson
+player.Donaldson-SF.rating=2408
+player.Donaldson-SF.team=SF
+player.Donaldson-SF.titles=(IM)
+player.Donaldson-SF.website=http://uschessleague.com/player.php?p=john-donaldson
+
+player.DuckStorm.handle=DuckStorm
+player.DuckStorm.name=Doug Bateman
+player.DuckStorm.rating=1538
+player.DuckStorm.team=ICC
+player.DuckStorm.titles=
+player.DuckStorm.website=Unavailable
+
+player.Duckworth-LA.handle=Duckworth-LA
+player.Duckworth-LA.name=Mark Duckworth
+player.Duckworth-LA.rating=2316
+player.Duckworth-LA.team=LA
+player.Duckworth-LA.titles=(FM)
+player.Duckworth-LA.website=http://uschessleague.com/player.php?p=mark-duckworth
+
+player.Eckert-STL.handle=Eckert-STL
+player.Eckert-STL.name=Doug Eckert
+player.Eckert-STL.rating=2281
+player.Eckert-STL.team=STL
+player.Eckert-STL.titles=(FM)
+player.Eckert-STL.website=http://uschessleague.com/player.php?p=doug-eckert
+
+player.Enkhbat-BAL.handle=Enkhbat-BAL
+player.Enkhbat-BAL.name=Tegshsuren Enkhbat
+player.Enkhbat-BAL.rating=2450
+player.Enkhbat-BAL.team=BAL
+player.Enkhbat-BAL.titles=(IM)
+player.Enkhbat-BAL.website=http://uschessleague.com/player.php?p=tegshsuren-enkhbat
+
+player.Esserman-BOS.handle=Esserman-BOS
+player.Esserman-BOS.name=Marc Esserman
+player.Esserman-BOS.rating=2528
+player.Esserman-BOS.team=BOS
+player.Esserman-BOS.titles=(IM)
+player.Esserman-BOS.website=http://uschessleague.com/player.php?p=marc-esserman
+
+player.Feng-SEA.handle=Feng-SEA
+player.Feng-SEA.name=Roland Feng
+player.Feng-SEA.rating=2305
+player.Feng-SEA.team=SEA
+player.Feng-SEA.titles=(NM)
+player.Feng-SEA.website=http://uschessleague.com/player.php?p=roland-feng
+
+player.Francisco-ATL.handle=Francisco-ATL
+player.Francisco-ATL.name=Richard Francisco
+player.Francisco-ATL.rating=2382
+player.Francisco-ATL.team=ATL
+player.Francisco-ATL.titles=(NM)
+player.Francisco-ATL.website=http://uschessleague.com/player.php?p=richard-francisco
+
+player.Gater-DAL.handle=Gater-DAL
+player.Gater-DAL.name=Daniel Gater
+player.Gater-DAL.rating=2178
+player.Gater-DAL.team=DAL
+player.Gater-DAL.titles=(NM)
+player.Gater-DAL.website=http://uschessleague.com/player.php?p=daniel-gater
+
+player.Getz-DAL.handle=Getz-DAL
+player.Getz-DAL.name=Alec Getz
+player.Getz-DAL.rating=2423
+player.Getz-DAL.team=DAL
+player.Getz-DAL.titles=(FM)
+player.Getz-DAL.website=http://uschessleague.com/player.php?p=alec-getz
+
+player.Ghatti-ATL.handle=Ghatti-ATL
+player.Ghatti-ATL.name=Sanjay Ghatti
+player.Ghatti-ATL.rating=2245
+player.Ghatti-ATL.team=ATL
+player.Ghatti-ATL.titles=(NM)
+player.Ghatti-ATL.website=http://uschessleague.com/player.php?p=sanjay-ghatti
+
+player.Ginsburg-ARZ.handle=Ginsburg-ARZ
+player.Ginsburg-ARZ.name=Mark Ginsburg
+player.Ginsburg-ARZ.rating=2397
+player.Ginsburg-ARZ.team=ARZ
+player.Ginsburg-ARZ.titles=(IM)
+player.Ginsburg-ARZ.website=http://uschessleague.com/player.php?p=mark-ginsburg
+
+player.GiorgiM-BAL.handle=GiorgiM-BAL
+player.GiorgiM-BAL.name=Giorgi Margvelashvili
+player.GiorgiM-BAL.rating=2593
+player.GiorgiM-BAL.team=BAL
+player.GiorgiM-BAL.titles=(GM)
+player.GiorgiM-BAL.website=http://uschessleague.com/player.php?p=giorgi-margvelashvili
+
+player.Golub-SEA.handle=Golub-SEA
+player.Golub-SEA.name=David Golub
+player.Golub-SEA.rating=2270
+player.Golub-SEA.team=SEA
+player.Golub-SEA.titles=(NM)
+player.Golub-SEA.website=http://uschessleague.com/player.php?p=david-golub
+
+player.Gonzalez-MIA.handle=Gonzalez-MIA
+player.Gonzalez-MIA.name=Renier Gonzalez
+player.Gonzalez-MIA.rating=2510
+player.Gonzalez-MIA.team=MIA
+player.Gonzalez-MIA.titles=(GM)
+player.Gonzalez-MIA.website=http://uschessleague.com/player.php?p=renier-gonzalez
+
+player.Gorman-PHI.handle=Gorman-PHI
+player.Gorman-PHI.name=Dov Gorman
+player.Gorman-PHI.rating=2400
+player.Gorman-PHI.team=PHI
+player.Gorman-PHI.titles=(FM)
+player.Gorman-PHI.website=http://uschessleague.com/player.php?p=dov-gorman
+
+player.Guadalupe-DAL.handle=Guadalupe-DAL
+player.Guadalupe-DAL.name=Francisco Guadalupe II
+player.Guadalupe-DAL.rating=2351
+player.Guadalupe-DAL.team=DAL
+player.Guadalupe-DAL.titles=(NM)
+player.Guadalupe-DAL.website=http://uschessleague.com/player.php?p=francisco-guadalupe-ii
+
+player.Guenther-DAL.handle=Guenther-DAL
+player.Guenther-DAL.name=Travis Guenther
+player.Guenther-DAL.rating=1962
+player.Guenther-DAL.team=DAL
+player.Guenther-DAL.titles=
+player.Guenther-DAL.website=http://uschessleague.com/player.php?p=travis-guenther
+
+player.Gulamali-ATL.handle=Gulamali-ATL
+player.Gulamali-ATL.name=Kazim Gulamali
+player.Gulamali-ATL.rating=2397
+player.Gulamali-ATL.team=ATL
+player.Gulamali-ATL.titles=(FM)
+player.Gulamali-ATL.website=http://uschessleague.com/player.php?p=kazim-gulamali
+
+player.gupta-la.handle=gupta-la
+player.gupta-la.name=Ankit Gupta
+player.gupta-la.rating=2229
+player.gupta-la.team=LA
+player.gupta-la.titles=(NM)
+player.gupta-la.website=http://uschessleague.com/player.php?p=ankit-gupta
+
+player.Harmon-LA.handle=Harmon-LA
+player.Harmon-LA.name=Luke Harmon-Vellotti
+player.Harmon-LA.rating=2522
+player.Harmon-LA.team=LA
+player.Harmon-LA.titles=(IM)
+player.Harmon-LA.website=http://uschessleague.com/player.php?p=luke-harmon-vellotti
+
+player.Harris-CON.handle=Harris-CON
+player.Harris-CON.name=Ian Harris
+player.Harris-CON.rating=2342
+player.Harris-CON.team=CON
+player.Harris-CON.titles=(NM)
+player.Harris-CON.website=http://uschessleague.com/player.php?p=ian-harris
+
+player.Haskel-MIA.handle=Haskel-MIA
+player.Haskel-MIA.name=Jeffrey Haskel
+player.Haskel-MIA.rating=2347
+player.Haskel-MIA.team=MIA
+player.Haskel-MIA.titles=(NM)
+player.Haskel-MIA.website=http://uschessleague.com/player.php?p=jeffrey-haskel
+
+player.He-SEA.handle=He-SEA
+player.He-SEA.name=Samuel He
+player.He-SEA.rating=2207
+player.He-SEA.team=SEA
+player.He-SEA.titles=(NM)
+player.He-SEA.website=http://uschessleague.com/player.php?p=samuel-he
+
+player.Hendrickson-STL.handle=Hendrickson-STL
+player.Hendrickson-STL.name=Nolan Hendrickson
+player.Hendrickson-STL.rating=2202
+player.Hendrickson-STL.team=STL
+player.Hendrickson-STL.titles=(NM)
+player.Hendrickson-STL.website=http://uschessleague.com/player.php?p=nolan-hendrickson
+
+player.Henley-MIA.handle=Henley-MIA
+player.Henley-MIA.name=Ron Henley
+player.Henley-MIA.rating=2466
+player.Henley-MIA.team=MIA
+player.Henley-MIA.titles=(GM)
+player.Henley-MIA.website=http://uschessleague.com/player.php?p=ron-henley
+
+player.Heredia-STL.handle=Heredia-STL
+player.Heredia-STL.name=Carla Heredia
+player.Heredia-STL.rating=2292
+player.Heredia-STL.team=STL
+player.Heredia-STL.titles=(WIM)
+player.Heredia-STL.website=http://uschessleague.com/player.php?p=carla-heredia
+
+player.Herman-NY.handle=Herman-NY
+player.Herman-NY.name=Matt Herman
+player.Herman-NY.rating=2439
+player.Herman-NY.team=NY
+player.Herman-NY.titles=(SM)
+player.Herman-NY.website=http://uschessleague.com/player.php?p=matt-herman
+
+player.Hernandez-PHI.handle=Hernandez-PHI
+player.Hernandez-PHI.name=Angel Hernandez-Camen
+player.Hernandez-PHI.rating=2231
+player.Hernandez-PHI.team=PHI
+player.Hernandez-PHI.titles=(NM)
+player.Hernandez-PHI.website=http://uschessleague.com/player.php?p=angel-hernandez-camen
+
+player.Hernandez-RIO.handle=Hernandez-RIO
+player.Hernandez-RIO.name=Holden Hernandez
+player.Hernandez-RIO.rating=2582
+player.Hernandez-RIO.team=RIO
+player.Hernandez-RIO.titles=(GM)
+player.Hernandez-RIO.website=http://uschessleague.com/player.php?p=holden-hernandez
+
+player.Hess-CON.handle=Hess-CON
+player.Hess-CON.name=Robert Hess
+player.Hess-CON.rating=2719
+player.Hess-CON.team=CON
+player.Hess-CON.titles=(GM)
+player.Hess-CON.website=http://uschessleague.com/player.php?p=robert-hess
+
+player.Holt-DAL.handle=Holt-DAL
+player.Holt-DAL.name=Conrad Holt
+player.Holt-DAL.rating=2664
+player.Holt-DAL.team=DAL
+player.Holt-DAL.titles=(GM)
+player.Holt-DAL.website=http://uschessleague.com/player.php?p=conrad-holt
+
+player.Hoyos-MIA.handle=Hoyos-MIA
+player.Hoyos-MIA.name=Carlos Hoyos
+player.Hoyos-MIA.rating=2098
+player.Hoyos-MIA.team=MIA
+player.Hoyos-MIA.titles=
+player.Hoyos-MIA.website=http://uschessleague.com/player.php?p=carlos-hoyos
+
+player.Hu-ARZ.handle=Hu-ARZ
+player.Hu-ARZ.name=Bryan Hu
+player.Hu-ARZ.rating=2334
+player.Hu-ARZ.team=ARZ
+player.Hu-ARZ.titles=(NM)
+player.Hu-ARZ.website=http://uschessleague.com/player.php?p=bryan-hu
+
+player.Huang-NY.handle=Huang-NY
+player.Huang-NY.name=Gary Huang
+player.Huang-NY.rating=2358
+player.Huang-NY.team=NY
+player.Huang-NY.titles=(NM)
+player.Huang-NY.website=http://uschessleague.com/player.php?p=gary-huang
+
+player.Hungaski-MAN.handle=Hungaski-MAN
+player.Hungaski-MAN.name=Robert Hungaski
+player.Hungaski-MAN.rating=2551
+player.Hungaski-MAN.team=MAN
+player.Hungaski-MAN.titles=(GM)
+player.Hungaski-MAN.website=http://uschessleague.com/player.php?p=robert-hungaski
+
+player.Huschenbeth-BAL.handle=Huschenbeth-BAL
+player.Huschenbeth-BAL.name=Niclas Huschenbeth
+player.Huschenbeth-BAL.rating=2603
+player.Huschenbeth-BAL.team=BAL
+player.Huschenbeth-BAL.titles=(GM)
+player.Huschenbeth-BAL.website=http://uschessleague.com/player.php?p=niclas-huschenbeth
+
+player.IsaacM-ARZ.handle=IsaacM-ARZ
+player.IsaacM-ARZ.name=Isaac Martinez
+player.IsaacM-ARZ.rating=2174
+player.IsaacM-ARZ.team=ARZ
+player.IsaacM-ARZ.titles=
+player.IsaacM-ARZ.website=http://uschessleague.com/player.php?p=isaac-martinez
+
+player.Jacobson-NJ.handle=Jacobson-NJ
+player.Jacobson-NJ.name=Aaron Jacobson
+player.Jacobson-NJ.rating=2139
+player.Jacobson-NJ.team=NJ
+player.Jacobson-NJ.titles=
+player.Jacobson-NJ.website=http://uschessleague.com/player.php?p=aaron-jacobson
+
+player.JChiang-DAL.handle=JChiang-DAL
+player.JChiang-DAL.name=Jonathan Chiang
+player.JChiang-DAL.rating=2234
+player.JChiang-DAL.team=DAL
+player.JChiang-DAL.titles=(NM)
+player.JChiang-DAL.website=http://uschessleague.com/player.php?p=jonathan-chiang
+
+player.JoelBanawa-ARZ.handle=JoelBanawa-ARZ
+player.JoelBanawa-ARZ.name=Joel Banawa
+player.JoelBanawa-ARZ.rating=2454
+player.JoelBanawa-ARZ.team=ARZ
+player.JoelBanawa-ARZ.titles=(FM)
+player.JoelBanawa-ARZ.website=http://uschessleague.com/player.php?p=joel-banawa
+
+player.Jones-CAR.handle=Jones-CAR
+player.Jones-CAR.name=Craig Jones
+player.Jones-CAR.rating=2232
+player.Jones-CAR.team=CAR
+player.Jones-CAR.titles=(NM)
+player.Jones-CAR.website=http://uschessleague.com/player.php?p=craig-jones
+
+player.Kamsky-NY.handle=Kamsky-NY
+player.Kamsky-NY.name=Gata Kamsky
+player.Kamsky-NY.rating=2785
+player.Kamsky-NY.team=NY
+player.Kamsky-NY.titles=(GM)
+player.Kamsky-NY.website=http://uschessleague.com/player.php?p=gata-kamsky
+
+player.Kannappan-STL.handle=Kannappan-STL
+player.Kannappan-STL.name=Priyadharshan Kannappan
+player.Kannappan-STL.rating=2457
+player.Kannappan-STL.team=STL
+player.Kannappan-STL.titles=(IM)
+player.Kannappan-STL.website=http://uschessleague.com/player.php?p=priyadharshan-kannappan
+
+player.Karlow-STL.handle=Karlow-STL
+player.Karlow-STL.name=Nick Karlow
+player.Karlow-STL.rating=2127
+player.Karlow-STL.team=STL
+player.Karlow-STL.titles=
+player.Karlow-STL.website=http://uschessleague.com/player.php?p=nick-karlow
+
+player.KarthikR-DAL.handle=KarthikR-DAL
+player.KarthikR-DAL.name=Karthik Ramachandran
+player.KarthikR-DAL.rating=2257
+player.KarthikR-DAL.team=DAL
+player.KarthikR-DAL.titles=(NM)
+player.KarthikR-DAL.website=http://uschessleague.com/player.php?p=karthik-ramachandran
+
+player.Kavutskiy-LA.handle=Kavutskiy-LA
+player.Kavutskiy-LA.name=Konstantin Kavutskiy
+player.Kavutskiy-LA.rating=2397
+player.Kavutskiy-LA.team=LA
+player.Kavutskiy-LA.titles=(FM)
+player.Kavutskiy-LA.website=http://uschessleague.com/player.php?p=konstantin-kavutskiy
+
+player.Kekelidze-CON.handle=Kekelidze-CON
+player.Kekelidze-CON.name=Mikheil Kekelidze
+player.Kekelidze-CON.rating=2628
+player.Kekelidze-CON.team=CON
+player.Kekelidze-CON.titles=(GM)
+player.Kekelidze-CON.website=http://uschessleague.com/player.php?p=mikheil-kekelidze
+
+player.Khachiyan-LA.handle=Khachiyan-LA
+player.Khachiyan-LA.name=Melikset Khachiyan
+player.Khachiyan-LA.rating=2633
+player.Khachiyan-LA.team=LA
+player.Khachiyan-LA.titles=(GM)
+player.Khachiyan-LA.website=http://uschessleague.com/player.php?p=melikset-khachiyan
+
+player.Kim-CON.handle=Kim-CON
+player.Kim-CON.name=Yoon-Young Kim
+player.Kim-CON.rating=2116
+player.Kim-CON.team=CON
+player.Kim-CON.titles=
+player.Kim-CON.website=http://uschessleague.com/player.php?p=yoon-young-kim
+
+player.Klein-NJ.handle=Klein-NJ
+player.Klein-NJ.name=Ethan Klein
+player.Klein-NJ.rating=2022
+player.Klein-NJ.team=NJ
+player.Klein-NJ.titles=
+player.Klein-NJ.website=http://uschessleague.com/player.php?p=ethan-klein
+
+player.Korba-LA.handle=Korba-LA
+player.Korba-LA.name=Nicky Korba
+player.Korba-LA.rating=2261
+player.Korba-LA.team=LA
+player.Korba-LA.titles=(NM)
+player.Korba-LA.website=http://uschessleague.com/player.php?p=nicky-korba
+
+player.Kore-BAL.handle=Kore-BAL
+player.Kore-BAL.name=Akshayraj Kore
+player.Kore-BAL.rating=2543
+player.Kore-BAL.team=BAL
+player.Kore-BAL.titles=(GM)
+player.Kore-BAL.website=http://uschessleague.com/player.php?p=akshayraj-kore
+
+player.Korley-CAR.handle=Korley-CAR
+player.Korley-CAR.name=Kassa Korley
+player.Korley-CAR.rating=2486
+player.Korley-CAR.team=CAR
+player.Korley-CAR.titles=(IM)
+player.Korley-CAR.website=http://uschessleague.com/player.php?p=kassa-korley
+
+player.Kovalyov-RIO.handle=Kovalyov-RIO
+player.Kovalyov-RIO.name=Anton Kovalyov
+player.Kovalyov-RIO.rating=2717
+player.Kovalyov-RIO.team=RIO
+player.Kovalyov-RIO.titles=(GM)
+player.Kovalyov-RIO.website=http://uschessleague.com/player.php?p=anton-kovalyov
+
+player.Kraai-SF.handle=Kraai-SF
+player.Kraai-SF.name=Jesse Kraai
+player.Kraai-SF.rating=2589
+player.Kraai-SF.team=SF
+player.Kraai-SF.titles=(GM)
+player.Kraai-SF.website=http://uschessleague.com/player.php?p=jesse-kraai
+
+player.Krasik-BOS.handle=Krasik-BOS
+player.Krasik-BOS.name=Ilya Krasik
+player.Krasik-BOS.rating=2264
+player.Krasik-BOS.team=BOS
+player.Krasik-BOS.titles=(NM)
+player.Krasik-BOS.website=http://uschessleague.com/player.php?p=ilya-krasik
+
+player.Kretchetov-LA.handle=Kretchetov-LA
+player.Kretchetov-LA.name=Alexandre Kretchetov
+player.Kretchetov-LA.rating=2396
+player.Kretchetov-LA.team=LA
+player.Kretchetov-LA.titles=(FM)
+player.Kretchetov-LA.website=http://uschessleague.com/player.php?p=alexandre-kretchetov
+
+player.Kumar-NY.handle=Kumar-NY
+player.Kumar-NY.name=Aravind Kumar
+player.Kumar-NY.rating=2201
+player.Kumar-NY.team=NY
+player.Kumar-NY.titles=(FM)
+player.Kumar-NY.website=http://uschessleague.com/player.php?p=aravind-kumar
+
+player.KWang-BAL.handle=KWang-BAL
+player.KWang-BAL.name=Kevin Wang
+player.KWang-BAL.rating=2366
+player.KWang-BAL.team=BAL
+player.KWang-BAL.titles=(NM)
+player.KWang-BAL.website=http://uschessleague.com/player.php?p=kevin-wang
+
+player.Larson-STL.handle=Larson-STL
+player.Larson-STL.name=Matthew Larson
+player.Larson-STL.rating=1918
+player.Larson-STL.team=STL
+player.Larson-STL.titles=
+player.Larson-STL.website=http://uschessleague.com/player.php?p=matthew-larson
+
+player.Lee-SF.handle=Lee-SF
+player.Lee-SF.name=Andy Lee
+player.Lee-SF.rating=2361
+player.Lee-SF.team=SF
+player.Lee-SF.titles=(FM)
+player.Lee-SF.website=http://uschessleague.com/player.php?p=andy-lee
+
+player.Lenderman-CON.handle=Lenderman-CON
+player.Lenderman-CON.name=Alex Lenderman
+player.Lenderman-CON.rating=2701
+player.Lenderman-CON.team=CON
+player.Lenderman-CON.titles=(GM)
+player.Lenderman-CON.website=http://uschessleague.com/player.php?p=alex-lenderman
+
+player.Li-DAL.handle=Li-DAL
+player.Li-DAL.name=Ruifeng Li
+player.Li-DAL.rating=2398
+player.Li-DAL.team=DAL
+player.Li-DAL.titles=(FM)
+player.Li-DAL.website=http://uschessleague.com/player.php?p=ruifeng-li
+
+player.Liou-SF.handle=Liou-SF
+player.Liou-SF.name=Yian Liou
+player.Liou-SF.rating=2475
+player.Liou-SF.team=SF
+player.Liou-SF.titles=(FM)
+player.Liou-SF.website=http://uschessleague.com/player.php?p=yian-liou
+
+player.Liu-NE.handle=Liu-NE
+player.Liu-NE.name=Andrew Liu
+player.Liu-NE.rating=2284
+player.Liu-NE.team=NE
+player.Liu-NE.titles=(NM)
+player.Liu-NE.website=http://uschessleague.com/player.php?p=andrew-liu
+
+player.LKaufman-BAL.handle=LKaufman-BAL
+player.LKaufman-BAL.name=Larry Kaufman
+player.LKaufman-BAL.rating=2391
+player.LKaufman-BAL.team=BAL
+player.LKaufman-BAL.titles=(GM)
+player.LKaufman-BAL.website=http://uschessleague.com/player.php?p=larry-kaufman
+
+player.LMartinez-ATL.handle=LMartinez-ATL
+player.LMartinez-ATL.name=Leo Martinez
+player.LMartinez-ATL.rating=2266
+player.LMartinez-ATL.team=ATL
+player.LMartinez-ATL.titles=(NM)
+player.LMartinez-ATL.website=http://uschessleague.com/player.php?p=leo-martinez
+
+player.Lowinger-CON.handle=Lowinger-CON
+player.Lowinger-CON.name=Daniel Lowinger
+player.Lowinger-CON.rating=2318
+player.Lowinger-CON.team=CON
+player.Lowinger-CON.titles=(NM)
+player.Lowinger-CON.website=http://uschessleague.com/player.php?p=daniel-lowinger
+
+player.Mabe-CAR.handle=Mabe-CAR
+player.Mabe-CAR.name=Chris Mabe
+player.Mabe-CAR.rating=2310
+player.Mabe-CAR.team=CAR
+player.Mabe-CAR.titles=(NM)
+player.Mabe-CAR.website=http://uschessleague.com/player.php?p=chris-mabe
+
+player.Mandizha-MAN.handle=Mandizha-MAN
+player.Mandizha-MAN.name=Farai Mandizha
+player.Mandizha-MAN.rating=2478
+player.Mandizha-MAN.team=MAN
+player.Mandizha-MAN.titles=(IM)
+player.Mandizha-MAN.website=http://uschessleague.com/player.php?p=farai-mandizha
+
+player.Manuelian-NJ.handle=Manuelian-NJ
+player.Manuelian-NJ.name=Haik der Manuelian
+player.Manuelian-NJ.rating=2149
+player.Manuelian-NJ.team=NJ
+player.Manuelian-NJ.titles=
+player.Manuelian-NJ.website=http://uschessleague.com/player.php?p=haik-der-manuelian
+
+player.Martinez-MIA.handle=Martinez-MIA
+player.Martinez-MIA.name=Marcel Martinez
+player.Martinez-MIA.rating=2474
+player.Martinez-MIA.team=MIA
+player.Martinez-MIA.titles=(FM)
+player.Martinez-MIA.website=http://uschessleague.com/player.php?p=marcel-martinez
+
+player.Martirosov-BOS.handle=Martirosov-BOS
+player.Martirosov-BOS.name=Vadim Martirosov
+player.Martirosov-BOS.rating=2381
+player.Martirosov-BOS.team=BOS
+player.Martirosov-BOS.titles=(NM)
+player.Martirosov-BOS.website=http://uschessleague.com/player.php?p=vadim-martirosov
+
+player.Mateer-ARZ.handle=Mateer-ARZ
+player.Mateer-ARZ.name=Amanda Mateer
+player.Mateer-ARZ.rating=2113
+player.Mateer-ARZ.team=ARZ
+player.Mateer-ARZ.titles=(WFM)
+player.Mateer-ARZ.website=http://uschessleague.com/player.php?p=amanda-mateer
+
+player.Matikozyan-LA.handle=Matikozyan-LA
+player.Matikozyan-LA.name=Andranik Matikozyan
+player.Matikozyan-LA.rating=2538
+player.Matikozyan-LA.team=LA
+player.Matikozyan-LA.titles=(IM)
+player.Matikozyan-LA.website=http://uschessleague.com/player.php?p=andranik-matikozyan
+
+player.Mena-MIA.handle=Mena-MIA
+player.Mena-MIA.name=Carlos Mena
+player.Mena-MIA.rating=2430
+player.Mena-MIA.team=MIA
+player.Mena-MIA.titles=(FM)
+player.Mena-MIA.website=http://uschessleague.com/player.php?p=carlos-mena
+
+player.Miller-BOS.handle=Miller-BOS
+player.Miller-BOS.name=Jake Miller
+player.Miller-BOS.rating=2213
+player.Miller-BOS.team=BOS
+player.Miller-BOS.titles=(NM)
+player.Miller-BOS.website=http://uschessleague.com/player.php?p=jake-miller
+
+player.Minear-PHI.handle=Minear-PHI
+player.Minear-PHI.name=Peter Minear
+player.Minear-PHI.rating=2365
+player.Minear-PHI.team=PHI
+player.Minear-PHI.titles=(NM)
+player.Minear-PHI.website=http://uschessleague.com/player.php?p=peter-minear
+
+player.Mo-CAR.handle=Mo-CAR
+player.Mo-CAR.name=Kevin Mo
+player.Mo-CAR.rating=2334
+player.Mo-CAR.team=CAR
+player.Mo-CAR.titles=(NM)
+player.Mo-CAR.website=http://uschessleague.com/player.php?p=kevin-mo
+
+player.Mohandesi-ARZ.handle=Mohandesi-ARZ
+player.Mohandesi-ARZ.name=Shahin Mohandesi
+player.Mohandesi-ARZ.rating=2399
+player.Mohandesi-ARZ.team=ARZ
+player.Mohandesi-ARZ.titles=(IM)
+player.Mohandesi-ARZ.website=http://uschessleague.com/player.php?p=shahin-mohandesi
+
+player.Molner-ARZ.handle=Molner-ARZ
+player.Molner-ARZ.name=Mackenzie Molner
+player.Molner-ARZ.rating=2581
+player.Molner-ARZ.team=ARZ
+player.Molner-ARZ.titles=(GM)
+player.Molner-ARZ.website=http://uschessleague.com/player.php?p=mackenzie-molner
+
+player.MShahade-PHI.handle=MShahade-PHI
+player.MShahade-PHI.name=Michael Shahade
+player.MShahade-PHI.rating=2210
+player.MShahade-PHI.team=PHI
+player.MShahade-PHI.titles=(FM)
+player.MShahade-PHI.website=http://uschessleague.com/player.php?p=michael-shahade
+
+player.Mu-CAR.handle=Mu-CAR
+player.Mu-CAR.name=Joshua Mu
+player.Mu-CAR.rating=2252
+player.Mu-CAR.team=CAR
+player.Mu-CAR.titles=(NM)
+player.Mu-CAR.website=http://uschessleague.com/player.php?p=joshua-mu
+
+player.Munnell-BAL.handle=Munnell-BAL
+player.Munnell-BAL.name=Jonathan Munnell
+player.Munnell-BAL.rating=2213
+player.Munnell-BAL.team=BAL
+player.Munnell-BAL.titles=(NM)
+player.Munnell-BAL.website=http://uschessleague.com/player.php?p=jonathan-munnell
+
+player.Naroditsky-SF.handle=Naroditsky-SF
+player.Naroditsky-SF.name=Daniel Naroditsky
+player.Naroditsky-SF.rating=2675
+player.Naroditsky-SF.team=SF
+player.Naroditsky-SF.titles=(GM)
+player.Naroditsky-SF.website=http://uschessleague.com/player.php?p=daniel-naroditsky
+
+player.Nemcova-RIO.handle=Nemcova-RIO
+player.Nemcova-RIO.name=Katerina Nemcova
+player.Nemcova-RIO.rating=2362
+player.Nemcova-RIO.team=RIO
+player.Nemcova-RIO.titles=(WGM)
+player.Nemcova-RIO.website=http://uschessleague.com/player.php?p=katerina-nemcova
+
+player.Niemann-SF.handle=Niemann-SF
+player.Niemann-SF.name=Hans Niemann
+player.Niemann-SF.rating=2136
+player.Niemann-SF.team=SF
+player.Niemann-SF.titles=
+player.Niemann-SF.website=http://uschessleague.com/player.php?p=hans-niemann
+
+player.Noble-ARZ.handle=Noble-ARZ
+player.Noble-ARZ.name=Matthew Noble
+player.Noble-ARZ.rating=2084
+player.Noble-ARZ.team=ARZ
+player.Noble-ARZ.titles=
+player.Noble-ARZ.website=http://uschessleague.com/player.php?p=matthew-noble
+
+player.Orlov-SEA.handle=Orlov-SEA
+player.Orlov-SEA.name=Georgi Orlov
+player.Orlov-SEA.rating=2528
+player.Orlov-SEA.team=SEA
+player.Orlov-SEA.titles=(IM)
+player.Orlov-SEA.website=http://uschessleague.com/player.php?p=georgi-orlov
+
+player.Ostrovskiy-MAN.handle=Ostrovskiy-MAN
+player.Ostrovskiy-MAN.name=Aleksandr Ostrovskiy
+player.Ostrovskiy-MAN.rating=2486
+player.Ostrovskiy-MAN.team=MAN
+player.Ostrovskiy-MAN.titles=(IM)
+player.Ostrovskiy-MAN.website=http://uschessleague.com/player.php?p=aleksandr-ostrovskiy
+
+player.Otchiyev-CON.handle=Otchiyev-CON
+player.Otchiyev-CON.name=Arslan Otchiyev
+player.Otchiyev-CON.rating=2399
+player.Otchiyev-CON.team=CON
+player.Otchiyev-CON.titles=(NM)
+player.Otchiyev-CON.website=http://uschessleague.com/player.php?p=arslan-otchiyev
+
+player.Paikidze-BAL.handle=Paikidze-BAL
+player.Paikidze-BAL.name=Nazi Paikidze
+player.Paikidze-BAL.rating=2444
+player.Paikidze-BAL.team=BAL
+player.Paikidze-BAL.titles=(IM)
+player.Paikidze-BAL.website=http://uschessleague.com/player.php?p=nazi-paikidze
+
+player.Panchanatham-SF.handle=Panchanatham-SF
+player.Panchanatham-SF.name=Vignesh Panchanatham
+player.Panchanatham-SF.rating=2332
+player.Panchanatham-SF.team=SF
+player.Panchanatham-SF.titles=(NM)
+player.Panchanatham-SF.website=http://uschessleague.com/player.php?p=vignesh-panchanatham
+
+player.Paragua-CON.handle=Paragua-CON
+player.Paragua-CON.name=Mark Paragua
+player.Paragua-CON.rating=2588
+player.Paragua-CON.team=CON
+player.Paragua-CON.titles=(GM)
+player.Paragua-CON.website=http://uschessleague.com/player.php?p=mark-paragua
+
+player.Perdomo-ATL.handle=Perdomo-ATL
+player.Perdomo-ATL.name=Carlos Perdomo
+player.Perdomo-ATL.rating=2400
+player.Perdomo-ATL.team=ATL
+player.Perdomo-ATL.titles=(IM)
+player.Perdomo-ATL.website=http://uschessleague.com/player.php?p=carlos-perdomo
+
+player.Perelshteyn-BOS.handle=Perelshteyn-BOS
+player.Perelshteyn-BOS.name=Eugene Perelshteyn
+player.Perelshteyn-BOS.rating=2597
+player.Perelshteyn-BOS.team=BOS
+player.Perelshteyn-BOS.titles=(GM)
+player.Perelshteyn-BOS.website=http://uschessleague.com/player.php?p=eugene-perelshteyn
+
+player.Perez-MIA.handle=Perez-MIA
+player.Perez-MIA.name=Robert Perez
+player.Perez-MIA.rating=2504
+player.Perez-MIA.team=MIA
+player.Perez-MIA.titles=(SM)
+player.Perez-MIA.website=http://uschessleague.com/player.php?p=robert-perez
+
+player.Pressman-CON.handle=Pressman-CON
+player.Pressman-CON.name=Leif Pressman
+player.Pressman-CON.rating=2432
+player.Pressman-CON.team=CON
+player.Pressman-CON.titles=(FM)
+player.Pressman-CON.website=http://uschessleague.com/player.php?p=leif-pressman
+
+player.Proleiko-STL.handle=Proleiko-STL
+player.Proleiko-STL.name=Julian Proleiko
+player.Proleiko-STL.rating=1954
+player.Proleiko-STL.team=STL
+player.Proleiko-STL.titles=
+player.Proleiko-STL.website=http://uschessleague.com/player.php?p=julian-proleiko
+
+player.PWang-DAL.handle=PWang-DAL
+player.PWang-DAL.name=Puchen Wang
+player.PWang-DAL.rating=2509
+player.PWang-DAL.team=DAL
+player.PWang-DAL.titles=(IM)
+player.PWang-DAL.website=http://uschessleague.com/player.php?p=puchen-wang
+
+player.QuackAttack.handle=QuackAttack
+player.QuackAttack.name=Doug Bateman
+player.QuackAttack.rating=1538
+player.QuackAttack.team=ICC
+player.QuackAttack.titles=
+player.QuackAttack.website=Unavailable
+
+player.QuangLiem-STL.handle=QuangLiem-STL
+player.QuangLiem-STL.name=Le Quang Liem
+player.QuangLiem-STL.rating=2778
+player.QuangLiem-STL.team=STL
+player.QuangLiem-STL.titles=(GM)
+player.QuangLiem-STL.website=http://uschessleague.com/player.php?p=le-quang-liem
+
+player.RCostigan-PHI.handle=RCostigan-PHI
+player.RCostigan-PHI.name=Richard Costigan
+player.RCostigan-PHI.rating=2288
+player.RCostigan-PHI.team=PHI
+player.RCostigan-PHI.titles=(IM)
+player.RCostigan-PHI.website=http://uschessleague.com/player.php?p=richard-costigan
+
+player.Recio-MIA.handle=Recio-MIA
+player.Recio-MIA.name=Miguel Recio
+player.Recio-MIA.rating=2147
+player.Recio-MIA.team=MIA
+player.Recio-MIA.titles=
+player.Recio-MIA.website=http://uschessleague.com/player.php?p=miguel-recio
+
+player.Remlinger-LA.handle=Remlinger-LA
+player.Remlinger-LA.name=Larry Remlinger
+player.Remlinger-LA.rating=2375
+player.Remlinger-LA.team=LA
+player.Remlinger-LA.titles=(IM)
+player.Remlinger-LA.website=http://uschessleague.com/player.php?p=larry-remlinger
+
+player.Rich-STL.handle=Rich-STL
+player.Rich-STL.name=Tony Rich
+player.Rich-STL.rating=2012
+player.Rich-STL.team=STL
+player.Rich-STL.titles=
+player.Rich-STL.website=http://uschessleague.com/player.php?p=tony-rich
+
+player.Ringoir-BAL.handle=Ringoir-BAL
+player.Ringoir-BAL.name=Tanguy Ringoir
+player.Ringoir-BAL.rating=2583
+player.Ringoir-BAL.team=BAL
+player.Ringoir-BAL.titles=(IM)
+player.Ringoir-BAL.website=http://uschessleague.com/player.php?p=tanguy-ringoir
+
+player.Rodriguez-MIA.handle=Rodriguez-MIA
+player.Rodriguez-MIA.name=Eric Rodriguez
+player.Rodriguez-MIA.rating=2386
+player.Rodriguez-MIA.team=MIA
+player.Rodriguez-MIA.titles=(FM)
+player.Rodriguez-MIA.website=http://uschessleague.com/player.php?p=eric-rodriguez
+
+player.Rohde-CON.handle=Rohde-CON
+player.Rohde-CON.name=Michael Rohde
+player.Rohde-CON.rating=2548
+player.Rohde-CON.team=CON
+player.Rohde-CON.titles=(GM)
+player.Rohde-CON.website=http://uschessleague.com/player.php?p=michael-rohde
+
+player.Rosenthal-MIA.handle=Rosenthal-MIA
+player.Rosenthal-MIA.name=Nicholas Rosenthal
+player.Rosenthal-MIA.rating=2146
+player.Rosenthal-MIA.team=MIA
+player.Rosenthal-MIA.titles=
+player.Rosenthal-MIA.website=http://uschessleague.com/player.php?p=nicholas-rosenthal
+
+player.Rozman-MAN.handle=Rozman-MAN
+player.Rozman-MAN.name=Levy Rozman
+player.Rozman-MAN.rating=2382
+player.Rozman-MAN.team=MAN
+player.Rozman-MAN.titles=(NM)
+player.Rozman-MAN.website=http://uschessleague.com/player.php?p=levy-rozman
+
+player.Rubenchik-PHI.handle=Rubenchik-PHI
+player.Rubenchik-PHI.name=Rodion Rubenchik
+player.Rubenchik-PHI.rating=2329
+player.Rubenchik-PHI.team=PHI
+player.Rubenchik-PHI.titles=(FM)
+player.Rubenchik-PHI.website=http://uschessleague.com/player.php?p=rodion-rubenchik
+
+player.Sadorra-DAL.handle=Sadorra-DAL
+player.Sadorra-DAL.name=Julio Sadorra
+player.Sadorra-DAL.rating=2685
+player.Sadorra-DAL.team=DAL
+player.Sadorra-DAL.titles=(GM)
+player.Sadorra-DAL.website=http://uschessleague.com/player.php?p=julio-sadorra
+
+player.Safin-DAL.handle=Safin-DAL
+player.Safin-DAL.name=Artur Safin
+player.Safin-DAL.rating=2333
+player.Safin-DAL.team=DAL
+player.Safin-DAL.titles=(NM)
+player.Safin-DAL.website=http://uschessleague.com/player.php?p=artur-safin
+
+player.Salazar-RIO.handle=Salazar-RIO
+player.Salazar-RIO.name=Aura Salazar
+player.Salazar-RIO.rating=2183
+player.Salazar-RIO.team=RIO
+player.Salazar-RIO.titles=(WIM)
+player.Salazar-RIO.website=http://uschessleague.com/player.php?p=aura-salazar
+
+player.Salimbagat-MAN.handle=Salimbagat-MAN
+player.Salimbagat-MAN.name=Rico Salimbagat
+player.Salimbagat-MAN.rating=2259
+player.Salimbagat-MAN.team=MAN
+player.Salimbagat-MAN.titles=(FM)
+player.Salimbagat-MAN.website=http://uschessleague.com/player.php?p=rico-salimbagat
+
+player.Salisbury-MIA.handle=Salisbury-MIA
+player.Salisbury-MIA.name=John Salisbury
+player.Salisbury-MIA.rating=1998
+player.Salisbury-MIA.team=MIA
+player.Salisbury-MIA.titles=
+player.Salisbury-MIA.website=http://uschessleague.com/player.php?p=john-salisbury
+
+player.Sang-SEA.handle=Sang-SEA
+player.Sang-SEA.name=Tian Sang
+player.Sang-SEA.rating=2325
+player.Sang-SEA.team=SEA
+player.Sang-SEA.titles=(FM)
+player.Sang-SEA.website=http://uschessleague.com/player.php?p=tian-sang
+
+player.Sarkar-CON.handle=Sarkar-CON
+player.Sarkar-CON.name=Justin Sarkar
+player.Sarkar-CON.rating=2483
+player.Sarkar-CON.team=CON
+player.Sarkar-CON.titles=(IM)
+player.Sarkar-CON.website=http://uschessleague.com/player.php?p=justin-sarkar
+
+player.SChiang-DAL.handle=SChiang-DAL
+player.SChiang-DAL.name=Sarah Chiang
+player.SChiang-DAL.rating=2257
+player.SChiang-DAL.team=DAL
+player.SChiang-DAL.titles=(NM)
+player.SChiang-DAL.website=http://uschessleague.com/player.php?p=sarah-chiang
+
+player.Schill-SEA.handle=Schill-SEA
+player.Schill-SEA.name=William Schill
+player.Schill-SEA.rating=2215
+player.Schill-SEA.team=SEA
+player.Schill-SEA.titles=(FM)
+player.Schill-SEA.website=http://uschessleague.com/player.php?p=william-schill
+
+player.Schroer-CAR.handle=Schroer-CAR
+player.Schroer-CAR.name=Jonathan Schroer
+player.Schroer-CAR.rating=2426
+player.Schroer-CAR.team=CAR
+player.Schroer-CAR.titles=(IM)
+player.Schroer-CAR.website=http://uschessleague.com/player.php?p=jonathan-schroer
+
+player.Selzler-BAL.handle=Selzler-BAL
+player.Selzler-BAL.name=Richard Selzler
+player.Selzler-BAL.rating=2242
+player.Selzler-BAL.team=BAL
+player.Selzler-BAL.titles=(NM)
+player.Selzler-BAL.website=http://uschessleague.com/player.php?p=richard-selzler
+
+player.Serna-RIO.handle=Serna-RIO
+player.Serna-RIO.name=Jeffrey Serna
+player.Serna-RIO.rating=2074
+player.Serna-RIO.team=RIO
+player.Serna-RIO.titles=
+player.Serna-RIO.website=http://uschessleague.com/player.php?p=jeffrey-serna
+
+player.Sevian-BOS.handle=Sevian-BOS
+player.Sevian-BOS.name=Samuel Sevian
+player.Sevian-BOS.rating=2571
+player.Sevian-BOS.team=BOS
+player.Sevian-BOS.titles=(IM)
+player.Sevian-BOS.website=http://uschessleague.com/player.php?p=samuel-sevian
+
+player.Sevian-SF.handle=Sevian-SF
+player.Sevian-SF.name=Samuel Sevian
+player.Sevian-SF.rating=2396
+player.Sevian-SF.team=SF
+player.Sevian-SF.titles=(FM)
+player.Sevian-SF.website=http://uschessleague.com/player.php?p=samuel-sevian
+
+player.Sharevich-STL.handle=Sharevich-STL
+player.Sharevich-STL.name=Anna Sharevich
+player.Sharevich-STL.rating=2367
+player.Sharevich-STL.team=STL
+player.Sharevich-STL.titles=(WGM)
+player.Sharevich-STL.website=http://uschessleague.com/player.php?p=anna-sharevich
+
+player.Shi-CON.handle=Shi-CON
+player.Shi-CON.name=Jason Shi
+player.Shi-CON.rating=2220
+player.Shi-CON.team=CON
+player.Shi-CON.titles=(FM)
+player.Shi-CON.website=http://uschessleague.com/player.php?p=jason-shi
+
+player.Shmelov-BOS.handle=Shmelov-BOS
+player.Shmelov-BOS.name=Denys Shmelov
+player.Shmelov-BOS.rating=2473
+player.Shmelov-BOS.team=BOS
+player.Shmelov-BOS.titles=(FM)
+player.Shmelov-BOS.website=http://uschessleague.com/player.php?p=denys-shmelov
+
+player.Shuben-LA.handle=Shuben-LA
+player.Shuben-LA.name=Matthew Shuben
+player.Shuben-LA.rating=2114
+player.Shuben-LA.team=LA
+player.Shuben-LA.titles=
+player.Shuben-LA.website=http://uschessleague.com/player.php?p=matthew-shuben
+
+player.Shvartsman-MAN.handle=Shvartsman-MAN
+player.Shvartsman-MAN.name=Andrew Shvartsman
+player.Shvartsman-MAN.rating=2432
+player.Shvartsman-MAN.team=MAN
+player.Shvartsman-MAN.titles=(FM)
+player.Shvartsman-MAN.website=http://uschessleague.com/player.php?p=andrew-shvartsman
+
+player.Silberman-MIA.handle=Silberman-MIA
+player.Silberman-MIA.name=Sam Silberman
+player.Silberman-MIA.rating=2056
+player.Silberman-MIA.team=MIA
+player.Silberman-MIA.titles=
+player.Silberman-MIA.website=http://uschessleague.com/player.php?p=sam-silberman
+
+player.Simpson-CAR.handle=Simpson-CAR
+player.Simpson-CAR.name=Ron Simpson
+player.Simpson-CAR.rating=2288
+player.Simpson-CAR.team=CAR
+player.Simpson-CAR.titles=(FM)
+player.Simpson-CAR.website=http://uschessleague.com/player.php?p=ron-simpson
+
+player.Sinanan-SEA.handle=Sinanan-SEA
+player.Sinanan-SEA.name=Joshua Sinanan
+player.Sinanan-SEA.rating=2263
+player.Sinanan-SEA.team=SEA
+player.Sinanan-SEA.titles=(NM)
+player.Sinanan-SEA.website=http://uschessleague.com/player.php?p=joshua-sinanan
+
+player.SSmith-MAN.handle=SSmith-MAN
+player.SSmith-MAN.name=Shaun Smith
+player.SSmith-MAN.rating=2065
+player.SSmith-MAN.team=MAN
+player.SSmith-MAN.titles=
+player.SSmith-MAN.website=http://uschessleague.com/player.php?p=shaun-smith
+
+player.Stripunsky-NJ.handle=Stripunsky-NJ
+player.Stripunsky-NJ.name=Alex Stripunsky
+player.Stripunsky-NJ.rating=2656
+player.Stripunsky-NJ.team=NJ
+player.Stripunsky-NJ.titles=(GM)
+player.Stripunsky-NJ.website=http://uschessleague.com/player.php?p=alex-stripunsky
+
+player.Studen-ATL.handle=Studen-ATL
+player.Studen-ATL.name=Damir Studen
+player.Studen-ATL.rating=2372
+player.Studen-ATL.team=ATL
+player.Studen-ATL.titles=(NM)
+player.Studen-ATL.website=http://uschessleague.com/player.php?p=damir-studen
+
+player.Stukopin-RIO.handle=Stukopin-RIO
+player.Stukopin-RIO.name=Andrey Stukopin
+player.Stukopin-RIO.rating=2631
+player.Stukopin-RIO.team=RIO
+player.Stukopin-RIO.titles=(GM)
+player.Stukopin-RIO.website=http://uschessleague.com/player.php?p=andrey-stukopin
+
+player.Swaminathan-CAR.handle=Swaminathan-CAR
+player.Swaminathan-CAR.name=Rahul Swaminathan
+player.Swaminathan-CAR.rating=2197
+player.Swaminathan-CAR.team=CAR
+player.Swaminathan-CAR.titles=(NM)
+player.Swaminathan-CAR.website=http://uschessleague.com/player.php?p=rahul-swaminathan
+
+player.Tanaka-SF.handle=Tanaka-SF
+player.Tanaka-SF.name=Payam Afkham-Ebrahimi
+player.Tanaka-SF.rating=1873
+player.Tanaka-SF.team=SF
+player.Tanaka-SF.titles=
+player.Tanaka-SF.website=http://uschessleague.com/player.php?p=payam-afkham-ebrahimi
+
+player.Tanenbaum-CON.handle=Tanenbaum-CON
+player.Tanenbaum-CON.name=Zachary Tanenbaum
+player.Tanenbaum-CON.rating=2208
+player.Tanenbaum-CON.team=CON
+player.Tanenbaum-CON.titles=(NM)
+player.Tanenbaum-CON.website=http://uschessleague.com/player.php?p=zachary-tanenbaum
+
+player.Theil-NE.handle=Theil-NE
+player.Theil-NE.name=Carey Theil
+player.Theil-NE.rating=2180
+player.Theil-NE.team=NE
+player.Theil-NE.titles=(NM)
+player.Theil-NE.website=http://uschessleague.com/player.php?p=carey-theil
+
+player.Times-NE.handle=Times-NE
+player.Times-NE.name=Lawyer Times
+player.Times-NE.rating=2239
+player.Times-NE.team=NE
+player.Times-NE.titles=(NM)
+player.Times-NE.website=http://uschessleague.com/player.php?p=lawyer-times
+
+player.Timmel-CAR.handle=Timmel-CAR
+player.Timmel-CAR.name=John Timmel
+player.Timmel-CAR.rating=2155
+player.Timmel-CAR.team=CAR
+player.Timmel-CAR.titles=
+player.Timmel-CAR.website=http://uschessleague.com/player.php?p=john-timmel
+
+player.Vasquez-RIO.handle=Vasquez-RIO
+player.Vasquez-RIO.name=Simon Vasquez III
+player.Vasquez-RIO.rating=2169
+player.Vasquez-RIO.team=RIO
+player.Vasquez-RIO.titles=
+player.Vasquez-RIO.website=http://uschessleague.com/player.php?p=simon-vasquez-iii
+
+player.Vigorito-NE.handle=Vigorito-NE
+player.Vigorito-NE.name=David Vigorito
+player.Vigorito-NE.rating=2519
+player.Vigorito-NE.team=NE
+player.Vigorito-NE.titles=(IM)
+player.Vigorito-NE.website=http://uschessleague.com/player.php?p=david-vigorito
+
+player.Viswanadha-SF.handle=Viswanadha-SF
+player.Viswanadha-SF.name=Kesav Viswanadha
+player.Viswanadha-SF.rating=2181
+player.Viswanadha-SF.team=SF
+player.Viswanadha-SF.titles=(NM)
+player.Viswanadha-SF.website=http://uschessleague.com/player.php?p=kesav-viswanadha
+
+player.Volkov-NJ.handle=Volkov-NJ
+player.Volkov-NJ.name=Dmitriy Volkov
+player.Volkov-NJ.rating=2371
+player.Volkov-NJ.team=NJ
+player.Volkov-NJ.titles=(NM)
+player.Volkov-NJ.website=http://uschessleague.com/player.php?p=dmitriy-volkov
+
+player.Vovsha-MAN.handle=Vovsha-MAN
+player.Vovsha-MAN.name=Eli Vovsha
+player.Vovsha-MAN.rating=2510
+player.Vovsha-MAN.team=MAN
+player.Vovsha-MAN.titles=(IM)
+player.Vovsha-MAN.website=http://uschessleague.com/player.php?p=eli-vovsha
+
+player.VShen-MAN.handle=VShen-MAN
+player.VShen-MAN.name=Victor Shen
+player.VShen-MAN.rating=2510
+player.VShen-MAN.team=MAN
+player.VShen-MAN.titles=(IM)
+player.VShen-MAN.website=http://uschessleague.com/player.php?p=victor-shen
+
+player.Wang-NY.handle=Wang-NY
+player.Wang-NY.name=Qibiao Wang
+player.Wang-NY.rating=2320
+player.Wang-NY.team=NY
+player.Wang-NY.titles=(NM)
+player.Wang-NY.website=http://uschessleague.com/player.php?p=qibiao-wang
+
+player.WesleySo-STL.handle=WesleySo-STL
+player.WesleySo-STL.name=Wesley So
+player.WesleySo-STL.rating=2751
+player.WesleySo-STL.team=STL
+player.WesleySo-STL.titles=(GM)
+player.WesleySo-STL.website=http://uschessleague.com/player.php?p=wesley-so
+
+player.Wheeler-SF.handle=Wheeler-SF
+player.Wheeler-SF.name=Cameron Wheeler
+player.Wheeler-SF.rating=2368
+player.Wheeler-SF.team=SF
+player.Wheeler-SF.titles=(FM)
+player.Wheeler-SF.website=http://uschessleague.com/player.php?p=cameron-wheeler
+
+player.Wilkins-STL.handle=Wilkins-STL
+player.Wilkins-STL.name=Jacob Wilkins
+player.Wilkins-STL.rating=1909
+player.Wilkins-STL.team=STL
+player.Wilkins-STL.titles=
+player.Wilkins-STL.website=http://uschessleague.com/player.php?p=jacob-wilkins
+
+player.Williams-BOS.handle=Williams-BOS
+player.Williams-BOS.name=Chris Williams
+player.Williams-BOS.rating=2310
+player.Williams-BOS.team=BOS
+player.Williams-BOS.titles=(NM)
+player.Williams-BOS.website=http://uschessleague.com/player.php?p=chris-williams
+
+player.Winer-NE.handle=Winer-NE
+player.Winer-NE.name=Steven Winer
+player.Winer-NE.rating=2419
+player.Winer-NE.team=NE
+player.Winer-NE.titles=(FM)
+player.Winer-NE.website=http://uschessleague.com/player.php?p=steven-winer
+
+player.Wu-NJ.handle=Wu-NJ
+player.Wu-NJ.name=Christopher Wu
+player.Wu-NJ.rating=2363
+player.Wu-NJ.team=NJ
+player.Wu-NJ.titles=(NM)
+player.Wu-NJ.website=http://uschessleague.com/player.php?p=christopher-wu
+
+player.Xiong-DAL.handle=Xiong-DAL
+player.Xiong-DAL.name=Jeffery Xiong
+player.Xiong-DAL.rating=2542
+player.Xiong-DAL.team=DAL
+player.Xiong-DAL.titles=(IM)
+player.Xiong-DAL.website=http://uschessleague.com/player.php?p=jeffery-xiong
+
+player.Yanovsky-MIA.handle=Yanovsky-MIA
+player.Yanovsky-MIA.name=Vlad Yanovsky
+player.Yanovsky-MIA.rating=2165
+player.Yanovsky-MIA.team=MIA
+player.Yanovsky-MIA.titles=
+player.Yanovsky-MIA.website=http://uschessleague.com/player.php?p=vlad-yanovsky
+
+player.Yip-NE.handle=Yip-NE
+player.Yip-NE.name=Carissa Yip
+player.Yip-NE.rating=2141
+player.Yip-NE.team=NE
+player.Yip-NE.titles=
+player.Yip-NE.website=http://uschessleague.com/player.php?p=carissa-yip
+
+player.Yuan-CON.handle=Yuan-CON
+player.Yuan-CON.name=Yuanling Yuan
+player.Yuan-CON.rating=2270
+player.Yuan-CON.team=CON
+player.Yuan-CON.titles=(WIM)
+player.Yuan-CON.website=http://uschessleague.com/player.php?p=yuanling-yuan
+
+player.ZAmanov-LA.handle=ZAmanov-LA
+player.ZAmanov-LA.name=Zhanibek Amanov
+player.ZAmanov-LA.rating=2463
+player.ZAmanov-LA.team=LA
+player.ZAmanov-LA.titles=(IM)
+player.ZAmanov-LA.website=http://uschessleague.com/player.php?p=zhanibek-amanov
+
+player.Zapata-ATL.handle=Zapata-ATL
+player.Zapata-ATL.name=Alonso Zapata
+player.Zapata-ATL.rating=2555
+player.Zapata-ATL.team=ATL
+player.Zapata-ATL.titles=(GM)
+player.Zapata-ATL.website=http://uschessleague.com/player.php?p=alonso-zapata
+
+player.Zheng-BAL.handle=Zheng-BAL
+player.Zheng-BAL.name=Andrew Zheng
+player.Zheng-BAL.rating=2208
+player.Zheng-BAL.team=BAL
+player.Zheng-BAL.titles=(NM)
+player.Zheng-BAL.website=http://uschessleague.com/player.php?p=andrew-zheng
+
+player.zierk-bos.handle=zierk-bos
+player.zierk-bos.name=Steven Zierk
+player.zierk-bos.rating=2543
+player.zierk-bos.team=BOS
+player.zierk-bos.titles=(IM)
+player.zierk-bos.website=http://uschessleague.com/player.php?p=steven-zierk
+
+player.Zilberstein-SF.handle=Zilberstein-SF
+player.Zilberstein-SF.name=Dmitry Zilberstein
+player.Zilberstein-SF.rating=2467
+player.Zilberstein-SF.team=SF
+player.Zilberstein-SF.titles=(IM)
+player.Zilberstein-SF.website=http://uschessleague.com/player.php?p=dmitry-zilberstein
+
+player.Zimmer-BAL.handle=Zimmer-BAL
+player.Zimmer-BAL.name=Ralph Zimmer
+player.Zimmer-BAL.rating=2268
+player.Zimmer-BAL.team=BAL
+player.Zimmer-BAL.titles=(FM)
+player.Zimmer-BAL.website=http://uschessleague.com/player.php?p=ralph-zimmer
 

@@ -6,6 +6,12 @@ team.ARZ.name=Arizona Scorpions
 team.ARZ.website=http://uschessleague.com/arizona.php
 team.ARZ.division=Western Division
 
+team.ATL.code=ATL
+team.ATL.location=Atlanta
+team.ATL.name=Atlanta Kings
+team.ATL.website=http://uschessleague.com/atlanta.php
+team.ATL.division=South Division
+
 team.BAL.code=BAL
 team.BAL.location=Baltimore
 team.BAL.name=Baltimore Kingfishers
@@ -83,6 +89,12 @@ team.PHI.location=Philadelphia
 team.PHI.name=Philadelphia Inventors
 team.PHI.website=http://uschessleague.com/philadelphia.php
 team.PHI.division=Eastern Division
+
+team.RIO.code=RIO
+team.RIO.location=Rio Grande
+team.RIO.name=Rio Grande Ospreys
+team.RIO.website=http://uschessleague.com/riogrande.php
+team.RIO.division=West Division
 
 team.SEA.code=SEA
 team.SEA.location=Seattle
