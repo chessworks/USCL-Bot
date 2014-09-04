@@ -444,7 +444,7 @@ public class USCLBot {
             }
         }
         if (liveGames.isEmpty()) {
-            command.tell(teller, "Error: There are no active games between {0} and {1}.", team1.getTeamCode(), team2.getTeamCode());
+            command.tell(teller, "Error - There are no active games between {0} and {1}.", team1.getTeamCode(), team2.getTeamCode());
             return;
         }
         tellEventChannels("US Chess League 2014 - %s vs %s", team1.getRealName(), team2.getRealName());
