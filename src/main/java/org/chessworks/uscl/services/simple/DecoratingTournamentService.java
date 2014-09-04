@@ -134,6 +134,16 @@ public class DecoratingTournamentService implements TournamentService {
 		return service.findGame(gameNumber);
 	}
 
+    /**
+     * Delegates all calls to the underlying {@link TournamentService}.
+     *
+     * @see org.chessworks.uscl.services.TournamentService#findMatchGames(Team, Team)
+     */
+    @Override
+    public Collection<Game> findMatchGames(Team team1, Team team2) {
+        return service.findMatchGames(team1, team2);
+    }
+
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *

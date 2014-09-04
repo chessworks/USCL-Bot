@@ -424,6 +424,31 @@ public class USCLBot {
     }
 
     /**
+     * Commands the bot to announce live games between two teams to the event channel.
+     *
+     * Syntax: <tt>announce-match NYC STL</tt>
+     *
+     * @param teller
+     *            The user/manager issuing the command.
+     * @param team1
+     *            The home team in the match.
+     * @param team2
+     *            The visiting team in the match.
+     */
+    public void cmdAnnounceMatch(User teller, Team team1, Team team2) {
+        Collection<Game> games = tournamentService.findMatchGames(team1, team2);
+        tellEventChannels("US Chess League 2014 - %s vs %s", team1.getRealName(), team2.getRealName());
+        for (Game game : games) {
+            if (game.status.isPlaying()) {
+                String white = game.whitePlayer.getTitledRealName(USCL_RATING);
+                String black = game.blackPlayer.getTitledRealName(USCL_RATING);
+                String line = String.format("%s vs %s - \"observe %d\"", white, black, game.boardNumber);
+                tellEventChannels(line);
+            }
+        }
+    }
+    
+    /**
      * Commands the bot to send sample commands once for each player.  The placeholder {0} should
      * be put into the command wherever the player name should go.
      * 

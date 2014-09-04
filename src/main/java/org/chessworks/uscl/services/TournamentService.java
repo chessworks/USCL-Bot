@@ -46,6 +46,8 @@ public interface TournamentService extends Flushable {
 
     Collection<Game> findAllGames();
 
+    Collection<Game> findMatchGames(Team team1, Team team2);
+
     Game scheduleGame(Game game);
 
     Game scheduleGame(int board, Player white, Player black);

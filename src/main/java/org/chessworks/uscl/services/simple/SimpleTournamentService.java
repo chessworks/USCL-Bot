@@ -163,6 +163,23 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 		return Collections.unmodifiableCollection(boards.values());
 	}
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.chessworks.uscl.services.TournamentService#findMatchGames(Team, Team)
+     */
+    @Override
+    public Collection<Game> findMatchGames(Team team1, Team team2) {
+        Collection<Game> results = new ArrayList<Game>();
+        for (Game game : boards.values()) {
+            if ((game.whitePlayer.getTeam().equals(team1) && game.blackPlayer.getTeam().equals(team2))
+                    || (game.whitePlayer.getTeam().equals(team2) && game.blackPlayer.getTeam().equals(team1))) {
+                results.add(game);
+            }
+        }
+        return Collections.unmodifiableCollection(results);
+    }
+    
 	/**
 	 * {@inheritDoc}
 	 * @throws InvalidTeamException

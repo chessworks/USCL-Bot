@@ -26,6 +26,11 @@ takeback             : Spoofs players to take back the given number of half-move
                        Example: takeback 11 2
                        Example: takeback 12 5
 
+announce-match       : Announces all active games between the two given teams to the tournament channel.  Syntax: announce-match NYC STL
+announce-all         : (Planned) Announces all active games to the tournament channel.  Syntax: announce-all
+announce-game        : (Planned) Announces an individual game to the tournament channel.  Syntax: announce-game <board>
+announce-player      : (Planned) Announces an individual game to the tournament channel.  Syntax: announce-game <player>
+
 reserve-game         : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
 unreserve-game       : (Deprecated.)  Removes a board reservation.  Syntax: unreserve-game <player>
 clear                : (Deprecated.)  Same as clear-games.
