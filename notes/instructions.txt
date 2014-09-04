@@ -20,6 +20,11 @@ do-all-players       : Issues a command once for each player, replacing {0} with
                        Example: do-all-players +ban {0}
                        Example: do-all-players +g-invite USCL {0}
                        Example: do-all-players message {0} Great Season!
+takeback             : Spoofs players to take back the given number of half-moves on a given board.
+                       Syntax: takeback <boardNum> <half-moves>
+                       Example: takeback 10 1
+                       Example: takeback 11 2
+                       Example: takeback 12 5
 
 reserve-game         : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
 unreserve-game       : (Deprecated.)  Removes a board reservation.  Syntax: unreserve-game <player>

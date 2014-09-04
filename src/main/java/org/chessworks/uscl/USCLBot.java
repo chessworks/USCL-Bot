@@ -797,6 +797,40 @@ public class USCLBot {
     }
 
     /**
+     * Commands the bot to spoof takeback requests to both players in a game.
+     * 
+     * Syntax:  <tt>takeback <boardNum> <half-moves></tt><br/>
+     * Example: <tt>takeback 10 1</tt><br/>
+     * Example: <tt>takeback 10 2</tt><br/>
+     * 
+     * @param teller
+     *            The user/manager issuing the command.
+     * @param game
+     *            The board where the game is played.
+     * @param halfmoves
+     *            The number of half-moves to takeback in the game. For
+     *            example, "takeback 2" takes back both players most recent
+     *            move, backing up the game by 1 full move.
+     */
+    public void cmdTakeBack(User teller, Game game, int halfmoves) {
+        if (!game.status.isPlaying()) {
+            command.tell(teller, "Unable to takeback.  {0} isn't currently active.", game);
+            return;
+        }
+        int remaining = halfmoves;
+        while(remaining >= 2) {
+            command.spoof(game.whitePlayer, "takeback 2");
+            command.spoof(game.blackPlayer, "takeback 2");
+            remaining-=2;
+        }
+        if (remaining==1) {
+            command.spoof(game.whitePlayer, "takeback");
+            command.spoof(game.blackPlayer, "takeback");
+        }
+        command.tell(teller, "Taking back {0} moves in {1}.", halfmoves, game);
+    }
+    
+    /**
      * Commands the bot to simulate an unexpected internal error. This is used to verify the bot will respond semi-gracefully to unexpected problems.
      *
      * When an unexpected error happens in the bot, the bot sends a tell to all programmers, followed by a series of qtells containing debugging
