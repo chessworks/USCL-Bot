@@ -20,15 +20,15 @@ public class TeamConverter extends AbstractConverter<Team> {
 	public Team getAsObject(String s) throws ConversionException {
 		if (s == null)
 			throw new ConversionException("Missing required input: <team>");
-		Team t = service.findTeam(s);
-		if (t == null) {
+		Team result = service.findTeam(s);
+		if (result == null) {
 			throw new ConversionException("Unknown team: %s", s);
 		}
-		return t;
+		return result;
 	}
 
-	public void setTournamentService(TournamentService TeamService) {
-		this.service = TeamService;
+    public void setTournamentService(TournamentService service) {
+		this.service = service;
 	}
 
 }

@@ -20,15 +20,15 @@ public class PlayerConverter extends AbstractConverter<Player> {
 	public Player getAsObject(String s) throws ConversionException {
 		if (s == null)
 			throw new ConversionException("Missing required input: <player>");
-		Player p = service.findPlayer(s);
-		if (p == null) {
+		Player result = service.findPlayer(s);
+		if (result == null) {
 			throw new ConversionException("Unknown player: %s", s);
 		}
-		return p;
+		return result;
 	}
 
-	public void setTournamentService(TournamentService playerService) {
-		this.service = playerService;
+    public void setTournamentService(TournamentService service) {
+		this.service = service;
 	}
 
 }

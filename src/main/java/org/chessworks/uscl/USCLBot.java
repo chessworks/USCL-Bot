@@ -357,22 +357,6 @@ public class USCLBot {
     }
     
     /**
-     * Commands the bot to send sample commands to ban all USCL accounts when the season
-     * is over.
-     * 
-     * Syntax: <tt>ban-all-players</tt>
-     * 
-     * @param teller
-     *            The user/manager issuing the command.
-     */
-    public void cmdBanAllPlayers(User teller) {
-        Collection<Player> players = tournamentService.findAllPlayers();
-        for (Player p : players) {
-            command.qtell(teller, "+ban {0}", p);
-        }
-    }
-
-    /**
      * Deprecated. Use {@link #cmdClearGames()} instead.
      *
      * @deprecated
@@ -437,6 +421,24 @@ public class USCLBot {
         FileHelper.closeQuietly(out);
         }
         */
+    }
+
+    /**
+     * Commands the bot to send sample commands once for each player.  The placeholder {0} should
+     * be put into the command wherever the player name should go.
+     * 
+     * Syntax: <tt>do-all-players +ban {0}</tt>
+     * Syntax: <tt>do-all-players g-invite uscl {0}</tt>
+     * Syntax: <tt>do-all-players message {0} great season!</tt>
+     * 
+     * @param teller
+     *            The user/manager issuing the command.
+     */
+    public void cmdDoAllPlayers(User teller, String command) {
+        Collection<Player> players = tournamentService.findAllPlayers();
+        for (Player p : players) {
+            this.command.sendAdminCommand(command, p);
+        }
     }
 
     /**
@@ -904,9 +906,9 @@ public class USCLBot {
         } else {
             command.tell(teller, "Okay, game \"{0} - {1} {2}\" is no longer scheduled.", game.boardNumber, game.whitePlayer, game.blackPlayer);
             command.sendCommand("-notify {0}", game.whitePlayer);
-            command.sendAdminCommand("spoof rdgmx -notify {0}", game.whitePlayer);
-            command.sendAdminCommand("spoof rdgmx -notify {0}", game.blackPlayer);
             command.sendCommand("-notify {0}", game.blackPlayer);
+            command.spoof("rdgmx", "-notify {0}", game.whitePlayer);
+            command.spoof("rdgmx", "-notify {0}", game.blackPlayer);
         }
     }
 
@@ -1206,6 +1208,7 @@ public class USCLBot {
             //Fall through...
             case PLAYING:
                // command.qChanPlus(playerHandle, CHANNEL_USCL);
+            default:
         }
     }
 
@@ -1526,7 +1529,14 @@ public class USCLBot {
             if (args.length > 0) {
                 command = MessageFormat.format(command, args);
             }
-            sendCommand("spoof {0} {1}", handle, command);
+            sendAdminCommand("spoof {0} {1}", handle, command);
+        }
+
+        public void spoof(User user, String command, Object... args) {
+            if (args.length > 0) {
+                command = MessageFormat.format(command, args);
+            }
+            sendAdminCommand("spoof {0} {1}", user, command);
         }
 
         /**

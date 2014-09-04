@@ -10,19 +10,26 @@ set-team             : Sets the team details, such as the team website and team'
 show-team            : Shows the current team details.
 remove-team          : Removes a team profile from the bot, including players.
 
-createscript         : Creates all scripts to run at scripter.exe Syntax: createscript <slot-number> <board> <white> <black> <time> <inc>
-reserve-game         : Reserves boards for a game.  Syntax: reserve-game <board> <white> <black>
-reserve-game (old)   : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
-unreserve-game       : Removes a board reservation.  Syntax: unreserve-game <board>
-unreserve-game (old) : (Deprecated.)  Removes a board reservation.  Syntax: unreserve-game <player>
+create-script        : Creates all scripts to run at scripter.exe
+                       Syntax: create-script <slot-number> <board> <white> <black> <time> <inc>
 show-games           : Shows a list of all reserved boards.
-clear-games          : Clears the list of all reseved boards.
+clear-games          : Clears the list of all reserved boards.
+schedule-game        : Pairs players at a given board.
+                       Example: schedule-game 5 Shirov-NYC DuckStorm-YVR
+do-all-players       : Issues a command once for each player, replacing {0} with the player's name.
+                       Example: do-all-players +ban {0}
+                       Example: do-all-players +g-invite USCL {0}
+                       Example: do-all-players message {0} Great Season!
+
+reserve-game         : (Deprecated.)  Reserves boards for a game.  Syntax: reserve-game <board> <player>
+unreserve-game       : (Deprecated.)  Removes a board reservation.  Syntax: unreserve-game <player>
 clear                : (Deprecated.)  Same as clear-games.
 show                 : (Deprecated.)  Same as show-games.
 
 REBOOT               : Restart the bot.
 KILL                 : Shutdown the bot.  A programmer will then be required to restart it.
                        (If this fails to kill the bot during an emergency, ban the bot.)
+UPGRADE              : Downloads the latest bot version and restarts the bot.
 REVERT               : If the current version of the bot breaks, this restores it to the last known stable release.
 
 Jeeves               : Jeeves gets special treatment.  When Jeeves sends commands the bot pretends they came from MrBob and sends replies to MrBob instead.
@@ -34,8 +41,8 @@ recompile            : Retrieves the latest updates from source control, compile
 test-error           : Generates an error message.
 refresh-all-profiles : Sets the finger notes for all players.
 refresh-profile      : Sets the finger notes for the given player.
-
-
+tvar                 : Lists all bot changable settings.
+tset                 : Changes configuration settings for the bot.
 
 
 Here are special instructions for Wohl and Freebird:
