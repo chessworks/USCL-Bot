@@ -1,3 +1,23 @@
 #USCL Schedule
 
+schedule-game 11 Bartell-PHI Stripunsky-NJ BLACK_WINS
+schedule-game 12 Benjamin-NJ Minear-PHI WHITE_WINS
+schedule-game 13 Rubenchik-PHI Wu-NJ WHITE_WINS
+schedule-game 14 Manuelian-NJ Bryant-PHI BLACK_WINS
+schedule-game 15 AIvanov-NE Kamsky-NY DRAW
+schedule-game 16 Herman-NY Vigorito-NE WHITE_WINS
+schedule-game 17 Winer-NE Huang-NY WHITE_WINS
+schedule-game 18 Wang-NY Yip-NE WHITE_WINS
+schedule-game 19 Enkhbat-BAL Korley-CAR BLACK_WINS
+schedule-game 20 Bozkurt-CAR LKaufman-BAL WHITE_WINS
+schedule-game 21 Defibaugh-BAL Mo-CAR BLACK_WINS
+schedule-game 22 Cunningham-CAR Zheng-BAL BLACK_WINS
+schedule-game 23 Aaron-ATL Rohde-CON BLACK_WINS
+schedule-game 24 Pressman-CON Studen-ATL BLACK_WINS
+schedule-game 25 Gulamali-ATL Colas-CON BLACK_WINS
+schedule-game 26 Shi-CON Francisco-ATL BLACK_WINS
+schedule-game 27 Zierk-BOS Ostrovskiy-MAN DRAW
+schedule-game 28 Shvartsman-MAN Shmelov-BOS BLACK_WINS
+schedule-game 29 Williams-BOS Salimbagat-MAN BLACK_WINS
+schedule-game 30 Rozman-MAN Krasik-BOS WHITE_WINS
 

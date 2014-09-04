@@ -1526,12 +1526,12 @@ player.Zheng-BAL.team=BAL
 player.Zheng-BAL.titles=(NM)
 player.Zheng-BAL.website=http://uschessleague.com/player.php?p=andrew-zheng
 
-player.zierk-bos.handle=zierk-bos
-player.zierk-bos.name=Steven Zierk
-player.zierk-bos.rating=2543
-player.zierk-bos.team=BOS
-player.zierk-bos.titles=(IM)
-player.zierk-bos.website=http://uschessleague.com/player.php?p=steven-zierk
+player.Zierk-BOS.handle=Zierk-BOS
+player.Zierk-BOS.name=Steven Zierk
+player.Zierk-BOS.rating=2543
+player.Zierk-BOS.team=BOS
+player.Zierk-BOS.titles=(IM)
+player.Zierk-BOS.website=http://uschessleague.com/player.php?p=steven-zierk
 
 player.Zilberstein-SF.handle=Zilberstein-SF
 player.Zilberstein-SF.name=Dmitry Zilberstein
