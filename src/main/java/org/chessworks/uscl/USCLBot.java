@@ -437,14 +437,22 @@ public class USCLBot {
      */
     public void cmdAnnounceMatch(User teller, Team team1, Team team2) {
         Collection<Game> games = tournamentService.findMatchGames(team1, team2);
-        tellEventChannels("US Chess League 2014 - %s vs %s", team1.getRealName(), team2.getRealName());
+        Collection<Game> liveGames = new ArrayList<Game>();
         for (Game game : games) {
             if (game.status.isPlaying()) {
-                String white = game.whitePlayer.getTitledRealName(USCL_RATING);
-                String black = game.blackPlayer.getTitledRealName(USCL_RATING);
-                String line = String.format("%s vs %s - \"observe %d\"", white, black, game.boardNumber);
-                tellEventChannels(line);
+                liveGames.add(game);
             }
+        }
+        if (liveGames.isEmpty()) {
+            command.tell(teller, "Error: There are no active games between {0} and {1}.", team1.getTeamCode(), team2.getTeamCode());
+            return;
+        }
+        tellEventChannels("US Chess League 2014 - %s vs %s", team1.getRealName(), team2.getRealName());
+        for (Game game : games) {
+            String white = game.whitePlayer.getTitledRealName(USCL_RATING);
+            String black = game.blackPlayer.getTitledRealName(USCL_RATING);
+            String line = String.format("%s vs %s - \"observe %d\"", white, black, game.boardNumber);
+            tellEventChannels(line);
         }
     }
     
