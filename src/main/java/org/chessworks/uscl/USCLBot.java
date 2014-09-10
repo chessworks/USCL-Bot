@@ -1195,8 +1195,8 @@ public class USCLBot {
         }
         boolean jeeves = "Jeeves".equals(teller);
         if (jeeves) {
-            alertManagers("{0} just executed command: {1}", teller, message);
-            teller = "MrBob";
+            tellManagers("{0} just executed command: {1}", teller, message);
+            teller = "Ralph";
         } else {
         	onCommand(teller, message);
         }
