@@ -424,9 +424,9 @@ public class USCLBot {
     }
 
     /**
-     * Commands the bot to announce live games between two teams to the event channel.
+     * Commands the bot to announce live games between two teams to the given channel.
      *
-     * Syntax: <tt>announce-match NYC STL</tt>
+     * Syntax: <tt>announce-match NYC STL 129</tt>
      *
      * @param teller
      *            The user/manager issuing the command.
@@ -434,8 +434,10 @@ public class USCLBot {
      *            The home team in the match.
      * @param team2
      *            The visiting team in the match.
+     * @param channel
+     *            The channel to send the announcement.
      */
-    public void cmdAnnounceMatch(User teller, Team team1, Team team2) {
+    public void cmdAnnounceMatch(User teller, Team team1, Team team2, int channel) {
         Collection<Game> games = tournamentService.findMatchGames(team1, team2);
         Collection<Game> liveGames = new ArrayList<Game>();
         for (Game game : games) {
@@ -447,7 +449,7 @@ public class USCLBot {
             command.tell(teller, "Error - There are no active games between the {0} and the {1}.", team1, team2);
             return;
         }
-        tellEventChannels("US Chess League 2014 - %s vs %s", team1.getRealName(), team2.getRealName());
+        tellEventChannels("US Chess League 2014 - {0} vs {1}", team1.getRealName(), team2.getRealName());
         for (Game game : games) {
             String white = game.whitePlayer.getTitledRealName(USCL_RATING);
             String black = game.blackPlayer.getTitledRealName(USCL_RATING);
