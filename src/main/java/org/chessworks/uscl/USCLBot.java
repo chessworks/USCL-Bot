@@ -449,7 +449,7 @@ public class USCLBot {
             command.tell(teller, "Error - There are no active games between the {0} and the {1}.", team1, team2);
             return;
         }
-        command.tell(channel, "US Chess League 2014 - {0} vs {1}", team1.getRealName(), team2.getRealName());
+        command.tell(channel, "US Chess League - {0} vs {1}", team1.getRealName(), team2.getRealName());
         for (Game game : games) {
             String white = game.whitePlayer.getTitledRealName(USCL_RATING);
             String black = game.blackPlayer.getTitledRealName(USCL_RATING);
