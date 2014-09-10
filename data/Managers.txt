@@ -40,7 +40,4 @@ user.xtal.handle=xtal
 user.xtal.name=Raul
 user.xtal.roles=manager
 
-user.xtal.handle=Jeeves
-user.xtal.name=Jeeves
-user.xtal.roles=manager
 
