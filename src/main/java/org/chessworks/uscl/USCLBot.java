@@ -449,12 +449,12 @@ public class USCLBot {
             command.tell(teller, "Error - There are no active games between the {0} and the {1}.", team1, team2);
             return;
         }
-        tellEventChannels("US Chess League 2014 - {0} vs {1}", team1.getRealName(), team2.getRealName());
+        command.tell(channel, "US Chess League 2014 - {0} vs {1}", team1.getRealName(), team2.getRealName());
         for (Game game : games) {
             String white = game.whitePlayer.getTitledRealName(USCL_RATING);
             String black = game.blackPlayer.getTitledRealName(USCL_RATING);
             String line = String.format("%s vs %s - \"observe %d\"", white, black, game.boardNumber);
-            tellEventChannels(line);
+            command.tell(channel, line);
         }
     }
     
@@ -1497,11 +1497,13 @@ public class USCLBot {
      * Sends tells to the event channels (129 and 399).
      */
     public void tellEventChannels(String msg, Object... args) {
+        if (loggingIn)
+            return;
         if (args.length > 0) {
             msg = MessageFormat.format(msg, args);
         }
-        command.tellAndEcho(CHANNEL_USCL, msg);
-        command.tellAndEcho(CHANNEL_EVENTS_GROUP, msg);
+        command.tell(CHANNEL_USCL, msg);
+        command.tell(CHANNEL_EVENTS_GROUP, msg);
     }
 
     /**
@@ -1548,11 +1550,15 @@ public class USCLBot {
         }
         
         public void qsuggest(User user, String pattern, Object... args) {
+            if (loggingIn)
+                return;
             String qtell = MessageFormat.format(pattern, args);
             sendQuietly("qsuggest {0} {1}\\n", user, qtell);
         }
         
         public void qsuggest(String handle, String pattern, Object... args) {
+            if (loggingIn)
+                return;
             String qtell = MessageFormat.format(pattern, args);
             sendQuietly("qsuggest {0} {1}\\n", handle, qtell);
         }
@@ -1657,12 +1663,13 @@ public class USCLBot {
         /**
          * Sends a tell to the channel.
          */
-        public void tellAndEcho(int channel, String msg, Object... args) {
+        public void tell(int channel, String msg, Object... args) {
             if (args.length > 0) {
                 msg = MessageFormat.format(msg, args);
             }
-            sendCommand("tell {0} {1}", channel, msg);
+            sendQuietly("tell {0} {1}", channel, msg);
         }
+
     }
 
     /** The underlying connection to the chess server. This uses the Jin connection libraries. */
