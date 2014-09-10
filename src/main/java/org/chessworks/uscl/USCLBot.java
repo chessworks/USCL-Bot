@@ -880,13 +880,7 @@ public class USCLBot {
      *            The user/manager issuing the command.
      */
     public void cmdTestError(User teller) {
-        try {
-            throw new Exception("This is a test.  Don''t worry.");
-        } catch (Exception e) {
-            reportException(e);
-            command.tell(teller, "Test successful.");
-            return;
-        }
+        throw new RuntimeException("This is a test.  Don''t worry.");
     }
 
 	/**
@@ -1043,7 +1037,7 @@ public class USCLBot {
             String msg = e.getMessage();
             command.tell(teller, msg);
         } catch (Exception e) {
-            reportException(e);
+            reportException(teller, message, e);
             command.tell(teller, "Uggg, something went wrong.  Unable to execute command.");
         }
     }
@@ -1372,13 +1366,15 @@ public class USCLBot {
     /**
      * If something goes unexpectedly wrong in the bot, this will send a series of qtells to all programmers with useful debugging information.
      */
-    public void reportException(Throwable t) {
+    public void reportException(String teller, String message, Throwable t) {
+        System.err.println("Error- " + teller + ": " + message);
         t.printStackTrace(System.err);
         StringWriter w = new StringWriter();
         PrintWriter p = new PrintWriter(w);
         t.printStackTrace(p);
         String msg = w.toString();
         msg = msg.replaceAll("\n", "\\\\n");
+        broadcast(ChatType.PERSONAL_TELL, programmerRole, "Error- " + teller + ": " + message);
         broadcast(ChatType.PERSONAL_TELL, programmerRole, t.toString());
         qtellProgrammers(msg);
     }
