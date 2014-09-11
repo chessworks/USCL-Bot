@@ -1064,7 +1064,7 @@ public class USCLBot {
             }
         };
         //In 2 seconds, call onConnectSpamDone().
-        scheduler.schedule(task, 2, TimeUnit.SECONDS);
+        scheduler.schedule(task, 4, TimeUnit.SECONDS);
         System.out.println();
     }
 
