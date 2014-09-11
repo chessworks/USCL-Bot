@@ -264,9 +264,9 @@ public class USCLBot {
      * @param users
      *            The users to receive the message.
      * @param msg
-     *            The message to send. It may optionally use {@link MessageFormat} style formatting.
+     *            The message to send. It may optionally use {@link Formatter} style formatting.
      * @param args
-     *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
+     *            The values inserted into {@link Formatter} %s style place holders in the message.
      */
     public void broadcast(ChatType tellType, Collection<User> users, String msg, Object... args) {
         if (args.length > 0) {
@@ -291,9 +291,9 @@ public class USCLBot {
      * @param role
      *            The role/group who's users will receive the message.
      * @param msg
-     *            The message to send. It may optionally use {@link MessageFormat} style formatting.
+     *            The message to send. It may optionally use {@link Formatter} style formatting.
      * @param args
-     *            The values inserted into {@link MessageFormat} {0} style place holders in the message.
+     *            The values inserted into {@link Formatter} %s style place holders in the message.
      */
     public void broadcast(ChatType tellType, Role role, String msg, Object... args) {
         Set<User> users = userService.findUsersInRole(role);
@@ -408,8 +408,8 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set busy 2", teller, player2);        
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
-        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {3}({4}) - {5}({6}) || observe {2}", teller, event, board,
-            player1.getTitledHandle(), r1, player2.getTitledHandle(), r2);
+        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {2}({3}) - {4}({5}) || observe {6}", teller, event,
+            player1.getTitledHandle(), r1, player2.getTitledHandle(), r2, board);
         /*
         PrintWriter out = null;
         try {
