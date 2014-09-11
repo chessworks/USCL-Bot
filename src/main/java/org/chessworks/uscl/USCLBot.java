@@ -453,7 +453,7 @@ public class USCLBot {
         for (Game game : games) {
             String white = game.whitePlayer.getTitledRealName(USCL_RATING);
             String black = game.blackPlayer.getTitledRealName(USCL_RATING);
-            String line = String.format("  %13s - %s vs %s", game.getStatusString(), white, black);
+            String line = String.format("  %-13s - %s vs %s", game.getStatusString(), white, black);
             command.tell(channel, line);
         }
     }
