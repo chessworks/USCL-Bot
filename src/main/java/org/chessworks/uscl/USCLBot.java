@@ -146,7 +146,6 @@ public class USCLBot {
         tournamentService.setTeamsFile(teamsFile);
         tournamentService.setTitleService(titleService);
         tournamentService.load();
-        tournamentService.findGame(19).status=GameState.WHITE_WINS;
         
         UsclSettingsService settingsService = new UsclSettingsService();
         settingsService.setSettingsFile(settingsFile);
