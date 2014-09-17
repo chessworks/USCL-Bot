@@ -445,6 +445,32 @@ public class USCLBot {
     }
     
     /**
+     * Commands the bot to announce a specific game to the given channel.
+     *
+     * Syntax: <tt>announce-board 2 129</tt>
+     *
+     * @param teller
+     *            The user/manager issuing the command.
+     * @param game
+     *            The board where the game is being played.
+     * @param channel
+     *            The channel to send the announcement.
+     */
+    public void cmdAnnounceBoard(User teller, Game game, int channel) {
+        if (!game.status.isPlaying()) {
+            command.tell(teller, "Sorry, this game is not being played.  Status={0}.", game.status.getCode());
+        }
+        String white = game.whitePlayer.getTitledRealName(USCL_RATING);
+        String black = game.blackPlayer.getTitledRealName(USCL_RATING);
+        String whiteCity = game.whitePlayer.getTeam().getLocation();
+        String blackCity = game.blackPlayer.getTeam().getLocation();
+        String observe = game.getStatusString();
+        String line = String.format("%s from %s is playing versus %s from %s - %s to watch!",
+                white, whiteCity, black, blackCity, observe);
+        command.tell(channel, line);
+    }
+    
+    /**
      * Commands the bot to send sample commands once for each player.  The placeholder {0} should
      * be put into the command wherever the player name should go.
      * 
