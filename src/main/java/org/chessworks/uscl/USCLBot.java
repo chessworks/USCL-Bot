@@ -457,9 +457,6 @@ public class USCLBot {
      *            The channel to send the announcement.
      */
     public void cmdAnnounceBoard(User teller, Game game, int channel) {
-        if (!game.status.isPlaying()) {
-            command.tell(teller, "Sorry, this game is not being played.  Status={0}.", game.status.getCode());
-        }
         String white = game.whitePlayer.getTitledRealName(USCL_RATING);
         String black = game.blackPlayer.getTitledRealName(USCL_RATING);
         String whiteCity = game.whitePlayer.getTeam().getLocation();
