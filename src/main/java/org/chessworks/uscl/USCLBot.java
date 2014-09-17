@@ -464,10 +464,20 @@ public class USCLBot {
         String black = game.blackPlayer.getTitledRealName(USCL_RATING);
         String whiteCity = game.whitePlayer.getTeam().getLocation();
         String blackCity = game.blackPlayer.getTeam().getLocation();
-        String observe = game.getStatusString();
-        String line = String.format("%s from %s is playing versus %s from %s - %s to watch!",
-                white, whiteCity, black, blackCity, observe);
-        command.tell(channel, line);
+        String status = game.getStatusString();
+        if (game.status.isPlaying()) {
+            String line = String.format("%s from %s is playing versus %s from %s - %s to watch!",
+                    white, whiteCity, black, blackCity, status);
+            command.tell(channel, line);
+        } else if (game.status.isFinished()) {
+            String line = String.format("%s from %s played %s from %s - Result %s!",
+                    white, whiteCity, black, blackCity, status);
+            command.tell(channel, line);
+        } else {
+            String line = String.format("%s from %s will play %s from %s - Status %s!",
+                    white, whiteCity, black, blackCity, status);
+            command.tell(channel, line);
+        }
     }
     
     /**
