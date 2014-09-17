@@ -385,9 +385,6 @@ public class USCLBot {
     }
 
     public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
-        //String template = ClassloaderHelper.readResource(USCLBot.class, "script.txt", TextCodec.UTF8);
-        Integer r1 = player1.ratings().get(USCL_RATING);
-        Integer r2 = player2.ratings().get(USCL_RATING);
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player1, board);
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player2, board);
         command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player1);
@@ -408,19 +405,8 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set busy 2", teller, player2);        
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
-        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {2}({3}) - {4}({5}) || observe {6}", teller, event,
-            player1.getTitledHandle(), r1, player2.getTitledHandle(), r2, board);
-        /*
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter("data/sched.txt");
-            String line = MessageFormat.format("{0} -> {1}({2,0}) vs {3}({4,0})", board, player1.getTitledRealName(), player1.getRatingText(USCL_RATING), player2.getTitledRealName(), player2.getRatingText(USCL_RATING));
-        out.println(line);
-
-        } finally {
-        FileHelper.closeQuietly(out);
-        }
-        */
+        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {2} - {3} || observe {4}", teller, event,
+            player1.getPreTitledHandle(USCL_RATING), player2.getPreTitledHandle(USCL_RATING), board);
     }
 
     /**
