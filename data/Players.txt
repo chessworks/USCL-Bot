@@ -400,10 +400,11 @@ player.Feng-SEA.titles=(NM)
 player.Feng-SEA.website=http://uschessleague.com/player.php?p=roland-feng
 
 player.FGonzalez-MIA.handle=FGonzalez-MIA
-player.FGonzalez-MIA.name=FGonzalez-MIA
+player.FGonzalez-MIA.name=Federico Gonzalez
+player.FGonzalez-MIA.rating=2315
 player.FGonzalez-MIA.team=MIA
-player.FGonzalez-MIA.titles=
-player.FGonzalez-MIA.website=Unavailable
+player.FGonzalez-MIA.titles=(NM)
+player.FGonzalez-MIA.website=http://uschessleague.com/player.php?p=federico-gonzalez
 
 player.Francisco-ATL.handle=Francisco-ATL
 player.Francisco-ATL.name=Richard Francisco
