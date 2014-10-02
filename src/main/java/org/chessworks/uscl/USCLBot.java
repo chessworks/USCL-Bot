@@ -65,9 +65,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "September 16, 2014";
+    public static final String BOT_RELEASE_DATE = "October 1, 2014";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.14";
+    public static final String BOT_RELEASE_NUMBER = "1.15";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
@@ -237,6 +237,9 @@ public class USCLBot {
     /** Users with the manager role can talk to the bot. */
     private Role managerRole;
     
+    /** Users with the monitor role are kept informed about games and other status updates. */
+    private Role monitorRole;
+    
     /** Users with the programmer role receive extra debugging information from the bot. */
     private Role programmerRole;
     
@@ -252,7 +255,7 @@ public class USCLBot {
      * To gain the attention of the manager, this method will use both a tell and an atell.
      */
     public void alertManagers(String msg, Object... args) {
-        broadcast(ChatType.PERSONAL_TELL, managerRole, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
+        broadcast(ChatType.PERSONAL_TELL, monitorRole, "!!!!!!!!! IMPORTANT ALERT !!!!!!!!!");
         tellManagers(msg, args);
     }
 
@@ -989,8 +992,8 @@ public class USCLBot {
             command.tell(teller, "Okay, game \"{0} - {1} {2}\" is no longer scheduled.", game.boardNumber, game.whitePlayer, game.blackPlayer);
             command.sendCommand("-notify {0}", game.whitePlayer);
             command.sendCommand("-notify {0}", game.blackPlayer);
-            command.spoof("rdgmx", "-notify {0}", game.whitePlayer);
-            command.spoof("rdgmx", "-notify {0}", game.blackPlayer);
+            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
+            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
         }
     }
 
@@ -1479,6 +1482,7 @@ public class USCLBot {
     public void setUserService(UserService service) {
         this.userService = service;
         this.managerRole = service.findOrCreateRole("manager");
+        this.monitorRole = service.findOrCreateRole("monitor");
         this.programmerRole = service.findOrCreateRole("debugger");
         this.cmd.setUserService(service);
     }
@@ -1522,12 +1526,12 @@ public class USCLBot {
     }
 
     /**
-     * Sends a routine tell to all managers. This is typically used to keep them informed of the progress of the tournament. The bot uses atells
+     * Sends a routine tell to all monitor managers. This is typically used to keep them informed of the progress of the tournament. The bot uses atells
      * rather than regular tells, as this makes it easy for the manager to distinguish between tells sent by players (who expect a reply) and routine
      * tells sent by the bot.
      */
     public void tellManagers(String msg, Object... args) {
-        broadcast(ChatType.PERSONAL_ADMIN_TELL, managerRole, msg, args);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, monitorRole, msg, args);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
@@ -1627,6 +1631,16 @@ public class USCLBot {
                 command = MessageFormat.format(command, args);
             }
             sendAdminCommand("spoof {0} {1}", user, command);
+        }
+
+        public void spoof(Role role, String command, Object... args) {
+            if (args.length > 0) {
+                command = MessageFormat.format(command, args);
+            }
+            Set<User> users = userService.findUsersInRole(role);
+            for (User user : users) {
+                sendAdminCommand("spoof {0} {1}", user, command);
+            }
         }
 
         /**

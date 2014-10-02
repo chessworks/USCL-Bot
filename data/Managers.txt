@@ -2,23 +2,15 @@
 
 user.DuckStorm.handle=DuckStorm
 user.DuckStorm.name=Doug Bateman
-user.DuckStorm.roles=manager, debugger, busters, test-user
-
-user.MrBob.handle=MrBob
-user.MrBob.name=Bob
-user.MrBob.roles=manager, debugger, test-user
-
-user.Thor.handle=Thor
-user.Thor.name=Thor
-user.Thor.roles=manager
+user.DuckStorm.roles=manager, debugger, test-user
 
 user.RdgMx.handle=RdgMx
 user.RdgMx.name=Rodrigo de Mello
-user.RdgMx.roles=manager,debugger, test-user
+user.RdgMx.roles=manager, monitor, debugger, test-user
 
 user.Ralph.handle=Ralph
 user.Ralph.name=Rodrigo de Mello
-user.Ralph.roles=manager, debugger, test-user
+user.Ralph.roles=manager, monitor, debugger, test-user
 
 user.OrionsKnight.handle=OrionsKnight
 user.OrionsKnight.name=Ryan
@@ -40,4 +32,11 @@ user.xtal.handle=xtal
 user.xtal.name=Raul
 user.xtal.roles=manager
 
+user.MrBob.handle=MrBob
+user.MrBob.name=Bob
+user.MrBob.roles=manager
+
+user.Thor.handle=Thor
+user.Thor.name=Thor
+user.Thor.roles=manager
 
