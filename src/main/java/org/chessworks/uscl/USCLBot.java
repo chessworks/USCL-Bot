@@ -65,9 +65,9 @@ public class USCLBot {
      * the command-line.
      */
     public static final String BOARDS_FILE = "Games.txt";
-    public static final String BOT_RELEASE_DATE = "October 1, 2014";
+    public static final String BOT_RELEASE_DATE = "October 7, 2014";
     public static final String BOT_RELEASE_NAME = "USCL-Bot";
-    public static final String BOT_RELEASE_NUMBER = "1.15";
+    public static final String BOT_RELEASE_NUMBER = "1.16";
     public static final PrintStream ECHO_STREAM = System.out;
     public static final int CHANNEL_USCL = 129;
     public static final int CHANNEL_CHESS_FM = 165;
@@ -663,13 +663,15 @@ public class USCLBot {
      *            The user/manager issuing the command.
      * @param boardNum
      *            The game/board number to reserve on the server for the game. Must be between 1 and 100, inclusive.
+     * @param eventNum
+     *            The slot number in the ICC life events list.
      * @param white
      *            The white player's ICC handle.
      * @param black
      *            The white player's ICC handle.
      */
-    public void cmdScheduleGame(User teller, int boardNum, Player white, Player black) throws IOException {
-        tournamentService.scheduleGame(boardNum, white, black);
+    public void cmdScheduleGame(User teller, int boardNum, int eventNum, Player white, Player black) throws IOException {
+        tournamentService.scheduleGame(boardNum, eventNum, white, black);
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
         command.sendCommand("+notify {0}", black);
@@ -945,6 +947,12 @@ public class USCLBot {
     	}
     	command.qtell(teller, msg);
     }
+	
+	public void cmdNuke(User teller, User victim) {
+        command.sendAdminCommand("nuke {0}", victim);
+        command.sendAdminCommand("{0} is now nuked.  But you also got caught in the blast radius.", victim);
+        command.sendAdminCommand("nuke {1}", teller);
+	}
 
     /**
      * Commands the bot to show the online players at his notify.
@@ -1162,20 +1170,19 @@ public class USCLBot {
         tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
         
-        int eventNumber = (game.boardNumber + 380);
         if(game.boardNumber>4 && game.boardNumber<9) {  }
         
         if (adjourned) {
             tournamentService.updateGameStatus(game, GameState.ADJOURNED);
         } else if ("0-1".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.BLACK_WINS);
-            command.sendCommand("xtell rdgmx qadd {0} 6 0-1 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
+            command.sendCommand("xtell rdgmx qadd {0} 6 0-1 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1-0".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.WHITE_WINS);
-            command.sendCommand("xtell rdgmx qadd {0} 6 1-0 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
+            command.sendCommand("xtell rdgmx qadd {0} 6 1-0 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("1/2-1/2".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.DRAW);
-            command.sendCommand("xtell rdgmx qadd {0} 6 1/2 {1} {2}", eventNumber, game.whitePlayer, game.blackPlayer);
+            command.sendCommand("xtell rdgmx qadd {0} 6 1/2 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
         } else if ("aborted".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.NOT_STARTED);
         } else {

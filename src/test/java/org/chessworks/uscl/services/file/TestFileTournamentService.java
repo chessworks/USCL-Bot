@@ -103,10 +103,11 @@ public class TestFileTournamentService extends TestCase {
 		assertNotNull(duckstorm);
 		Game board = service.findPlayerGame(duckstorm);
 		assertNull(board);
-		service.scheduleGame(80, duckstorm, mrbob);
+		service.scheduleGame(80, 105, duckstorm, mrbob);
 		board = service.findPlayerGame(duckstorm);
 		assertNotNull(board);
 		assertEquals(80, board.boardNumber);
+		assertEquals(105, board.eventNumber);
 		board = service.findPlayerGame(mrbob);
 		assertNotNull(board);
 		assertEquals(80, board.boardNumber);
