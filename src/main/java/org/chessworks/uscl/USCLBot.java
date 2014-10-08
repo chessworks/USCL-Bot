@@ -1176,13 +1176,19 @@ public class USCLBot {
             tournamentService.updateGameStatus(game, GameState.ADJOURNED);
         } else if ("0-1".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.BLACK_WINS);
-            command.sendCommand("xtell rdgmx qadd {0} 6 0-1 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            tellManagers("qadd {0} 6 0-1 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
+            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
         } else if ("1-0".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.WHITE_WINS);
-            command.sendCommand("xtell rdgmx qadd {0} 6 1-0 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            tellManagers("qadd {0} 6 1-0 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
+            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
         } else if ("1/2-1/2".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.DRAW);
-            command.sendCommand("xtell rdgmx qadd {0} 6 1/2 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            tellManagers("qadd {0} 6 1/2 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
+            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
         } else if ("aborted".equals(scoreString)) {
             tournamentService.updateGameStatus(game, GameState.NOT_STARTED);
         } else {
