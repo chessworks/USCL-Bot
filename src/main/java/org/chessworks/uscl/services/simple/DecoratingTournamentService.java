@@ -259,11 +259,11 @@ public class DecoratingTournamentService implements TournamentService {
 	/**
 	 * Delegates all calls to the underlying {@link TournamentService}.
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, org.chessworks.uscl.model.Player, org.chessworks.uscl.model.Player)
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, int, Player, Player)
 	 */
 	@Override
-	public Game scheduleGame(int board, Player white, Player black) {
-		return service.scheduleGame(board, white, black);
+	public Game scheduleGame(int board, int event, Player white, Player black) {
+		return service.scheduleGame(board, event, white, black);
 	}
 
     /**

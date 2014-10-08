@@ -60,11 +60,11 @@ public class SimpleTournamentService extends BasicLifecycle implements Tournamen
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, Player, Player)
+	 * @see org.chessworks.uscl.services.TournamentService#scheduleGame(int, int, Player, Player)
 	 */
 	@Override
-	public Game scheduleGame(int board, Player white, Player black) {
-		Game game = new Game(board, white, black);
+	public Game scheduleGame(int board, int event, Player white, Player black) {
+		Game game = new Game(board, event, white, black);
 		game.whitePlayer = white;
 		game.blackPlayer = black;
 		game.boardNumber = board;

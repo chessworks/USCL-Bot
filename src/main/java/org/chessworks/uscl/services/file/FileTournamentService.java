@@ -294,15 +294,17 @@ public class FileTournamentService extends SimpleTournamentService {
 				if (line.startsWith("#"))
 					continue;
 				String[] args = line.split("[ \t]+");
-				String game = args[1];
+				String board = args[1];
 				String white = args[2];
 				String black = args[3];
                 String statusString = args[4];
-				int board = Integer.parseInt(game);
+                String event = args[5];
+				int boardNum = Integer.parseInt(board);
+				int eventNum = Integer.parseInt(event);
 				Player whitePlayer = findPlayer(white);
 				Player blackPlayer = findPlayer(black);
                 GameState status = GameState.valueOf(statusString);
-				Game g = FileTournamentService.super.scheduleGame(board, whitePlayer, blackPlayer);
+				Game g = FileTournamentService.super.scheduleGame(boardNum, eventNum, whitePlayer, blackPlayer);
                 FileTournamentService.super.updateGameStatus(g, status);
 			}
 		}
@@ -316,8 +318,9 @@ public class FileTournamentService extends SimpleTournamentService {
 				Player white = game.whitePlayer;
 				Player black = game.blackPlayer;
 				int board = game.boardNumber;
+				int event = game.eventNumber;
 				GameState status = game.status;
-				String line = MessageFormat.format("schedule-game {0} {1} {2} {3}", board, white.getHandle(), black.getHandle(), status.name());
+				String line = MessageFormat.format("schedule-game {0} {1} {2} {3} {4}", board, white.getHandle(), black.getHandle(), status.name(), event);
 				out.println(line);
 			}
 			out.println();
