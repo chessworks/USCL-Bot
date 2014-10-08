@@ -671,7 +671,7 @@ public class USCLBot {
      *            The white player's ICC handle.
      */
     public void cmdScheduleGame(User teller, int boardNum, int eventNum, Player white, Player black) throws IOException {
-        tournamentService.scheduleGame(boardNum, eventNum, white, black);
+        tournamentService.scheduleGame(eventNum, boardNum, white, black);
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
         command.sendCommand("+notify {0}", black);
