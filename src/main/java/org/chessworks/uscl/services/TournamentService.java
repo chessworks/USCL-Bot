@@ -50,7 +50,7 @@ public interface TournamentService extends Flushable {
 
     Game scheduleGame(Game game);
 
-    Game scheduleGame(int event, int board, Player white, Player black);
+    Game scheduleGame(int board, int event, Player white, Player black);
 
     void updateGameStatus(Game game, GameState status);
 
