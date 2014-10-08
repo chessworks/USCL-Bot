@@ -15,7 +15,7 @@ create-script        : Creates all scripts to run at scripter.exe
 show-games           : Shows a list of all reserved boards.
 clear-games          : Clears the list of all reserved boards.
 schedule-game        : Pairs players at a given board.
-                       Example: schedule-game 5 Shirov-NYC DuckStorm-YVR
+                       Example: schedule-game 365 5 Shirov-NYC DuckStorm-YVR
 do-all-players       : Issues a command once for each player, replacing {0} with the player's name.
                        Example: do-all-players +ban {0}
                        Example: do-all-players +g-invite USCL {0}
