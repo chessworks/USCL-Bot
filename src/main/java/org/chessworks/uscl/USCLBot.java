@@ -411,10 +411,10 @@ public class USCLBot {
         String player1Name = player1.getPreTitledHandle(USCL_RATING);
         String player2Name = player2.getPreTitledHandle(USCL_RATING);
         String qaddevent = QEvent.event(eventSlot)
-            .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
-            .addWatchCommand("follow %s", player1.getHandle())
-            .allowGuests(true)
-            .toString();
+                .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
+                .addWatchCommand("follow %s", player1.getHandle())
+                .allowGuests(true)
+                .toString();
         command.sendQuietly("qtell {0}  {1}", teller, qaddevent);
     }
 
@@ -1198,10 +1198,10 @@ public class USCLBot {
             int librarySlot = settingsService.getAndIncrementNextLibrarySlot();
             command.spoof(libraryHandle, "libsave {0} -1 %{1}", game.whitePlayer.getHandle(), librarySlot);
             QEvent.event(game.eventSlot)
-                .description("%-4s %s - %s", "1-0", whiteName, blackName)
-                .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
-                .allowGuests(true)
-                .send(command);
+                    .description("%-4s %s - %s", game.status, whiteName, blackName)
+                    .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
+                    .allowGuests(true)
+                    .send(command);
             tellManagers("{0} vs {1}: {2} (\"examine {3} %{4}\")", game.whitePlayer, game.blackPlayer,
                     descriptionString, libraryHandle, librarySlot);
             command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
