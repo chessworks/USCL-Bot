@@ -1173,9 +1173,7 @@ public class USCLBot {
         }
         /* Subtract USCL-Bot itself */
         int observerCount = game.observerCountMax - 1;
-        tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
-        
         if (adjourned) {
             game.status = GameState.ADJOURNED;
         } else if ("0-1".equals(scoreString)) {
@@ -1196,16 +1194,19 @@ public class USCLBot {
             String blackName = game.blackPlayer.getPreTitledHandle(USCL_RATING);
             String libraryHandle = settingsService.getLibraryHandle();
             int librarySlot = settingsService.getAndIncrementNextLibrarySlot();
+            String examineCommand = String.format("examine %s %%%d", libraryHandle, librarySlot);
             command.spoof(libraryHandle, "libsave {0} -1 %{1}", game.whitePlayer.getHandle(), librarySlot);
             QEvent.event(game.eventSlot)
                     .description("%-4s %s - %s", game.status, whiteName, blackName)
-                    .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
+                    .addJoinCommand(examineCommand)
                     .allowGuests(true)
                     .send(command);
-            tellManagers("{0} vs {1}: {2} (\"examine {3} %{4}\")", game.whitePlayer, game.blackPlayer,
-                    descriptionString, libraryHandle, librarySlot);
+            tellEventChannelsAndManagers("{0} vs {1}: \"{2}\" : {3}  ({4} observers)", game.whitePlayer,
+                    game.blackPlayer, examineCommand, descriptionString, observerCount);
             command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
             command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
+        } else {
+            tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         }
         if (!adjourned) {
             command.sendCommand("qset {0} isolated 0", game.whitePlayer);
@@ -1546,6 +1547,20 @@ public class USCLBot {
         }
         command.tell(CHANNEL_USCL, msg);
         command.tell(CHANNEL_EVENTS_GROUP, msg);
+    }
+
+    /**
+     * Sends tells to the event channels (129 and 399).
+     */
+    public void tellEventChannelsAndManagers(String msg, Object... args) {
+        if (loggingIn)
+            return;
+        if (args.length > 0) {
+            msg = MessageFormat.format(msg, args);
+        }
+        command.tell(CHANNEL_USCL, msg);
+        command.tell(CHANNEL_EVENTS_GROUP, msg);
+        broadcast(ChatType.PERSONAL_ADMIN_TELL, monitorRole, msg, args);
     }
 
     /**
