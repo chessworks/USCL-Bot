@@ -44,7 +44,7 @@ public enum GameState {
 	
 	@Override
 	public String toString() {
-	    return getDisplayCode();
+	    return displayCode;
 	}
 	
 }
