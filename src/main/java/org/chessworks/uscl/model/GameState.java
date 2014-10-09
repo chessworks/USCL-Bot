@@ -3,7 +3,8 @@ package org.chessworks.uscl.model;
 public enum GameState {
 	NOT_STARTED("NOT_STARTED"), PLAYING("*", "LIVE"), ADJOURNED("adj"), WHITE_WINS("1-0"), BLACK_WINS("0-1"), DRAW("1/2-1/2","1/2"), UNKNOWN("?");
 	
-	private String code;
+	private final String code;
+    private final String displayCode;
 	
     private GameState(String code) {
         this(code, code);
@@ -11,6 +12,7 @@ public enum GameState {
     
     private GameState(String code, String displayCode) {
         this.code = code;
+        this.displayCode = displayCode;
     }
     
     public String getProtocolCode() {
@@ -18,7 +20,7 @@ public enum GameState {
     }
     
     public String getDisplayCode() {
-        return code;
+        return displayCode;
     }
     
 	public boolean isPlaying() {

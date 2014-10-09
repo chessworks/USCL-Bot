@@ -1,8 +1,9 @@
 package org.chessworks.uscl;
 
 import org.chessworks.chess.model.RatingCategory;
-import org.chessworks.chess.model.User;
 import org.chessworks.chess.services.simple.SimpleTitleService;
+import org.chessworks.uscl.model.Game;
+import org.chessworks.uscl.model.GameState;
 import org.chessworks.uscl.model.Player;
 import org.chessworks.uscl.model.Team;
 import org.junit.Assert;
@@ -10,121 +11,118 @@ import org.junit.Test;
 
 public class TestQEventUSCL {
 
+    private static final int eventSlot = 169;
+    private static final String libraryHandle = "USCL";
+    private static final int librarySlot = 55;
     private static final RatingCategory fiveMinute = new RatingCategory("5-minute");
     private static final Team team = new Team("ICC");
     private static final Player player1 = new Player("Duckstorm-ICC", team);
+    private static final Player player2 = new Player("RdgMx-ICC", team);
+    private static final Player player3 = new Player("Long-Handle-ICC", team);
     static {
         player1.setRating(fiveMinute, 1900);
         player1.setRealName("Doug Bateman");
-    }
-    private static final Player player2 = new Player("RdgMx-ICC", team);
-    static {
         player2.getTitles().add(SimpleTitleService.SM);
         player2.setRating(fiveMinute, 1250);
         player2.setRealName("Rodrigo de Mello");
-    }
-    private static final Player player3 = new Player("Long-Handle-ICC", team);
-    static {
         player3.getTitles().add(SimpleTitleService.WGM);
         player3.setRating(fiveMinute, 2500);
         player3.setRealName("FirstName MiddleName LastName");
     }
-    private static final String libraryHandle = "USCL";
-    private static final int librarySlot = 55;
+    private static final Game game1 = new Game(1, eventSlot + 1, player1, player2);
+    private static final Game game2 = new Game(2, eventSlot + 2, player2, player3);
+    private static final Game game3 = new Game(3, eventSlot + 3, player3, player1);
+    static{
+        game1.status = GameState.WHITE_WINS;
+        game2.status = GameState.BLACK_WINS;
+        game3.status = GameState.DRAW;
+    }
     
     @Test
     public void testUsclExamine() {
-        String expectedResult1 = "qaddevent 196 15 1-0  Duckstorm-ICC (1900) - SM RdgMx-ICC (1250) | examine USCL %55 |  |  | ";
-        String expectedResult2 = "qaddevent 196 15 1-0  SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) | examine USCL %55 |  |  | ";
-        String expectedResult3 = "qaddevent 196 15 1-0  WGM Long-Handle-ICC (2500) - Duckstorm-ICC (1900) | examine USCL %55 |  |  | ";
-        testUsclExamine(player1, player2, expectedResult1);
-        testUsclExamine(player2, player3, expectedResult2);
-        testUsclExamine(player3, player1, expectedResult3);
+        String expectedResult1 = "qaddevent 170 15 1-0  Duckstorm-ICC (1900) - SM RdgMx-ICC (1250) | examine USCL %55 |  |  | ";
+        String expectedResult2 = "qaddevent 171 15 0-1  SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) | examine USCL %55 |  |  | ";
+        String expectedResult3 = "qaddevent 172 15 1/2  WGM Long-Handle-ICC (2500) - Duckstorm-ICC (1900) | examine USCL %55 |  |  | ";
+        testUsclExamine(game1, expectedResult1);
+        testUsclExamine(game2, expectedResult2);
+        testUsclExamine(game3, expectedResult3);
     }
 
-    public void testUsclExamine(User player1, User player2, String expectedResult) {
-        int eventSlot = 196;
-        String player1Name = player1.getPreTitledHandle(fiveMinute);
-        String player2Name = player2.getPreTitledHandle(fiveMinute);
-        QEvent event = QEvent.event(eventSlot)
-                .description("%-4s %s - %s", "1-0", player1Name, player2Name)
+    public void testUsclExamine(Game game, String expectedResult) {
+        String whitePlayerName = game.whitePlayer.getPreTitledHandle(fiveMinute);
+        String blackPlayerName = game.blackPlayer.getPreTitledHandle(fiveMinute);
+        QEvent event = QEvent.event(game.eventSlot)
+                .description("%-4s %s - %s", game.status, whitePlayerName, blackPlayerName)
                 .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
                 .allowGuests(true)
                 .validate();
         String actualResult = event.toString();
-        System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void testUsclExamineTabular() {
-        String expectedResult1 = "qaddevent 196 15 1-0        Duckstorm-ICC (1900) -        SM RdgMx-ICC (1250) | examine USCL %55 |  |  | ";
-        String expectedResult2 = "qaddevent 196 15 1-0         SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) | examine USCL %55 |  |  | ";
-        String expectedResult3 = "qaddevent 196 15 1-0  WGM Long-Handle-ICC (2500) -       Duckstorm-ICC (1900) | examine USCL %55 |  |  | ";
-        testUsclExamineTabular(player1, player2, expectedResult1);
-        testUsclExamineTabular(player2, player3, expectedResult2);
-        testUsclExamineTabular(player3, player1, expectedResult3);
+        String expectedResult1 = "qaddevent 170 15 1-0        Duckstorm-ICC (1900) -        SM RdgMx-ICC (1250) | examine USCL %55 |  |  | ";
+        String expectedResult2 = "qaddevent 171 15 0-1         SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) | examine USCL %55 |  |  | ";
+        String expectedResult3 = "qaddevent 172 15 1/2  WGM Long-Handle-ICC (2500) -       Duckstorm-ICC (1900) | examine USCL %55 |  |  | ";
+        testUsclExamineTabular(game1, expectedResult1);
+        testUsclExamineTabular(game2, expectedResult2);
+        testUsclExamineTabular(game3, expectedResult3);
     }
 
-    public void testUsclExamineTabular(User player1, User player2, String expectedResult) {
-        int eventSlot = 196;
-        String player1Name = player1.getPreTitledHandle(fiveMinute);
-        String player2Name = player2.getPreTitledHandle(fiveMinute);
-        QEvent event = QEvent.event(eventSlot)
-                .description("%-4s %26s - %26s", "1-0", player1Name, player2Name)
+    public void testUsclExamineTabular(Game game, String expectedResult) {
+        String whitePlayerName = game.whitePlayer.getPreTitledHandle(fiveMinute);
+        String blackPlayerName = game.blackPlayer.getPreTitledHandle(fiveMinute);
+        QEvent event = QEvent.event(game.eventSlot)
+                .description("%-4s %26s - %26s", game.status, whitePlayerName, blackPlayerName)
                 .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
                 .allowGuests(true)
                 .validate();
         String actualResult = event.toString();
-        System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void testUsclObserve() {
-        String expectedResult1 = "qaddevent 196 14 LIVE Duckstorm-ICC (1900) - SM RdgMx-ICC (1250) |  | follow Duckstorm-ICC |  | ";
-        String expectedResult2 = "qaddevent 196 14 LIVE SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) |  | follow RdgMx-ICC |  | ";
-        String expectedResult3 = "qaddevent 196 14 LIVE WGM Long-Handle-ICC (2500) - Duckstorm-ICC (1900) |  | follow Long-Handle-ICC |  | ";
-        testUsclObserve(player1, player2, expectedResult1);
-        testUsclObserve(player2, player3, expectedResult2);
-        testUsclObserve(player3, player1, expectedResult3);
+        String expectedResult1 = "qaddevent 170 14 LIVE Duckstorm-ICC (1900) - SM RdgMx-ICC (1250) |  | follow Duckstorm-ICC |  | ";
+        String expectedResult2 = "qaddevent 171 14 LIVE SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) |  | follow RdgMx-ICC |  | ";
+        String expectedResult3 = "qaddevent 172 14 LIVE WGM Long-Handle-ICC (2500) - Duckstorm-ICC (1900) |  | follow Long-Handle-ICC |  | ";
+        testUsclObserve(game1, expectedResult1);
+        testUsclObserve(game2, expectedResult2);
+        testUsclObserve(game3, expectedResult3);
     }
     
-    public void testUsclObserve(User player1, User player2, String expectedResult) {
-        int eventSlot = 196;
-        String player1Name = player1.getPreTitledHandle(fiveMinute);
-        String player2Name = player2.getPreTitledHandle(fiveMinute);
-        QEvent event = QEvent.event(eventSlot)
-                .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
-                .addWatchCommand("follow %s", player1.getHandle())
+    public void testUsclObserve(Game game, String expectedResult) {
+        String whitePlayerName = game.whitePlayer.getPreTitledHandle(fiveMinute);
+        String blackPlayerName = game.blackPlayer.getPreTitledHandle(fiveMinute);
+        QEvent event = QEvent.event(game.eventSlot)
+                .description("%-4s %s - %s", "LIVE", whitePlayerName, blackPlayerName)
+                .addWatchCommand("follow %s", game.whitePlayer.getHandle())
                 .allowGuests(false)
                 .validate();
         String actualResult = event.toString();
-        System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void testUsclObserveTabular() {
-        String expectedResult1 = "qaddevent 196 14 LIVE       Duckstorm-ICC (1900) -        SM RdgMx-ICC (1250) |  | follow Duckstorm-ICC |  | ";
-        String expectedResult2 = "qaddevent 196 14 LIVE        SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) |  | follow RdgMx-ICC |  | ";
-        String expectedResult3 = "qaddevent 196 14 LIVE WGM Long-Handle-ICC (2500) -       Duckstorm-ICC (1900) |  | follow Long-Handle-ICC |  | ";
-        testUsclObserveTabular(player1, player2, expectedResult1);
-        testUsclObserveTabular(player2, player3, expectedResult2);
-        testUsclObserveTabular(player3, player1, expectedResult3);
+        String expectedResult1 = "qaddevent 170 14 LIVE       Duckstorm-ICC (1900) -        SM RdgMx-ICC (1250) |  | follow Duckstorm-ICC |  | ";
+        String expectedResult2 = "qaddevent 171 14 LIVE        SM RdgMx-ICC (1250) - WGM Long-Handle-ICC (2500) |  | follow RdgMx-ICC |  | ";
+        String expectedResult3 = "qaddevent 172 14 LIVE WGM Long-Handle-ICC (2500) -       Duckstorm-ICC (1900) |  | follow Long-Handle-ICC |  | ";
+        testUsclObserveTabular(game1, expectedResult1);
+        testUsclObserveTabular(game2, expectedResult2);
+        testUsclObserveTabular(game3, expectedResult3);
     }
     
-    public void testUsclObserveTabular(User player1, User player2, String expectedResult) {
-        int eventSlot = 196;
-        String player1Name = player1.getPreTitledHandle(fiveMinute);
-        String player2Name = player2.getPreTitledHandle(fiveMinute);
-        QEvent event = QEvent.event(eventSlot)
-                .description("%-4s %26s - %26s", "LIVE", player1Name, player2Name)
-                .addWatchCommand("follow %s", player1.getHandle())
+    public void testUsclObserveTabular(Game game, String expectedResult) {
+        String whitePlayerName = game.whitePlayer.getPreTitledHandle(fiveMinute);
+        String blackPlayerName = game.blackPlayer.getPreTitledHandle(fiveMinute);
+        QEvent event = QEvent.event(game.eventSlot)
+                .description("%-4s %26s - %26s", "LIVE", whitePlayerName, blackPlayerName)
+                .addWatchCommand("follow %s", game.whitePlayer.getHandle())
                 .allowGuests(false)
                 .validate();
         String actualResult = event.toString();
-        System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
     }
 }
