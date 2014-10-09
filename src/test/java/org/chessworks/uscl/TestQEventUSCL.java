@@ -47,10 +47,10 @@ public class TestQEventUSCL {
         String player1Name = player1.getPreTitledHandle(fiveMinute);
         String player2Name = player2.getPreTitledHandle(fiveMinute);
         QEvent event = QEvent.event(eventSlot)
-            .description("%-4s %s - %s", "1-0", player1Name, player2Name)
-            .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
-            .allowGuests(true)
-            .validate();
+                .description("%-4s %s - %s", "1-0", player1Name, player2Name)
+                .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
+                .allowGuests(true)
+                .validate();
         String actualResult = event.toString();
         System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
@@ -71,10 +71,10 @@ public class TestQEventUSCL {
         String player1Name = player1.getPreTitledHandle(fiveMinute);
         String player2Name = player2.getPreTitledHandle(fiveMinute);
         QEvent event = QEvent.event(eventSlot)
-            .description("%-4s %26s - %26s", "1-0", player1Name, player2Name)
-            .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
-            .allowGuests(true)
-            .validate();
+                .description("%-4s %26s - %26s", "1-0", player1Name, player2Name)
+                .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
+                .allowGuests(true)
+                .validate();
         String actualResult = event.toString();
         System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
@@ -95,10 +95,10 @@ public class TestQEventUSCL {
         String player1Name = player1.getPreTitledHandle(fiveMinute);
         String player2Name = player2.getPreTitledHandle(fiveMinute);
         QEvent event = QEvent.event(eventSlot)
-            .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
-            .addWatchCommand("follow %s", player1.getHandle())
-            .allowGuests(false)
-            .validate();
+                .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
+                .addWatchCommand("follow %s", player1.getHandle())
+                .allowGuests(false)
+                .validate();
         String actualResult = event.toString();
         System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
@@ -119,10 +119,10 @@ public class TestQEventUSCL {
         String player1Name = player1.getPreTitledHandle(fiveMinute);
         String player2Name = player2.getPreTitledHandle(fiveMinute);
         QEvent event = QEvent.event(eventSlot)
-            .description("%-4s %26s - %26s", "LIVE", player1Name, player2Name)
-            .addWatchCommand("follow %s", player1.getHandle())
-            .allowGuests(false)
-            .validate();
+                .description("%-4s %26s - %26s", "LIVE", player1Name, player2Name)
+                .addWatchCommand("follow %s", player1.getHandle())
+                .allowGuests(false)
+                .validate();
         String actualResult = event.toString();
         System.out.println(actualResult);
         Assert.assertEquals(expectedResult, actualResult);
