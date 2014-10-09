@@ -40,7 +40,7 @@ public class Game {
 		if (status.isPlaying()) {
 			return String.format("\"observe %d\"", boardNumber);
 		}
-		else return status.getCode();
+		else return status.getDisplayCode();
 	}
 
     @Override

@@ -387,7 +387,7 @@ public class USCLBot {
         command.sendCommand("-notify *");
     }
 
-    public void cmdCreateScript(User teller, int event, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
+    public void cmdCreateScript(User teller, int eventSlot, int board, Player player1, Player player2, StringBuffer timeControl) throws FileNotFoundException {
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player1, board);
         command.sendQuietly("qtell {0}  reserve-game {1} {2}", teller, player2, board);
         command.sendQuietly("qtell {0}  spoof {1} set open 1", teller, player1);
@@ -408,8 +408,14 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  spoof {1} set busy 2", teller, player2);        
         command.sendQuietly("qtell {0}  observe {1}", teller, board);
         command.sendQuietly("qtell {0}  spoof roboadmin observe {1}", teller, board);
-        command.sendQuietly("qtell {0}  qadd {1} 5 LIVE {2} - {3} || observe {4}", teller, event,
-            player1.getPreTitledHandle(USCL_RATING), player2.getPreTitledHandle(USCL_RATING), board);
+        String player1Name = player1.getPreTitledHandle(USCL_RATING);
+        String player2Name = player2.getPreTitledHandle(USCL_RATING);
+        String qaddevent = QEvent.event(eventSlot)
+            .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
+            .addWatchCommand("follow %s", player1.getHandle())
+            .allowGuests(true)
+            .toString();
+        command.sendQuietly("qtell {0}  {1}", teller, qaddevent);
     }
 
     /**
@@ -1170,30 +1176,36 @@ public class USCLBot {
         tellEventChannels("{0} vs {1}: {2}  ({3} observers)", game.whitePlayer, game.blackPlayer, descriptionString, observerCount);
         boolean adjourned = (descriptionString.indexOf("adjourn") >= 0);
         
-        if(game.boardNumber>4 && game.boardNumber<9) {  }
-        
         if (adjourned) {
-            tournamentService.updateGameStatus(game, GameState.ADJOURNED);
+            game.status = GameState.ADJOURNED;
         } else if ("0-1".equals(scoreString)) {
-            tournamentService.updateGameStatus(game, GameState.BLACK_WINS);
-            tellManagers("qadd {0} 6 0-1 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
-            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
-            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
+            game.status = GameState.BLACK_WINS;
         } else if ("1-0".equals(scoreString)) {
-            tournamentService.updateGameStatus(game, GameState.WHITE_WINS);
-            tellManagers("qadd {0} 6 1-0 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
-            command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
-            command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
+            game.status = GameState.WHITE_WINS;
         } else if ("1/2-1/2".equals(scoreString)) {
-            tournamentService.updateGameStatus(game, GameState.DRAW);
-            tellManagers("qadd {0} 6 1/2 {1} {2}", game.eventNumber, game.whitePlayer, game.blackPlayer);
+            game.status = GameState.DRAW;
+        } else if ("aborted".equals(scoreString)) {
+            game.status = GameState.NOT_STARTED;
+        } else {
+            game.status = GameState.UNKNOWN;
+            alertManagers("Error: unexpected game status \"{0}\": {1}", gameResultCode, scoreString);
+        }
+        tournamentService.updateGameStatus(game, game.status);
+        if (game.status.isFinished()) {
+            String whiteName = game.whitePlayer.getPreTitledHandle(USCL_RATING);
+            String blackName = game.blackPlayer.getPreTitledHandle(USCL_RATING);
+            String libraryHandle = settingsService.getLibraryHandle();
+            int librarySlot = settingsService.getAndIncrementNextLibrarySlot();
+            command.spoof(libraryHandle, "libsave {0} -1 %{1}", game.whitePlayer.getHandle(), librarySlot);
+            QEvent.event(game.eventNumber)
+                .description("%-4s %s - %s", "1-0", whiteName, blackName)
+                .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
+                .allowGuests(true)
+                .send(command);
+            tellManagers("{0} vs {1}: {2} (\"examine {3} %{4}\")", game.whitePlayer, game.blackPlayer,
+                    descriptionString, libraryHandle, librarySlot);
             command.spoof(monitorRole, "-notify {0}", game.whitePlayer);
             command.spoof(monitorRole, "-notify {0}", game.blackPlayer);
-        } else if ("aborted".equals(scoreString)) {
-            tournamentService.updateGameStatus(game, GameState.NOT_STARTED);
-        } else {
-            tournamentService.updateGameStatus(game, GameState.UNKNOWN);
-            alertManagers("Error: unexpected game status \"{0}\": {1}", gameResultCode, scoreString);
         }
         if (!adjourned) {
             command.sendCommand("qset {0} isolated 0", game.whitePlayer);
