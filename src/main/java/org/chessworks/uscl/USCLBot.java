@@ -1555,7 +1555,7 @@ public class USCLBot {
      */
     public void tellManagers(String msg, Object... args) {
         broadcast(ChatType.PERSONAL_ADMIN_TELL, monitorRole, msg, args);
-        command.tell(CHANNEL_EVENTS_GROUP, msg);
+        command.tell(CHANNEL_EVENTS_GROUP, msg, args);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
