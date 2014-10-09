@@ -1261,8 +1261,7 @@ public class USCLBot {
         if (loggingIn) {
         	command.sendCommand("observe {0}", name);
         } else {
-            tellManagers("{0} has arrived.  Reserving game {1}.", name, game.boardNumber);
-            command.sendCommand("tell 399 {0} has arrived.", player.getTitledHandle());
+            tellManagers("{0} arrived.  Reserving board {1}.", name, game.boardNumber);
         }
         command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.whitePlayer);
         command.sendAdminCommand("spoof {0} tell JudgeBot nowin", game.blackPlayer);
@@ -1291,7 +1290,6 @@ public class USCLBot {
         Game game = tournamentService.findPlayerGame(player);
         if (!game.status.isFinished()) {
             tellManagers("{0} departed", name);
-            command.sendCommand("tell 399 {0} has departed.", name);
         }
     }
 
@@ -1557,6 +1555,7 @@ public class USCLBot {
      */
     public void tellManagers(String msg, Object... args) {
         broadcast(ChatType.PERSONAL_ADMIN_TELL, monitorRole, msg, args);
+        command.tell(CHANNEL_EVENTS_GROUP, msg);
     }
 
     /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
