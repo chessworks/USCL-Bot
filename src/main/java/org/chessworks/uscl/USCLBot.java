@@ -667,7 +667,7 @@ public class USCLBot {
      *
      * @param teller
      *            The user/manager issuing the command.
-     * @param eventNum
+     * @param eventSlot
      *            The slot number in the ICC life events list.
      * @param boardNum
      *            The game/board number to reserve on the server for the game. Must be between 1 and 100, inclusive.
@@ -676,8 +676,8 @@ public class USCLBot {
      * @param black
      *            The white player's ICC handle.
      */
-    public void cmdScheduleGame(User teller, int eventNum, int boardNum, Player white, Player black) throws IOException {
-        tournamentService.scheduleGame(boardNum, eventNum, white, black);
+    public void cmdScheduleGame(User teller, int eventSlot, int boardNum, Player white, Player black) throws IOException {
+        tournamentService.scheduleGame(boardNum, eventSlot, white, black);
         tournamentService.flush();
         command.sendCommand("+notify {0}", white);
         command.sendCommand("+notify {0}", black);
@@ -1197,7 +1197,7 @@ public class USCLBot {
             String libraryHandle = settingsService.getLibraryHandle();
             int librarySlot = settingsService.getAndIncrementNextLibrarySlot();
             command.spoof(libraryHandle, "libsave {0} -1 %{1}", game.whitePlayer.getHandle(), librarySlot);
-            QEvent.event(game.eventNumber)
+            QEvent.event(game.eventSlot)
                 .description("%-4s %s - %s", "1-0", whiteName, blackName)
                 .addJoinCommand("examine %s %%%d", libraryHandle, librarySlot)
                 .allowGuests(true)

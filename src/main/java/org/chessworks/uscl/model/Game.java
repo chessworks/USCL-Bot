@@ -11,12 +11,12 @@ public class Game {
      */
 	public Player blackPlayer;
 	public int boardNumber;
-	public int eventNumber;
+	public int eventSlot;
 	public GameState status = GameState.NOT_STARTED;
 	
-	public Game(int boardNumber, int eventNumber, Player whitePlayer, Player blackPlayer) {
+	public Game(int boardNumber, int eventSlot, Player whitePlayer, Player blackPlayer) {
 		this.boardNumber = boardNumber;
-		this.eventNumber = eventNumber;
+		this.eventSlot = eventSlot;
 		this.whitePlayer = whitePlayer;
 		this.blackPlayer = blackPlayer;
 	}

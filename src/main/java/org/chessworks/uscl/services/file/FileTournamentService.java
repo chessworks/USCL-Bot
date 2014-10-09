@@ -300,11 +300,11 @@ public class FileTournamentService extends SimpleTournamentService {
                 String statusString = args[4];
                 String event = args[5];
 				int boardNum = Integer.parseInt(board);
-				int eventNum = Integer.parseInt(event);
+				int eventSlot = Integer.parseInt(event);
 				Player whitePlayer = findPlayer(white);
 				Player blackPlayer = findPlayer(black);
                 GameState status = GameState.valueOf(statusString);
-				Game g = FileTournamentService.super.scheduleGame(boardNum, eventNum, whitePlayer, blackPlayer);
+				Game g = FileTournamentService.super.scheduleGame(boardNum, eventSlot, whitePlayer, blackPlayer);
                 FileTournamentService.super.updateGameStatus(g, status);
 			}
 		}
@@ -318,9 +318,9 @@ public class FileTournamentService extends SimpleTournamentService {
 				Player white = game.whitePlayer;
 				Player black = game.blackPlayer;
 				int board = game.boardNumber;
-				int event = game.eventNumber;
+				int eventSlot = game.eventSlot;
 				GameState status = game.status;
-				String line = MessageFormat.format("schedule-game {0} {1} {2} {3} {4}", board, white.getHandle(), black.getHandle(), status.name(), event);
+				String line = MessageFormat.format("schedule-game {0} {1} {2} {3} {4}", board, white.getHandle(), black.getHandle(), status.name(), eventSlot);
 				out.println(line);
 			}
 			out.println();

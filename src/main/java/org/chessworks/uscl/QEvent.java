@@ -13,7 +13,7 @@ public final class QEvent {
     private static final int MAX_GROUP_LENGTH = 99;
     private static final int MAX_COMMAND_LENGTH = 1029;
 
-    private int eventNumber;
+    private int eventSlot;
 
     private String description = "";
 
@@ -36,12 +36,12 @@ public final class QEvent {
     
     private String groupName;
 
-    private QEvent(int eventNumber) {
-        this.eventNumber = eventNumber;
+    private QEvent(int eventSlot) {
+        this.eventSlot = eventSlot;
     }
     
-    public static QEvent event(int eventNumber) {
-        QEvent result = new QEvent(eventNumber);
+    public static QEvent event(int eventSlot) {
+        QEvent result = new QEvent(eventSlot);
         return result;
     }
     
@@ -150,8 +150,8 @@ public final class QEvent {
         return this;
     }
     
-    public int getEventNumber() {
-        return eventNumber;
+    public int getEventSlot() {
+        return eventSlot;
     }
 
     public int getBitField() {
@@ -186,7 +186,7 @@ public final class QEvent {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("qaddevent ");
-        builder.append(this.eventNumber);
+        builder.append(this.eventSlot);
         builder.append(" ");
         builder.append(this.bitField);
         builder.append(" ");
@@ -234,7 +234,7 @@ public final class QEvent {
     }
 
     public QEvent removeEvent(USCLBot.Commands tdCommands) {
-        tdCommands.sendAdminCommand("qremoveevent {0}", this.eventNumber);
+        tdCommands.sendAdminCommand("qremoveevent {0}", this.eventSlot);
         return this;
     }
 
