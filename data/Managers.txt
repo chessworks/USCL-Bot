@@ -2,7 +2,7 @@
 
 user.DuckStorm.handle=DuckStorm
 user.DuckStorm.name=Doug Bateman
-user.DuckStorm.roles=manager, debugger, test-user
+user.DuckStorm.roles=manager, test-user
 
 user.RdgMx.handle=RdgMx
 user.RdgMx.name=Rodrigo de Mello
