@@ -412,7 +412,7 @@ public class USCLBot {
         String player2Name = player2.getPreTitledHandle(USCL_RATING);
         String qaddevent = QEvent.event(eventSlot)
                 .description("%-4s %s - %s", "LIVE", player1Name, player2Name)
-                .addWatchCommand("follow %s", player1.getHandle())
+                .addWatchCommand("observe %d", board)
                 .allowGuests(true)
                 .toString();
         command.sendQuietly("qtell {0}  {1}", teller, qaddevent);
@@ -434,16 +434,6 @@ public class USCLBot {
      */
     public void cmdAnnounceMatch(User teller, Team team1, Team team2, int channel) {
         Collection<Game> games = tournamentService.findMatchGames(team1, team2);
-        Collection<Game> liveGames = new ArrayList<Game>();
-        for (Game game : games) {
-            if (game.status.isPlaying()) {
-                liveGames.add(game);
-            }
-        }
-        if (liveGames.isEmpty()) {
-            command.tell(teller, "Error - There are no active games between the {0} and the {1}.", team1, team2);
-            return;
-        }
         command.tell(channel, "US Chess League - {0} vs {1}", team1.getRealName(), team2.getRealName());
         for (Game game : games) {
             String white = game.whitePlayer.getTitledRealName(USCL_RATING);
