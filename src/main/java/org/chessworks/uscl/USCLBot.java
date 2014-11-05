@@ -442,26 +442,26 @@ public class USCLBot {
             Player player1 = game.whitePlayer;
             Player player2 = game.blackPlayer;
             int board = game.boardNumber;
-            command.sendCommand("reserve-game {0} {1}", player1, board);
-            command.sendCommand("reserve-game {0} {1}", player2, board);
-            command.sendCommand("spoof {0} set open 1", player1);
-            command.sendCommand("spoof {0} set open 1", player2);
-            command.sendCommand("spoof {0} match {1} u w0 white {2}", player1, player2, timeControl);
-            command.sendCommand("spoof {0} accept {1}", player2, player1);
-            command.sendCommand("spoof jimmys qset {0} isolated 1", player1);
-            command.sendCommand("spoof jimmys qset {0} isolated 1", player2);
-            command.sendCommand("spoof {0} set examine 1", player1);
-            command.sendCommand("spoof {0} set examine 1", player2);
-            command.sendCommand("spoof {0} set kib 0", player1);
-            command.sendCommand("spoof {0} set kib 0", player2);
-            command.sendCommand("spoof {0} set allowkib 0", player1);
-            command.sendCommand("spoof {0} set allowkib 0", player2);
-            command.sendCommand("spoof {0} set quietplay 2", player1);
-            command.sendCommand("spoof {0} set quietplay 2", player2);
-            command.sendCommand("spoof {0} set busy 2", player1);
-            command.sendCommand("spoof {0} set busy 2", player2);        
-            command.sendCommand("observe {0}", board);
-            command.sendCommand("spoof roboadmin observe {0}", board);
+            command.sendAdminCommand("reserve-game {0} {1}", player1, board);
+            command.sendAdminCommand("reserve-game {0} {1}", player2, board);
+            command.sendAdminCommand("spoof {0} set open 1", player1);
+            command.sendAdminCommand("spoof {0} set open 1", player2);
+            command.sendAdminCommand("spoof {0} match {1} u w0 white {2}", player1, player2, timeControl);
+            command.sendAdminCommand("spoof {0} accept {1}", player2, player1);
+            command.sendAdminCommand("spoof jimmys qset {0} isolated 1", player1);
+            command.sendAdminCommand("spoof jimmys qset {0} isolated 1", player2);
+            command.sendAdminCommand("spoof {0} set examine 1", player1);
+            command.sendAdminCommand("spoof {0} set examine 1", player2);
+            command.sendAdminCommand("spoof {0} set kib 0", player1);
+            command.sendAdminCommand("spoof {0} set kib 0", player2);
+            command.sendAdminCommand("spoof {0} set allowkib 0", player1);
+            command.sendAdminCommand("spoof {0} set allowkib 0", player2);
+            command.sendAdminCommand("spoof {0} set quietplay 2", player1);
+            command.sendAdminCommand("spoof {0} set quietplay 2", player2);
+            command.sendAdminCommand("spoof {0} set busy 2", player1);
+            command.sendAdminCommand("spoof {0} set busy 2", player2);        
+            command.sendAdminCommand("observe {0}", board);
+            command.sendAdminCommand("spoof roboadmin observe {0}", board);
             String player1Name = player1.getPreTitledHandle(USCL_RATING);
             String player2Name = player2.getPreTitledHandle(USCL_RATING);
             String qaddevent = QEvent.event(eventSlot)
@@ -469,7 +469,7 @@ public class USCLBot {
                     .addWatchCommand("observe %d", board)
                     .allowGuests(true)
                     .toString();
-            command.sendCommand(qaddevent);
+            command.sendAdminCommand(qaddevent);
         }
     }
 
