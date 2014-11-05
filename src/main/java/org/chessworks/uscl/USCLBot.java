@@ -419,7 +419,15 @@ public class USCLBot {
     }
 
     public void cmdRematch(User teller, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
+        rematch(command, eventSlot, team1, team2, timeControl);
+    }
+    
+    public void cmdRematchScript(User teller, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
         MockCommands command = new MockCommands(teller);
+        rematch(command, eventSlot, team1, team2, timeControl);
+    }
+    
+    public void rematch(AbstractCommands command, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
         Collection<Game> gameList = tournamentService.findMatchGames(team1, team2);
         for (Game game : gameList ) {
             Player temp = game.whitePlayer;
