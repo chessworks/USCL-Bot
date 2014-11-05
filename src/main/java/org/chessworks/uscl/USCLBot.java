@@ -429,10 +429,18 @@ public class USCLBot {
     
     public void rematch(AbstractCommands command, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
         Collection<Game> gameList = tournamentService.findMatchGames(team1, team2);
+        int count = 0;
         for (Game game : gameList ) {
-            Player temp = game.whitePlayer;
-            game.whitePlayer = game.blackPlayer;
-            game.blackPlayer = temp;
+            count++;
+            /*
+             * Ensure team1 has white in the first and third games, but not second and fourth games.
+             * Read this as "team1 is white except on even numbered game".
+             */
+            if (team1.equals(game.whitePlayer.getTeam()) ^ (count % 2) == 0) {
+                Player temp = game.whitePlayer;
+                game.whitePlayer = game.blackPlayer;
+                game.blackPlayer = temp;
+            }
             game.eventSlot = eventSlot++;
             game.observerCountCurrent = 0;
             game.observerCountMax = 0;
