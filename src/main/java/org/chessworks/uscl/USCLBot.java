@@ -421,7 +421,7 @@ public class USCLBot {
     public void cmdRematch(User teller, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
         Collection<Game> gameList = tournamentService.findMatchGames(team1, team2);
         for (Game game : gameList ) {
-            Player temp = game.blackPlayer;
+            Player temp = game.whitePlayer;
             game.whitePlayer = game.blackPlayer;
             game.blackPlayer = temp;
             game.eventSlot = eventSlot++;
