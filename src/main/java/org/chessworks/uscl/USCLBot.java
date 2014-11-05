@@ -1824,6 +1824,7 @@ public class USCLBot {
         /**
          * Sends a command to the server. The command is not echoed as a qtell to managers.
          */
+        @Override
         public void sendQuietly(String command, Object... args) {
             if (args.length > 0) {
                 command = MessageFormat.format(command, args);
@@ -1834,9 +1835,16 @@ public class USCLBot {
         /**
          * Sends a command to the server, and echo it as a qtell to all managers.
          */
+        @Override
         public void sendCommand(String command, Object... args) {
             sendQuietly(command, args);
         }
+
+        @Override
+        public void sendAdminCommand(String command, Object... args) {
+            sendQuietly(command, args);
+        }
+        
     }
 
     /** The underlying connection to the chess server. This uses the Jin connection libraries. */
