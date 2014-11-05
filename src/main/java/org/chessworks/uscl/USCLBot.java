@@ -433,7 +433,7 @@ public class USCLBot {
             Player player1 = game.whitePlayer;
             Player player2 = game.blackPlayer;
             int board = game.boardNumber;
-            String prefix = String.format("qtell {0}  ", teller);
+            String prefix = MessageFormat.format("qtell {0}  ", teller);
             command.sendCommand(prefix + "reserve-game {0} {1}", player1, board);
             command.sendCommand(prefix + "reserve-game {0} {1}", player2, board);
             command.sendCommand(prefix + "spoof {0} set open 1", player1);
