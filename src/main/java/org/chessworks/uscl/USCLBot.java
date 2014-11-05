@@ -1808,6 +1808,13 @@ public class USCLBot {
             }
             conn.sendCommand(prefix + command, true, false, null);
         }
+
+        /**
+         * Sends a command to the server, and echo it as a qtell to all managers.
+         */
+        public void sendCommand(String command, Object... args) {
+            sendQuietly(command, args);
+        }
     }
 
     /** The underlying connection to the chess server. This uses the Jin connection libraries. */
