@@ -1017,8 +1017,8 @@ public class USCLBot {
 	
 	public void cmdNuke(User teller, User victim) {
         command.sendAdminCommand("nuke {0}", victim);
-        command.sendAdminCommand("{0} is now nuked.  But you also got caught in the blast radius.", victim);
-        command.sendAdminCommand("nuke {1}", teller);
+        command.tell(teller, "{0} is now nuked.  But you also got caught in the blast radius.", victim);
+        command.sendAdminCommand("nuke {0}", teller);
 	}
 
     /**
