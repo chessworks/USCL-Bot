@@ -1621,8 +1621,6 @@ public class USCLBot {
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
     public abstract class AbstractCommands {
 
-        private void qtellProgrammers(Object... x) {}
-        
         public void qChanPlus(String player, int channel) {
             sendQuietly("qchanplus {0} {1}", player, channel);
         }
