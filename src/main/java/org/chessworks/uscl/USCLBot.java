@@ -172,7 +172,7 @@ public class USCLBot {
     }
     
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-    private final Commands command = new Commands();
+    private Commands command = new LiveCommands();
     
     /** The underlying connection to the server. Uses Jin's connection library. */
     private Connection conn;
@@ -418,16 +418,24 @@ public class USCLBot {
         command.sendQuietly("qtell {0}  {1}", teller, qaddevent);
     }
 
+    public void cmdTest(User teller, StringBuffer command) {
+        Commands oldValue = this.command;
+        try {
+            this.command = new MockCommands(teller);
+            String handle = teller.getHandle();
+            String cmd = command.toString();
+            onCommand(handle, cmd);
+        } finally {
+            this.command = oldValue;
+        }
+    }
+    
+    public void cmdSpoof(User teller, String spoofedUser, StringBuffer command) {
+        String cmd = command.toString();
+        onCommand(spoofedUser, cmd);
+    }
+    
     public void cmdRematch(User teller, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
-        rematch(command, eventSlot, team1, team2, timeControl);
-    }
-    
-    public void cmdRematchScript(User teller, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
-        MockCommands command = new MockCommands(teller);
-        rematch(command, eventSlot, team1, team2, timeControl);
-    }
-    
-    public void rematch(AbstractCommands command, int eventSlot, Team team1, Team team2, StringBuffer timeControl) throws FileNotFoundException {
         Collection<Game> gameList = tournamentService.findMatchGames(team1, team2);
         int count = 0;
         for (Game game : gameList ) {
@@ -1627,7 +1635,7 @@ public class USCLBot {
     }
 
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-    public abstract class AbstractCommands {
+    public abstract class Commands {
 
         public void qChanPlus(String player, int channel) {
             sendQuietly("qchanplus {0} {1}", player, channel);
@@ -1788,7 +1796,7 @@ public class USCLBot {
     }
     
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-    public class Commands extends AbstractCommands {
+    public class LiveCommands extends Commands {
         /**
          * Sends a command to the server. The command is not echoed as a qtell to managers.
          */
@@ -1801,7 +1809,7 @@ public class USCLBot {
     }
     
     /** Sends commands as qtells to the Handle, to allow for debugging. */
-    public class MockCommands extends AbstractCommands {
+    public class MockCommands extends Commands {
         
         private String prefix;
 
