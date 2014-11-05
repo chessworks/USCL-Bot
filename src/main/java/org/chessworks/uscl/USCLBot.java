@@ -434,26 +434,26 @@ public class USCLBot {
             Player player2 = game.blackPlayer;
             int board = game.boardNumber;
             String prefix = String.format("qtell {0}  ", teller);
-            command.sendQuietly(prefix + "reserve-game {0} {1}", player1, board);
-            command.sendQuietly(prefix + "reserve-game {0} {1}", player2, board);
-            command.sendQuietly(prefix + "spoof {0} set open 1", player1);
-            command.sendQuietly(prefix + "spoof {0} set open 1", player2);
-            command.sendQuietly(prefix + "spoof {0} match {1} u w0 white {2}", player1, player2, timeControl);
-            command.sendQuietly(prefix + "spoof {0} accept {1}", player2, player1);
-            command.sendQuietly(prefix + "spoof jimmys qset {0} isolated 1", player1);
-            command.sendQuietly(prefix + "spoof jimmys qset {0} isolated 1", player2);
-            command.sendQuietly(prefix + "spoof {0} set examine 1", player1);
-            command.sendQuietly(prefix + "spoof {0} set examine 1", player2);
-            command.sendQuietly(prefix + "spoof {0} set kib 0", player1);
-            command.sendQuietly(prefix + "spoof {0} set kib 0", player2);
-            command.sendQuietly(prefix + "spoof {0} set allowkib 0", player1);
-            command.sendQuietly(prefix + "spoof {0} set allowkib 0", player2);
-            command.sendQuietly(prefix + "spoof {0} set quietplay 2", player1);
-            command.sendQuietly(prefix + "spoof {0} set quietplay 2", player2);
-            command.sendQuietly(prefix + "spoof {0} set busy 2", player1);
-            command.sendQuietly(prefix + "spoof {0} set busy 2", player2);        
-            command.sendQuietly(prefix + "observe {0}", board);
-            command.sendQuietly(prefix + "spoof roboadmin observe {0}", board);
+            command.sendCommand(prefix + "reserve-game {0} {1}", player1, board);
+            command.sendCommand(prefix + "reserve-game {0} {1}", player2, board);
+            command.sendCommand(prefix + "spoof {0} set open 1", player1);
+            command.sendCommand(prefix + "spoof {0} set open 1", player2);
+            command.sendCommand(prefix + "spoof {0} match {1} u w0 white {2}", player1, player2, timeControl);
+            command.sendCommand(prefix + "spoof {0} accept {1}", player2, player1);
+            command.sendCommand(prefix + "spoof jimmys qset {0} isolated 1", player1);
+            command.sendCommand(prefix + "spoof jimmys qset {0} isolated 1", player2);
+            command.sendCommand(prefix + "spoof {0} set examine 1", player1);
+            command.sendCommand(prefix + "spoof {0} set examine 1", player2);
+            command.sendCommand(prefix + "spoof {0} set kib 0", player1);
+            command.sendCommand(prefix + "spoof {0} set kib 0", player2);
+            command.sendCommand(prefix + "spoof {0} set allowkib 0", player1);
+            command.sendCommand(prefix + "spoof {0} set allowkib 0", player2);
+            command.sendCommand(prefix + "spoof {0} set quietplay 2", player1);
+            command.sendCommand(prefix + "spoof {0} set quietplay 2", player2);
+            command.sendCommand(prefix + "spoof {0} set busy 2", player1);
+            command.sendCommand(prefix + "spoof {0} set busy 2", player2);        
+            command.sendCommand(prefix + "observe {0}", board);
+            command.sendCommand(prefix + "spoof roboadmin observe {0}", board);
             String player1Name = player1.getPreTitledHandle(USCL_RATING);
             String player2Name = player2.getPreTitledHandle(USCL_RATING);
             String qaddevent = QEvent.event(eventSlot)
@@ -461,7 +461,7 @@ public class USCLBot {
                     .addWatchCommand("observe %d", board)
                     .allowGuests(true)
                     .toString();
-            command.sendQuietly(prefix + "{0}", qaddevent);
+            command.sendCommand(prefix + "{0}", qaddevent);
         }
     }
 
