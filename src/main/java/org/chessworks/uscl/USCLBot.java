@@ -1610,10 +1610,11 @@ public class USCLBot {
         command.tell(CHANNEL_EVENTS_GROUP, msg, args);
     }
 
-    /** Sends commands to the ICC server, such as qtell, tell, reserve-game, etc. */
     /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
-    public class Commands {
+    public abstract class AbstractCommands {
 
+        private void qtellProgrammers(Object... x) {}
+        
         public void qChanPlus(String player, int channel) {
             sendQuietly("qchanplus {0} {1}", player, channel);
         }
@@ -1681,13 +1682,8 @@ public class USCLBot {
         /**
          * Sends a command to the server. The command is not echoed as a qtell to managers.
          */
-        public void sendQuietly(String command, Object... args) {
-            if (args.length > 0) {
-                command = MessageFormat.format(command, args);
-            }
-            conn.sendCommand(command, true, false, null);
-        }
-
+        public abstract void sendQuietly(String command, Object... args);
+        
         public void sshout(String msg, Object... args) {
             if (args.length > 0) {
                 msg = MessageFormat.format(msg, args);
@@ -1775,6 +1771,43 @@ public class USCLBot {
             sendQuietly("tell {0} {1}", channel, msg);
         }
 
+    }
+    
+    /** Used to send commands to the chess server. Such as qtell, tell, reserve-game, etc. */
+    public class Commands extends AbstractCommands {
+        /**
+         * Sends a command to the server. The command is not echoed as a qtell to managers.
+         */
+        public void sendQuietly(String command, Object... args) {
+            if (args.length > 0) {
+                command = MessageFormat.format(command, args);
+            }
+            conn.sendCommand(command, true, false, null);
+        }
+    }
+    
+    /** Sends commands as qtells to the Handle, to allow for debugging. */
+    public class MockCommands extends AbstractCommands {
+        
+        private String prefix;
+
+        public MockCommands(String handle) {
+            this.prefix = "qtell " + handle + "  ";
+        }
+        
+        public MockCommands(User user) {
+            this.prefix = "qtell " + user.getHandle() + "  ";
+        }
+        
+        /**
+         * Sends a command to the server. The command is not echoed as a qtell to managers.
+         */
+        public void sendQuietly(String command, Object... args) {
+            if (args.length > 0) {
+                command = MessageFormat.format(command, args);
+            }
+            conn.sendCommand(prefix + command, true, false, null);
+        }
     }
 
     /** The underlying connection to the chess server. This uses the Jin connection libraries. */
