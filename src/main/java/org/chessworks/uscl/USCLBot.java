@@ -434,9 +434,9 @@ public class USCLBot {
             count++;
             /*
              * Ensure team1 has white in the first and third games, but not second and fourth games.
-             * Read this as "team1 is white except on even numbered game".
+             * Read this as "if team1 is not white except on odd games, or is white on even games, then switch".
              */
-            if (team1.equals(game.whitePlayer.getTeam()) ^ (count % 2) == 0) {
+            if (team1.equals(game.blackPlayer.getTeam()) ^ (count % 2) == 0) {
                 Player temp = game.whitePlayer;
                 game.whitePlayer = game.blackPlayer;
                 game.blackPlayer = temp;
