@@ -561,7 +561,7 @@ public class USCLBot {
     public void cmdDoAllPlayers(User teller, String command) {
         Collection<Player> players = tournamentService.findAllPlayers();
         for (Player p : players) {
-            this.command.sendAdminCommand(command, p);
+            this.command.spoof(teller, command, p);
         }
     }
 
