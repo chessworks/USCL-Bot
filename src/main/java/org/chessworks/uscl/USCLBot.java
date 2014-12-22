@@ -558,10 +558,11 @@ public class USCLBot {
      * @param teller
      *            The user/manager issuing the command.
      */
-    public void cmdDoAllPlayers(User teller, String command) {
+    public void cmdDoAllPlayers(User teller, StringBuffer command) {
+        String cmd = command.toString();
         Collection<Player> players = tournamentService.findAllPlayers();
         for (Player p : players) {
-            this.command.spoof(teller, command, p);
+            this.command.spoof(teller, cmd, p);
         }
     }
 
