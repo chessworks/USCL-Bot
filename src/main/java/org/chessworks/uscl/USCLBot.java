@@ -564,6 +564,7 @@ public class USCLBot {
         for (Player p : players) {
             this.command.spoof(teller, cmd, p);
         }
+        this.command.qtell(teller, "Ran command for {0} players.", players.size());
     }
 
     /**
