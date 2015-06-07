@@ -78,21 +78,6 @@ public class USCLBot {
      */
     public static final String SETTINGS_FILE = System.getProperty("usclbot.settingsFile", "USCL-Bot.properties");
     public static final RatingCategory USCL_RATING = new RatingCategory("USCL");
-    /** A list of titles used by players on ICC. */
-    public static final List<Title> USCL_TITLES;
-
-    static {
-        ArrayList<Title> list = new ArrayList<Title>(6);
-        list.add(SimpleTitleService.FM);
-        list.add(SimpleTitleService.IM);
-        list.add(SimpleTitleService.GM);
-        list.add(SimpleTitleService.WFM);
-        list.add(SimpleTitleService.WIM);
-        list.add(SimpleTitleService.WGM);
-        list.add(SimpleTitleService.NM);
-        list.trimToSize();
-        USCL_TITLES = Collections.unmodifiableList(list);
-    }
 
     private static void loadConnectionSettings(Properties settings, USCLBot bot) {
         String loginName = settings.getProperty("chessclub.loginName", "USCL-Bot");
@@ -643,7 +628,7 @@ public class USCLBot {
         String teamName = team.toString();
         String teamPage = player.getTeam().getWebsite();
         for (Title title : player.getTitles()) {
-            if (USCL_TITLES.contains(title)) {
+            if (SimpleTitleService.CHESSCLUB_TITLES.contains(title)) {
                 command.sendAdminCommand("+{0} {1}", title, player);
             }
         }
